@@ -1,0 +1,82 @@
+.section {
+  padding: 5rem 0;
+  background-color: #ffffff;
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-sm);
+  margin-bottom: 2.5rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+.table th {
+  background-color: var(--secondary);
+  color: #ffffff;
+  padding: 1rem 1.25rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.table td {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+  vertical-align: middle;
+}
+
+.table tbody tr:hover {
+  background-color: var(--bg-main);
+}
+
+.tableNote {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+
+.codeDim {
+  background-color: var(--bg-main);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  font-family: monospace;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+.bannerContact {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 2rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bannerText h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-bottom: 0.35rem;
+}
+
+.bannerText p {
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+@media (max-width: 992px) {
+  .bannerContact {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.25rem;
+  }
+}

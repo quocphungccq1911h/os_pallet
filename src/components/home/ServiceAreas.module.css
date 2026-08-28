@@ -1,0 +1,88 @@
+.section {
+  padding: 5rem 0;
+  background-color: #ffffff;
+}
+
+.flexGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--secondary);
+  margin: 0.75rem 0 1rem 0;
+}
+
+.desc {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 1.75rem;
+}
+
+.tagGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.areaTag {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background-color: var(--bg-main);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--secondary);
+}
+
+.kcnCard {
+  background-color: var(--secondary);
+  color: #ffffff;
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+.kcnHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--primary);
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.kcnHeader h3 {
+  font-size: 1.15rem;
+  color: #ffffff;
+}
+
+.kcnList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.kcnItem {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  color: #cbd5e1;
+}
+
+@media (max-width: 992px) {
+  .flexGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,111 @@
+.floatingContainer {
+  position: fixed;
+  bottom: 2rem;
+  right: 1.5rem;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.floatingBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem;
+  border-radius: var(--radius-full);
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: var(--transition-fast);
+  cursor: pointer;
+}
+
+.btnLabel {
+  display: inline-block;
+  padding-right: 0.5rem;
+}
+
+.phoneBtn {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  animation: pulseGlow 2s infinite;
+}
+
+.phoneBtn:hover {
+  transform: scale(1.08);
+}
+
+.zaloBtn {
+  background: linear-gradient(135deg, #0068ff 0%, #0052cc 100%);
+  animation: zaloGlow 2.5s infinite;
+}
+
+.zaloBtn:hover {
+  transform: scale(1.08);
+}
+
+.quoteBtn {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+}
+
+.quoteBtn:hover {
+  transform: scale(1.08);
+}
+
+/* Mobile Fixed Bar */
+.mobileBottomBar {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background-color: var(--secondary);
+  padding: 0.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.mobileBarItem {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.6rem 0.25rem;
+  border-radius: var(--radius-sm);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.mobilePhone {
+  background-color: #dc2626;
+}
+
+.mobileZalo {
+  background-color: #0068ff;
+}
+
+.mobileQuote {
+  background-color: var(--primary);
+}
+
+@media (max-width: 768px) {
+  .floatingContainer {
+    bottom: 4.5rem;
+    right: 1rem;
+  }
+  .btnLabel {
+    display: none;
+  }
+  .floatingBtn {
+    padding: 0.75rem;
+  }
+  .mobileBottomBar {
+    display: flex;
+    gap: 0.4rem;
+  }
+}
