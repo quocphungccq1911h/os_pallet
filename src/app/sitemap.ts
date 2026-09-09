@@ -3,7 +3,7 @@ import { products } from '@/data/products';
 import { blogPosts } from '@/data/blogs';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://palletgoviet.vn';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://pallettruongan.com';
 
   const productUrls = products.map((p) => ({
     url: `${baseUrl}/san-pham/${p.slug}`,

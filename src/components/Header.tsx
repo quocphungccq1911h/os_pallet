@@ -27,10 +27,17 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
             </span>
           </div>
           <div className={styles.topBarRight}>
-            <a href={`tel:${companyInfo.hotline}`} className={styles.topBarItem}>
+            <div className={styles.topBarHotlines}>
               <Phone size={14} />
-              <span>Hotline: <strong>{companyInfo.hotlineFormatted}</strong></span>
-            </a>
+              <span>Hotline: </span>
+              <a href={`tel:${companyInfo.hotline}`} className={styles.topBarPhoneLink}>
+                <strong>{companyInfo.hotlineFormatted}</strong>
+              </a>
+              <span className={styles.topBarDivider}>-</span>
+              <a href={`tel:${companyInfo.secondaryHotline}`} className={styles.topBarPhoneLink}>
+                <strong>{companyInfo.secondaryHotlineFormatted}</strong>
+              </a>
+            </div>
             <a href={`mailto:${companyInfo.email}`} className={styles.topBarItem}>
               <Mail size={14} />
               <span>{companyInfo.email}</span>
@@ -44,27 +51,49 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
         <div className={`container ${styles.mainNavContainer}`}>
           {/* Brand Logo */}
           <Link href="/" className={styles.logo}>
-            <div className={styles.logoIcon}>🪵</div>
+            <img
+              src="/images/logo_home.jpg"
+              alt="Logo Pallet Trường An"
+              className={styles.logoImage}
+            />
             <div className={styles.logoText}>
               <span className={styles.logoTitle}>{companyInfo.shortName}</span>
-              <span className={styles.logoSubtitle}>PALLET GỖ B2B CHUẨN ISO</span>
+              <span className={styles.logoSubtitle}>XƯỞNG PALLET GỖ & THÙNG GỖ</span>
             </div>
           </Link>
 
           {/* Desktop Navigation Links */}
           <nav className={styles.desktopNav}>
             <Link href="/" className={styles.navLink}>Trang Chủ</Link>
-            <Link href="/san-pham" className={styles.navLink}>Sản Phẩm Pallet</Link>
-            <Link href="/bang-gia" className={styles.navLink}>Bảng Giá Tham Khảo</Link>
-            <Link href="/tin-tuc" className={styles.navLink}>Kiến Thức & SEO</Link>
+            <Link href="/san-pham" className={styles.navLink}>Sản Phẩm</Link>
+            <Link href="/bang-gia" className={styles.navLink}>Bảng Giá</Link>
+            <Link href="/tin-tuc" className={styles.navLink}>Kiến Thức</Link>
             <Link href="/lien-he" className={styles.navLink}>Liên Hệ</Link>
           </nav>
 
-          {/* Action CTA Button */}
+          {/* Action CTA Button & Dual Hotline Badge */}
           <div className={styles.navActions}>
+            <div className={styles.headerPhoneBox}>
+              <div className={styles.phoneCircle}>
+                <Phone size={18} />
+              </div>
+              <div className={styles.phoneInfo}>
+                <span className={styles.phoneLabel}>Tư vấn báo giá xưởng:</span>
+                <div className={styles.phoneLinks}>
+                  <a href={`tel:${companyInfo.hotline}`} className={styles.phoneNumber}>
+                    {companyInfo.hotlineFormatted}
+                  </a>
+                  <span className={styles.phoneDash}>-</span>
+                  <a href={`tel:${companyInfo.secondaryHotline}`} className={styles.phoneNumber}>
+                    {companyInfo.secondaryHotlineFormatted}
+                  </a>
+                </div>
+              </div>
+            </div>
+
             <button onClick={onOpenQuoteModal} className="btn btn-primary">
               <FileText size={18} />
-              <span>Nhận Báo Giá Nhanh</span>
+              <span>Nhận Báo Giá</span>
             </button>
 
             {/* Mobile Hamburger Toggle */}
@@ -105,9 +134,13 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
             </Link>
 
             <div className={styles.mobileContactBox}>
-              <a href={`tel:${companyInfo.hotline}`} className="btn btn-hotline" style={{ width: '100%', marginBottom: '0.5rem' }}>
+              <a href={`tel:${companyInfo.hotline}`} className="btn btn-hotline" style={{ width: '100%', marginBottom: '0.4rem' }}>
                 <Phone size={18} />
-                <span>Gọi Hotline: {companyInfo.hotlineFormatted}</span>
+                <span>Line 1: {companyInfo.hotlineFormatted}</span>
+              </a>
+              <a href={`tel:${companyInfo.secondaryHotline}`} className="btn btn-hotline" style={{ width: '100%', marginBottom: '0.6rem', backgroundColor: '#1e3a8a' }}>
+                <Phone size={18} />
+                <span>Line 2: {companyInfo.secondaryHotlineFormatted}</span>
               </a>
               <button
                 onClick={() => {

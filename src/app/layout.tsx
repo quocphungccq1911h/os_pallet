@@ -4,22 +4,26 @@ import { companyInfo } from '@/data/companyInfo';
 import { AppShell } from '@/components/AppShell';
 
 export const metadata: Metadata = {
-  title: `${companyInfo.name} - Pallet Gỗ Mới, Cũ, Xuất Khẩu Giá Tận Xưởng`,
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://pallettruongan.com'),
+  title: `${companyInfo.shortName} - Pallet Gỗ, Ván Ép & Thùng Gỗ Đóng Hàng Xuất Khẩu Hóc Môn TP.HCM`,
   description: companyInfo.description,
   keywords: [
-    'pallet gỗ',
-    'pallet gỗ tràm',
-    'pallet gỗ keo',
-    'pallet gỗ cũ',
-    'pallet gỗ xuất khẩu',
-    'pallet ISPM 15',
-    'pallet gỗ bình dương',
-    'pallet gỗ đồng nai',
+    'pallet trường an',
+    'pallet gỗ trường an',
+    'pallet gỗ hóc môn',
     'pallet gỗ tphcm',
-    'bảng giá pallet gỗ'
+    'thùng gỗ đóng hàng',
+    'thùng gỗ đóng máy móc',
+    'kiện gỗ xuất khẩu',
+    'pallet ván ép',
+    'plywood pallet',
+    'pallet gỗ thông',
+    'pallet gỗ tràm',
+    'pallet gỗ cũ hóc môn',
+    'pallet xuất khẩu ISPM 15'
   ],
   openGraph: {
-    title: companyInfo.name,
+    title: `${companyInfo.name} - Xưởng Pallet Gỗ & Thùng Gỗ Xuất Khẩu Hóc Môn`,
     description: companyInfo.description,
     type: 'website',
     locale: 'vi_VN',
@@ -28,6 +32,10 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+  },
+  icons: {
+    icon: '/images/logo_home.jpg',
+    apple: '/images/logo_home.jpg',
   }
 };
 
@@ -40,16 +48,28 @@ export default function RootLayout({
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
     name: companyInfo.name,
+    alternateName: companyInfo.shortName,
     description: companyInfo.description,
     telephone: companyInfo.hotline,
     email: companyInfo.email,
     address: {
       '@type': 'PostalAddress',
       streetAddress: companyInfo.address,
+      addressLocality: 'Huyện Hóc Môn',
+      addressRegion: 'TP. Hồ Chí Minh',
       addressCountry: 'VN',
     },
-    openingHours: 'Mo-Sa 07:30-18:00',
-    priceRange: ' Liên hệ báo giá',
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 10.887,
+      longitude: 106.634,
+    },
+    sameAs: [
+      companyInfo.facebook,
+      companyInfo.zaloUrl
+    ],
+    openingHours: 'Mo-Su 07:30-18:00',
+    priceRange: 'Liên hệ báo giá tốt nhất',
   };
 
   return (
@@ -66,3 +86,4 @@ export default function RootLayout({
     </html>
   );
 }
+

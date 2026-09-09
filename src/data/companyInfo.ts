@@ -5,6 +5,8 @@ export interface CompanyInfo {
   description: string;
   hotline: string;
   hotlineFormatted: string;
+  secondaryHotline: string;
+  secondaryHotlineFormatted: string;
   zalo: string;
   zaloUrl: string;
   facebook: string;
@@ -17,27 +19,29 @@ export interface CompanyInfo {
 }
 
 export const companyInfo: CompanyInfo = {
-  name: "CÔNG TY TNHH PALLET GỖ VIỆT",
-  shortName: "Pallet Gỗ Việt",
-  slogan: "Giải Pháp Pallet Gỗ Chuyên Nghiệp - Uy Tín - Giá Tận Xưởng",
-  description: "Chuyên sản xuất, phân phối và gia công pallet gỗ tràm, keo, gỗ cũ/mới, pallet xuất khẩu đạt tiêu chuẩn ISPM 15 theo kích thước yêu cầu cho doanh nghiệp và nhà xưởng trên toàn quốc.",
-  hotline: "0988123456",
-  hotlineFormatted: "0988.123.456",
-  zalo: "0988123456",
-  zaloUrl: "https://zalo.me/0988123456",
-  facebook: "https://facebook.com/palletgoviet.vn",
-  email: "baogiatot@palletgoviet.vn",
-  address: "Đường Số 4, KCN Sóng Thần 1, TP. Dĩ An, Bình Dương",
-  factoryAddress: "Xưởng sản xuất: Ấp Tân Lập, Xã Cây Gáo, Huyện Trảng Bom, Đồng Nai",
-  workingHours: "07:30 - 18:00 (Thứ 2 - Thứ 7)",
+  name: "XƯỞNG PALLET GỖ & THÙNG GỖ TRƯỜNG AN",
+  shortName: "Pallet Trường An",
+  slogan: "Pallet Gỗ, Ván Ép & Thùng Gỗ Đóng Kiện Máy Móc Xuất Khẩu - Giá Tận Xưởng",
+  description: "Xưởng sản xuất và phân phối trực tiếp Pallet Gỗ (thông, tràm, keo), Pallet Ván Ép Plywood, gia công Thùng Gỗ đóng hàng máy móc xuất khẩu đi Mỹ, Campuchia, EU... theo bản vẽ yêu cầu tại Hóc Môn, TP.HCM.",
+  hotline: "0961833801",
+  hotlineFormatted: "0961.833.801",
+  secondaryHotline: "0568888216",
+  secondaryHotlineFormatted: "056.8888.216",
+  zalo: "0961833801",
+  zaloUrl: "https://zalo.me/0961833801",
+  facebook: "https://www.facebook.com/PalletTruongAn/",
+  email: "ngockycntp@gmail.com",
+  address: "361/75 Huỳnh Thị Na, Xã Đông Thạnh, Huyện Hóc Môn, TP. Hồ Chí Minh",
+  factoryAddress: "361/75 Huỳnh Thị Na, Xã Đông Thạnh, Huyện Hóc Môn, TP. Hồ Chí Minh",
+  workingHours: "07:30 - 18:00 (Thứ 2 - Chủ Nhật)",
   serviceAreas: [
-    "TP. Hồ Chí Minh",
-    "Bình Dương",
-    "Đồng Nai",
-    "Long An",
-    "Bà Rịa - Vũng Tàu",
-    "Tây Ninh",
-    "Các KCN trên toàn quốc"
+    "Hóc Môn & Củ Chi",
+    "Quận 12 & TP. Hồ Chí Minh",
+    "Bình Dương (Thuận An, Dĩ An, Bến Cát)",
+    "Long An (Đức Hòa, Bến Lức)",
+    "Đồng Nai & Tây Ninh",
+    "Hàng xuất khẩu đi Campuchia, Mỹ, Châu Âu"
   ],
-  googleMapsEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.4206639906!2d106.7583!3d10.8552!2m3!1f0!0!f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTDCsDUxJzE4LjciTiAxMDbCsDQ1JzI5LjkiRQ!5e0!3m2!1svi!2s!4v1620000000000!5m2!1svi!2s"
+  googleMapsEmbed: "https://www.google.com/maps?q=361/75+Hu%E1%BB%B3nh+Th%E1%BB%8B+Na,+%C4%90%C3%B4ng+Th%E1%BA%A1nh,+H%C3%B3c+M%C3%B4n,+Th%C3%A0nh+ph%E1%BB%91+H%E1%BB%93+Ch%C3%AD+Minh&output=embed"
 };
+

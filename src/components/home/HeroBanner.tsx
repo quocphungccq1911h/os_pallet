@@ -14,47 +14,52 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onOpenQuoteModal }) => {
         {/* Left Column: Hero Text Content */}
         <div className={styles.heroContent}>
           <div className="section-tag">
-            <span>🏭 XƯỞNG SẢN XUẤT PALLET GỖ TRỰC TIẾP</span>
+            <span>🏭 XƯỞNG PALLET GỖ & THÙNG GỖ TRƯỜNG AN - HÓC MÔN</span>
           </div>
 
           <h1 className={styles.heroTitle}>
-            Giải Pháp <span className={styles.titleHighlight}>Pallet Gỗ B2B</span> Chuyên Nghiệp & Chuẩn ISPM 15
+            Pallet Gỗ, Ván Ép & <span className={styles.titleHighlight}>Thùng Gỗ Đóng Hàng</span> Xuất Khẩu
           </h1>
 
           <p className={styles.heroDesc}>
-            Chuyên cung cấp Pallet gỗ Tràm, Keo, Pallet xuất khẩu, Pallet cũ/mới và nhận gia công đóng theo kích thước yêu cầu cho nhà máy, kho bãi và container xuất khẩu trên toàn quốc.
+            Xưởng sản xuất trực tiếp tại Hóc Môn: Chuyên cung cấp Pallet Gỗ Thông, Tràm, Pallet Ván Ép Plywood, gia công Thùng Gỗ đóng kiện máy móc xuất khẩu đi Mỹ, Campuchia và giao hàng nhanh các KCN phía Nam.
           </p>
 
           {/* Quick Value Highlights */}
           <div className={styles.heroFeatures}>
             <div className={styles.featureItem}>
               <CheckCircle2 size={18} color="var(--primary)" />
-              <span>Giá gốc tận xưởng sản xuất</span>
+              <span>Giá gốc tận xưởng Hóc Môn</span>
             </div>
             <div className={styles.featureItem}>
               <CheckCircle2 size={18} color="var(--primary)" />
-              <span>Sấy HT khử trùng ISPM 15</span>
+              <span>Đóng thùng kiện theo bản vẽ</span>
             </div>
             <div className={styles.featureItem}>
               <CheckCircle2 size={18} color="var(--primary)" />
-              <span>Đóng mẫu chạy thử miễn phí</span>
+              <span>Pallet ván ép & ISPM 15</span>
             </div>
             <div className={styles.featureItem}>
               <CheckCircle2 size={18} color="var(--primary)" />
-              <span>Giao hàng tận nơi 24/7</span>
+              <span>Giao hàng nhanh tận kho bãi</span>
             </div>
           </div>
 
           {/* CTA Buttons Group */}
           <div className={styles.heroActions}>
-            <button onClick={onOpenQuoteModal} className="btn btn-primary" style={{ padding: '0.85rem 1.75rem', fontSize: '1.05rem' }}>
-              <FileText size={20} />
+            <button onClick={onOpenQuoteModal} className="btn btn-primary" style={{ padding: '0.85rem 1.6rem', fontSize: '1.02rem' }}>
+              <FileText size={18} />
               <span>Nhận Báo Giá Nhanh</span>
             </button>
             
-            <a href={`tel:${companyInfo.hotline}`} className="btn btn-hotline" style={{ padding: '0.85rem 1.75rem', fontSize: '1.05rem' }}>
-              <Phone size={20} />
-              <span>Hotline: {companyInfo.hotlineFormatted}</span>
+            <a href={`tel:${companyInfo.hotline}`} className="btn btn-hotline" style={{ padding: '0.85rem 1.25rem', fontSize: '0.95rem' }} title="Gọi Hotline Line 1">
+              <Phone size={16} />
+              <span>{companyInfo.hotlineFormatted}</span>
+            </a>
+
+            <a href={`tel:${companyInfo.secondaryHotline}`} className="btn btn-hotline" style={{ padding: '0.85rem 1.25rem', fontSize: '0.95rem', backgroundColor: '#1e3a8a' }} title="Gọi Hotline Line 2">
+              <Phone size={16} />
+              <span>{companyInfo.secondaryHotlineFormatted}</span>
             </a>
           </div>
 
@@ -71,8 +76,8 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onOpenQuoteModal }) => {
             </div>
             <div className={styles.statDivider}></div>
             <div className={styles.statBox}>
-              <span className={styles.statNum}>50.000+</span>
-              <span className={styles.statLabel}>Pallet xuất xưởng/tháng</span>
+              <span className={styles.statNum}>30.000+</span>
+              <span className={styles.statLabel}>Sản phẩm cung ứng/tháng</span>
             </div>
           </div>
         </div>
@@ -81,17 +86,14 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onOpenQuoteModal }) => {
         <div className={styles.heroVisual}>
           <div className={styles.visualCard}>
             <img
-              src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1000"
-              alt="Xưởng sản xuất Pallet Gỗ Việt"
+              src="/images/banner_main.png"
+              alt="Xưởng Pallet Gỗ & Thùng Gỗ Trường An - Hóc Môn TP.HCM"
               className={styles.visualImg}
             />
-            <div className={styles.visualBadge}>
-              <ShieldCheck size={28} color="var(--primary)" />
-              <div>
-                <strong>Chất Lượng Cam Kết</strong>
-                <p>Nan sấy khô không nấm mốc, đúng quy cách</p>
-              </div>
-            </div>
+          </div>
+          <div className={styles.visualFooterBadge}>
+            <ShieldCheck size={20} color="var(--primary)" />
+            <span>Xưởng sản xuất trực tiếp • Cam kết đúng quy cách & tiến độ 100%</span>
           </div>
         </div>
       </div>

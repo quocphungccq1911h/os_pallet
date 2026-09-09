@@ -6,29 +6,30 @@ export const RealGallery: React.FC = () => {
   const images = [
     {
       url: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
-      caption: "Khu vực kho tập kết Pallet gỗ tràm chuẩn bị xuất xưởng"
+      caption: "Khu vực tập kết Pallet gỗ thông & tràm tại xưởng Trường An Hóc Môn"
     },
     {
       url: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=800",
-      caption: "Xưởng cưa xẻ gỗ tràm & keo tự nhiên quy mô 10.000m²"
+      caption: "Thợ mộc gia công đóng kiện thùng gỗ bảo vệ máy móc xuất khẩu"
     },
     {
       url: "https://images.unsplash.com/photo-1586528116493-a029325540fa?auto=format&fit=crop&q=80&w=800",
-      caption: "Hệ thống lò sấy nhiệt HT đạt chuẩn khử trùng ISPM 15"
+      caption: "Pallet ván ép Plywood mặt phẳng kín phục vụ đóng hàng container"
     },
     {
       url: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&q=80&w=800",
-      caption: "Công nhân gia công bắn đinh đố chốt cố định chân pallet"
+      caption: "Xử lý nhiệt HT và đóng mộc khử trùng tiêu chuẩn quốc tế ISPM 15"
     },
     {
       url: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
-      caption: "Bốc xếp pallet lên xe tải giao đến KCN Sóng Thần Bình Dương"
+      caption: "Bốc xếp pallet lên xe tải giao tận nơi các KCN Hóc Môn, Bình Dương, Long An"
     },
     {
       url: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=800",
-      caption: "Pallet gỗ cũ được phân loại chọn lọc đạt độ mới 90%"
+      caption: "Pallet gỗ cũ tuyển chọn chất lượng cao mới 85% - 95%"
     }
   ];
+
 
   return (
     <section className={styles.section}>

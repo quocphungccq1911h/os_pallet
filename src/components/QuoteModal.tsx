@@ -14,7 +14,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, default
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    product: defaultProductSlug || 'pallet-go-1200x1000',
+    product: defaultProductSlug || 'pallet-go-tram-1200x1000',
     dimensions: '',
     quantity: '100',
     note: ''
@@ -38,7 +38,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, default
     setFormData({
       name: '',
       phone: '',
-      product: 'pallet-go-1200x1000',
+      product: 'pallet-go-tram-1200x1000',
       dimensions: '',
       quantity: '100',
       note: ''
@@ -149,14 +149,24 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, default
             </p>
 
             <div className={styles.directContact}>
-              <p>Cần báo giá gấp? Gọi ngay cho chúng tôi:</p>
-              <a href={`tel:${companyInfo.hotline}`} className="btn btn-hotline">
-                <Phone size={18} />
-                <span>Hotline: {companyInfo.hotlineFormatted}</span>
-              </a>
+              <p>Cần báo giá gấp? Gọi hoặc nhắn Zalo xưởng ngay:</p>
+              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
+                <a href={`tel:${companyInfo.hotline}`} className="btn btn-hotline">
+                  <Phone size={18} />
+                  <span>Gọi {companyInfo.hotlineFormatted}</span>
+                </a>
+                <a
+                  href={`${companyInfo.zaloUrl}?text=${encodeURIComponent(`Xin chào xưởng Pallet Trường An, tôi vừa để lại yêu cầu báo giá cho ${formData.name} - SĐT: ${formData.phone}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-zalo"
+                >
+                  Nhắn Zalo Ngay
+                </a>
+              </div>
             </div>
 
-            <button onClick={handleReset} className="btn btn-outline" style={{ marginTop: '1.5rem' }}>
+            <button onClick={handleReset} className="btn btn-outline" style={{ marginTop: '1.25rem' }}>
               Đóng Cửa Sổ
             </button>
           </div>

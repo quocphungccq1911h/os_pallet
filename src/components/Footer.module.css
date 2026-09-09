@@ -55,12 +55,23 @@
   margin-bottom: 1rem;
 }
 
+.footerLogoImg {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #ffffff;
+  border: 1.5px solid rgba(226, 125, 34, 0.4);
+  flex-shrink: 0;
+}
+
 .footerLogoTitle {
   font-size: 1.15rem;
   font-weight: 800;
   color: #ffffff;
   line-height: 1.2;
 }
+
 
 .footerDesc {
   color: var(--text-light);

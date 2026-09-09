@@ -17,9 +17,9 @@ export default function PricingPage() {
           <span className="section-tag" style={{ backgroundColor: 'rgba(255,255,255,0.2)', color: '#ffffff' }}>
             BẢNG GIÁ TRA CỨU PALLET GỖ
           </span>
-          <h1 className={styles.pageTitle}>Bảng Giá Pallet Gỗ Mới & Cũ Cập Nhật 2026</h1>
+          <h1 className={styles.pageTitle}>Bảng Giá Pallet Gỗ, Ván Ép & Thùng Gỗ Mới Nhất 2026</h1>
           <p className={styles.pageDesc}>
-            Cam kết giá gốc tận xưởng sản xuất trực tiếp không qua trung gian. Báo giá tùy thuộc theo số lượng và quy cách sấy HT xuất khẩu ISPM 15.
+            Cam kết giá gốc tận xưởng mộc Hóc Môn trực tiếp không qua trung gian. Báo giá tùy thuộc theo số lượng, bản vẽ và quy cách sấy HT xuất khẩu ISPM 15.
           </p>
         </div>
       </div>

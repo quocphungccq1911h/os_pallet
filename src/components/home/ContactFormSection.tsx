@@ -43,7 +43,11 @@ export const ContactFormSection: React.FC = () => {
                 <Phone size={22} color="var(--primary)" />
                 <div>
                   <strong>Hotline / Zalo Báo Giá 24/7</strong>
-                  <p><a href={`tel:${companyInfo.hotline}`} className={styles.hotlineLink}>{companyInfo.hotlineFormatted}</a></p>
+                  <p>
+                    <a href={`tel:${companyInfo.hotline}`} className={styles.hotlineLink}>{companyInfo.hotlineFormatted}</a>
+                    {" - "}
+                    <a href={`tel:${companyInfo.secondaryHotline}`} className={styles.hotlineLink}>{companyInfo.secondaryHotlineFormatted}</a>
+                  </p>
                 </div>
               </div>
 
@@ -58,7 +62,7 @@ export const ContactFormSection: React.FC = () => {
               <div className={styles.contactCard}>
                 <MapPin size={22} color="var(--primary)" />
                 <div>
-                  <strong>Địa Chỉ Trụ Sở & Xưởng</strong>
+                  <strong>Xưởng Sản Xuất & Kho Bãi</strong>
                   <p>{companyInfo.address}</p>
                 </div>
               </div>
@@ -70,7 +74,7 @@ export const ContactFormSection: React.FC = () => {
             {!submitted ? (
               <form onSubmit={handleSubmit}>
                 <h3 className={styles.formTitle}>Form Yêu Cầu Báo Giá Bản Vẽ</h3>
-                <p className={styles.formSub}>Nhận ưu đãi giảm 5% cho đơn hàng khởi tạo đầu tiên</p>
+                <p className={styles.formSub}>Nhận báo giá tận xưởng Hóc Môn trong 15 phút</p>
 
                 <div className={styles.formGrid}>
                   <div className={styles.formGroup}>
@@ -78,7 +82,7 @@ export const ContactFormSection: React.FC = () => {
                     <input
                       type="text"
                       required
-                      placeholder="Anh/Chị Nam..."
+                      placeholder="Anh/Chị..."
                       className={styles.input}
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -98,10 +102,10 @@ export const ContactFormSection: React.FC = () => {
                   </div>
 
                   <div className={styles.formGroup}>
-                    <label className={styles.label}>Kích thước Pallet dự kiến</label>
+                    <label className={styles.label}>Kích thước / Loại hàng dự kiến</label>
                     <input
                       type="text"
-                      placeholder="Ví dụ: 1200 x 1000 x 140 mm"
+                      placeholder="Ví dụ: Pallet 1200x1000 hoặc Thùng gỗ máy 2x1.5m"
                       className={styles.input}
                       value={formData.dimensions}
                       onChange={(e) => setFormData({ ...formData, dimensions: e.target.value })}
@@ -109,10 +113,10 @@ export const ContactFormSection: React.FC = () => {
                   </div>
 
                   <div className={styles.formGroup}>
-                    <label className={styles.label}>Số lượng (Cái)</label>
+                    <label className={styles.label}>Số lượng (Cái / Kiện)</label>
                     <input
                       type="number"
-                      placeholder="Ví dụ: 200"
+                      placeholder="Ví dụ: 100"
                       className={styles.input}
                       value={formData.quantity}
                       onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
@@ -121,10 +125,10 @@ export const ContactFormSection: React.FC = () => {
                 </div>
 
                 <div className={styles.formGroup} style={{ marginTop: '1rem' }}>
-                  <label className={styles.label}>Yêu cầu quy cách / Ghi chú kỹ thuật</label>
+                  <label className={styles.label}>Yêu cầu quy cách / Bản vẽ / Ghi chú kỹ thuật</label>
                   <textarea
                     rows={3}
-                    placeholder="Mô tả hàng hóa kê lên, tải trọng yêu cầu hoặc có cần khử trùng ISPM 15 không..."
+                    placeholder="Mô tả tải trọng, có cần sấy ISPM 15, ván ép hay pallet gỗ tràm/thông..."
                     className={styles.textarea}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
@@ -140,8 +144,19 @@ export const ContactFormSection: React.FC = () => {
               <div className={styles.successState}>
                 <CheckCircle size={60} color="var(--accent)" />
                 <h3>Gửi Thông Tin Thành Công!</h3>
-                <p>Kỹ sư của <strong>{companyInfo.shortName}</strong> đã nhận được thông tin và sẽ gọi báo giá lại cho bạn ngay lập tức.</p>
-                <button onClick={() => setSubmitted(false)} className="btn btn-outline" style={{ marginTop: '1.5rem' }}>
+                <p>Kỹ sư của <strong>{companyInfo.shortName}</strong> đã nhận được thông tin và sẽ gọi báo giá lại cho bạn ngay.</p>
+                
+                <a
+                  href={`${companyInfo.zaloUrl}?text=${encodeURIComponent(`Xin chào Pallet Trường An, tôi vừa gửi yêu cầu báo giá cho ${formData.name} - SĐT: ${formData.phone}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-zalo"
+                  style={{ marginTop: '1rem', width: '100%' }}
+                >
+                  Nhắn Zalo {companyInfo.hotlineFormatted} Để Phản Hồi Nhanh
+                </a>
+
+                <button onClick={() => setSubmitted(false)} className="btn btn-outline" style={{ marginTop: '0.75rem', width: '100%' }}>
                   Gửi thêm yêu cầu khác
                 </button>
               </div>

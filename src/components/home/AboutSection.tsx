@@ -25,7 +25,7 @@ export const AboutSection: React.FC = () => {
         {/* Right Info Column */}
         <div className={styles.infoCol}>
           <span className="section-tag">
-            <Factory size={14} /> GIỚI THIỆU DOANH NGHIỆP
+            <Factory size={14} /> GIỚI THIỆU XƯỞNG SẢN XUẤT
           </span>
 
           <h2 className={styles.title}>
@@ -33,31 +33,31 @@ export const AboutSection: React.FC = () => {
           </h2>
 
           <p className={styles.description}>
-            {companyInfo.name} tự hào là đơn vị uy tín hàng đầu trong lĩnh vực sản xuất và phân phối pallet gỗ tràm, keo, thông tại Việt Nam. Sở hữu xưởng sản xuất quy mô hơn 10.000m² tại Đồng Nai và kho phân phối Bình Dương, chúng tôi tự tin đáp ứng các đơn hàng lớn từ 500 đến 10.000 pallet/tháng cho các tập đoàn Logistics và nhà máy sản xuất.
+            <strong>{companyInfo.name}</strong> (tọa lạc tại số 361/75 Huỳnh Thị Na, Đông Thạnh, Hóc Môn, TP.HCM) là xưởng chuyên môn hóa sản xuất Pallet gỗ (gỗ thông, gỗ tràm), Pallet ván ép Plywood và đóng kiện Thùng Gỗ chuyên dụng cho máy móc thiết bị công nghiệp. Chúng tôi là đối tác tin cậy của hàng trăm xí nghiệp, kho vận tại TP.HCM, Bình Dương, Long An và các công ty đóng container xuất khẩu sang Campuchia, Mỹ, Châu Âu.
           </p>
 
           <div className={styles.bulletList}>
             <div className={styles.bulletItem}>
               <Award className={styles.bulletIcon} size={22} />
               <div>
-                <h4>Nguyên Liệu Gỗ Sạch Chịu Tải</h4>
-                <p>Nguồn gỗ tràm & keo tự nhiên chọn lọc, xẻ sấy chuẩn độ ẩm dưới 18%.</p>
+                <h4>Đóng Thùng Gỗ & Gia Công Theo Bản Vẽ Riêng</h4>
+                <p>Nhận đóng thùng gỗ kín, thùng thưa theo đúng thông số kích thước và trọng lượng máy móc.</p>
               </div>
             </div>
 
             <div className={styles.bulletItem}>
               <Shield className={styles.bulletIcon} size={22} />
               <div>
-                <h4>Đạt Tiêu Chuẩn Xuất Khẩu ISPM 15</h4>
-                <p>Hệ thống lò sấy nhiệt HT khử trùng đạt chuẩn quốc tế cấp chứng thư xuất khẩu.</p>
+                <h4>Pallet Ván Ép & Khử Trùng ISPM 15 Đạt Chuẩn</h4>
+                <p>Đáp ứng đầy đủ tiêu chuẩn kiểm dịch xuất khẩu container đường biển và hàng air quốc tế.</p>
               </div>
             </div>
 
             <div className={styles.bulletItem}>
               <Truck className={styles.bulletIcon} size={22} />
               <div>
-                <h4>Đội Xe Vận Chuyển Riêng</h4>
-                <p>Giao hàng chủ động tận nơi tại các KCN TP.HCM, Bình Dương, Đồng Nai, Long An.</p>
+                <h4>Giao Hàng Tận Nơi Bằng Xe Tải Riêng</h4>
+                <p>Vận chuyển nhanh chóng đến kho xưởng tại Hóc Môn, Củ Chi, Q.12, Bình Dương, Long An, Đồng Nai.</p>
               </div>
             </div>
           </div>

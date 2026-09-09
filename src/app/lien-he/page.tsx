@@ -14,9 +14,9 @@ export default function ContactPage() {
           <span className="section-tag" style={{ backgroundColor: 'rgba(255,255,255,0.2)', color: '#ffffff' }}>
             THÔNG TIN LIÊN HỆ & NHÀ XƯỞNG
           </span>
-          <h1 className={styles.pageTitle}>Liên Hệ Công Ty TNHH Pallet Gỗ Việt</h1>
+          <h1 className={styles.pageTitle}>Liên Hệ {companyInfo.name}</h1>
           <p className={styles.pageDesc}>
-            Chúng tôi luôn sẵn sàng hỗ trợ khảo sát mặt bằng kho bãi, tư vấn thông số tải trọng và báo giá gia công tận xưởng cho doanh nghiệp của bạn.
+            Chúng tôi luôn sẵn sàng hỗ trợ khảo sát kích thước máy móc, lên bản vẽ thiết kế mẫu và báo giá tận xưởng tốt nhất cho doanh nghiệp.
           </p>
         </div>
       </div>
@@ -25,25 +25,25 @@ export default function ContactPage() {
         <div className={styles.infoGrid}>
           <div className={styles.card}>
             <MapPin size={32} color="var(--primary)" />
-            <h3>Trụ Sở Chính</h3>
+            <h3>Xưởng Sản Xuất</h3>
             <p>{companyInfo.address}</p>
           </div>
           <div className={styles.card}>
             <Factory size={32} color="var(--primary)" />
-            <h3>Xưởng Sản Xuất</h3>
-            <p>{companyInfo.factoryAddress}</p>
+            <h3>Khu Vực Phục Vụ</h3>
+            <p>Hóc Môn, Củ Chi, Q.12, Bình Dương, Long An, các KCN miền Nam & Đóng hàng xuất khẩu</p>
           </div>
           <div className={styles.card}>
             <Phone size={32} color="var(--primary)" />
             <h3>Hotline & Zalo</h3>
-            <p>Hotline: <strong>{companyInfo.hotlineFormatted}</strong></p>
-            <p>Zalo: {companyInfo.zalo}</p>
+            <p>Hotline 1: <strong>{companyInfo.hotlineFormatted}</strong></p>
+            <p>Hotline 2: <strong>{companyInfo.secondaryHotlineFormatted}</strong></p>
           </div>
           <div className={styles.card}>
             <Clock size={32} color="var(--primary)" />
             <h3>Giờ Làm Việc</h3>
             <p>{companyInfo.workingHours}</p>
-            <p>Hỗ trợ tư vấn online 24/7</p>
+            <p>Tư vấn kỹ thuật Zalo 24/7</p>
           </div>
         </div>
       </div>

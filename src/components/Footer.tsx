@@ -48,7 +48,11 @@ export const Footer: React.FC = () => {
           {/* Column 1: Company Info */}
           <div className={styles.footerCol}>
             <div className={styles.footerLogo}>
-              <span style={{ fontSize: '2rem' }}>🪵</span>
+              <img
+                src="/images/logo_home.jpg"
+                alt="Logo Pallet Trường An"
+                className={styles.footerLogoImg}
+              />
               <span className={styles.footerLogoTitle}>{companyInfo.name}</span>
             </div>
             <p className={styles.footerDesc}>{companyInfo.description}</p>
@@ -56,15 +60,11 @@ export const Footer: React.FC = () => {
             <div className={styles.contactList}>
               <div className={styles.contactItem}>
                 <MapPin size={18} className={styles.iconAccent} />
-                <span><strong>VP Trụ sở:</strong> {companyInfo.address}</span>
-              </div>
-              <div className={styles.contactItem}>
-                <MapPin size={18} className={styles.iconAccent} />
-                <span><strong>Xưởng sản xuất:</strong> {companyInfo.factoryAddress}</span>
+                <span><strong>Địa chỉ xưởng:</strong> {companyInfo.address}</span>
               </div>
               <div className={styles.contactItem}>
                 <Phone size={18} className={styles.iconAccent} />
-                <span><strong>Hotline báo giá:</strong> {companyInfo.hotlineFormatted}</span>
+                <span><strong>Hotline báo giá:</strong> <a href={`tel:${companyInfo.hotline}`} style={{ color: '#ffffff' }}>{companyInfo.hotlineFormatted}</a> - <a href={`tel:${companyInfo.secondaryHotline}`} style={{ color: '#ffffff' }}>{companyInfo.secondaryHotlineFormatted}</a></span>
               </div>
               <div className={styles.contactItem}>
                 <Mail size={18} className={styles.iconAccent} />
