@@ -1,9 +1,9 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { products } from '@/data/products';
+import { products as defaultProducts, Product } from '@/data/products';
 import { companyInfo } from '@/data/companyInfo';
 import { ShieldCheck, Phone, MessageCircle, FileText, CheckCircle2, ArrowLeft } from 'lucide-react';
 import { useQuoteModal } from '@/context/QuoteModalContext';
@@ -14,7 +14,38 @@ export default function ProductDetailPage() {
   const slug = params?.slug as string;
   const { openQuoteModal } = useQuoteModal();
 
-  const product = products.find((p) => p.slug === slug);
+  const [product, setProduct] = useState<Product | undefined>(() =>
+    defaultProducts.find((p) => p.slug === slug)
+  );
+  const [isLoading, setIsLoading] = useState(!product);
+
+  useEffect(() => {
+    async function fetchProduct() {
+      try {
+        const res = await fetch('/api/products');
+        if (res.ok) {
+          const list: Product[] = await res.json();
+          const found = list.find((p) => p.slug === slug);
+          if (found) {
+            setProduct(found);
+          }
+        }
+      } catch {
+        // keep current
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchProduct();
+  }, [slug]);
+
+  if (isLoading) {
+    return (
+      <div className="container" style={{ padding: '5rem 0', textAlign: 'center' }}>
+        <p>Đang tải thông tin sản phẩm...</p>
+      </div>
+    );
+  }
 
   if (!product) {
     return (
@@ -82,6 +113,17 @@ export default function ProductDetailPage() {
           <div className={styles.infoCol}>
             <span className="section-tag">{product.category}</span>
             <h1 className={styles.productTitle}>{product.name}</h1>
+
+            {/* Badges */}
+            {product.badges && product.badges.length > 0 && (
+              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', margin: '0.5rem 0 1rem 0' }}>
+                {product.badges.map((b, idx) => (
+                  <span key={idx} className={idx === 0 ? "badge badge-export" : "badge badge-new"}>
+                    {b}
+                  </span>
+                ))}
+              </div>
+            )}
 
             {/* Price Box */}
             <div className={styles.priceCard}>
@@ -158,7 +200,42 @@ export default function ProductDetailPage() {
             ))}
           </ul>
         </div>
+
+        {/* Facebook Proof of Work */}
+        {product.facebookProof && (
+          <div style={{
+            marginTop: '2rem',
+            padding: '1.5rem',
+            background: '#f8fafc',
+            border: '1px solid #e2e8f0',
+            borderRadius: 'var(--radius-md)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap',
+            gap: '1rem'
+          }}>
+            <div>
+              <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#1877f2', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                <span style={{ background: '#1877f2', color: '#fff', width: '18px', height: '18px', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem' }}>f</span>
+                HOẠT ĐỘNG XƯỞNG THỰC TẾ TRÊN FANPAGE
+              </span>
+              <h4 style={{ margin: '0.35rem 0', color: 'var(--secondary)' }}>{product.facebookProof.title}</h4>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-muted)' }}>{product.facebookProof.description}</p>
+            </div>
+            <a
+              href={product.facebookProof.fbUrl || "https://www.facebook.com/PalletTruongAn/"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn btn-outline"
+              style={{ borderColor: '#1877f2', color: '#1877f2' }}
+            >
+              <span>Xem bài đăng trên Facebook</span>
+            </a>
+          </div>
+        )}
       </div>
     </div>
   );
 }
+

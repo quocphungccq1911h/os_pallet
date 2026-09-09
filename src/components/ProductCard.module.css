@@ -106,3 +106,39 @@
   display: flex;
   gap: 0.5rem;
 }
+
+.fbProofTag {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  padding: 0.35rem 0.6rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.85rem;
+  font-size: 0.72rem;
+  color: #1e40af;
+  font-weight: 600;
+}
+
+.fbIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  background-color: #1877f2;
+  color: #ffffff;
+  border-radius: 50%;
+  font-size: 0.65rem;
+  font-weight: 900;
+  font-family: sans-serif;
+  flex-shrink: 0;
+}
+
+.fbProofText {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+

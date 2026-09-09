@@ -6,8 +6,16 @@ import { Footer } from './Footer';
 import { FloatingCTA } from './FloatingCTA';
 import { QuoteModalProvider, useQuoteModal } from '@/context/QuoteModalContext';
 
+import { usePathname } from 'next/navigation';
+
 const ShellInner: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const { openQuoteModal } = useQuoteModal();
+  const pathname = usePathname();
+  const isAdmin = pathname?.startsWith('/admin');
+
+  if (isAdmin) {
+    return <main>{children}</main>;
+  }
 
   return (
     <>

@@ -16,15 +16,18 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenQuoteMo
       <div className={styles.imageContainer}>
         <img src={product.imageUrl} alt={product.name} className={styles.image} loading="lazy" />
         
-        {/* Badges */}
+        {/* Dynamic Badges */}
         <div className={styles.badgeGroup}>
-          {product.isExportStandard && (
-            <span className="badge badge-export">ISPM 15 Xuất Khẩu</span>
-          )}
-          {product.isNew ? (
-            <span className="badge badge-new">Pallet Mới 100%</span>
+          {product.badges && product.badges.length > 0 ? (
+            product.badges.slice(0, 2).map((b, idx) => (
+              <span key={idx} className={idx === 0 ? "badge badge-export" : "badge badge-new"}>
+                {b}
+              </span>
+            ))
           ) : (
-            <span className="badge badge-new" style={{ backgroundColor: '#fef3c7', color: '#92400e' }}>Cũ 90%</span>
+            product.isExportStandard && (
+              <span className="badge badge-export">ISPM 15 Xuất Khẩu</span>
+            )
           )}
         </div>
       </div>
@@ -57,6 +60,14 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenQuoteMo
           <span className={styles.priceLabel}>Giá sản phẩm:</span>
           <span className="badge badge-price">{product.priceDisplay}</span>
         </div>
+
+        {/* Facebook Proof Pill */}
+        {product.facebookProof && (
+          <div className={styles.fbProofTag} title={product.facebookProof.description}>
+            <span className={styles.fbIcon}>f</span>
+            <span className={styles.fbProofText}>{product.facebookProof.title}</span>
+          </div>
+        )}
 
         {/* Action Buttons */}
         <div className={styles.actions}>

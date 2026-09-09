@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { products, categories } from '@/data/products';
+import { products as defaultProducts, categories, Product } from '@/data/products';
 import { ProductCard } from '../ProductCard';
 import { ArrowRight, Filter } from 'lucide-react';
 import styles from './FeaturedProducts.module.css';
@@ -10,11 +10,29 @@ interface FeaturedProductsProps {
 }
 
 export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ onOpenQuoteModal }) => {
+  const [allProducts, setAllProducts] = useState<Product[]>(defaultProducts);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
+  useEffect(() => {
+    async function fetchLatest() {
+      try {
+        const res = await fetch('/api/products');
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            setAllProducts(data);
+          }
+        }
+      } catch {
+        // keep fallback
+      }
+    }
+    fetchLatest();
+  }, []);
+
   const filteredProducts = selectedCategory === 'all'
-    ? products
-    : products.filter(p => p.categorySlug === selectedCategory);
+    ? allProducts
+    : allProducts.filter(p => p.categorySlug === selectedCategory);
 
   return (
     <section className={styles.section} id="san-pham">
