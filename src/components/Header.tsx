@@ -78,7 +78,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                 <Phone size={18} />
               </div>
               <div className={styles.phoneInfo}>
-                <span className={styles.phoneLabel}>Tư vấn báo giá xưởng:</span>
+                <span className={styles.phoneLabel}>Tư vấn báo giá:</span>
                 <div className={styles.phoneLinks}>
                   <a href={`tel:${companyInfo.hotline}`} className={styles.phoneNumber}>
                     {companyInfo.hotlineFormatted}
