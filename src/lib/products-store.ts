@@ -111,6 +111,7 @@ export async function saveProduct(productData: Partial<Product>): Promise<Produc
       description: productData.description || '',
       highlights: productData.highlights || [],
       imageUrl: productData.imageUrl || '/images/banner_main.png',
+      gallery: productData.gallery?.length ? productData.gallery : [productData.imageUrl || '/images/banner_main.png'],
       usagePurpose: productData.usagePurpose || 'Kê kho, đóng hàng vận chuyển',
       badges: productData.badges || [],
       facebookProof: productData.facebookProof,

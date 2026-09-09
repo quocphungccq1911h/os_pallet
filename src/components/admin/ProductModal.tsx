@@ -74,6 +74,8 @@ export const ProductModal: React.FC<ProductModalProps> = ({
   });
 
   const [isUploading, setIsUploading] = useState(false);
+  const [isGalleryUploading, setIsGalleryUploading] = useState(false);
+  const [galleryUrlInput, setGalleryUrlInput] = useState('');
   const [isSaving, setIsSaving] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [badgeInput, setBadgeInput] = useState('');
@@ -82,6 +84,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
     if (product) {
       setFormData({
         ...product,
+        gallery: product.gallery && product.gallery.length > 0 ? [...product.gallery] : (product.imageUrl ? [product.imageUrl] : []),
         highlights: product.highlights?.length ? [...product.highlights] : ['Chịu tải trọng tốt'],
         badges: product.badges?.length ? [...product.badges] : ['GIÁ XƯỞNG'],
         facebookProof: product.facebookProof || {
@@ -110,6 +113,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
         description: '',
         usagePurpose: 'Kê kho, đóng hàng xuất khẩu',
         imageUrl: '/images/banner_main.png',
+        gallery: ['/images/banner_main.png'],
         highlights: ['Gỗ chuẩn quy cách', 'Chống mối mọt ẩm mốc'],
         badges: ['GIÁ TẠI XƯỞNG'],
         facebookProof: {
@@ -121,6 +125,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
       setBadgeInput('GIÁ TẠI XƯỞNG');
     }
     setErrorMessage('');
+    setGalleryUrlInput('');
   }, [product, isOpen]);
 
   if (!isOpen) return null;
@@ -178,12 +183,75 @@ export const ProductModal: React.FC<ProductModalProps> = ({
         return;
       }
 
-      setFormData((prev) => ({ ...prev, imageUrl: data.url }));
+      setFormData((prev) => {
+        const newImg = data.url;
+        const currentGallery = prev.gallery || [];
+        return {
+          ...prev,
+          imageUrl: newImg,
+          gallery: currentGallery.includes(newImg) ? currentGallery : [newImg, ...currentGallery],
+        };
+      });
     } catch {
       setErrorMessage('Không thể tải ảnh lên máy chủ.');
     } finally {
       setIsUploading(false);
     }
+  };
+
+  // Handle Gallery file upload
+  const handleGalleryUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const uploadData = new FormData();
+    uploadData.append('file', file);
+    setIsGalleryUploading(true);
+    setErrorMessage('');
+
+    try {
+      const res = await fetch('/api/admin/upload', {
+        method: 'POST',
+        body: uploadData,
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        setErrorMessage(data.error || 'Lỗi khi tải ảnh vào album');
+        return;
+      }
+
+      setFormData((prev) => ({
+        ...prev,
+        gallery: [...(prev.gallery || []), data.url],
+      }));
+    } catch {
+      setErrorMessage('Không thể tải ảnh album lên máy chủ.');
+    } finally {
+      setIsGalleryUploading(false);
+      e.target.value = '';
+    }
+  };
+
+  // Add URL to gallery
+  const handleAddGalleryUrl = () => {
+    if (!galleryUrlInput.trim()) return;
+    setFormData((prev) => ({
+      ...prev,
+      gallery: [...(prev.gallery || []), galleryUrlInput.trim()],
+    }));
+    setGalleryUrlInput('');
+  };
+
+  // Remove image from gallery
+  const handleRemoveGalleryImage = (index: number) => {
+    setFormData((prev) => {
+      const updated = (prev.gallery || []).filter((_, i) => i !== index);
+      return {
+        ...prev,
+        gallery: updated,
+      };
+    });
   };
 
   // Handle Form Submit
@@ -205,11 +273,19 @@ export const ProductModal: React.FC<ProductModalProps> = ({
     // Clean up empty highlights
     const cleanedHighlights = (formData.highlights || []).filter((h) => h.trim().length > 0);
 
+    const finalGallery = formData.gallery && formData.gallery.length > 0
+      ? formData.gallery
+      : [formData.imageUrl || '/images/banner_main.png'];
+
+    const finalImageUrl = formData.imageUrl || finalGallery[0] || '/images/banner_main.png';
+
     setIsSaving(true);
 
     try {
       await onSave({
         ...formData,
+        imageUrl: finalImageUrl,
+        gallery: finalGallery,
         badges: processedBadges,
         highlights: cleanedHighlights,
       });
@@ -437,11 +513,11 @@ export const ProductModal: React.FC<ProductModalProps> = ({
             </div>
           </div>
 
-          {/* 3. HÌNH ẢNH SẢN PHẨM THẬT TẠI XƯỞNG */}
+          {/* 3. HÌNH ẢNH SẢN PHẨM THẬT TẠI XƯỞNG & ALBUM ĐA GÓC ĐỘ */}
           <div className={styles.sectionBlock}>
             <div className={styles.sectionTitle}>
               <ImageIcon size={18} color="#b45309" />
-              <span>3. Hình Ảnh Thực Tế Tại Xưởng</span>
+              <span>3. Hình Ảnh Thực Tế Tại Xưởng & Album Đa Góc Độ</span>
             </div>
 
             <div className={styles.imagePreviewRow}>
@@ -465,7 +541,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                 <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
                   <label className={styles.fileInputLabel}>
                     <Upload size={16} />
-                    <span>{isUploading ? 'Đang tải lên máy chủ...' : 'Tải Ảnh Mới Từ Máy Tính/Điện Thoại'}</span>
+                    <span>{isUploading ? 'Đang tải lên máy chủ...' : 'Tải Ảnh Đại Diện Mới'}</span>
                     <input
                       type="file"
                       accept="image/jpeg,image/png,image/webp"
@@ -478,7 +554,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                 </div>
 
                 <div className={styles.formGroup} style={{ marginTop: '0.25rem' }}>
-                  <label className={styles.label}>Hoặc dán trực tiếp đường dẫn hình ảnh (URL)</label>
+                  <label className={styles.label}>Đường dẫn ảnh đại diện chính (URL)</label>
                   <input
                     type="text"
                     placeholder="VD: /images/banner_main.png hoặc https://..."
@@ -487,6 +563,69 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                     className={styles.input}
                   />
                 </div>
+              </div>
+            </div>
+
+            {/* Album Gallery Images */}
+            <div className={styles.gallerySection}>
+              <div className={styles.galleryHeader}>
+                <label className={styles.label}>
+                  <strong>Album hình ảnh đa góc độ ({formData.gallery?.length || 0} ảnh):</strong>
+                </label>
+                <label className={styles.fileInputLabel} style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}>
+                  <Upload size={14} />
+                  <span>{isGalleryUploading ? 'Đang tải...' : 'Tải thêm ảnh vào Album'}</span>
+                  <input
+                    type="file"
+                    accept="image/jpeg,image/png,image/webp"
+                    onChange={handleGalleryUpload}
+                    disabled={isGalleryUploading}
+                    className={styles.hiddenFileInput}
+                  />
+                </label>
+              </div>
+
+              {formData.gallery && formData.gallery.length > 0 && (
+                <div className={styles.galleryGrid}>
+                  {formData.gallery.map((imgUrl, idx) => (
+                    <div key={idx} className={styles.galleryThumbItem} title={`Ảnh ${idx + 1}`}>
+                      <img src={imgUrl} alt={`Ảnh ${idx + 1}`} />
+                      <button
+                        type="button"
+                        onClick={() => handleRemoveGalleryImage(idx)}
+                        className={styles.removeGalleryBtn}
+                        title="Xóa ảnh này khỏi album"
+                        aria-label="Xóa ảnh"
+                      >
+                        <X size={12} />
+                      </button>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              <div className={styles.addGalleryRow}>
+                <input
+                  type="text"
+                  placeholder="Dán link ảnh phụ (URL) rồi bấm Thêm..."
+                  value={galleryUrlInput}
+                  onChange={(e) => setGalleryUrlInput(e.target.value)}
+                  className={styles.input}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                      e.preventDefault();
+                      handleAddGalleryUrl();
+                    }
+                  }}
+                />
+                <button
+                  type="button"
+                  onClick={handleAddGalleryUrl}
+                  className="btn btn-primary"
+                  style={{ padding: '0.65rem 1rem', fontSize: '0.85rem', flexShrink: 0 }}
+                >
+                  <Plus size={16} /> Thêm ảnh
+                </button>
               </div>
             </div>
           </div>

@@ -17,6 +17,7 @@ export interface Product {
   description: string;
   highlights: string[];
   imageUrl: string;
+  gallery?: string[];
   usagePurpose: string;
   badges: string[]; // Badge nổi bật trên card sản phẩm
   facebookProof?: {
@@ -97,6 +98,12 @@ export const products: Product[] = [
       "Khử trùng nhiệt HT tiêu chuẩn xuất khẩu ISPM 15"
     ],
     imageUrl: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=800",
+      "/images/banner_main.png",
+      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&q=80&w=800"
+    ],
     usagePurpose: "Đóng gói máy móc thiết bị cơ khí, tủ điện công nghiệp, hàng điện tử xuất khẩu",
     badges: ["🇺🇸 Xuất Khẩu Mỹ", "Bảo Vệ Máy Móc", "Sấy HT ISPM 15"],
     facebookProof: {
@@ -129,6 +136,12 @@ export const products: Product[] = [
       "Thi công nhanh tại xưởng Hóc Môn hoặc tận kho khách hàng"
     ],
     imageUrl: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
+      "/images/banner_main.png",
+      "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=800"
+    ],
     usagePurpose: "Đóng kiện phụ tùng, phôi kim loại, hàng hóa cần kiểm tra ngoại quan hải quan",
     badges: ["🇰🇭 Đi Campuchia", "Nan Thưa Thoáng Khí", "Tiết Kiệm Chi Phí"],
     facebookProof: {
@@ -161,6 +174,12 @@ export const products: Product[] = [
       "Thẩm mỹ cao, độ bền ổn định trong môi trường khô"
     ],
     imageUrl: "https://images.unsplash.com/photo-1586528116493-a029325540fa?auto=format&fit=crop&q=80&w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1586528116493-a029325540fa?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=800",
+      "/images/banner_main.png",
+      "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&q=80&w=800"
+    ],
     usagePurpose: "Hàng linh kiện điện tử, dược phẩm, may mặc, container xuất khẩu đi Âu Mỹ",
     badges: ["Mặt Kín 100%", "Miễn Trừ Hun Trùng", "Siêu Nhẹ"],
     facebookProof: {
@@ -193,6 +212,12 @@ export const products: Product[] = [
       "Đóng đinh soắn tạo liên kết bền chặt"
     ],
     imageUrl: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&q=80&w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1586528116493-a029325540fa?auto=format&fit=crop&q=80&w=800",
+      "/images/banner_main.png",
+      "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&q=80&w=800"
+    ],
     usagePurpose: "Kho thực phẩm, bao bì, đóng hàng xuất khẩu container",
     badges: ["🇺🇸 Chuẩn Thị Trường Mỹ", "Gỗ Thông Sấy Khô", "4 Hướng Nâng"],
     facebookProof: {
@@ -225,6 +250,13 @@ export const products: Product[] = [
       "Giá gốc tận xưởng mộc Hóc Môn"
     ],
     imageUrl: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
+      "/images/banner_main.png",
+      "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1504917599217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=800"
+    ],
     usagePurpose: "Lưu kho hàng công nghiệp, logistics nội địa, gạch men, hóa chất",
     badges: ["🇰🇭 Đi Campuchia", "Chịu Lực 2.5 Tấn", "Đố Khoét Xe Nâng Tay"],
     facebookProof: {
@@ -257,6 +289,12 @@ export const products: Product[] = [
       "Chịu lực cao, tái sử dụng nhiều lần"
     ],
     imageUrl: "https://images.unsplash.com/photo-1586528116493-a029325540fa?auto=format&fit=crop&q=80&w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1586528116493-a029325540fa?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&q=80&w=800",
+      "/images/banner_main.png",
+      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800"
+    ],
     usagePurpose: "Đóng hàng container xuất khẩu Châu Âu, Mỹ, Nhật Bản",
     badges: ["🇪🇺 Chuẩn Euro EPAL", "Tối Ưu Container", "Sấy Khô ISPM 15"],
     facebookProof: {
@@ -289,6 +327,12 @@ export const products: Product[] = [
       "Giao hàng nhanh bằng xe tải riêng của xưởng"
     ],
     imageUrl: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=800",
+      "/images/banner_main.png",
+      "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1586528116493-a029325540fa?auto=format&fit=crop&q=80&w=800"
+    ],
     usagePurpose: "Kê máy cơ khí đặc thù, pin năng lượng mặt trời, hàng hóa quá khổ",
     badges: ["Theo Bản Vẽ Riêng", "Lên Mẫu 24 Giờ", "Chuẩn Dung Sai"],
     facebookProof: {
@@ -321,6 +365,12 @@ export const products: Product[] = [
       "Hỗ trợ đổi trả nếu có pallet lỗi gãy"
     ],
     imageUrl: "https://images.unsplash.com/photo-1586528116493-a029325540fa?auto=format&fit=crop&q=80&w=800",
+    gallery: [
+      "https://images.unsplash.com/photo-1586528116493-a029325540fa?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
+      "/images/banner_main.png",
+      "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&q=80&w=800"
+    ],
     usagePurpose: "Kê hàng trong kho bãi tạm, vận chuyển hàng nội địa một chiều",
     badges: ["Tiết Kiệm 50%", "Mới 85% - 95%", "Sẵn Kho Giao Ngay"],
     facebookProof: {

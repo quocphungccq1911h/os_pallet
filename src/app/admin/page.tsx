@@ -14,7 +14,6 @@ import {
   ExternalLink,
   Edit2,
   Trash2,
-  RotateCcw,
   CheckCircle2,
   Box,
   Globe,
@@ -140,24 +139,6 @@ export default function AdminDashboardPage() {
       }
     } catch {
       alert('Đã xảy ra lỗi khi kết nối máy chủ để xóa sản phẩm.');
-    }
-  };
-
-  // 6. Khôi phục dữ liệu gốc
-  const handleResetDefault = async () => {
-    const confirmed = window.confirm(
-      '⚠️ CẢNH BÁO: Thao tác này sẽ khôi phục về danh sách 8 sản phẩm chuẩn mẫu ban đầu của xưởng. Bạn có chắc muốn tiếp tục không?'
-    );
-    if (!confirmed) return;
-
-    try {
-      const res = await fetch('/api/admin/reset', { method: 'POST' });
-      if (res.ok) {
-        await loadProducts();
-        showToast('🔄 Đã khôi phục 8 sản phẩm chuẩn mẫu ban đầu!');
-      }
-    } catch {
-      alert('Lỗi khi khôi phục dữ liệu.');
     }
   };
 
@@ -310,16 +291,7 @@ export default function AdminDashboardPage() {
                 className={styles.btnAddNew}
               >
                 <Plus size={18} />
-                <span>+ Thêm Sản Phẩm Mới</span>
-              </button>
-
-              <button
-                onClick={handleResetDefault}
-                className={styles.btnReset}
-                title="Khôi phục về 8 sản phẩm chuẩn mẫu"
-              >
-                <RotateCcw size={16} />
-                <span>Khôi Phục Mẫu</span>
+                <span>Thêm Sản Phẩm Mới</span>
               </button>
             </div>
           </div>

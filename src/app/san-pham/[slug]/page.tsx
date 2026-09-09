@@ -17,6 +17,9 @@ export default function ProductDetailPage() {
   const [product, setProduct] = useState<Product | undefined>(() =>
     defaultProducts.find((p) => p.slug === slug)
   );
+  const [selectedImage, setSelectedImage] = useState<string>(
+    defaultProducts.find((p) => p.slug === slug)?.imageUrl || ''
+  );
   const [isLoading, setIsLoading] = useState(!product);
 
   useEffect(() => {
@@ -28,6 +31,7 @@ export default function ProductDetailPage() {
           const found = list.find((p) => p.slug === slug);
           if (found) {
             setProduct(found);
+            setSelectedImage((prev) => prev || found.imageUrl);
           }
         }
       } catch {
@@ -58,6 +62,10 @@ export default function ProductDetailPage() {
       </div>
     );
   }
+
+  const imageList = product.gallery && product.gallery.length > 0 ? product.gallery : [product.imageUrl];
+  const currentPreviewImage = selectedImage || product.imageUrl;
+  const currentIdx = imageList.indexOf(currentPreviewImage);
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -95,11 +103,38 @@ export default function ProductDetailPage() {
           {/* Left Column: Product Gallery */}
           <div className={styles.imageCol}>
             <div className={styles.mainImgCard}>
-              <img src={product.imageUrl} alt={product.name} className={styles.mainImg} />
+              <img src={currentPreviewImage} alt={product.name} className={styles.mainImg} />
               {product.isExportStandard && (
                 <span className={styles.exportBadge}>ISPM 15 Xuất Khẩu</span>
               )}
+              {imageList.length > 1 && (
+                <span className={styles.imageCounterBadge}>
+                  {currentIdx >= 0 ? currentIdx + 1 : 1} / {imageList.length} ảnh
+                </span>
+              )}
             </div>
+
+            {/* Thumbnail Row */}
+            {imageList.length > 1 && (
+              <div className={styles.galleryThumbnails}>
+                {imageList.map((imgUrl, idx) => {
+                  const isActive = currentPreviewImage === imgUrl;
+                  return (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setSelectedImage(imgUrl)}
+                      className={`${styles.thumbBtn} ${isActive ? styles.thumbActive : ''}`}
+                      title={`Xem góc chụp ${idx + 1}`}
+                      aria-label={`Xem góc chụp ${idx + 1}`}
+                    >
+                      <img src={imgUrl} alt={`${product.name} góc chụp ${idx + 1}`} className={styles.thumbImg} />
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+
             <div className={styles.qualityBanner}>
               <ShieldCheck size={24} color="var(--primary)" />
               <div>
