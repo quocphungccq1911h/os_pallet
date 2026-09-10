@@ -1,5 +1,33 @@
 [
   {
+    "id": "quote-1789030876459",
+    "customerName": "phụng 2222",
+    "phone": "0383455781",
+    "email": "",
+    "productTitle": "Yêu cầu tư vấn kích thước riêng",
+    "dimensions": "",
+    "quantity": "100",
+    "note": "dddddd",
+    "status": "moi",
+    "estimatedPrice": "Liên hệ",
+    "createdAt": "2026-09-10T09:01:16.459Z",
+    "updatedAt": "2026-09-10T09:01:16.459Z"
+  },
+  {
+    "id": "quote-1789029698673",
+    "customerName": "Phụng",
+    "phone": "0383455781",
+    "email": "",
+    "productTitle": "Yêu cầu tư vấn kích thước riêng",
+    "dimensions": "",
+    "quantity": "100",
+    "note": "abc",
+    "status": "moi",
+    "estimatedPrice": "Liên hệ",
+    "createdAt": "2026-09-10T08:41:38.673+00:00",
+    "updatedAt": "2026-09-10T08:41:38.673+00:00"
+  },
+  {
     "id": "quote-001",
     "customerName": "Anh Tuấn - Logistics Tân Bình",
     "phone": "0903 123 456",
@@ -10,33 +38,35 @@
     "note": "Cần giao gấp trong tuần sau đóng container hàng may mặc, cần giấy chứng thư hun trùng ISPM 15.",
     "status": "thanh_cong",
     "estimatedPrice": "145.000 đ",
-    "createdAt": "2026-09-10T08:30:00.000Z",
-    "updatedAt": "2026-09-10T06:48:09.050Z"
+    "createdAt": "2026-09-10T08:30:00+00:00",
+    "updatedAt": "2026-09-10T06:48:09.05+00:00"
   },
   {
     "id": "quote-002",
     "customerName": "Chị Mai - Công Ty Cơ Khí Chính Xác Hóc Môn",
     "phone": "0988 654 321",
+    "email": "",
     "productTitle": "Pallet Đóng Theo Yêu Cầu Chịu Tải Nặng",
     "dimensions": "1400 x 1100 x 150 mm",
     "quantity": "50 cái",
     "note": "Kê máy dập khuôn tải trọng tĩnh 3 tấn, cần đố đặc chịu lực cao.",
     "status": "da_goi",
     "estimatedPrice": "210.000 đ",
-    "createdAt": "2026-09-09T14:15:00.000Z",
-    "updatedAt": "2026-09-09T15:00:00.000Z"
+    "createdAt": "2026-09-09T14:15:00+00:00",
+    "updatedAt": "2026-09-09T15:00:00+00:00"
   },
   {
     "id": "quote-003",
     "customerName": "Anh Hùng - Kho Vận Sóng Thần Bình Dương",
     "phone": "0912 789 999",
+    "email": "",
     "productTitle": "Pallet Đố Ván Ép Plywood (1000 x 1200 x 140 mm)",
     "dimensions": "1000 x 1200 x 140 mm",
     "quantity": "500 cái",
     "note": "Xuất hàng sang Campuchia, lấy hàng định kỳ mỗi tháng.",
     "status": "da_bao_gia",
     "estimatedPrice": "125.000 đ",
-    "createdAt": "2026-09-08T10:00:00.000Z",
-    "updatedAt": "2026-09-08T16:20:00.000Z"
+    "createdAt": "2026-09-08T10:00:00+00:00",
+    "updatedAt": "2026-09-08T16:20:00+00:00"
   }
 ]
