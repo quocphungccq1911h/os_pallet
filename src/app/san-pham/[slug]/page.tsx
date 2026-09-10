@@ -7,6 +7,7 @@ import { products as defaultProducts, Product } from '@/data/products';
 import { companyInfo } from '@/data/companyInfo';
 import { ShieldCheck, Phone, MessageCircle, FileText, CheckCircle2, ArrowLeft } from 'lucide-react';
 import { useQuoteModal } from '@/context/QuoteModalContext';
+import { ProductGalleryBanner } from '@/components/ProductGalleryBanner';
 import styles from './detail.module.css';
 
 export default function ProductDetailPage() {
@@ -102,33 +103,46 @@ export default function ProductDetailPage() {
         <div className={styles.detailGrid}>
           {/* Left Column: Product Gallery */}
           <div className={styles.imageCol}>
-            <div className={styles.mainImgCard}>
-              <img src={currentPreviewImage} alt={product.name} className={styles.mainImg} />
-              {product.isExportStandard && (
-                <span className={styles.exportBadge}>ISPM 15 Xuất Khẩu</span>
-              )}
-              {imageList.length > 1 && (
-                <span className={styles.imageCounterBadge}>
-                  {currentIdx >= 0 ? currentIdx + 1 : 1} / {imageList.length} ảnh
-                </span>
-              )}
-            </div>
+            {(() => {
+              const isBanner = currentPreviewImage.includes('banner_main') || currentPreviewImage.includes('banner');
+              return (
+                <div className={styles.mainImgCard}>
+                  {isBanner ? (
+                    <ProductGalleryBanner onQuoteClick={() => openQuoteModal(product.slug)} />
+                  ) : (
+                    <img src={currentPreviewImage} alt={product.name} className={styles.mainImg} />
+                  )}
+                  {!isBanner && product.isExportStandard && (
+                    <span className={styles.exportBadge}>ISPM 15 Xuất Khẩu</span>
+                  )}
+                  {imageList.length > 1 && (
+                    <span className={styles.imageCounterBadge}>
+                      {currentIdx >= 0 ? currentIdx + 1 : 1} / {imageList.length} ảnh
+                    </span>
+                  )}
+                </div>
+              );
+            })()}
 
             {/* Thumbnail Row */}
             {imageList.length > 1 && (
               <div className={styles.galleryThumbnails}>
                 {imageList.map((imgUrl, idx) => {
                   const isActive = currentPreviewImage === imgUrl;
+                  const isThumbBanner = imgUrl.includes('banner_main') || imgUrl.includes('banner');
                   return (
                     <button
                       key={idx}
                       type="button"
                       onClick={() => setSelectedImage(imgUrl)}
                       className={`${styles.thumbBtn} ${isActive ? styles.thumbActive : ''}`}
-                      title={`Xem góc chụp ${idx + 1}`}
-                      aria-label={`Xem góc chụp ${idx + 1}`}
+                      title={isThumbBanner ? 'Xem Cam Kết & Xưởng' : `Xem góc chụp ${idx + 1}`}
+                      aria-label={isThumbBanner ? 'Xem Cam Kết & Xưởng' : `Xem góc chụp ${idx + 1}`}
                     >
                       <img src={imgUrl} alt={`${product.name} góc chụp ${idx + 1}`} className={styles.thumbImg} />
+                      {isThumbBanner && (
+                        <span className={styles.bannerThumbBadge}>XƯỞNG</span>
+                      )}
                     </button>
                   );
                 })}

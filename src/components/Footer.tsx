@@ -90,8 +90,14 @@ export const Footer: React.FC = () => {
 
           {/* Column 3: Quick Links & SEO Keywords */}
           <div className={styles.footerCol}>
-            <h3 className={styles.colTitle}>Hỗ Trợ & SEO</h3>
+            <h3 className={styles.colTitle}>Hỗ Trợ & Hoạt Động</h3>
             <ul className={styles.linkList}>
+              <li>
+                <Link href="/hoat-dong" className={styles.footerLink}>
+                  <ChevronRight size={14} />
+                  <span>Nhật Ký Hoạt Động Xưởng</span>
+                </Link>
+              </li>
               <li>
                 <Link href="/bang-gia" className={styles.footerLink}>
                   <ChevronRight size={14} />

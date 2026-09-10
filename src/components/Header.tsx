@@ -66,6 +66,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
           <nav className={styles.desktopNav}>
             <Link href="/" className={styles.navLink}>Trang Chủ</Link>
             <Link href="/san-pham" className={styles.navLink}>Sản Phẩm</Link>
+            <Link href="/hoat-dong" className={styles.navLink}>Hoạt Động Xưởng</Link>
             <Link href="/bang-gia" className={styles.navLink}>Bảng Giá</Link>
             <Link href="/tin-tuc" className={styles.navLink}>Kiến Thức</Link>
             <Link href="/lien-he" className={styles.navLink}>Liên Hệ</Link>
@@ -118,6 +119,10 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
             </Link>
             <Link href="/san-pham" onClick={() => setMobileMenuOpen(false)} className={styles.mobileNavLink}>
               <span>Sản Phẩm Pallet Gỗ</span>
+              <ChevronRight size={16} />
+            </Link>
+            <Link href="/hoat-dong" onClick={() => setMobileMenuOpen(false)} className={styles.mobileNavLink}>
+              <span>Hoạt Động Xưởng</span>
               <ChevronRight size={16} />
             </Link>
             <Link href="/bang-gia" onClick={() => setMobileMenuOpen(false)} className={styles.mobileNavLink}>

@@ -1,46 +1,46 @@
 import React from 'react';
-import { Camera, Image as ImageIcon } from 'lucide-react';
+import Link from 'next/link';
+import { Camera, Image as ImageIcon, ArrowRight } from 'lucide-react';
 import styles from './RealGallery.module.css';
 
 export const RealGallery: React.FC = () => {
   const images = [
     {
-      url: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
-      caption: "Khu vực tập kết Pallet gỗ thông & tràm tại xưởng Trường An Hóc Môn"
+      url: "/images/pallet_factory_43.jpg",
+      caption: "Khu vực xưởng sản xuất Pallet Trường An tại Hóc Môn"
     },
     {
-      url: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=800",
-      caption: "Thợ mộc gia công đóng kiện thùng gỗ bảo vệ máy móc xuất khẩu"
+      url: "/images/products/p4.1.jpg",
+      caption: "Gia công pallet gỗ chịu tải nặng theo bản vẽ máy móc xuất khẩu"
     },
     {
-      url: "https://images.unsplash.com/photo-1586528116493-a029325540fa?auto=format&fit=crop&q=80&w=800",
-      caption: "Pallet ván ép Plywood mặt phẳng kín phục vụ đóng hàng container"
+      url: "/images/products/p2.1.jpg",
+      caption: "Pallet gỗ thông mới đố khuyết 1200 x 1000 x 120mm xuất khẩu ISPM 15"
     },
     {
-      url: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&q=80&w=800",
-      caption: "Xử lý nhiệt HT và đóng mộc khử trùng tiêu chuẩn quốc tế ISPM 15"
+      url: "/images/products/p5.1.jpg",
+      caption: "Pallet gỗ chân gù 1219 x 1016 x 140mm nâng 4 hướng chuẩn xuất khẩu"
     },
     {
-      url: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
-      caption: "Bốc xếp pallet lên xe tải giao tận nơi các KCN Hóc Môn, Bình Dương, Long An"
+      url: "/images/products/p3.1.jpg",
+      caption: "Pallet gỗ thông mới 100% chuẩn thị trường Mỹ GMA"
     },
     {
-      url: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=800",
-      caption: "Pallet gỗ cũ tuyển chọn chất lượng cao mới 85% - 95%"
+      url: "/images/products/p1.1.jpg",
+      caption: "Pallet đố ván ép Plywood xuất khẩu Campuchia"
     }
   ];
-
 
   return (
     <section className={styles.section}>
       <div className="container">
         <div style={{ textAlign: 'center' }}>
           <span className="section-tag">
-            <Camera size={14} /> HÌNH ẢNH THỰC TẾ
+            <Camera size={14} /> HÌNH ẢNH THỰC TẾ 100%
           </span>
           <h2 className="section-title">Hình Ảnh Thực Tế Xưởng & Quy Trình Sản Xuất</h2>
           <p className="section-subtitle">
-            Minh bạch năng lực sản xuất với hình ảnh chụp thực tế tại xưởng và các đơn hàng đã bàn giao cho khách hàng.
+            Minh bạch năng lực sản xuất với hình ảnh chụp thực tế tại xưởng và các hoạt động bàn giao đơn hàng cho khách hàng.
           </p>
         </div>
 
@@ -55,7 +55,19 @@ export const RealGallery: React.FC = () => {
             </div>
           ))}
         </div>
+
+        <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+          <Link
+            href="/hoat-dong"
+            className="btn btn-primary"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', padding: '0.85rem 1.75rem', fontSize: '1rem', fontWeight: 700 }}
+          >
+            <span>Xem Chi Tiết Nhật Ký Hoạt Động Xưởng</span>
+            <ArrowRight size={18} />
+          </Link>
+        </div>
       </div>
     </section>
   );
 };
+

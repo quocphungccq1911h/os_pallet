@@ -1,0 +1,246 @@
+.bannerContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: var(--radius-lg);
+  background: #0f172a;
+}
+
+.bgWrapper {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.bgImage {
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.02);
+  transition: transform 0.5s ease;
+}
+
+.bannerContainer:hover .bgImage {
+  transform: scale(1.05);
+}
+
+/* Gradient thông minh: Bên trái tối hơn để tôn chữ tiếng Việt, bên phải sáng để thấy rõ xưởng và công nhân */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    95deg,
+    rgba(15, 23, 42, 0.94) 0%,
+    rgba(15, 23, 42, 0.85) 45%,
+    rgba(15, 23, 42, 0.35) 100%
+  );
+}
+
+.content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.3rem 1.5rem;
+  box-sizing: border-box;
+}
+
+/* Header */
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.brandBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.brandBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  color: #38bdf8;
+  text-transform: uppercase;
+}
+
+.brandTitle {
+  font-size: 1.6rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0;
+  letter-spacing: 0.5px;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  line-height: 1.15;
+}
+
+.slogan {
+  font-size: 0.82rem;
+  color: #cbd5e1;
+  margin: 0;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.standardBadge {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(16, 185, 129, 0.25);
+  border: 1px solid rgba(16, 185, 129, 0.6);
+  color: #34d399;
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Features Grid */
+.featuresGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  max-width: 60%;
+  margin: 0.75rem 0;
+}
+
+.featureItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.45rem 0.75rem;
+  border-radius: 8px;
+  color: #ffffff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  backdrop-filter: blur(6px);
+  width: fit-content;
+}
+
+.featureIcon {
+  color: #fbbf24;
+  flex-shrink: 0;
+}
+
+/* Bottom Bar */
+.bottomBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.infoCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+}
+
+.infoRow {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: #e2e8f0;
+  font-size: 0.75rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.infoIcon {
+  color: #38bdf8;
+  flex-shrink: 0;
+}
+
+.actionCol {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.callBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #16a34a;
+  color: #ffffff;
+  padding: 0.45rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(22, 163, 74, 0.4);
+  transition: all 0.2s ease;
+}
+
+.callBtn:hover {
+  background: #15803d;
+  transform: translateY(-1px);
+}
+
+.zaloBtn {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: #0284c7;
+  color: #ffffff;
+  padding: 0.45rem 0.85rem;
+  border-radius: 6px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);
+  transition: all 0.2s ease;
+}
+
+.zaloBtn:hover {
+  background: #0369a1;
+  transform: translateY(-1px);
+}
+
+@media (max-width: 640px) {
+  .brandTitle {
+    font-size: 1.25rem;
+  }
+  .featuresGrid {
+    max-width: 100%;
+  }
+  .bottomBar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .actionCol {
+    width: 100%;
+    margin-top: 0.4rem;
+  }
+  .callBtn, .zaloBtn {
+    flex: 1;
+    justify-content: center;
+  }
+}

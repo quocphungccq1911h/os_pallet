@@ -273,11 +273,14 @@ export const ProductModal: React.FC<ProductModalProps> = ({
     // Clean up empty highlights
     const cleanedHighlights = (formData.highlights || []).filter((h) => h.trim().length > 0);
 
-    const finalGallery = formData.gallery && formData.gallery.length > 0
-      ? formData.gallery
-      : [formData.imageUrl || '/images/banner_main.png'];
+    const nonBannerImages = (formData.gallery && formData.gallery.length > 0 ? formData.gallery : [formData.imageUrl || ''])
+      .filter((img): img is string => Boolean(img && !img.endsWith('banner_main.png')));
 
-    const finalImageUrl = formData.imageUrl || finalGallery[0] || '/images/banner_main.png';
+    // Mặc định luôn đặt banner_main.png ở hình cuối cùng của từng sản phẩm
+    const finalGallery = [...nonBannerImages, '/images/banner_main.png'];
+    const finalImageUrl = (formData.imageUrl && !formData.imageUrl.endsWith('banner_main.png'))
+      ? formData.imageUrl
+      : (nonBannerImages[0] || '/images/banner_main.png');
 
     setIsSaving(true);
 

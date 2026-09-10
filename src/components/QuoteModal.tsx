@@ -22,15 +22,39 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, default
 
   const [submitted, setSubmitted] = useState(false);
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   if (!isOpen) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) {
       alert('Vui lòng nhập Họ tên và Số điện thoại!');
       return;
     }
-    setSubmitted(true);
+
+    try {
+      setIsSubmitting(true);
+      const selectedProd = products.find((p) => p.slug === formData.product);
+      await fetch('/api/quotes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          customerName: formData.name,
+          phone: formData.phone,
+          productTitle: selectedProd ? selectedProd.name : 'Yêu cầu tư vấn kích thước riêng',
+          dimensions: formData.dimensions || (selectedProd ? selectedProd.dimensions : ''),
+          quantity: formData.quantity,
+          note: formData.note,
+          status: 'moi',
+        }),
+      });
+    } catch {
+      // ignore
+    } finally {
+      setIsSubmitting(false);
+      setSubmitted(true);
+    }
   };
 
   const handleReset = () => {

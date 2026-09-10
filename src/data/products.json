@@ -1,212 +1,91 @@
 [
   {
-    "id": "p1",
-    "slug": "thung-go-kin-dong-may-moc",
-    "name": "Thùng Gỗ Kín Đóng Kiện Máy Móc Xuất Khẩu Đi Mỹ",
-    "category": "Thùng Gỗ / Kiện Gỗ Đóng Hàng",
-    "categorySlug": "thung-go-dong-hang",
-    "dimensions": "Gia công theo kích thước máy móc",
-    "woodType": "Gỗ Thông / Gỗ Tràm + Ván ép chịu lực",
-    "materialGroup": "go-thong",
-    "targetMarket": "xuat-khau-my",
-    "staticLoad": "3.000 - 5.000 kg",
-    "dynamicLoad": "1.500 - 2.500 kg",
-    "specification": "Thùng kín 6 mặt, có thanh giằng chịu lực & đế pallet",
-    "isExportStandard": true,
-    "isNew": true,
+    "id": "p8",
+    "slug": "pallet-go-cu-1100x1100",
+    "name": "Pallet Gỗ Cũ 1100x1100mm Chọn Lọc (Mới 85% - 95%)",
+    "category": "Pallet Gỗ Cũ / Thanh Lý",
+    "categorySlug": "pallet-go-cu",
+    "dimensions": "1100 x 1100 x 120 mm",
+    "woodType": "Gỗ Thông / Tràm hỗn hợp tuyển chọn",
+    "materialGroup": "go-cu",
+    "targetMarket": "noi-dia",
+    "staticLoad": "1.500 kg",
+    "dynamicLoad": "800 kg",
+    "specification": "Mặt nan đều, kết cấu chắc chắn không gãy mọt",
+    "isExportStandard": false,
+    "isNew": false,
     "priceDisplay": "Liên hệ",
-    "description": "Thế mạnh chuyên môn của xưởng Trường An: Đóng thùng gỗ kín bảo vệ tuyệt đối linh kiện, tủ điện, máy móc công nghiệp xuất khẩu đi Mỹ, Campuchia và đường biển quốc tế. Chống ẩm, chống va đập xô lệch.",
+    "description": "Pallet gỗ cũ được xưởng Trường An thu gom và chọn lọc kỹ lưỡng, đã xử lý lại đinh vít và nan gãy. Chất lượng còn 85-95% nhưng giá thành chỉ bằng 40-50% pallet mới.",
     "highlights": [
-      "Đóng theo kích thước và hình dáng máy móc thực tế",
-      "Đáy tích hợp pallet đố chịu tải cực khỏe cho xe nâng",
-      "Khung xương giằng chắc chắn, chịu lực va đập khi cẩu hàng",
-      "Khử trùng nhiệt HT tiêu chuẩn xuất khẩu ISPM 15"
-    ],
-    "imageUrl": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=800",
-    "gallery": [
-      "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=800",
-      "/images/banner_main.png",
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&q=80&w=800"
-    ],
-    "usagePurpose": "Đóng gói máy móc thiết bị cơ khí, tủ điện công nghiệp, hàng điện tử xuất khẩu",
-    "badges": [
-      "🇺🇸 Xuất Khẩu Mỹ",
-      "Bảo Vệ Máy Móc",
-      "Sấy HT ISPM 15"
-    ],
-    "facebookProof": {
-      "title": "Đơn hàng đóng kiện máy móc xuất sang Mỹ",
-      "description": "Hoàn thiện đóng 12 kiện máy móc công nghiệp tại xưởng Hóc Môn đạt chuẩn hun trùng xuất khẩu container đường biển.",
-      "fbUrl": "https://www.facebook.com/PalletTruongAn/"
-    }
-  },
-  {
-    "id": "p2",
-    "slug": "thung-go-thua-dong-hang",
-    "name": "Thùng Kiện Gỗ Nan Thưa Chở Hàng Đi Campuchia",
-    "category": "Thùng Gỗ / Kiện Gỗ Đóng Hàng",
-    "categorySlug": "thung-go-dong-hang",
-    "dimensions": "Theo yêu cầu từng kiện hàng",
-    "woodType": "Gỗ Thông / Tràm tự nhiên xẻ sấy",
-    "materialGroup": "go-tram",
-    "targetMarket": "xuat-khau-campuchia",
-    "staticLoad": "2.000 - 3.500 kg",
-    "dynamicLoad": "1.000 - 1.800 kg",
-    "specification": "Nan thưa thoáng khí, đế pallet 2 - 4 hướng nâng",
-    "isExportStandard": true,
-    "isNew": true,
-    "priceDisplay": "Liên hệ",
-    "description": "Giải pháp đóng kiện gỗ nan thưa tiết kiệm chi phí nhưng vẫn đảm bảo độ cứng vững, định vị máy móc hoặc cuộn cáp, phôi thép không bị xô ngã trong quá trình vận chuyển container.",
-    "highlights": [
-      "Tiết kiệm chi phí so với thùng gỗ kín",
-      "Thông thoáng khí, dễ kiểm tra số serial máy móc bên trong",
-      "Gia cố đinh xoắn và nẹp góc kim loại",
-      "Thi công nhanh tại xưởng Hóc Môn hoặc tận kho khách hàng"
-    ],
-    "imageUrl": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
-    "gallery": [
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
-      "/images/banner_main.png",
-      "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=800"
-    ],
-    "usagePurpose": "Đóng kiện phụ tùng, phôi kim loại, hàng hóa cần kiểm tra ngoại quan hải quan",
-    "badges": [
-      "🇰🇭 ĐI CAMPUCHIA",
-      "NAN THƯA THOÁNG KHÍ",
-      "TIẾT KIỆM CHI PHÍ"
-    ],
-    "facebookProof": {
-      "title": "Lô hàng kiện gỗ nan thưa giao cửa khẩu Mộc Bài",
-      "description": "Gia công và giao nhanh trong 24h phục vụ xe tải chuyển hàng đi Phnôm Pênh - Campuchia.",
-      "fbUrl": "https://www.facebook.com/PalletTruongAn/"
-    }
-  },
-  {
-    "id": "p3",
-    "slug": "pallet-van-ep-plywood-1200x1000",
-    "name": "Pallet Ván Ép Plywood 1200x1000mm Mặt Phẳng Kín",
-    "category": "Pallet Ván Ép (Plywood)",
-    "categorySlug": "pallet-van-ep",
-    "dimensions": "1200 x 1000 x 135 mm",
-    "woodType": "Ván ép Plywood công nghiệp cao cấp",
-    "materialGroup": "van-ep",
-    "targetMarket": "xuat-khau-ispm15",
-    "staticLoad": "1.800 kg",
-    "dynamicLoad": "1.000 kg",
-    "specification": "Mặt kín phẳng 100%, chân gù ván ép / gỗ thông",
-    "isExportStandard": true,
-    "isNew": true,
-    "priceDisplay": "Liên hệ",
-    "description": "Dòng sản phẩm xuất khẩu rất được ưa chuộng tại xưởng Trường An. Bề mặt ván ép phẳng nhẵn tuyệt đối, không có khe hở, không có dăm gỗ, bảo vệ tối đa thùng carton và hàng hóa cao cấp.",
-    "highlights": [
-      "Không yêu cầu chứng nhận kiểm dịch hun trùng ISPM 15 gắt gao",
-      "Bề mặt liền mạch, không lo hàng rách đáy hay lọt chân",
-      "Trọng lượng nhẹ giúp giảm cước phí vận chuyển hàng không / đường biển",
-      "Thẩm mỹ cao, độ bền ổn định trong môi trường khô"
+      "Tiết kiệm ngân sách tối đa cho doanh nghiệp",
+      "Hàng tuyển chọn chắc chắn, kiểm tra trước khi giao",
+      "Luôn có sẵn số lượng lớn tại kho xưởng Hóc Môn",
+      "Hỗ trợ đổi trả nếu có pallet lỗi gãy"
     ],
     "imageUrl": "https://images.unsplash.com/photo-1586528116493-a029325540fa?auto=format&fit=crop&q=80&w=800",
     "gallery": [
       "https://images.unsplash.com/photo-1586528116493-a029325540fa?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=800",
-      "/images/banner_main.png",
-      "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&q=80&w=800"
-    ],
-    "usagePurpose": "Hàng linh kiện điện tử, dược phẩm, may mặc, container xuất khẩu đi Âu Mỹ",
-    "badges": [
-      "Mặt Kín 100%",
-      "Miễn Trừ Hun Trùng",
-      "Siêu Nhẹ"
-    ],
-    "facebookProof": {
-      "title": "Xuất xưởng 300 pallet ván ép cho công ty may mặc",
-      "description": "Bàn giao lô pallet plywood mặt phẳng nhẵn cho đối tác đóng container hàng xuất khẩu.",
-      "fbUrl": "https://www.facebook.com/PalletTruongAn/"
-    }
-  },
-  {
-    "id": "p4",
-    "slug": "pallet-go-thong-1200x1000",
-    "name": "Pallet Gỗ Thông Xuất Khẩu 1200x1000mm (Chuẩn Thị Trường Mỹ)",
-    "category": "Pallet Gỗ Thông & Tràm Mới",
-    "categorySlug": "pallet-go-moi",
-    "dimensions": "1200 x 1000 x 140 mm",
-    "woodType": "Gỗ Thông nhập khẩu sấy khô",
-    "materialGroup": "go-thong",
-    "targetMarket": "xuat-khau-my",
-    "staticLoad": "2.500 kg",
-    "dynamicLoad": "1.200 kg",
-    "specification": "4 hướng nâng tiện lợi, nan bào nhẵn 4 mặt",
-    "isExportStandard": true,
-    "isNew": true,
-    "priceDisplay": "Liên hệ",
-    "description": "Pallet gỗ thông sáng màu, đẹp mắt và chịu lực đều. Được khử trùng nhiệt HT chuẩn ISPM 15 xuất khẩu quốc tế. Phù hợp cả xe nâng tay và xe nâng động cơ.",
-    "highlights": [
-      "Gỗ thông sấy chống ẩm mốc dưới 18%",
-      "Thẩm mỹ sáng màu, đạt chuẩn kiểm định thị trường khó tính",
-      "Nan dày 18-20mm chịu lực tốt",
-      "Đóng đinh soắn tạo liên kết bền chặt"
-    ],
-    "imageUrl": "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&q=80&w=800",
-    "gallery": [
-      "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1586528116493-a029325540fa?auto=format&fit=crop&q=80&w=800",
-      "/images/banner_main.png",
-      "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&q=80&w=800"
-    ],
-    "usagePurpose": "Kho thực phẩm, bao bì, đóng hàng xuất khẩu container",
-    "badges": [
-      "🇺🇸 Chuẩn Thị Trường Mỹ",
-      "Gỗ Thông Sấy Khô",
-      "4 Hướng Nâng"
-    ],
-    "facebookProof": {
-      "title": "Lô 600 pallet gỗ thông khử trùng HT xuất khẩu",
-      "description": "Kiểm tra đóng dấu ISPM 15 trực tiếp tại xưởng Hóc Môn trước khi bốc xếp lên xe container.",
-      "fbUrl": "https://www.facebook.com/PalletTruongAn/"
-    }
-  },
-  {
-    "id": "p5",
-    "slug": "pallet-go-tram-1200x1000",
-    "name": "Pallet Gỗ Tràm Chịu Tải 1200x1000mm (Xuất Container Campuchia)",
-    "category": "Pallet Gỗ Thông & Tràm Mới",
-    "categorySlug": "pallet-go-moi",
-    "dimensions": "1200 x 1000 x 140 mm",
-    "woodType": "Gỗ Tràm tự nhiên cứng cáp",
-    "materialGroup": "go-tram",
-    "targetMarket": "xuat-khau-campuchia",
-    "staticLoad": "2.500 kg",
-    "dynamicLoad": "1.300 kg",
-    "specification": "4 hướng nâng, đố khoét dùng được cả xe nâng tay",
-    "isExportStandard": true,
-    "isNew": true,
-    "priceDisplay": "Liên hệ",
-    "description": "Mẫu pallet quốc dân tại các kho bãi nhà xưởng Việt Nam. Chất gỗ tràm dẻo dai, chịu va đập cực tốt, giá thành tiết kiệm so với các loại gỗ khác.",
-    "highlights": [
-      "Chất gỗ tràm cứng, dẻo dai, chịu lực nặng",
-      "Đố khoét rãnh sâu, xe nâng tay luồn vào cực kỳ mượt mà",
-      "Khả năng chống nứt nẻ và chịu tải xếp tầng tốt",
-      "Giá gốc tận xưởng mộc Hóc Môn"
-    ],
-    "imageUrl": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
-    "gallery": [
       "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
-      "/images/banner_main.png",
       "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&q=80&w=800"
+      "/images/banner_main.png"
     ],
-    "usagePurpose": "Lưu kho hàng công nghiệp, logistics nội địa, gạch men, hóa chất",
+    "usagePurpose": "Kê hàng trong kho bãi tạm, vận chuyển hàng nội địa một chiều",
     "badges": [
-      "🇰🇭 ĐI CAMPUCHIA",
-      "CHỊU LỰC 2.5 TẤN",
-      "ĐỐ KHOÉT XE NÂNG TAY"
+      "TIẾT KIỆM 50%",
+      "MỚI 85% - 95%",
+      "SẴN KHO GIAO NGAY"
     ],
     "facebookProof": {
-      "title": "Giao 400 pallet gỗ tràm cho nhà máy bao bì",
-      "description": "Giao hàng trực tiếp bằng xe tải của xưởng đến kho khách hàng tại KCN Tân Bình & Vĩnh Lộc.",
-      "fbUrl": "https://www.facebook.com/PalletTruongAn/"
-    }
+      "fbUrl": "<iframe src=\"https://www.facebook.com/plugins/post.php?href=https%3A%2F%2Fwww.facebook.com%2FPalletTruongAn%2Fposts%2Fpfbid02HxqHUjkxv5Yvpeoh1wkCrQhcDujzm3FHMP6C86sv6TMdekQc43HiapGCAmYk3vTul&show_text=true&width=500\" width=\"500\" height=\"700\" style=\"border:none;overflow:hidden\" scrolling=\"no\" frameborder=\"0\" allowfullscreen=\"true\" allow=\"autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share\"></iframe>",
+      "title": "Giao 300 pallet cũ thanh lý cho kho hàng Long An",
+      "description": "Pallet đã kiểm định bắn đinh lại cứng cáp, bàn giao tận nơi cho đối tác lưu kho hạt nhựa."
+    },
+    "created_at": "2026-09-10T02:03:12.862114+00:00",
+    "updated_at": "2026-09-10T03:28:11.875+00:00"
+  },
+  {
+    "id": "p7",
+    "slug": "pallet-go-dong-theo-yeu-cau",
+    "name": "Gia Công Pallet Gỗ Đóng Theo Bản Vẽ & Kích Thước Riêng",
+    "category": "Pallet Đóng Theo Yêu Cầu",
+    "categorySlug": "pallet-theo-yeu-cau",
+    "dimensions": "Kích thước theo bản vẽ kỹ thuật",
+    "woodType": "Gỗ Tràm / Thông / Ván ép theo lựa chọn",
+    "materialGroup": "go-thong",
+    "targetMarket": "noi-dia",
+    "staticLoad": "Tùy biến theo yêu cầu",
+    "dynamicLoad": "Tùy biến theo yêu cầu",
+    "specification": "Sản xuất chuẩn xác dung sai ±2mm",
+    "isExportStandard": true,
+    "isNew": true,
+    "priceDisplay": "Liên hệ",
+    "description": "Xưởng Trường An nhận đóng mọi quy cách pallet theo bản vẽ: 2 hướng nâng, 4 hướng nâng, đố bằng, đố khoét, mặt kín, mặt thưa, pallet gù... Tư vấn kết cấu chịu tải tối ưu chi phí cho doanh nghiệp.",
+    "highlights": [
+      "Nhận đóng cả đơn hàng nhỏ lẻ lẫn đơn hàng dự án số lượng lớn",
+      "Thiết kế mẫu chạy thử nghiệm thực tế trước khi chốt đơn",
+      "Đội thợ mộc lành nghề tại Hóc Môn trực tiếp gia công",
+      "Giao hàng nhanh bằng xe tải riêng của xưởng"
+    ],
+    "imageUrl": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=800",
+    "gallery": [
+      "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1586528116493-a029325540fa?auto=format&fit=crop&q=80&w=800",
+      "/images/banner_main.png"
+    ],
+    "usagePurpose": "Kê máy cơ khí đặc thù, pin năng lượng mặt trời, hàng hóa quá khổ",
+    "badges": [
+      "Theo Bản Vẽ Riêng",
+      "Lên Mẫu 24 Giờ",
+      "Chuẩn Dung Sai"
+    ],
+    "facebookProof": {
+      "fbUrl": "https://www.facebook.com/PalletTruongAn/",
+      "title": "Gia công pallet phi tiêu chuẩn cho nhà xưởng",
+      "description": "Thiết kế đố chịu lực và chiều rộng nan chuyên biệt cho dòng máy ép nhựa công nghiệp."
+    },
+    "created_at": "2026-09-10T02:03:12.793398+00:00",
+    "updated_at": "2026-09-10T02:03:12.793398+00:00"
   },
   {
     "id": "p6",
@@ -235,8 +114,8 @@
     "gallery": [
       "https://images.unsplash.com/photo-1586528116493-a029325540fa?auto=format&fit=crop&q=80&w=800",
       "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&q=80&w=800",
-      "/images/banner_main.png",
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800"
+      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
+      "/images/banner_main.png"
     ],
     "usagePurpose": "Đóng hàng container xuất khẩu Châu Âu, Mỹ, Nhật Bản",
     "badges": [
@@ -245,93 +124,244 @@
       "Sấy Khô ISPM 15"
     ],
     "facebookProof": {
+      "fbUrl": "https://www.facebook.com/PalletTruongAn/",
       "title": "Lô pallet kích thước 1200x800 xuất khẩu",
-      "description": "Được khách hàng châu Âu nghiệm thu đạt chuẩn chất lượng và độ ẩm tại kho xưởng Trường An.",
-      "fbUrl": "https://www.facebook.com/PalletTruongAn/"
-    }
+      "description": "Được khách hàng châu Âu nghiệm thu đạt chuẩn chất lượng và độ ẩm tại kho xưởng Trường An."
+    },
+    "created_at": "2026-09-10T02:03:12.708889+00:00",
+    "updated_at": "2026-09-10T02:03:12.708889+00:00"
   },
   {
-    "id": "p7",
-    "slug": "pallet-go-dong-theo-yeu-cau",
-    "name": "Gia Công Pallet Gỗ Đóng Theo Bản Vẽ & Kích Thước Riêng",
-    "category": "Pallet Đóng Theo Yêu Cầu",
-    "categorySlug": "pallet-theo-yeu-cau",
-    "dimensions": "Kích thước theo bản vẽ kỹ thuật",
-    "woodType": "Gỗ Tràm / Thông / Ván ép theo lựa chọn",
+    "id": "p5",
+    "slug": "pallet-go-chan-gu-chuan-4-huong-nang-1219x1016",
+    "name": "Pallet Gỗ Chân Gù Chuẩn 4 Hướng Nâng (1219 x 1016 x 140 mm)",
+    "category": "Pallet Gỗ Thông & Tràm Mới",
+    "categorySlug": "pallet-go-moi",
+    "dimensions": "1219 x 1016 x 140 mm (±5mm) - Chuẩn 48x40 inch",
+    "woodType": "Gỗ Thông / Gỗ Tràm xẻ sấy cao cấp",
     "materialGroup": "go-thong",
-    "targetMarket": "noi-dia",
-    "staticLoad": "Tùy biến theo yêu cầu",
-    "dynamicLoad": "Tùy biến theo yêu cầu",
-    "specification": "Sản xuất chuẩn xác dung sai ±2mm",
+    "targetMarket": "xuat-khau-ispm15",
+    "staticLoad": "2.500 - 3.500 kg",
+    "dynamicLoad": "1.200 - 1.800 kg",
+    "specification": "Pallet chân gù 4 hướng nâng: 9 khối gù (4 gù góc 190.5x127x90mm, 5 gù 95x127x90mm), 3 ván gánh (1219x127x17.5mm)",
     "isExportStandard": true,
     "isNew": true,
-    "priceDisplay": "Liên hệ",
-    "description": "Xưởng Trường An nhận đóng mọi quy cách pallet theo bản vẽ: 2 hướng nâng, 4 hướng nâng, đố bằng, đố khoét, mặt kín, mặt thưa, pallet gù... Tư vấn kết cấu chịu tải tối ưu chi phí cho doanh nghiệp.",
+    "priceDisplay": "Giá tại xưởng (Liên hệ)",
+    "description": "Dòng pallet chân gù (Block Pallet 4-Way) kích thước chuẩn 1219 x 1016 x 140mm (48x40 inch) được hoàn thiện để trình mẫu thực tế cho đối tác doanh nghiệp kiểm tra độ chịu tải và kết cấu. Cung cấp 2 phiên bản: Gỗ Thông xẻ sấy (sáng đẹp, nhẹ, chuẩn xuất khẩu) và Gỗ Tràm tự nhiên (cứng cáp, chịu tải va đập cực khỏe, tối ưu chi phí). Cấu tạo 9 khối gù liên kết đinh xoắn chắc chắn, cho phép xe nâng tay và xe nâng động cơ thao tác linh hoạt từ cả 4 phía. Xưởng cam kết tính toán tải trọng chuẩn xác, không làm hàng mỏng yếu kém an toàn.",
     "highlights": [
-      "Nhận đóng cả đơn hàng nhỏ lẻ lẫn đơn hàng dự án số lượng lớn",
-      "Thiết kế mẫu chạy thử nghiệm thực tế trước khi chốt đơn",
-      "Đội thợ mộc lành nghề tại Hóc Môn trực tiếp gia công",
-      "Giao hàng nhanh bằng xe tải riêng của xưởng"
+      "Kết cấu pallet chân gù (9 khối gù chịu lực) chịu tải trọng tĩnh lên tới 3.500 kg, nâng 4 hướng tuyệt đối",
+      "Cung cấp 2 tùy chọn chất liệu: Gỗ Thông (xuất khẩu thẩm mỹ cao) và Gỗ Tràm (chịu lực cực khỏe)",
+      "Quy cách chuẩn: Ván gánh 3 thanh (1219x127x17.5mm), nan mặt & đáy dày dặn 17.5mm",
+      "Đầy đủ tiêu chuẩn xử lý sấy nhiệt HT & hun trùng kiểm dịch ISPM 15 xuất khẩu container",
+      "Hỗ trợ test tải trọng thực tế tận kho và điều chỉnh quy cách theo đúng yêu cầu của khách hàng"
     ],
-    "imageUrl": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=800",
+    "imageUrl": "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p5/p5.1.jpg",
     "gallery": [
-      "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=800",
-      "/images/banner_main.png",
-      "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1586528116493-a029325540fa?auto=format&fit=crop&q=80&w=800"
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p5/p5.1.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p5/p5.2.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p5/p5.3.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p5/p5.4.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p5/p5.5.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p5/p5.6.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p5/p5.7.jpg",
+      "/images/banner_main.png"
     ],
-    "usagePurpose": "Kê máy cơ khí đặc thù, pin năng lượng mặt trời, hàng hóa quá khổ",
+    "usagePurpose": "Lưu trữ kho tự động, xếp pallet kệ racking đa tầng, đóng hàng container xuất khẩu đi Mỹ, châu Âu và đóng gói công nghiệp nặng",
     "badges": [
-      "Theo Bản Vẽ Riêng",
-      "Lên Mẫu 24 Giờ",
-      "Chuẩn Dung Sai"
+      "Chân Gù 4 Hướng",
+      "Gỗ Thông & Tràm",
+      "Chịu Tải 3.5 Tấn",
+      "Sấy HT ISPM 15"
     ],
     "facebookProof": {
-      "title": "Gia công pallet phi tiêu chuẩn cho nhà xưởng",
-      "description": "Thiết kế đố chịu lực và chiều rộng nan chuyên biệt cho dòng máy ép nhựa công nghiệp.",
+      "title": "Pallet mẫu chân gù 1219x1016mm – Trình quý đối tác kiểm tra thực tế",
+      "description": "Hoàn thiện pallet mẫu chân gù kết cấu 9 khối gù chịu lực vững chãi (2 dòng gỗ thông và gỗ tràm) sẵn sàng test tải thực tế và chốt đơn hàng số lượng lớn.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
-    }
+    },
+    "updated_at": "2026-09-10T04:27:31.016Z"
   },
   {
-    "id": "p8",
-    "slug": "pallet-go-cu-1100x1100",
-    "name": "Pallet Gỗ Cũ 1100x1100mm Chọn Lọc (Mới 85% - 95%)",
-    "category": "Pallet Gỗ Cũ / Thanh Lý",
-    "categorySlug": "pallet-go-cu",
-    "dimensions": "1100 x 1100 x 120 mm",
-    "woodType": "Gỗ Thông / Tràm hỗn hợp tuyển chọn",
-    "materialGroup": "go-cu",
-    "targetMarket": "noi-dia",
-    "staticLoad": "1.500 kg",
-    "dynamicLoad": "800 kg",
-    "specification": "Mặt nan đều, kết cấu chắc chắn không gãy mọt",
-    "isExportStandard": false,
-    "isNew": false,
-    "priceDisplay": "Liên hệ",
-    "description": "Pallet gỗ cũ được xưởng Trường An thu gom và chọn lọc kỹ lưỡng, đã xử lý lại đinh vít và nan gãy. Chất lượng còn 85-95% nhưng giá thành chỉ bằng 40-50% pallet mới.",
+    "id": "p4",
+    "slug": "pallet-go-xuat-khau-kich-thuoc-lon-1400x1100",
+    "name": "Pallet Gỗ Xuất Khẩu Kích Thước Lớn (1400 x 1100 x 140 mm)",
+    "category": "Pallet Đóng Theo Yêu Cầu",
+    "categorySlug": "pallet-theo-yeu-cau",
+    "dimensions": "1400 x 1100 x 140 mm (±5 mm)",
+    "woodType": "Gỗ Thông / Gỗ Tràm mới xẻ sấy",
+    "materialGroup": "go-thong",
+    "targetMarket": "xuat-khau-ispm15",
+    "staticLoad": "2.500 - 3.500 kg",
+    "dynamicLoad": "1.200 - 1.800 kg",
+    "specification": "Kích thước khổ lớn 1400x1100mm, đố chịu lực dày dặn liên kết đinh xoắn, nâng hạ xe nâng máy an toàn",
+    "isExportStandard": true,
+    "isNew": true,
+    "priceDisplay": "Giá tại xưởng (Liên hệ)",
+    "description": "Pallet gỗ kích thước khổ lớn 1400 x 1100mm chuyên dụng đóng hàng máy móc, thiết bị công nghiệp khổ rộng và hàng hóa cồng kềnh xuất khẩu. Sản phẩm được sản xuất mới 100% từ nguồn gỗ chọn lọc, sấy độ ẩm đạt chuẩn, kết cấu đố giằng chịu lực cực khỏe, đáp ứng yêu cầu tải trọng cao khi cẩu hàng và xếp container. Xưởng Trường An hỗ trợ trọn gói xử lý nhiệt HT, hun trùng đạt tiêu chuẩn kiểm dịch ISPM 15, mộc dấu xuất khẩu đầy đủ và giao hàng nhanh đúng tiến độ sản xuất của khách hàng.",
     "highlights": [
-      "Tiết kiệm ngân sách tối đa cho doanh nghiệp",
-      "Hàng tuyển chọn chắc chắn, kiểm tra trước khi giao",
-      "Luôn có sẵn số lượng lớn tại kho xưởng Hóc Môn",
-      "Hỗ trợ đổi trả nếu có pallet lỗi gãy"
+      "Quy cách khổ rộng 1400 x 1100 mm gia công chuẩn xác theo yêu cầu kỹ thuật của khách hàng",
+      "Chất liệu gỗ mới 100%, nan đố dày dặn chịu tải trọng tĩnh lên tới 3.500 kg",
+      "Đáp ứng tiêu chuẩn kiểm dịch thực vật quốc tế ISPM 15 (sấy nhiệt HT / hun trùng thông quan)",
+      "Phù hợp đóng hàng máy móc, thiết bị công nghiệp khổ lớn xuất khẩu đường biển",
+      "Xưởng sản xuất trực tiếp Hóc Môn, giá cạnh tranh, đáp ứng nhanh đơn hàng số lượng lớn"
     ],
-    "imageUrl": "https://images.unsplash.com/photo-1586528116493-a029325540fa?auto=format&fit=crop&q=80&w=800",
+    "imageUrl": "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p4/p4.1.jpg",
     "gallery": [
-      "https://images.unsplash.com/photo-1586528116493-a029325540fa?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
-      "/images/banner_main.png",
-      "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&q=80&w=800"
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p4/p4.1.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p4/p4.2.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p4/p4.3.jpg",
+      "/images/banner_main.png"
     ],
-    "usagePurpose": "Kê hàng trong kho bãi tạm, vận chuyển hàng nội địa một chiều",
+    "usagePurpose": "Đóng gói máy móc thiết bị khổ rộng, hàng công nghiệp nặng, bốc xếp cẩu hàng và đóng container xuất khẩu",
     "badges": [
-      "Tiết Kiệm 50%",
-      "Mới 85% - 95%",
-      "Sẵn Kho Giao Ngay"
+      "Khổ Rộng 1.4m",
+      "Đóng Theo Yêu Cầu",
+      "Chịu Tải 3.5 Tấn",
+      "Sấy HT ISPM 15"
     ],
     "facebookProof": {
-      "title": "Giao 300 pallet cũ thanh lý cho kho hàng Long An",
-      "description": "Pallet đã kiểm định bắn đinh lại cứng cáp, bàn giao tận nơi cho đối tác lưu kho hạt nhựa.",
+      "title": "Hoàn thành đơn hàng pallet gỗ 1.400 x 1.100 mm giao khách xuất khẩu",
+      "description": "Pallet Trường An vừa hoàn thiện và bàn giao thành công lô pallet gỗ kích thước 1.400 x 1.100 mm theo đúng quy cách yêu cầu, đạt chuẩn ISPM 15 phục vụ đóng hàng xuất khẩu cho đối tác.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
-    }
+    },
+    "updated_at": "2026-09-10T04:21:45.422Z"
+  },
+  {
+    "id": "p3",
+    "slug": "pallet-go-thong-moi-xuat-khau-chuan-my-1219x1016",
+    "name": "Pallet Gỗ Thông Mới 100% Xuất Khẩu Chuẩn Mỹ GMA (1219 x 1016 x 140 mm)",
+    "category": "Pallet Gỗ Thông & Tràm Mới",
+    "categorySlug": "pallet-go-moi",
+    "dimensions": "1219 x 1016 x 140 mm (±5mm) - Chuẩn 48x40 inch",
+    "woodType": "Gỗ Thông mới 100% xẻ sấy sáng đẹp",
+    "materialGroup": "go-thong",
+    "targetMarket": "xuat-khau-my",
+    "staticLoad": "2.500 - 3.000 kg",
+    "dynamicLoad": "1.200 - 1.500 kg",
+    "specification": "Kích thước chuẩn xuất Mỹ GMA (1219x1016x140mm), nan đố dày dặn liên kết đinh xoắn, nâng 4 hướng",
+    "isExportStandard": true,
+    "isNew": true,
+    "priceDisplay": "Giá tại xưởng (Liên hệ)",
+    "description": "Lô pallet gỗ thông mới 100% quy cách chuẩn 1219 x 1016 x 140mm (chuẩn 48 x 40 inch GMA) chuyên dụng cho các doanh nghiệp đóng hàng container xuất khẩu sang thị trường Mỹ, châu Âu và quốc tế. Gỗ thông mới xẻ sấy đạt độ ẩm dưới 20%, vân gỗ sáng đẹp, liên kết đinh xoắn chắc chắn, khả năng chịu lực va đập cao. Sản phẩm được hỗ trợ đầy đủ chứng từ hun trùng, xử lý nhiệt HT theo tiêu chuẩn ISPM 15 giúp khách hàng thông quan dễ dàng, giá cạnh tranh trực tiếp từ xưởng Trường An.",
+    "highlights": [
+      "Kích thước chuẩn 48 x 40 inch (1219 x 1016 x 140 mm) chuyên đóng container xuất khẩu thị trường Mỹ",
+      "Chất liệu gỗ thông mới 100% sáng đẹp, xử lý sấy đạt độ ẩm dưới 20% chống ẩm mốc",
+      "Hỗ trợ xử lý nhiệt HT và cấp chứng thư hun trùng ISPM 15 đầy đủ mộc dấu xuất khẩu",
+      "Gia công chuẩn quy cách, chịu tải trọng tĩnh lên đến 3.000 kg",
+      "Giá gốc cạnh tranh nhất thị trường từ xưởng sản xuất trực tiếp Hóc Môn"
+    ],
+    "imageUrl": "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p3/p3.1.jpg",
+    "gallery": [
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p3/p3.1.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p3/p3.2.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p3/p3.3.jpg",
+      "/images/banner_main.png"
+    ],
+    "usagePurpose": "Đóng hàng máy móc, thiết bị điện tử, nông sản, hàng tiêu dùng xuất khẩu sang thị trường Mỹ và quốc tế, lưu kho kệ racking",
+    "badges": [
+      "🇺🇸 Chuẩn Xuất Mỹ",
+      "Gỗ Thông Mới 100%",
+      "Độ Ẩm < 20%",
+      "Sấy HT ISPM 15"
+    ],
+    "facebookProof": {
+      "title": "Hoàn thành đơn hàng pallet gỗ thông mới 100% giao khách xuất khẩu",
+      "description": "Xưởng Pallet Trường An vừa hoàn thiện và bàn giao lô pallet gỗ thông mới 100% quy cách chuẩn 1219 x 1016 x 140mm độ ẩm dưới 20% kèm chứng từ hun trùng HT ISPM 15 cho khách hàng xuất khẩu.",
+      "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "updated_at": "2026-09-10T04:17:24.622Z"
+  },
+  {
+    "id": "p2",
+    "slug": "pallet-go-thong-do-khuyet-xuat-khau-ispm15-1200x1000",
+    "name": "Pallet Gỗ Thông Đố Khuyết Xuất Khẩu ISPM 15 (1200 x 1000 x 120 mm)",
+    "category": "Pallet Gỗ Thông & Tràm Mới",
+    "categorySlug": "pallet-go-moi",
+    "dimensions": "1200 x 1000 x 120 mm (±5mm)",
+    "woodType": "Gỗ Thông xẻ sấy cao cấp",
+    "materialGroup": "go-thong",
+    "targetMarket": "xuat-khau-ispm15",
+    "staticLoad": "2.000 - 2.500 kg",
+    "dynamicLoad": "1.000 - 1.500 kg",
+    "specification": "Đố khoét khuyết 4 hướng nâng (1200x38x88.9mm, 3 thanh), nan mặt 7 thanh (1000x100x17mm), nan đáy 4 thanh (1000x100x17mm)",
+    "isExportStandard": true,
+    "isNew": true,
+    "priceDisplay": "Giá tại xưởng (Liên hệ)",
+    "description": "Dòng pallet đố khuyết gỗ thông xẻ sấy cao cấp đã được trình mẫu thành công và chốt deal xuất khẩu cùng đối tác doanh nghiệp. Thiết kế đố khoét khuyết 4 hướng nâng linh hoạt cho xe nâng máy và xe nâng tay, gỗ thông ngoại nhập sấy đạt độ ẩm tiêu chuẩn < 18%, xử lý khử trùng nhiệt HT theo tiêu chuẩn ISPM 15 kèm chứng thư xuất khẩu quốc tế. Kết cấu vững chãi, các mối ghép đinh xoắn chắc chắn, khả năng chịu tải hàng hóa nặng khi đóng container.",
+    "highlights": [
+      "Quy cách chuẩn: Mặt 7 thanh (1000x100x17mm), 3 đố khoét khuyết (1200x38x88.9mm), đáy 4 thanh (1000x100x17mm)",
+      "Chất liệu gỗ thông xẻ sấy chọn lọc, hạn chế cong vênh, chống mối mọt và nấm mốc",
+      "Khử trùng nhiệt HT đạt chuẩn xuất khẩu ISPM 15, đầy đủ mộc dấu thông quan",
+      "Thiết kế đố khuyết nâng 4 hướng tiện lợi cho cả xe nâng tay và xe nâng động cơ",
+      "Đã được đối tác kiểm tra thực tế, đánh giá chất lượng cao và chốt deal số lượng lớn"
+    ],
+    "imageUrl": "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p2/p2.1.jpg",
+    "gallery": [
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p2/p2.1.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p2/p2.2.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p2/p2.3.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p2/p2.4.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p2/p2.5.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p2/p2.6.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p2/p2.7.jpg",
+      "/images/banner_main.png"
+    ],
+    "usagePurpose": "Đóng hàng xuất khẩu container đường biển/đường hàng không, bốc dỡ kho vận logistics, lưu trữ pallet trên kệ racking",
+    "badges": [
+      "🌲 Gỗ Thông Xẻ Sấy",
+      "Sấy HT ISPM 15",
+      "Nâng 4 Hướng",
+      "Đã Chốt Deal"
+    ],
+    "facebookProof": {
+      "title": "Trình mẫu thành công & chính thức chốt deal đơn hàng pallet đố khuyết gỗ thông",
+      "description": "Sau quá trình trao đổi, sản xuất mẫu và kiểm tra thực tế đạt chuẩn ISPM 15, Pallet Trường An đã hoàn tất trình mẫu và nhận được đánh giá cao từ đối tác, chính thức chốt hợp đồng cung ứng số lượng lớn.",
+      "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "updated_at": "2026-09-10T04:00:31.859Z"
+  },
+  {
+    "id": "p1",
+    "slug": "pallet-do-van-ep-xuat-khau-campuchia-1000x1200",
+    "name": "Pallet Đố Ván Ép Xuất Khẩu Campuchia (1000 x 1200 x 140 mm)",
+    "category": "Pallet Ván Ép (Plywood)",
+    "categorySlug": "pallet-van-ep",
+    "dimensions": "1000 x 1200 x 140 mm",
+    "woodType": "Ván ép Plywood công nghiệp cao cấp",
+    "materialGroup": "van-ep",
+    "targetMarket": "xuat-khau-campuchia",
+    "staticLoad": "1.500 - 2.000 kg",
+    "dynamicLoad": "1.000 - 1.200 kg",
+    "specification": "4 thanh đố chịu lực (1000x40x100mm), 9 thanh ván mặt (1200x120x20mm), 4 thanh đáy (1200x120x20mm)",
+    "isExportStandard": true,
+    "isNew": true,
+    "priceDisplay": "Giá tại xưởng (Liên hệ)",
+    "description": "Pallet đố ván ép kích thước 1000 x 1200 x 140mm chuyên dụng đóng hàng xuất khẩu sang thị trường Campuchia và ASEAN. Kết cấu 4 thanh đố gia cường chắc chắn kết hợp 9 nan mặt dày dặn 20mm mang lại khả năng chịu tải vượt trội, bề mặt ván ép phẳng mịn tuyệt đối không làm rách hay hư hại thùng carton bao bì. Chất liệu ván ép Plywood đạt chuẩn xuất khẩu, miễn trừ hun trùng kiểm dịch thực vật theo chuẩn ISPM 15, tối ưu thời gian thông quan.",
+    "highlights": [
+      "Quy cách chuẩn: Mặt 9 thanh (1200x120x20mm), 4 đố (1000x40x100mm), đáy 4 thanh (1200x120x20mm)",
+      "Bề mặt ván ép Plywood phẳng mịn, không mắt gỗ, chống ẩm và mối mọt",
+      "Miễn trừ thủ tục hun trùng kiểm dịch thực vật ISPM 15 khi thông quan xuất khẩu Campuchia",
+      "Kết cấu 4 thanh đố chịu tải cực khỏe, phù hợp xe nâng tay và xe nâng động cơ"
+    ],
+    "imageUrl": "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p1/p1.1.jpg",
+    "gallery": [
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p1/p1.1.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p1/p1.2.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p1/p1.3.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p1/p1.4.jpg",
+      "/images/banner_main.png"
+    ],
+    "usagePurpose": "Chuyên dùng đóng kiện hàng, thùng carton xuất khẩu sang Campuchia, xếp kho lưu trữ và vận chuyển container",
+    "badges": [
+      "🇰🇭 XUẤT KHẨU CAMPUCHIA",
+      "VÁN ÉP CHUẨN XUẤT",
+      "GIÁ TẬN XƯỞNG"
+    ],
+    "facebookProof": {
+      "fbUrl": "https://www.facebook.com/PalletTruongAn",
+      "title": "Lô pallet đố ván ép 1000x1200x140mm xuất khẩu Campuchia",
+      "description": "Những lô pallet đố ván ép (9 thanh mặt, 4 thanh đố, 4 thanh đáy) đang được xưởng Pallet Trường An sản xuất và hoàn thiện xuất sang Campuchia. Uy tín – Chất lượng – Đúng tiến độ."
+    },
+    "created_at": "2026-09-10T02:03:12.152317+00:00",
+    "updated_at": "2026-09-10T02:03:12.152317+00:00"
   }
 ]

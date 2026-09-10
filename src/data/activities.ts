@@ -1,0 +1,159 @@
+export type ActivityCategory = 'ban-giao' | 'don-gap' | 'trinh-mau' | 'ispm15';
+
+export interface Activity {
+  id: string;
+  slug: string;
+  title: string;
+  category: ActivityCategory;
+  summary: string;
+  content: string; // Nội dung chi tiết hoạt động
+  images: string[]; // Danh sách ảnh chụp thực tế tại xưởng
+  customerLocation?: string; // Ví dụ: KCN Tân Bình, Bình Dương, Long An...
+  clientType?: string; // Doanh nghiệp sản xuất / xuất khẩu
+  publishedAt: string; // Ngày đăng bài
+  badges: string[]; // Huy hiệu nổi bật
+  highlights: string[]; // Các điểm nổi bật
+  fbUrl?: string; // Link bài viết trên Fanpage Facebook
+  createdAt?: string;
+  updatedAt?: string;
+}
+
+export interface ActivityCategoryInfo {
+  id: ActivityCategory;
+  name: string;
+  icon: string;
+  description: string;
+}
+
+export const activityCategories: ActivityCategoryInfo[] = [
+  {
+    id: 'ban-giao',
+    name: 'Bàn Giao & Xuất Hàng',
+    icon: '🚛',
+    description: 'Nhật ký bàn giao lô pallet thành phẩm tận nơi cho khách hàng doanh nghiệp.',
+  },
+  {
+    id: 'don-gap',
+    name: 'Gia Công Đơn Gấp',
+    icon: '⚡',
+    description: 'Chuyên giải quyết đơn hàng tiến độ gấp, đóng theo bản vẽ riêng đáp ứng lịch đóng cont xuất khẩu.',
+  },
+  {
+    id: 'trinh-mau',
+    name: 'Trình Mẫu & Thử Tải',
+    icon: '🧪',
+    description: 'Quy trình sản xuất pallet mẫu thực tế, test tải trọng tĩnh và động cùng đối tác trước khi sản xuất hàng loạt.',
+  },
+  {
+    id: 'ispm15',
+    name: 'Khử Trùng & Sấy Nhiệt',
+    icon: '🔥',
+    description: 'Quy trình xử lý nhiệt HT chuẩn ISPM 15, kiểm soát độ ẩm dưới 20% phục vụ xuất khẩu thị trường Mỹ, EU.',
+  },
+];
+
+export const initialActivities: Activity[] = [
+  {
+    id: 'act2',
+    slug: 'hoan-thien-mau-pallet-go-thong-1000x1200-xuat-khau-vip',
+    title: 'Hoàn Thiện Mẫu Pallet Gỗ Thông 1000 x 1200 x 150mm VIP Trình Khách Hàng Xuất Khẩu',
+    category: 'trinh-mau',
+    summary: 'Sáng nay xưởng Pallet Trường An đã hoàn tất gia công mẫu pallet gỗ thông 1000 x 1200 x 150mm VIP chuẩn xuất khẩu đường biển, sẵn sàng trình quý đối tác kiểm tra thực tế trước khi triển khai đơn hàng số lượng lớn.',
+    content: `Sáng nay, xưởng **Pallet Trường An** đã hoàn thiện mẫu pallet gỗ thông kích thước **1000 x 1200 x 150mm dòng VIP** để trình khách hàng kiểm tra thực tế trước khi chính thức triển khai đơn hàng xuất khẩu số lượng lớn 🚢.
+
+Với bên em, mỗi đơn hàng không chỉ là sản phẩm – mà là cam kết về chất lượng và uy tín tuyệt đối với đối tác!
+
+### 🔍 Từng chi tiết của mẫu đều được xưởng kiểm soát chặt chẽ:
+- **Chọn lọc gỗ thông đạt chuẩn:** 100% gỗ thông mới xẻ sấy, vân gỗ sáng đẹp, đảm bảo độ bền cơ học và độ ổn định cao khi lưu kho dài ngày.
+- **Gia công đúng quy cách:** Từng thanh nan, đố chịu lực được cắt gọt chuẩn xác với sai số cực thấp (±2mm).
+- **Kết cấu kiên cố:** Đóng đinh xoắn chuyên dụng chống bung nứt, chịu tải trọng tĩnh và động vượt trội trong suốt hành trình vận chuyển container đường biển.
+- **Hoàn thiện sạch sẽ:** Bề mặt được bào nhẵn mịn, xử lý góc cạnh an toàn, đáp ứng đầy đủ tiêu chuẩn kiểm dịch thực vật xuất khẩu ISPM 15.
+
+### 🎯 Ý nghĩa của việc trình mẫu thực tế tại Pallet Trường An:
+Việc làm mẫu trước không chỉ để “xem thử”, mà là để khách hàng:
+1. **Kiểm chứng chất lượng thật:** Đo đạc kích thước thực tế, sờ tận tay chất gỗ và kiểm tra độ vững chắc.
+2. **Thử tải thực tế trên hàng hóa:** Đặt thử sản phẩm/máy móc lên pallet và test nâng hạ xe nâng trước khi sản xuất hàng loạt.
+3. **Hoàn toàn an tâm về tiến độ:** Nắm rõ năng lực gia công thực tế của xưởng để tự tin ký hợp đồng lớn.
+
+Bên em hiểu rằng, với hàng xuất khẩu, **uy tín – tiến độ – chất lượng** là yếu tố sống còn. Vì vậy, mỗi pallet xuất xưởng đều là sự đảm bảo để Quý khách hàng có thể tin tưởng đồng hành lâu dài.
+
+---
+🤝 **Anh/Chị cần đối tác sản xuất pallet chuyên nghiệp, làm mẫu nhanh – đúng chuẩn – giá cạnh tranh tận xưởng, Pallet Trường An luôn sẵn sàng đồng hành!**`,
+    images: [
+      'https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/activities/a1.1.jpg',
+      'https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/activities/a1.2.jpg',
+      'https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/activities/a1.3.jpg',
+      'https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/activities/a1.4.jpg',
+      'https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/activities/a1.5.jpg'
+    ],
+    customerLocation: 'TP. Hồ Chí Minh & Cảng Cát Lái',
+    clientType: 'Doanh nghiệp sản xuất & xuất khẩu đường biển',
+    publishedAt: '2026-09-10',
+    badges: [
+      'Trình Mẫu VIP',
+      'Gỗ Thông Chọn Lọc',
+      'Chuẩn Xuất Khẩu Tàu Biển',
+      'Độ Bền Cao'
+    ],
+    highlights: [
+      'Chọn lọc gỗ thông mới đạt chuẩn, vân sáng đẹp, bền chắc',
+      'Gia công chuẩn xác từng nan đố, sai số cực thấp',
+      'Kết cấu kiên cố, chịu tải nặng vận chuyển đường biển',
+      'Trình mẫu thực tế trước khi chốt đơn hàng loạt',
+      'Hỗ trợ chứng thư hun trùng ISPM 15 chuẩn quốc tế'
+    ],
+    fbUrl: 'https://www.facebook.com/pallet.truongan',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
+    id: 'act1',
+    slug: 'gia-cong-pallet-theo-yeu-cau-xuat-khau-may-moc',
+    title: 'Gia Công Pallet Đóng Theo Yêu Cầu – Giải Pháp An Toàn Cho Hàng Xuất Khẩu Máy Móc',
+    category: 'don-gap',
+    summary: 'Xưởng Pallet Trường An tiếp nhận và gia công thần tốc lô pallet chuyên dụng cho khách hàng xuất khẩu máy móc nặng. Đơn hàng gấp nhưng xử lý chuẩn xác theo bản vẽ kỹ thuật, khử trùng đạt chuẩn quốc tế.',
+    content: `Hiện tại xưởng Pallet Trường An đang trực tiếp gia công mẫu pallet chuyên dụng cho đối tác khách hàng xuất khẩu máy móc công nghiệp nặng. Đặc biệt, đây là đơn hàng tiến độ gấp để kịp lịch tàu và đóng container, nhưng khách hàng hoàn toàn yên tâm vì xưởng đã chủ động lo từ A–Z.
+
+### 📌 Vì sao pallet xuất khẩu máy móc cần làm đúng ngay từ đầu?
+- **Tránh hư hỏng máy móc:** Thiết bị máy móc có giá trị cao, trọng tâm lệch nên kết cấu pallet phải gia cố đặc biệt để tránh rung lắc, nứt gãy trong suốt hành trình vận chuyển đường biển dài ngày.
+- **Đáp ứng tiêu chuẩn quốc tế:** Tuân thủ tuyệt đối quy định kiểm dịch thực vật ISPM 15 tại các cảng đến (Mỹ, Châu Âu, Nhật Bản...).
+- **Tối ưu chi phí logistics:** Thiết kế vừa vặn lòng container giúp khách hàng tận dụng tối đa không gian, hạn chế tối đa rủi ro phát sinh.
+- **Dễ dàng bốc xếp:** Bố trí quy cách lối nâng phù hợp cho cả xe nâng tay và xe nâng máy chuyên dụng bốc xếp an toàn.
+
+### ⚡ Khách Cần Gấp – Đã Có Trường An Lo!
+- **Nhận đơn gấp – Xử lý nhanh:** Đội ngũ thợ lành nghề tăng ca liên tục để đảm bảo tiến độ bàn giao đúng hẹn.
+- **Chủ động vật tư:** Kho xưởng luôn dự trữ sẵn nguồn phôi gỗ tràm, gỗ thông chất lượng, không bị động nguyên liệu.
+- **Gia công chuẩn bản vẽ:** Từng chi tiết nan mặt, thanh đố, gù chịu lực được xẻ mộng và đóng đinh xoắn kiên cố theo đúng thông số kỹ thuật.
+
+### ✅ Cam kết từ xưởng Pallet Trường An:
+1. Đóng pallet theo kích thước & bản vẽ riêng của từng loại máy móc thiết bị.
+2. Chịu tải trọng nặng, kết cấu vững chắc, không cong vênh.
+3. Hỗ trợ khử trùng HT đạt chuẩn xuất khẩu ISPM 15 kèm chứng thư đầy đủ.
+4. Tư vấn giải pháp gia cố tối ưu và tiết kiệm chi phí nhất cho doanh nghiệp.`,
+    images: [
+      '/images/products/p4.1.jpg',
+      '/images/products/p4.2.jpg',
+      '/images/products/p4.3.jpg',
+      '/images/pallet_factory_43.jpg'
+    ],
+    customerLocation: 'KCN Hóc Môn & TP. Hồ Chí Minh',
+    clientType: 'Doanh nghiệp chế tạo & xuất khẩu máy móc',
+    publishedAt: '2026-09-08',
+    badges: [
+      'Đơn Hàng Gấp',
+      'Đóng Theo Bản Vẽ',
+      'Chịu Tải Trọng Nặng',
+      'Chuẩn Xuất Khẩu'
+    ],
+    highlights: [
+      'Nhận đơn gấp – xử lý nhanh theo tiến độ xuất hàng',
+      'Chủ động vật tư gỗ xẻ sấy – không lo trễ hẹn',
+      'Gia công chuẩn 100% theo bản vẽ kỹ thuật máy móc',
+      'Kết cấu kiên cố chịu tải nặng, bốc xếp xe nâng an toàn',
+      'Hỗ trợ khử trùng hun trùng HT đạt tiêu chuẩn ISPM 15'
+    ],
+    fbUrl: 'https://www.facebook.com/pallet.truongan',
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  }
+];
