@@ -231,12 +231,20 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .promiseBanner {
+    padding: 1.25rem 0;
+  }
   .promiseGrid {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .mainFooter {
+    padding: 2.25rem 0 2rem 0;
   }
   .footerGrid {
     grid-template-columns: 1fr;
+    gap: 1.75rem;
   }
   .copyrightFlex {
     flex-direction: column;

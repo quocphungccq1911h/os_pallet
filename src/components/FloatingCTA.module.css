@@ -95,17 +95,19 @@
 
 @media (max-width: 768px) {
   .floatingContainer {
-    bottom: 4.5rem;
-    right: 1rem;
-  }
-  .btnLabel {
-    display: none;
-  }
-  .floatingBtn {
-    padding: 0.75rem;
+    display: none; /* Ẩn cụm nút tròn nổi bên phải trên mobile để tránh che lấp hình ảnh, chữ và bảng thông số */
   }
   .mobileBottomBar {
     display: flex;
     gap: 0.4rem;
+    padding: 0.5rem 0.6rem;
+    padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
+    backdrop-filter: blur(8px);
+    background-color: rgba(15, 23, 42, 0.95);
+  }
+  .mobileBarItem {
+    padding: 0.65rem 0.25rem;
+    font-size: 0.78rem;
+    border-radius: var(--radius-sm);
   }
 }

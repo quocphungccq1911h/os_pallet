@@ -263,10 +263,30 @@ img {
 
 /* Responsive Utilities */
 @media (max-width: 768px) {
+  body {
+    padding-bottom: 64px; /* Tránh bị thanh mobileBottomBar che khuất nội dung */
+  }
+  .section-tag {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.7rem;
+    margin-bottom: 0.5rem;
+  }
   .section-title {
-    font-size: 1.75rem;
+    font-size: 1.45rem;
+    line-height: 1.3;
+    margin-bottom: 0.75rem;
+  }
+  .section-subtitle {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
   }
   .container {
     padding: 0 1rem;
   }
+  .btn {
+    padding: 0.65rem 1.15rem;
+    font-size: 0.92rem;
+  }
 }
+

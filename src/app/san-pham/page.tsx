@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { products as defaultProducts, categories, Product } from '@/data/products';
 import { ProductCard } from '@/components/ProductCard';
-import { Search, Filter, Box, Globe, Layers, ExternalLink, RotateCcw, Check } from 'lucide-react';
+import { Search, Filter, Box, Globe, Layers, ExternalLink, RotateCcw, Check, X } from 'lucide-react';
 import { useQuoteModal } from '@/context/QuoteModalContext';
 import styles from './sanpham.module.css';
 
@@ -13,6 +13,7 @@ export default function ProductsPage() {
   const [selectedMaterial, setSelectedMaterial] = useState<string>('all');
   const [selectedMarket, setSelectedMarket] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [isMobileFilterOpen, setIsMobileFilterOpen] = useState<boolean>(false);
   const { openQuoteModal } = useQuoteModal();
 
   // Đồng bộ sản phẩm từ API (nếu admin vừa thêm/sửa/xóa)
@@ -76,11 +77,12 @@ export default function ProductsPage() {
     setSearchQuery('');
   };
 
-  const isFiltered =
-    selectedCategory !== 'all' ||
-    selectedMaterial !== 'all' ||
-    selectedMarket !== 'all' ||
-    searchQuery !== '';
+  const activeFilterCount =
+    (selectedCategory !== 'all' ? 1 : 0) +
+    (selectedMaterial !== 'all' ? 1 : 0) +
+    (selectedMarket !== 'all' ? 1 : 0);
+
+  const isFiltered = activeFilterCount > 0 || searchQuery !== '';
 
   return (
     <div className={styles.pageWrapper}>
@@ -90,12 +92,12 @@ export default function ProductsPage() {
           <span className="section-tag" style={{ backgroundColor: 'rgba(255,255,255,0.2)', color: '#ffffff' }}>
             <Box size={14} /> DANH MỤC SẢN PHẨM PALLET TRƯỜNG AN
           </span>
-          <h1 className={styles.pageTitle}>Pallet Gỗ, Ván Ép & Thùng Gỗ Đóng Hàng Xuất Khẩu</h1>
+          <h1 className={styles.pageTitle}>Pallet Gỗ, Ván Ép & Thùng Gỗ Xuất Khẩu</h1>
           <p className={styles.pageDesc}>
-            Tổng hợp danh mục pallet gỗ thông sấy xuất khẩu Mỹ, pallet tràm đi Campuchia, thùng gỗ bọc lót máy móc và pallet ván ép plywood gia công trực tiếp tại xưởng Hóc Môn.
+            Pallet gỗ thông sấy xuất khẩu Mỹ, pallet tràm đi Campuchia, thùng gỗ bọc lót máy móc và pallet ván ép plywood gia công trực tiếp tại xưởng Hóc Môn.
           </p>
 
-          {/* Quick Filter Horizontal Pills */}
+          {/* Quick Filter Horizontal Scroll Strip */}
           <div className={styles.quickFilterStrip}>
             <button
               onClick={() => handleQuickFilter('all', 'all')}
@@ -139,18 +141,12 @@ export default function ProductsPage() {
             >
               📐 Đóng Theo Bản Vẽ
             </button>
-            <button
-              onClick={() => handleQuickFilter('category', 'pallet-go-cu')}
-              className={`${styles.pillBtn} ${selectedCategory === 'pallet-go-cu' ? styles.pillActive : ''}`}
-            >
-              ♻️ Pallet Cũ Giá Rẻ
-            </button>
           </div>
         </div>
       </div>
 
       <div className={`container ${styles.contentGrid}`}>
-        {/* Sidebar Filters */}
+        {/* Desktop Sidebar Filters */}
         <aside className={styles.sidebar}>
           {/* Search Box */}
           <div className={styles.sidebarCard}>
@@ -216,7 +212,6 @@ export default function ProductsPage() {
                 { id: 'go-thong', label: 'Gỗ Thông Nhập Khẩu' },
                 { id: 'go-tram', label: 'Gỗ Tràm Tự Nhiên' },
                 { id: 'van-ep', label: 'Ván Ép Plywood' },
-                { id: 'go-cu', label: 'Gỗ Cũ Chọn Lọc' },
               ].map((m) => (
                 <button
                   key={m.id}
@@ -293,6 +288,35 @@ export default function ProductsPage() {
 
         {/* Product Grid Main Area */}
         <main className={styles.mainArea}>
+          {/* Mobile Toolbar (Search + Filter Drawer trigger) */}
+          <div className={styles.mobileToolBar}>
+            <div className={styles.mobileSearchBox}>
+              <Search size={16} className={styles.searchIcon} />
+              <input
+                type="text"
+                placeholder="Tìm kích thước, loại gỗ..."
+                className={styles.mobileSearchInput}
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+              {searchQuery && (
+                <button onClick={() => setSearchQuery('')} className={styles.clearSearchBtn}>✕</button>
+              )}
+            </div>
+
+            <button
+              onClick={() => setIsMobileFilterOpen(true)}
+              className={`${styles.mobileFilterBtn} ${activeFilterCount > 0 ? styles.filterBtnActive : ''}`}
+            >
+              <Filter size={15} />
+              <span>Lọc</span>
+              {activeFilterCount > 0 && (
+                <span className={styles.filterBadge}>{activeFilterCount}</span>
+              )}
+            </button>
+          </div>
+
+          {/* Result Count Bar */}
           <div className={styles.resultBar}>
             <div>
               <span>Hiển thị <strong>{filteredProducts.length}</strong> sản phẩm phù hợp</span>
@@ -305,6 +329,7 @@ export default function ProductsPage() {
             )}
           </div>
 
+          {/* Product Cards Grid */}
           {filteredProducts.length > 0 ? (
             <div className={styles.productGrid}>
               {filteredProducts.map((p) => (
@@ -321,8 +346,138 @@ export default function ProductsPage() {
               </button>
             </div>
           )}
+
+          {/* Mobile Bottom Extra Info (Facebook & Custom Quote) */}
+          <div className={styles.mobileBottomWidgets}>
+            <div className={styles.facebookCommunityCard}>
+              <div className={styles.fbBadgeHeader}>
+                <span className={styles.fbIconSmall}>f</span>
+                <span>Hình Ảnh Thực Tế Fanpage</span>
+              </div>
+              <h4>Hoạt Động Xưởng Trường An</h4>
+              <p>
+                Xem hơn 100+ hình ảnh bốc xếp pallet, đóng kiện máy móc và video xưởng mộc Hóc Môn cập nhật hàng ngày trên Facebook.
+              </p>
+              <a
+                href="https://www.facebook.com/PalletTruongAn/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.facebookLinkBtn}
+              >
+                <span>Xem Fanpage Facebook</span>
+                <ExternalLink size={14} />
+              </a>
+            </div>
+
+            <div className={styles.ctaBox}>
+              <h4>Cần Đóng Theo Bản Vẽ?</h4>
+              <p>Gửi quy cách kích thước để xưởng lên mẫu chạy thử trong 24 giờ.</p>
+              <button onClick={() => openQuoteModal()} className="btn btn-primary" style={{ width: '100%', marginTop: '0.75rem' }}>
+                Yêu Cầu Đóng Mẫu
+              </button>
+            </div>
+          </div>
         </main>
       </div>
+
+      {/* Mobile Filter Drawer Modal */}
+      {isMobileFilterOpen && (
+        <div className={styles.drawerBackdrop} onClick={() => setIsMobileFilterOpen(false)}>
+          <div className={styles.drawerSheet} onClick={(e) => e.stopPropagation()}>
+            <div className={styles.drawerHeader}>
+              <div className={styles.drawerTitle}>
+                <Filter size={18} color="var(--primary)" />
+                <span>Bộ Lọc Sản Phẩm</span>
+                {activeFilterCount > 0 && (
+                  <span className={styles.filterBadge}>{activeFilterCount}</span>
+                )}
+              </div>
+              <button onClick={() => setIsMobileFilterOpen(false)} className={styles.closeDrawerBtn} aria-label="Đóng bộ lọc">
+                <X size={20} />
+              </button>
+            </div>
+
+            <div className={styles.drawerBody}>
+              {/* 1. Nhóm sản phẩm */}
+              <div className={styles.drawerSection}>
+                <h4>Nhóm Sản Phẩm</h4>
+                <div className={styles.drawerChipGrid}>
+                  <button
+                    onClick={() => setSelectedCategory('all')}
+                    className={`${styles.drawerChip} ${selectedCategory === 'all' ? styles.chipActive : ''}`}
+                  >
+                    Tất cả ({allProducts.length})
+                  </button>
+                  {categories.map((cat) => {
+                    const count = allProducts.filter((p) => p.categorySlug === cat.slug).length;
+                    return (
+                      <button
+                        key={cat.id}
+                        onClick={() => setSelectedCategory(cat.slug)}
+                        className={`${styles.drawerChip} ${selectedCategory === cat.slug ? styles.chipActive : ''}`}
+                      >
+                        {cat.name} ({count})
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* 2. Chất liệu gỗ */}
+              <div className={styles.drawerSection}>
+                <h4>Chất Liệu Gỗ</h4>
+                <div className={styles.drawerChipGrid}>
+                  {[
+                    { id: 'all', label: 'Tất cả chất liệu' },
+                    { id: 'go-thong', label: 'Gỗ Thông Nhập Khẩu' },
+                    { id: 'go-tram', label: 'Gỗ Tràm Tự Nhiên' },
+                    { id: 'van-ep', label: 'Ván Ép Plywood' },
+                  ].map((m) => (
+                    <button
+                      key={m.id}
+                      onClick={() => setSelectedMaterial(m.id)}
+                      className={`${styles.drawerChip} ${selectedMaterial === m.id ? styles.chipActive : ''}`}
+                    >
+                      {m.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* 3. Thị trường xuất xưởng */}
+              <div className={styles.drawerSection}>
+                <h4>Thị Trường & Tiêu Chuẩn</h4>
+                <div className={styles.drawerChipGrid}>
+                  {[
+                    { id: 'all', label: 'Tất cả thị trường' },
+                    { id: 'xuat-khau-my', label: '🇺🇸 Xuất Khẩu Mỹ' },
+                    { id: 'xuat-khau-campuchia', label: '🇰🇭 Đi Campuchia' },
+                    { id: 'xuat-khau-ispm15', label: '🌍 Khử Trùng ISPM 15' },
+                    { id: 'noi-dia', label: '🏭 Lưu Kho & Nội Địa' },
+                  ].map((mk) => (
+                    <button
+                      key={mk.id}
+                      onClick={() => setSelectedMarket(mk.id)}
+                      className={`${styles.drawerChip} ${selectedMarket === mk.id ? styles.chipActive : ''}`}
+                    >
+                      {mk.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.drawerFooter}>
+              <button onClick={resetFilters} className={styles.drawerResetBtn}>
+                <RotateCcw size={15} /> Xóa chọn
+              </button>
+              <button onClick={() => setIsMobileFilterOpen(false)} className="btn btn-primary" style={{ flex: 1 }}>
+                Xem {filteredProducts.length} sản phẩm
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

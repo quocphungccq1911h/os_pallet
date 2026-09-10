@@ -47,20 +47,22 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onOpenQuoteModal }) => {
 
           {/* CTA Buttons Group */}
           <div className={styles.heroActions}>
-            <button onClick={onOpenQuoteModal} className="btn btn-primary" style={{ padding: '0.85rem 1.6rem', fontSize: '1.02rem' }}>
+            <button onClick={onOpenQuoteModal} className={`btn btn-primary ${styles.btnQuote}`}>
               <FileText size={18} />
               <span>Nhận Báo Giá Nhanh</span>
             </button>
             
-            <a href={`tel:${companyInfo.hotline}`} className="btn btn-hotline" style={{ padding: '0.85rem 1.25rem', fontSize: '0.95rem' }} title="Gọi Hotline Line 1">
-              <Phone size={16} />
-              <span>{companyInfo.hotlineFormatted}</span>
-            </a>
+            <div className={styles.hotlinesRow}>
+              <a href={`tel:${companyInfo.hotline}`} className={`btn btn-hotline ${styles.btnHotline}`} title="Gọi Hotline Line 1">
+                <Phone size={15} />
+                <span>{companyInfo.hotlineFormatted}</span>
+              </a>
 
-            <a href={`tel:${companyInfo.secondaryHotline}`} className="btn btn-hotline" style={{ padding: '0.85rem 1.25rem', fontSize: '0.95rem', backgroundColor: '#1e3a8a' }} title="Gọi Hotline Line 2">
-              <Phone size={16} />
-              <span>{companyInfo.secondaryHotlineFormatted}</span>
-            </a>
+              <a href={`tel:${companyInfo.secondaryHotline}`} className={`btn ${styles.btnHotlineSecondary}`} title="Gọi Hotline Line 2">
+                <Phone size={15} />
+                <span>{companyInfo.secondaryHotlineFormatted}</span>
+              </a>
+            </div>
           </div>
 
           {/* Stat Counter Strip */}

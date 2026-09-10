@@ -102,5 +102,35 @@
 @media (max-width: 992px) {
   .grid {
     grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 2.25rem 0;
+  }
+  .title {
+    font-size: 1.45rem;
+    line-height: 1.3;
+    margin: 0.5rem 0 0.85rem 0;
+  }
+  .description {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    margin-bottom: 1.25rem;
+  }
+  .bulletList {
+    gap: 0.65rem;
+  }
+  .bulletItem {
+    padding: 0.75rem 0.9rem;
+    gap: 0.75rem;
+  }
+  .bulletItem h4 {
+    font-size: 0.92rem;
+  }
+  .bulletItem p {
+    font-size: 0.8rem;
   }
 }

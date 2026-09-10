@@ -300,25 +300,274 @@
   border: 1px solid var(--border-color);
 }
 
+.mobileToolBar {
+  display: none;
+}
+
+.mobileBottomWidgets {
+  display: none;
+}
+
+/* Drawer styles */
+.drawerBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 10000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.drawerSheet {
+  background: #ffffff;
+  width: 100%;
+  max-height: 82vh;
+  border-radius: 20px 20px 0 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.25);
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.drawerHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.1rem 1.25rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.drawerTitle {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--secondary);
+}
+
+.closeDrawerBtn {
+  background: #f1f5f9;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.drawerBody {
+  padding: 1.25rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.drawerSection h4 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--secondary);
+  margin-bottom: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.drawerChipGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.drawerChip {
+  padding: 0.45rem 0.85rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-main);
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.chipActive {
+  background: var(--secondary);
+  color: #ffffff;
+  border-color: var(--secondary);
+}
+
+.drawerFooter {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--border-color);
+  background: #ffffff;
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+.drawerResetBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.filterBadge {
+  background: var(--primary);
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  border-radius: 9999px;
+  padding: 0.15rem 0.45rem;
+  line-height: 1;
+}
+
 @media (max-width: 992px) {
+  .pageHeader {
+    padding: 2.25rem 0 1.75rem 0;
+    margin-bottom: 1.5rem;
+  }
+  .pageTitle {
+    font-size: 1.55rem;
+    line-height: 1.25;
+    margin: 0.4rem 0;
+  }
+  .pageDesc {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+  .quickFilterStrip {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 0.35rem;
+    margin-top: 1rem;
+    gap: 0.5rem;
+  }
+  .quickFilterStrip::-webkit-scrollbar {
+    display: none;
+  }
+  .pillBtn {
+    white-space: nowrap;
+    flex-shrink: 0;
+    padding: 0.42rem 0.85rem;
+    font-size: 0.8rem;
+  }
+
+  /* Ẩn sidebar desktop trên mobile, chuyển luồng hiển thị sản phẩm lên đầu */
+  .sidebar {
+    display: none;
+  }
+
   .contentGrid {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
+
+  /* Toolbar di động */
+  .mobileToolBar {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    align-items: center;
+  }
+  .mobileSearchBox {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 0 0.65rem;
+    box-shadow: var(--shadow-sm);
+  }
+  .searchIcon {
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+  .mobileSearchInput {
+    width: 100%;
+    padding: 0.6rem 0.5rem;
+    border: none;
+    outline: none;
+    font-size: 0.85rem;
+    background: transparent;
+    font-family: inherit;
+  }
+  .clearSearchBtn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    padding: 0.2rem 0.35rem;
+    cursor: pointer;
+  }
+  .mobileFilterBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #ffffff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 0.6rem 0.95rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--secondary);
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  .filterBtnActive {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    color: var(--primary-dark);
+  }
+
   .productGrid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  /* Hiển thị các khối phụ Facebook & Bản vẽ dưới đáy trang sản phẩm */
+  .mobileBottomWidgets {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
   }
 }
 
 @media (max-width: 600px) {
   .productGrid {
     grid-template-columns: 1fr;
-  }
-  .quickFilterStrip {
-    gap: 0.4rem;
-  }
-  .pillBtn {
-    font-size: 0.78rem;
-    padding: 0.4rem 0.75rem;
+    gap: 1.25rem;
   }
 }
 

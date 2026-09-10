@@ -5,22 +5,22 @@ import styles from './ServicesSection.module.css';
 export const ServicesSection: React.FC = () => {
   const services = [
     {
-      icon: <PenTool size={32} />,
+      icon: <PenTool size={22} />,
       title: "Gia Công Pallet Theo Yêu Cầu",
       desc: "Thiết kế và đóng mới pallet theo bản vẽ riêng của từng loại máy móc, kiện hàng."
     },
     {
-      icon: <Flame size={32} />,
+      icon: <Flame size={22} />,
       title: "Sấy Gỗ & Khử Trùng ISPM 15",
       desc: "Dịch vụ sấy nhiệt HT độc lập và cấp chứng thư khử trùng cho kiện hàng xuất khẩu."
     },
     {
-      icon: <Recycle size={32} />,
+      icon: <Recycle size={22} />,
       title: "Thu Mua & Thanh Lý Pallet Cũ",
       desc: "Thu mua pallet gỗ cũ tận nơi số lượng lớn, sửa chữa và phân phối lại giá rẻ."
     },
     {
-      icon: <Box size={32} />,
+      icon: <Box size={22} />,
       title: "Đóng Thùng Gỗ / Kiện Gỗ",
       desc: "Đóng thùng gỗ kín, kiện nan thưa bảo vệ máy móc thiết bị giá trị cao xuất khẩu."
     }
@@ -40,8 +40,10 @@ export const ServicesSection: React.FC = () => {
         <div className={styles.grid}>
           {services.map((s, i) => (
             <div key={i} className={styles.card}>
-              <div className={styles.icon}>{s.icon}</div>
-              <h3 className={styles.title}>{s.title}</h3>
+              <div className={styles.cardHeader}>
+                <div className={styles.iconBox}>{s.icon}</div>
+                <h3 className={styles.title}>{s.title}</h3>
+              </div>
               <p className={styles.desc}>{s.desc}</p>
             </div>
           ))}

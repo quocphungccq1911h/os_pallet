@@ -80,3 +80,27 @@
     gap: 1.25rem;
   }
 }
+
+@media (max-width: 768px) {
+  .section {
+    padding: 2.25rem 0;
+  }
+  .table th,
+  .table td {
+    padding: 0.75rem 0.85rem;
+    font-size: 0.82rem;
+  }
+  .tableWrapper {
+    margin-bottom: 1.5rem;
+  }
+  .bannerContact {
+    padding: 1.25rem 1.25rem;
+    border-radius: var(--radius-md);
+  }
+  .bannerText h3 {
+    font-size: 1.15rem;
+  }
+  .bannerText p {
+    font-size: 0.85rem;
+  }
+}

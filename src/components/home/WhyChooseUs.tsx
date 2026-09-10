@@ -5,32 +5,32 @@ import styles from './WhyChooseUs.module.css';
 export const WhyChooseUs: React.FC = () => {
   const reasons = [
     {
-      icon: <Factory size={26} />,
+      icon: <Factory size={22} />,
       title: "Sản Xuất Trực Tiếp Tại Xưởng Hóc Môn",
       desc: "Chủ động nguồn gỗ thông, tràm và ván ép tại xưởng Hóc Môn. Giá xuất xưởng cạnh tranh, không qua bất kỳ đơn vị thương mại trung gian nào."
     },
     {
-      icon: <ShieldCheck size={26} />,
+      icon: <ShieldCheck size={22} />,
       title: "Đạt Tiêu Chuẩn ISPM 15 Xuất Khẩu",
       desc: "Xử lý nhiệt HT đạt chuẩn quốc tế, kiểm soát độ ẩm an toàn, cấp đầy đủ chứng thư kiểm dịch phục vụ thông quan đi Mỹ, Châu Âu, Nhật Bản, Hàn Quốc."
     },
     {
-      icon: <Ruler size={26} />,
+      icon: <Ruler size={22} />,
       title: "Gia Công Mẫu Trình Khách Hàng Thực Tế",
       desc: "Nhận gia công mẫu thực tế theo đúng kích thước và bản vẽ kỹ thuật để đối tác kiểm tra kết cấu, thử tải thực tế trước khi ký kết đơn hàng lớn."
     },
     {
-      icon: <Wrench size={26} />,
+      icon: <Wrench size={22} />,
       title: "Đội Ngũ Xuống Tận Nơi Lắp Ráp Thùng Gỗ",
       desc: "Cơ động xuống tận kho và nhà máy của khách hàng để đo đạc máy móc, chèn lót an toàn và bắn đinh đóng thùng gỗ kiên cố kịp giờ đóng container."
     },
     {
-      icon: <Truck size={26} />,
+      icon: <Truck size={22} />,
       title: "Chủ Động Tiến Độ – Kịp Giờ Tàu & Xe Cont",
       desc: "Thấu hiểu áp lực deadline xuất khẩu, xưởng linh hoạt tăng ca đáp ứng đơn gấp, chủ động đội xe giao tận xưởng tại TP.HCM, Bình Dương, Đồng Nai, Long An."
     },
     {
-      icon: <CheckCircle2 size={26} />,
+      icon: <CheckCircle2 size={22} />,
       title: "Cam Kết Đúng Quy Cách – Bảo Hành 1 Đổi 1",
       desc: "Gỗ tuyển chọn đạt chuẩn, đinh xoắn chuyên dụng chống bung nứt, chịu tải trọng lớn. Đổi trả ngay 100% nếu phát hiện sai lệch quy cách bản vẽ."
     }
@@ -50,8 +50,10 @@ export const WhyChooseUs: React.FC = () => {
         <div className={styles.grid}>
           {reasons.map((item, idx) => (
             <div key={idx} className={styles.card}>
-              <div className={styles.iconBox}>{item.icon}</div>
-              <h3 className={styles.cardTitle}>{item.title}</h3>
+              <div className={styles.cardHeader}>
+                <div className={styles.iconBox}>{item.icon}</div>
+                <h3 className={styles.cardTitle}>{item.title}</h3>
+              </div>
               <p className={styles.cardDesc}>{item.desc}</p>
             </div>
           ))}

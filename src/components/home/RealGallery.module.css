@@ -60,8 +60,20 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
+  .section {
+    padding: 2.25rem 0;
+  }
   .galleryGrid {
     grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+  .galleryItem {
+    height: 190px;
+  }
+  .overlay {
+    opacity: 1;
+    background: linear-gradient(0deg, rgba(15, 23, 42, 0.75) 0%, transparent 60%);
+    padding: 0.85rem;
   }
 }
