@@ -19,11 +19,11 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
           <div className={styles.topBarLeft}>
             <span className={styles.topBarItem}>
               <MapPin size={14} />
-              <span>{companyInfo.address}</span>
+              <span>361/75 Huỳnh Thị Na, Đông Thạnh, Hóc Môn, TP.HCM</span>
             </span>
             <span className={styles.topBarItem}>
               <Clock size={14} />
-              <span>{companyInfo.workingHours}</span>
+              <span>07:30 - 18:00 (Thứ 2 - CN)</span>
             </span>
           </div>
           <div className={styles.topBarRight}>
@@ -72,27 +72,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
             <Link href="/lien-he" className={styles.navLink}>Liên Hệ</Link>
           </nav>
 
-          {/* Action CTA Button & Dual Hotline Badge */}
+          {/* Action CTA Button */}
           <div className={styles.navActions}>
-            <div className={styles.headerPhoneBox}>
-              <div className={styles.phoneCircle}>
-                <Phone size={18} />
-              </div>
-              <div className={styles.phoneInfo}>
-                <span className={styles.phoneLabel}>Tư vấn báo giá:</span>
-                <div className={styles.phoneLinks}>
-                  <a href={`tel:${companyInfo.hotline}`} className={styles.phoneNumber}>
-                    {companyInfo.hotlineFormatted}
-                  </a>
-                  <span className={styles.phoneDash}>-</span>
-                  <a href={`tel:${companyInfo.secondaryHotline}`} className={styles.phoneNumber}>
-                    {companyInfo.secondaryHotlineFormatted}
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <button onClick={onOpenQuoteModal} className="btn btn-primary">
+            <button onClick={onOpenQuoteModal} className="btn btn-primary" style={{ padding: '0.65rem 1.25rem' }}>
               <FileText size={18} />
               <span>Nhận Báo Giá</span>
             </button>

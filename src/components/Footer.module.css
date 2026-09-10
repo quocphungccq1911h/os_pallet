@@ -175,6 +175,29 @@
   transform: translateY(-2px);
 }
 
+.mapDirectionBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+  padding: 0.5rem 0.8rem;
+  background-color: rgba(255, 255, 255, 0.08);
+  color: var(--primary);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+.mapDirectionBtn:hover {
+  background-color: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+}
+
 .copyrightBar {
   background-color: #090d16;
   border-top: 1px solid rgba(255, 255, 255, 0.05);

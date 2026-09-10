@@ -64,12 +64,6 @@ export const categories: Category[] = [
     name: "Pallet Xuất Khẩu (ISPM 15)",
     slug: "pallet-xuat-khau",
     description: "Khử trùng nhiệt HT tiêu chuẩn quốc tế ISPM 15, đầy đủ mộc dấu và chứng thư thông quan."
-  },
-  {
-    id: "pallet-go-cu",
-    name: "Pallet Gỗ Cũ / Thanh Lý",
-    slug: "pallet-go-cu",
-    description: "Pallet gỗ cũ tuyển chọn còn mới 85% - 95%, chắc chắn, giúp doanh nghiệp tiết kiệm đến 50% chi phí kho."
   }
 ];
 
@@ -278,40 +272,44 @@ export const products: Product[] = [
   },
   {
     id: "p6",
-    slug: "pallet-go-tram-euro-1200x800",
-    name: "Pallet Gỗ Tiêu Chuẩn Châu Âu 1200x800mm (Chuẩn EPAL)",
-    category: "Pallet Xuất Khẩu (ISPM 15)",
-    categorySlug: "pallet-xuat-khau",
-    dimensions: "1200 x 800 x 144 mm",
-    woodType: "Gỗ Thông / Tràm sấy độ ẩm < 18%",
-    materialGroup: "go-thong",
+    slug: "thung-go-kien-go-dong-hang-xuat-khau-lap-rap-tan-noi",
+    name: "Thùng Gỗ / Kiện Gỗ Đóng Hàng Xuất Khẩu (Dịch Vụ Lắp Ráp Tận Nơi)",
+    category: "Thùng Gỗ / Kiện Gỗ Đóng Hàng",
+    categorySlug: "thung-go-dong-hang",
+    dimensions: "Gia công theo kích thước & bản vẽ máy móc riêng",
+    woodType: "Gỗ Tràm tự nhiên, Gỗ Thông xẻ sấy tuyển chọn",
+    materialGroup: "go-tram",
     targetMarket: "xuat-khau-ispm15",
-    staticLoad: "2.500 kg",
-    dynamicLoad: "1.200 kg",
-    specification: "Kích thước tiêu chuẩn Châu Âu Euro Pallet",
+    staticLoad: "3.000 - 5.000 kg",
+    dynamicLoad: "1.500 - 2.500 kg",
+    specification: "Thùng gỗ nan thưa hoặc nan kín bọc lót bảo vệ máy móc, bắn đinh kiên cố",
     isExportStandard: true,
     isNew: true,
     priceDisplay: "Liên hệ",
-    description: "Thiết kế chuẩn kích thước Châu Âu 1200x800mm, tối ưu diện tích lòng container và hệ thống kệ selective racking tiêu chuẩn quốc tế.",
+    description: "Xưởng Pallet Trường An chuyên gia công và lắp ráp tận nơi thùng gỗ, kiện gỗ đóng hàng máy móc, thiết bị công nghiệp xuất khẩu. Đội ngũ thợ mộc mang đầy đủ máy móc, phôi gỗ và vật tư xuống tận xưởng khách hàng để đóng thùng trực tiếp, đảm bảo hoàn thiện nhanh chóng để kịp kéo container ra cảng đúng tiến độ.",
     highlights: [
-      "Kích thước Euro chuẩn xác, không bị dư lòng container",
-      "Nan vuông vắn, bào mịn 4 mặt",
-      "Cấp mộc chứng thư kiểm dịch ISPM 15",
-      "Chịu lực cao, tái sử dụng nhiều lần"
+      "Trực tiếp chở vật tư & thợ mộc xuống lắp ráp tận xưởng khách hàng",
+      "Đóng thùng chuẩn theo kích thước từng loại máy móc, chống va đập tuyệt đối",
+      "Gia công nhanh thần tốc, đáp ứng các đơn hàng gấp cần xuất trong ngày",
+      "Xử lý sấy nhiệt HT và cấp chứng thư khử trùng ISPM 15 an tâm xuất khẩu đường biển",
+      "Giá tận xưởng sản xuất trực tiếp tại Hóc Môn, không qua trung gian"
     ],
-    imageUrl: "https://images.unsplash.com/photo-1586528116493-a029325540fa?auto=format&fit=crop&q=80&w=800",
+    imageUrl: "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p6.1.jpg",
     gallery: [
-      "https://images.unsplash.com/photo-1586528116493-a029325540fa?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&q=80&w=800",
-      "/images/banner_main.png",
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800"
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p6.1.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p6.2.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p6.3.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p6.4.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p6.5.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p6.6.jpg",
+      "/images/banner_main.png"
     ],
-    usagePurpose: "Đóng hàng container xuất khẩu Châu Âu, Mỹ, Nhật Bản",
-    badges: ["🇪🇺 Chuẩn Euro EPAL", "Tối Ưu Container", "Sấy Khô ISPM 15"],
+    usagePurpose: "Bọc lót, đóng kiện bảo vệ máy móc cơ khí, thiết bị công nghiệp xuất khẩu đường biển",
+    badges: ["LẮP RÁP TẬN NƠI", "CHỊU TẢI NẶNG", "CHUẨN ISPM 15", "XUẤT KHẨU MỸ & EU"],
     facebookProof: {
-      title: "Lô pallet kích thước 1200x800 xuất khẩu",
-      description: "Được khách hàng châu Âu nghiệm thu đạt chuẩn chất lượng và độ ẩm tại kho xưởng Trường An.",
-      fbUrl: "https://www.facebook.com/PalletTruongAn/"
+      title: "Sáng đầu tuần xuống tận nơi lắp ráp thùng gỗ cho đối tác kịp xuất hàng trong ngày",
+      description: "Đội ngũ Pallet Trường An giao pallet và vật tư xuống xưởng khách hàng, hoàn thiện nhanh để kịp đóng hàng lên container.",
+      fbUrl: "https://www.facebook.com/PalletTruongAn"
     }
   },
   {
@@ -337,56 +335,18 @@ export const products: Product[] = [
       "Đội thợ mộc lành nghề tại Hóc Môn trực tiếp gia công",
       "Giao hàng nhanh bằng xe tải riêng của xưởng"
     ],
-    imageUrl: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=800",
+    imageUrl: "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p7/p4.1.jpg",
     gallery: [
-      "https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=800",
-      "/images/banner_main.png",
-      "https://images.unsplash.com/photo-1580674684081-7617fbf3d745?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1586528116493-a029325540fa?auto=format&fit=crop&q=80&w=800"
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p7/p4.1.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p7/p4.2.jpg",
+      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p7/p4.3.jpg",
+      "/images/banner_main.png"
     ],
     usagePurpose: "Kê máy cơ khí đặc thù, pin năng lượng mặt trời, hàng hóa quá khổ",
     badges: ["Theo Bản Vẽ Riêng", "Lên Mẫu 24 Giờ", "Chuẩn Dung Sai"],
     facebookProof: {
       title: "Gia công pallet phi tiêu chuẩn cho nhà xưởng",
       description: "Thiết kế đố chịu lực và chiều rộng nan chuyên biệt cho dòng máy ép nhựa công nghiệp.",
-      fbUrl: "https://www.facebook.com/PalletTruongAn/"
-    }
-  },
-  {
-    id: "p8",
-    slug: "pallet-go-cu-1100x1100",
-    name: "Pallet Gỗ Cũ 1100x1100mm Chọn Lọc (Mới 85% - 95%)",
-    category: "Pallet Gỗ Cũ / Thanh Lý",
-    categorySlug: "pallet-go-cu",
-    dimensions: "1100 x 1100 x 120 mm",
-    woodType: "Gỗ Thông / Tràm hỗn hợp tuyển chọn",
-    materialGroup: "go-cu",
-    targetMarket: "noi-dia",
-    staticLoad: "1.500 kg",
-    dynamicLoad: "800 kg",
-    specification: "Mặt nan đều, kết cấu chắc chắn không gãy mọt",
-    isExportStandard: false,
-    isNew: false,
-    priceDisplay: "Liên hệ",
-    description: "Pallet gỗ cũ được xưởng Trường An thu gom và chọn lọc kỹ lưỡng, đã xử lý lại đinh vít và nan gãy. Chất lượng còn 85-95% nhưng giá thành chỉ bằng 40-50% pallet mới.",
-    highlights: [
-      "Tiết kiệm ngân sách tối đa cho doanh nghiệp",
-      "Hàng tuyển chọn chắc chắn, kiểm tra trước khi giao",
-      "Luôn có sẵn số lượng lớn tại kho xưởng Hóc Môn",
-      "Hỗ trợ đổi trả nếu có pallet lỗi gãy"
-    ],
-    imageUrl: "https://images.unsplash.com/photo-1586528116493-a029325540fa?auto=format&fit=crop&q=80&w=800",
-    gallery: [
-      "https://images.unsplash.com/photo-1586528116493-a029325540fa?auto=format&fit=crop&q=80&w=800",
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
-      "/images/banner_main.png",
-      "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?auto=format&fit=crop&q=80&w=800"
-    ],
-    usagePurpose: "Kê hàng trong kho bãi tạm, vận chuyển hàng nội địa một chiều",
-    badges: ["Tiết Kiệm 50%", "Mới 85% - 95%", "Sẵn Kho Giao Ngay"],
-    facebookProof: {
-      title: "Giao 300 pallet cũ thanh lý cho kho hàng Long An",
-      description: "Pallet đã kiểm định bắn đinh lại cứng cáp, bàn giao tận nơi cho đối tác lưu kho hạt nhựa.",
       fbUrl: "https://www.facebook.com/PalletTruongAn/"
     }
   }

@@ -1,38 +1,38 @@
 import React from 'react';
-import { ShieldCheck, DollarSign, Wrench, Clock, FileCheck, ThumbsUp } from 'lucide-react';
+import { Factory, ShieldCheck, Ruler, Wrench, Truck, CheckCircle2 } from 'lucide-react';
 import styles from './WhyChooseUs.module.css';
 
 export const WhyChooseUs: React.FC = () => {
   const reasons = [
     {
-      icon: <DollarSign size={28} />,
-      title: "Giá Tận Xưởng Sản Xuất",
-      desc: "Trực tiếp khai thác và gia công gỗ, cam kết báo giá cạnh tranh nhất thị trường không qua thương mại trung gian."
+      icon: <Factory size={26} />,
+      title: "Sản Xuất Trực Tiếp Tại Xưởng Hóc Môn",
+      desc: "Chủ động nguồn gỗ thông, tràm và ván ép tại xưởng Hóc Môn. Giá xuất xưởng cạnh tranh, không qua bất kỳ đơn vị thương mại trung gian nào."
     },
     {
-      icon: <FileCheck size={28} />,
-      title: "Tiêu Chuẩn ISPM 15 Xuất Khẩu",
-      desc: "Khử trùng sấy HT đúng quy định quốc tế, cung cấp đầy đủ giấy chứng nhận kiểm dịch xuất khẩu sang Mỹ, EU, Nhật."
+      icon: <ShieldCheck size={26} />,
+      title: "Đạt Tiêu Chuẩn ISPM 15 Xuất Khẩu",
+      desc: "Xử lý nhiệt HT đạt chuẩn quốc tế, kiểm soát độ ẩm an toàn, cấp đầy đủ chứng thư kiểm dịch phục vụ thông quan đi Mỹ, Châu Âu, Nhật Bản, Hàn Quốc."
     },
     {
-      icon: <Wrench size={28} />,
-      title: "Gia Công Theo Kích Thước Yêu Cầu",
-      desc: "Nhận đóng pallet gỗ theo bản vẽ riêng, làm mẫu chạy thử tận kho khách hàng trước khi ký hợp đồng."
+      icon: <Ruler size={26} />,
+      title: "Gia Công Mẫu Trình Khách Hàng Thực Tế",
+      desc: "Nhận gia công mẫu thực tế theo đúng kích thước và bản vẽ kỹ thuật để đối tác kiểm tra kết cấu, thử tải thực tế trước khi ký kết đơn hàng lớn."
     },
     {
-      icon: <ShieldCheck size={28} />,
-      title: "Đảm Bảo Độ Ẩm & Chịu Tải",
-      desc: "Nan gỗ sấy khô độ ẩm < 18%, không mối mọt nấm mốc, tải trọng tĩnh đạt đến 3.5 tấn."
+      icon: <Wrench size={26} />,
+      title: "Đội Ngũ Xuống Tận Nơi Lắp Ráp Thùng Gỗ",
+      desc: "Cơ động xuống tận kho và nhà máy của khách hàng để đo đạc máy móc, chèn lót an toàn và bắn đinh đóng thùng gỗ kiên cố kịp giờ đóng container."
     },
     {
-      icon: <Clock size={28} />,
-      title: "Giao Hàng Đúng Tiến Độ 24/7",
-      desc: "Đội ngũ xe tải lớn chủ động giao hàng đến các KCN Bình Dương, Đồng Nai, TP.HCM, Long An đúng cam kết."
+      icon: <Truck size={26} />,
+      title: "Chủ Động Tiến Độ – Kịp Giờ Tàu & Xe Cont",
+      desc: "Thấu hiểu áp lực deadline xuất khẩu, xưởng linh hoạt tăng ca đáp ứng đơn gấp, chủ động đội xe giao tận xưởng tại TP.HCM, Bình Dương, Đồng Nai, Long An."
     },
     {
-      icon: <ThumbsUp size={28} />,
-      title: "Chính Sách Đổi Trả Linh Hoạt",
-      desc: "Cam kết 1 đổi 1 lập tức nếu sản phẩm giao không đúng quy cách bản vẽ hoặc bị lỗi sứt mẻ do vận chuyển."
+      icon: <CheckCircle2 size={26} />,
+      title: "Cam Kết Đúng Quy Cách – Bảo Hành 1 Đổi 1",
+      desc: "Gỗ tuyển chọn đạt chuẩn, đinh xoắn chuyên dụng chống bung nứt, chịu tải trọng lớn. Đổi trả ngay 100% nếu phát hiện sai lệch quy cách bản vẽ."
     }
   ];
 
@@ -40,10 +40,10 @@ export const WhyChooseUs: React.FC = () => {
     <section className={styles.section}>
       <div className="container">
         <div style={{ textAlign: 'center' }}>
-          <span className="section-tag">LÝ DO CHỌN PALLET GỖ VIỆT</span>
-          <h2 className="section-title">Tại Sao Hơn 500 Doanh Nghiệp Lựa Chọn Chúng Tôi?</h2>
+          <span className="section-tag">VÌ SAO CHỌN PALLET TRƯỜNG AN</span>
+          <h2 className="section-title">Năng Lực Sản Xuất & Cam Kết Đồng Hành Cùng Hàng Xuất Khẩu</h2>
           <p className="section-subtitle">
-            Chúng tôi hiểu rằng chất lượng pallet ảnh hưởng trực tiếp tới sự an toàn của hàng hóa và uy tín của doanh nghiệp bạn.
+            Chúng tôi hiểu rằng mỗi kiện pallet và thùng gỗ ảnh hưởng trực tiếp tới sự an toàn của hàng hóa, máy móc và tiến độ thông quan của doanh nghiệp.
           </p>
         </div>
 
@@ -60,3 +60,4 @@ export const WhyChooseUs: React.FC = () => {
     </section>
   );
 };
+

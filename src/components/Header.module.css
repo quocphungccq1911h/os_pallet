@@ -118,7 +118,7 @@
 .desktopNav {
   display: flex;
   align-items: center;
-  gap: 1.75rem;
+  gap: 2rem;
   flex-shrink: 0;
 }
 

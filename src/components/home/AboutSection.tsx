@@ -11,14 +11,10 @@ export const AboutSection: React.FC = () => {
         <div className={styles.imageCol}>
           <div className={styles.mainImgWrapper}>
             <img
-              src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&q=80&w=900"
-              alt="Quy mô nhà xưởng sản xuất Pallet Gỗ Việt"
+              src="/images/banner_main.png"
+              alt="Xưởng Pallet Gỗ & Thùng Gỗ Trường An"
               className={styles.mainImg}
             />
-            <div className={styles.experienceBadge}>
-              <span className={styles.badgeNumber}>10+</span>
-              <span className={styles.badgeText}>Năm Tiên Phong Sản Xuất Pallet B2B</span>
-            </div>
           </div>
         </div>
 

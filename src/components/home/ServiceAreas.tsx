@@ -1,18 +1,18 @@
 import React from 'react';
-import { MapPin, Truck, Check } from 'lucide-react';
+import { MapPin, Truck, CheckCircle2 } from 'lucide-react';
 import { companyInfo } from '@/data/companyInfo';
 import styles from './ServiceAreas.module.css';
 
 export const ServiceAreas: React.FC = () => {
   const kcnList = [
-    "KCN Sóng Thần 1, 2, 3 (Bình Dương)",
-    "KCN VSIP 1, 2, 3 (Bình Dương)",
-    "KCN Biên Hòa 1, 2 (Đồng Nai)",
-    "KCN Amata (Đồng Nai)",
-    "KCN Tân Thuận, Hiệp Phước (TP.HCM)",
-    "KCN Long Hậu, Tân Đức (Long An)",
-    "KCN Phú Mỹ 1, 2, 3 (Vũng Tàu)",
-    "Các KCN Miền Trung & Miền Bắc"
+    "KCN Vĩnh Lộc, Tân Bình, Hiệp Phước, Tân Tạo (TP.HCM)",
+    "KCN VSIP 1, 2, 3 & Sóng Thần 1, 2, 3 (Bình Dương)",
+    "KCN Mỹ Phước, Bàu Bàng, Nam Tân Uyên (Bình Dương)",
+    "KCN Amata, Biên Hòa 1, 2 & Nhơn Trạch (Đồng Nai)",
+    "KCN Long Hậu, Tân Đức, Hải Sơn, Đức Hòa (Long An)",
+    "KCN Trảng Bàng, Phước Đông (Tây Ninh)",
+    "Cụm Cảng Cát Lái, Cảng SP-PSA, Cảng Hiệp Phước (Đóng cont)",
+    "Nhận cử thợ cơ động lắp ráp thùng gỗ tận kho đối tác"
   ];
 
   return (
@@ -20,10 +20,10 @@ export const ServiceAreas: React.FC = () => {
       <div className="container">
         <div className={styles.flexGrid}>
           <div className={styles.infoSide}>
-            <span className="section-tag">KHU VỰC CUNG CẤP</span>
-            <h2 className={styles.title}>Mạng Lưới Vận Chuyển & Phân Phối Rộng Khắp</h2>
+            <span className="section-tag">KHU VỰC PHỤC VỤ & GIAO HÀNG</span>
+            <h2 className={styles.title}>Giao Hàng Tận Nơi & Hỗ Trợ Đóng Gói Tại Các KCN Phía Nam</h2>
             <p className={styles.desc}>
-              Sở hữu đội xe tải lớn từ 3.5 tấn đến 15 tấn, chúng tôi đảm bảo nguồn cung ứng pallet gỗ liên tục, giao hàng tận xưởng trong ngày tới tất cả các khu công nghiệp tại TP.HCM, Bình Dương, Đồng Nai, Long An và khu vực lân cận.
+              Với xưởng sản xuất đặt tại Hóc Môn (vị trí kết nối nhanh giữa TP.HCM – Bình Dương – Long An – Tây Ninh), chúng tôi chủ động điều phối xe tải giao hàng nhanh trong ngày, đồng thời cử đội thợ xuống tận kho đối tác để đo đạc máy móc, chèn lót và lắp ráp thùng gỗ kiên cố kịp tiến độ xuất container.
             </p>
 
             <div className={styles.tagGrid}>
@@ -39,12 +39,12 @@ export const ServiceAreas: React.FC = () => {
           <div className={styles.kcnCard}>
             <div className={styles.kcnHeader}>
               <Truck size={24} />
-              <h3>Giao Hàng Tận Nơi Các KCN Trọng Điểm</h3>
+              <h3>Tuyến Giao Hàng & Lắp Ráp Trọng Điểm</h3>
             </div>
             <ul className={styles.kcnList}>
               {kcnList.map((kcn, idx) => (
                 <li key={idx} className={styles.kcnItem}>
-                  <Check size={16} color="var(--accent)" />
+                  <CheckCircle2 size={16} color="var(--primary)" />
                   <span>{kcn}</span>
                 </li>
               ))}

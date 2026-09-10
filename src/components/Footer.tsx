@@ -28,8 +28,8 @@ export const Footer: React.FC = () => {
           <div className={styles.promiseItem}>
             <div className={styles.promiseIcon}>📐</div>
             <div>
-              <h4>Báo Giá & Mẫu Nhanh</h4>
-              <p>Nhận bản vẽ đóng theo yêu cầu riêng</p>
+              <h4>Gia Công Mẫu Thực Tế</h4>
+              <p>Lên mẫu kiểm tra & thử tải trước khi chốt đơn</p>
             </div>
           </div>
           <div className={styles.promiseItem}>
@@ -69,6 +69,10 @@ export const Footer: React.FC = () => {
               <div className={styles.contactItem}>
                 <Mail size={18} className={styles.iconAccent} />
                 <span><strong>Email:</strong> {companyInfo.email}</span>
+              </div>
+              <div className={styles.contactItem}>
+                <Clock size={18} className={styles.iconAccent} />
+                <span><strong>Giờ làm việc:</strong> {companyInfo.workingHours}</span>
               </div>
             </div>
           </div>
@@ -119,7 +123,7 @@ export const Footer: React.FC = () => {
               <li>
                 <Link href="/lien-he" className={styles.footerLink}>
                   <ChevronRight size={14} />
-                  <span>Form Đăng Ký Nhận Mẫu Sưu Tập</span>
+                  <span>Yêu Cầu Báo Giá & Làm Mẫu Thử</span>
                 </Link>
               </li>
             </ul>
@@ -127,10 +131,10 @@ export const Footer: React.FC = () => {
             <div className={styles.socialBox}>
               <h4>Kết Nối Với Chúng Tôi</h4>
               <div className={styles.socialBtns}>
-                <a href={companyInfo.facebook} target="_blank" rel="noopener noreferrer" className={styles.socialBtn}>
+                <a href={companyInfo.facebook} target="_blank" rel="noopener noreferrer" className={styles.socialBtn} title="Fanpage Pallet Trường An">
                   <Facebook size={18} />
                 </a>
-                <a href={companyInfo.zaloUrl} target="_blank" rel="noopener noreferrer" className={styles.socialBtn}>
+                <a href={companyInfo.zaloUrl} target="_blank" rel="noopener noreferrer" className={styles.socialBtn} title="Zalo Tư Vấn Báo Giá">
                   <span>Zalo</span>
                 </a>
               </div>
@@ -145,11 +149,20 @@ export const Footer: React.FC = () => {
                 title="Bản đồ vị trí xưởng sản xuất Pallet Gỗ"
                 src={companyInfo.googleMapsEmbed}
                 width="100%"
-                height="180"
+                height="160"
                 style={{ border: 0, borderRadius: '8px' }}
                 allowFullScreen={false}
                 loading="lazy"
               ></iframe>
+              <a
+                href="https://maps.google.com/?q=361/75+Huỳnh+Thị+Na,+Đông+Thạnh,+Hóc+Môn,+TP.+Hồ+Chí+Minh"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.mapDirectionBtn}
+              >
+                <MapPin size={14} />
+                <span>Bấm để chỉ đường đến xưởng</span>
+              </a>
             </div>
           </div>
         </div>
@@ -158,7 +171,7 @@ export const Footer: React.FC = () => {
       {/* Bottom Copyright Bar */}
       <div className={styles.copyrightBar}>
         <div className={`container ${styles.copyrightFlex}`}>
-          <p>© 2026 {companyInfo.name}. Bản quyền thuộc về doanh nghiệp. Tối ưu SEO bởi Antigravity.</p>
+          <p>© 2026 {companyInfo.name}. Bản quyền thuộc về doanh nghiệp. Tất cả quyền được bảo lưu.</p>
           <div className={styles.bottomLinks}>
             <Link href="/">Trang chủ</Link>
             <span>•</span>
