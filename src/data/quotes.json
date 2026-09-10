@@ -1,5 +1,19 @@
 [
   {
+    "id": "quote-1789048151268",
+    "customerName": "Chị Dung",
+    "phone": "0333333333",
+    "email": "",
+    "productTitle": "Yêu cầu tư vấn kích thước riêng",
+    "dimensions": "",
+    "quantity": "100",
+    "note": "",
+    "status": "moi",
+    "estimatedPrice": "Liên hệ",
+    "createdAt": "2026-09-10T13:49:11.268Z",
+    "updatedAt": "2026-09-10T13:49:11.268Z"
+  },
+  {
     "id": "quote-1789030876459",
     "customerName": "phụng 2222",
     "phone": "0383455781",
@@ -10,8 +24,8 @@
     "note": "dddddd",
     "status": "moi",
     "estimatedPrice": "Liên hệ",
-    "createdAt": "2026-09-10T09:01:16.459Z",
-    "updatedAt": "2026-09-10T09:01:16.459Z"
+    "createdAt": "2026-09-10T09:01:16.459+00:00",
+    "updatedAt": "2026-09-10T09:01:16.459+00:00"
   },
   {
     "id": "quote-1789029698673",

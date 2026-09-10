@@ -65,21 +65,21 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onOpenQuoteModal }) => {
             </div>
           </div>
 
-          {/* Stat Counter Strip */}
+          {/* Cam kết năng lực thực tế của xưởng Trường An */}
           <div className={styles.statsStrip}>
             <div className={styles.statBox}>
-              <span className={styles.statNum}>10+</span>
-              <span className={styles.statLabel}>Năm kinh nghiệm</span>
+              <span className={styles.statNum}>100%</span>
+              <span className={styles.statLabel}>Giá gốc tận xưởng</span>
             </div>
             <div className={styles.statDivider}></div>
             <div className={styles.statBox}>
-              <span className={styles.statNum}>500+</span>
-              <span className={styles.statLabel}>Doanh nghiệp tin dùng</span>
+              <span className={styles.statNum}>ISPM 15</span>
+              <span className={styles.statLabel}>Đạt chuẩn xuất khẩu</span>
             </div>
             <div className={styles.statDivider}></div>
             <div className={styles.statBox}>
-              <span className={styles.statNum}>30.000+</span>
-              <span className={styles.statLabel}>Sản phẩm cung ứng/tháng</span>
+              <span className={styles.statNum}>24/7</span>
+              <span className={styles.statLabel}>Khảo sát &amp; Đóng tận nơi</span>
             </div>
           </div>
         </div>

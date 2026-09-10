@@ -174,13 +174,41 @@ export default function ProductDetailPage() {
               </div>
             )}
 
-            {/* Price Box */}
+            {/* Modern B2B Price & Quote Card */}
             <div className={styles.priceCard}>
-              <span className={styles.priceTitle}>Giá sản phẩm:</span>
-              <span className="badge badge-price" style={{ fontSize: '1.25rem', padding: '0.4rem 1rem' }}>
-                {product.priceDisplay}
-              </span>
-              <span className={styles.priceSub}>(Chiết khấu cao cho đơn hàng số lượng lớn)</span>
+              <div className={styles.priceHeader}>
+                <div className={styles.priceMeta}>
+                  <span className={styles.priceLabel}>Giá sản xuất trực tiếp</span>
+                  <div className={styles.priceValueWrapper}>
+                    <span className={styles.priceValue}>
+                      {product.priceDisplay === 'Liên hệ' ? 'Giá Gốc Tận Xưởng' : product.priceDisplay}
+                    </span>
+                    <span className={styles.priceBadgeNote}>Báo giá theo bản vẽ &amp; số lượng</span>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => openQuoteModal(product.slug)}
+                  className={styles.priceCtaBtn}
+                  title="Nhận báo giá nhanh trong 15 phút"
+                >
+                  <FileText size={16} />
+                  <span>Báo Giá Nhanh 15 Phút</span>
+                </button>
+              </div>
+
+              <div className={styles.pricePerks}>
+                <span className={styles.pricePerkItem}>
+                  <CheckCircle2 size={14} color="#15803d" />
+                  Chiết khấu 5% - 10% đơn hàng lớn &amp; hợp đồng tháng
+                </span>
+                <span className={styles.pricePerkDivider}>•</span>
+                <span className={styles.pricePerkItem}>
+                  <CheckCircle2 size={14} color="#15803d" />
+                  Hỗ trợ công nợ đối tác nhà máy
+                </span>
+              </div>
             </div>
 
             {/* Specs Table */}

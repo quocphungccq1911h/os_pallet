@@ -21,29 +21,54 @@ export default function ContactPage() {
         </div>
       </div>
 
-      <div className="container" style={{ marginBottom: '4rem' }}>
+      <div className="container">
         <div className={styles.infoGrid}>
           <div className={styles.card}>
-            <MapPin size={32} color="var(--primary)" />
-            <h3>Xưởng Sản Xuất</h3>
-            <p>{companyInfo.address}</p>
+            <div className={styles.cardHeader}>
+              <div className={styles.iconBox}>
+                <MapPin size={22} />
+              </div>
+              <h3 className={styles.cardTitle}>Xưởng Sản Xuất</h3>
+            </div>
+            <p className={styles.cardDesc}>{companyInfo.address}</p>
           </div>
+
           <div className={styles.card}>
-            <Factory size={32} color="var(--primary)" />
-            <h3>Khu Vực Phục Vụ</h3>
-            <p>Hóc Môn, Củ Chi, Q.12, Bình Dương, Long An, các KCN miền Nam & Đóng hàng xuất khẩu</p>
+            <div className={styles.cardHeader}>
+              <div className={styles.iconBox}>
+                <Factory size={22} />
+              </div>
+              <h3 className={styles.cardTitle}>Khu Vực Phục Vụ</h3>
+            </div>
+            <p className={styles.cardDesc}>
+              Hóc Môn, Củ Chi, Q.12, Bình Dương, Long An, các KCN miền Nam &amp; Đóng hàng xuất khẩu
+            </p>
           </div>
+
           <div className={styles.card}>
-            <Phone size={32} color="var(--primary)" />
-            <h3>Hotline & Zalo</h3>
-            <p>Hotline 1: <strong>{companyInfo.hotlineFormatted}</strong></p>
-            <p>Hotline 2: <strong>{companyInfo.secondaryHotlineFormatted}</strong></p>
+            <div className={styles.cardHeader}>
+              <div className={styles.iconBox}>
+                <Phone size={22} />
+              </div>
+              <h3 className={styles.cardTitle}>Hotline &amp; Zalo</h3>
+            </div>
+            <div className={styles.cardDesc}>
+              <p>Hotline 1: <strong>{companyInfo.hotlineFormatted}</strong></p>
+              <p>Hotline 2: <strong>{companyInfo.secondaryHotlineFormatted}</strong></p>
+            </div>
           </div>
+
           <div className={styles.card}>
-            <Clock size={32} color="var(--primary)" />
-            <h3>Giờ Làm Việc</h3>
-            <p>{companyInfo.workingHours}</p>
-            <p>Tư vấn kỹ thuật Zalo 24/7</p>
+            <div className={styles.cardHeader}>
+              <div className={styles.iconBox}>
+                <Clock size={22} />
+              </div>
+              <h3 className={styles.cardTitle}>Giờ Làm Việc</h3>
+            </div>
+            <div className={styles.cardDesc}>
+              <p>{companyInfo.workingHours}</p>
+              <p style={{ color: 'var(--primary-dark)', fontWeight: 600 }}>Tư vấn kỹ thuật Zalo 24/7</p>
+            </div>
           </div>
         </div>
       </div>
