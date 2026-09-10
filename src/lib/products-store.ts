@@ -1,6 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { Product, products as initialProducts } from '@/data/products';
+import { supabase } from '@/lib/supabase';
 
 const DATA_FILE_PATH = path.join(process.cwd(), 'src', 'data', 'products.json');
 
@@ -31,9 +32,9 @@ export function slugifyVietnamese(str: string): string {
 }
 
 /**
- * Đọc toàn bộ danh sách sản phẩm từ file products.json (tự khởi tạo nếu chưa có)
+ * Helper: Đọc dữ liệu từ file local products.json (dùng khi offline hoặc fallback)
  */
-export async function getAllProducts(): Promise<Product[]> {
+async function getLocalProducts(): Promise<Product[]> {
   try {
     const fileContent = await fs.readFile(DATA_FILE_PATH, 'utf-8');
     const data = JSON.parse(fileContent);
@@ -41,55 +42,104 @@ export async function getAllProducts(): Promise<Product[]> {
       return data;
     }
   } catch {
-    // Nếu file chưa tồn tại hoặc rỗng, khởi tạo từ initialProducts
-    try {
-      await fs.writeFile(DATA_FILE_PATH, JSON.stringify(initialProducts, null, 2), 'utf-8');
-      return initialProducts;
-    } catch {
-      return initialProducts;
-    }
+    // ignore
   }
   return initialProducts;
+}
+
+/**
+ * Helper: Lưu song song vào file local products.json (nếu có thể)
+ */
+async function syncLocalProducts(products: Product[]): Promise<void> {
+  try {
+    await fs.writeFile(DATA_FILE_PATH, JSON.stringify(products, null, 2), 'utf-8');
+  } catch {
+    // Bỏ qua lỗi nếu môi trường read-only trên serverless
+  }
+}
+
+/**
+ * Đọc toàn bộ danh sách sản phẩm từ Supabase (tự động fallback sang local)
+ */
+export async function getAllProducts(): Promise<Product[]> {
+  try {
+    const { data, error } = await supabase
+      .from('products')
+      .select('*')
+      .order('created_at', { ascending: false });
+
+    if (!error && Array.isArray(data) && data.length > 0) {
+      return data as Product[];
+    }
+  } catch (err) {
+    console.warn('Lỗi đọc Supabase, chuyển sang đọc local:', err);
+  }
+
+  return getLocalProducts();
 }
 
 /**
  * Lấy chi tiết sản phẩm theo ID
  */
 export async function getProductById(id: string): Promise<Product | undefined> {
-  const products = await getAllProducts();
-  return products.find((p) => p.id === id);
+  try {
+    const { data, error } = await supabase
+      .from('products')
+      .select('*')
+      .eq('id', id)
+      .maybeSingle();
+
+    if (!error && data) {
+      return data as Product;
+    }
+  } catch (err) {
+    console.warn('Lỗi getProductById Supabase:', err);
+  }
+
+  const local = await getLocalProducts();
+  return local.find((p) => p.id === id);
 }
 
 /**
  * Lấy chi tiết sản phẩm theo Slug
  */
 export async function getProductBySlug(slug: string): Promise<Product | undefined> {
-  const products = await getAllProducts();
-  return products.find((p) => p.slug === slug);
+  try {
+    const { data, error } = await supabase
+      .from('products')
+      .select('*')
+      .eq('slug', slug)
+      .maybeSingle();
+
+    if (!error && data) {
+      return data as Product;
+    }
+  } catch (err) {
+    console.warn('Lỗi getProductBySlug Supabase:', err);
+  }
+
+  const local = await getLocalProducts();
+  return local.find((p) => p.slug === slug);
 }
 
 /**
  * Thêm mới hoặc Cập nhật sản phẩm
  */
 export async function saveProduct(productData: Partial<Product>): Promise<Product> {
-  const products = await getAllProducts();
+  const currentList = await getAllProducts();
+  const isExisting = productData.id && currentList.some((p) => p.id === productData.id);
 
-  const isExisting = productData.id && products.some((p) => p.id === productData.id);
-
-  let updatedList: Product[];
   let savedProduct: Product;
 
   if (isExisting) {
-    // Cập nhật sản phẩm có sẵn
+    const existing = currentList.find((p) => p.id === productData.id) as Product;
     savedProduct = {
-      ...(products.find((p) => p.id === productData.id) as Product),
+      ...existing,
       ...productData,
       id: productData.id!,
       slug: productData.slug || slugifyVietnamese(productData.name || 'san-pham'),
     };
-    updatedList = products.map((p) => (p.id === savedProduct.id ? savedProduct : p));
   } else {
-    // Tạo sản phẩm mới
     const newId = productData.id || `pallet-${Date.now()}`;
     const newSlug = productData.slug || slugifyVietnamese(productData.name || 'san-pham');
     savedProduct = {
@@ -116,10 +166,30 @@ export async function saveProduct(productData: Partial<Product>): Promise<Produc
       badges: productData.badges || [],
       facebookProof: productData.facebookProof,
     };
-    updatedList = [savedProduct, ...products];
   }
 
-  await fs.writeFile(DATA_FILE_PATH, JSON.stringify(updatedList, null, 2), 'utf-8');
+  // 1. Lưu lên Supabase
+  try {
+    const { error } = await supabase
+      .from('products')
+      .upsert({
+        ...savedProduct,
+        updated_at: new Date().toISOString(),
+      }, { onConflict: 'id' });
+
+    if (error) {
+      console.error('Lỗi khi upsert sản phẩm lên Supabase:', error);
+    }
+  } catch (err) {
+    console.error('Lỗi kết nối Supabase khi lưu:', err);
+  }
+
+  // 2. Đồng bộ song song vào file local để backup
+  const updatedList = isExisting
+    ? currentList.map((p) => (p.id === savedProduct.id ? savedProduct : p))
+    : [savedProduct, ...currentList];
+  await syncLocalProducts(updatedList);
+
   return savedProduct;
 }
 
@@ -127,22 +197,47 @@ export async function saveProduct(productData: Partial<Product>): Promise<Produc
  * Xóa sản phẩm theo ID
  */
 export async function deleteProduct(id: string): Promise<boolean> {
-  const products = await getAllProducts();
-  const initialLength = products.length;
-  const filtered = products.filter((p) => p.id !== id);
+  let success = false;
 
-  if (filtered.length === initialLength) {
-    return false;
+  // 1. Xóa trên Supabase
+  try {
+    const { error } = await supabase
+      .from('products')
+      .delete()
+      .eq('id', id);
+
+    if (!error) {
+      success = true;
+    } else {
+      console.error('Lỗi khi xóa sản phẩm trên Supabase:', error);
+    }
+  } catch (err) {
+    console.error('Lỗi kết nối Supabase khi xóa:', err);
   }
 
-  await fs.writeFile(DATA_FILE_PATH, JSON.stringify(filtered, null, 2), 'utf-8');
-  return true;
+  // 2. Xóa trên file local
+  const currentList = await getLocalProducts();
+  const filtered = currentList.filter((p) => p.id !== id);
+  if (filtered.length !== currentList.length) {
+    success = true;
+    await syncLocalProducts(filtered);
+  }
+
+  return success;
 }
 
 /**
- * Khôi phục về danh sách 8 sản phẩm chuẩn mẫu ban đầu
+ * Khôi phục về danh sách sản phẩm chuẩn mẫu ban đầu
  */
 export async function resetProductsToDefault(): Promise<Product[]> {
-  await fs.writeFile(DATA_FILE_PATH, JSON.stringify(initialProducts, null, 2), 'utf-8');
+  try {
+    for (const p of initialProducts) {
+      await supabase.from('products').upsert(p, { onConflict: 'id' });
+    }
+  } catch (err) {
+    console.error('Lỗi reset Supabase:', err);
+  }
+
+  await syncLocalProducts(initialProducts);
   return initialProducts;
 }
