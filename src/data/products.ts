@@ -1,4 +1,4 @@
-export interface Product {
+﻿export interface Product {
   id: string;
   slug: string;
   name: string;
@@ -91,12 +91,12 @@ export const products: Product[] = [
       "Miễn trừ thủ tục hun trùng kiểm dịch thực vật ISPM 15 khi thông quan xuất khẩu Campuchia",
       "Kết cấu 4 thanh đố chịu tải cực khỏe, phù hợp xe nâng tay và xe nâng động cơ"
     ],
-    imageUrl: "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p1/p1.1.jpg",
+    imageUrl: "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p1/p1.1.jpg",
     gallery: [
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p1/p1.1.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p1/p1.2.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p1/p1.3.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p1/p1.4.jpg"
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p1/p1.1.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p1/p1.2.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p1/p1.3.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p1/p1.4.jpg"
     ],
     usagePurpose: "Chuyên dùng đóng kiện hàng, thùng carton xuất khẩu sang Campuchia, xếp kho lưu trữ và vận chuyển container",
     badges: ["🇰🇭 Xuất Khẩu Campuchia", "Ván Ép Chuẩn Xuất", "Giá Tận Xưởng"],
@@ -130,15 +130,15 @@ export const products: Product[] = [
       "Thiết kế đố khuyết nâng 4 hướng tiện lợi cho cả xe nâng tay và xe nâng động cơ",
       "Đã được đối tác kiểm tra thực tế, đánh giá chất lượng cao và chốt deal số lượng lớn"
     ],
-    imageUrl: "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p2/p2.1.jpg",
+    imageUrl: "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p2/p2.1.jpg",
     gallery: [
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p2/p2.1.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p2/p2.2.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p2/p2.3.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p2/p2.4.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p2/p2.5.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p2/p2.6.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p2/p2.7.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p2/p2.1.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p2/p2.2.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p2/p2.3.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p2/p2.4.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p2/p2.5.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p2/p2.6.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p2/p2.7.jpg",
       "/images/banner_main.png"
     ],
     usagePurpose: "Đóng hàng xuất khẩu container đường biển/đường hàng không, bốc dỡ kho vận logistics, lưu trữ pallet trên kệ racking",
@@ -173,11 +173,11 @@ export const products: Product[] = [
       "Gia công chuẩn quy cách, chịu tải trọng tĩnh lên đến 3.000 kg",
       "Giá gốc cạnh tranh nhất thị trường từ xưởng sản xuất trực tiếp Hóc Môn"
     ],
-    imageUrl: "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p3/p3.1.jpg",
+    imageUrl: "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p3/p3.1.jpg",
     gallery: [
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p3/p3.1.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p3/p3.2.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p3/p3.3.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p3/p3.1.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p3/p3.2.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p3/p3.3.jpg",
       "/images/banner_main.png"
     ],
     usagePurpose: "Đóng hàng máy móc, thiết bị điện tử, nông sản, hàng tiêu dùng xuất khẩu sang thị trường Mỹ và quốc tế, lưu kho kệ racking",
@@ -212,11 +212,11 @@ export const products: Product[] = [
       'Phù hợp đóng hàng máy móc, thiết bị công nghiệp khổ lớn xuất khẩu đường biển',
       'Xưởng sản xuất trực tiếp Hóc Môn, giá cạnh tranh, đáp ứng nhanh đơn hàng số lượng lớn'
     ],
-    imageUrl: "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p4/p4.1.jpg",
+    imageUrl: "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p4/p4.1.jpg",
     gallery: [
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p4/p4.1.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p4/p4.2.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p4/p4.3.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p4/p4.1.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p4/p4.2.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p4/p4.3.jpg",
       "/images/banner_main.png"
     ],
     usagePurpose: "Đóng gói máy móc thiết bị khổ rộng, hàng công nghiệp nặng, bốc xếp cẩu hàng và đóng container xuất khẩu",
@@ -251,15 +251,15 @@ export const products: Product[] = [
       'Đầy đủ tiêu chuẩn xử lý sấy nhiệt HT & hun trùng kiểm dịch ISPM 15 xuất khẩu container',
       'Hỗ trợ test tải trọng thực tế tận kho và điều chỉnh quy cách theo đúng yêu cầu của khách hàng'
     ],
-    imageUrl: "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p5/p5.1.jpg",
+    imageUrl: "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p5/p5.1.jpg",
     gallery: [
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p5/p5.1.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p5/p5.2.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p5/p5.3.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p5/p5.4.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p5/p5.5.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p5/p5.6.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p5/p5.7.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p5/p5.1.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p5/p5.2.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p5/p5.3.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p5/p5.4.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p5/p5.5.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p5/p5.6.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p5/p5.7.jpg",
       "/images/banner_main.png"
     ],
     usagePurpose: "Lưu trữ kho tự động, xếp pallet kệ racking đa tầng, đóng hàng container xuất khẩu đi Mỹ, châu Âu và đóng gói công nghiệp nặng",
@@ -294,14 +294,14 @@ export const products: Product[] = [
       "Xử lý sấy nhiệt HT và cấp chứng thư khử trùng ISPM 15 an tâm xuất khẩu đường biển",
       "Giá tận xưởng sản xuất trực tiếp tại Hóc Môn, không qua trung gian"
     ],
-    imageUrl: "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p6.1.jpg",
+    imageUrl: "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p6.1.jpg",
     gallery: [
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p6.1.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p6.2.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p6.3.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p6.4.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p6.5.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p6.6.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p6.1.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p6.2.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p6.3.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p6.4.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p6.5.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p6.6.jpg",
       "/images/banner_main.png"
     ],
     usagePurpose: "Bọc lót, đóng kiện bảo vệ máy móc cơ khí, thiết bị công nghiệp xuất khẩu đường biển",
@@ -335,11 +335,11 @@ export const products: Product[] = [
       "Đội thợ mộc lành nghề tại Hóc Môn trực tiếp gia công",
       "Giao hàng nhanh bằng xe tải riêng của xưởng"
     ],
-    imageUrl: "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p7/p4.1.jpg",
+    imageUrl: "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p7/p4.1.jpg",
     gallery: [
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p7/p4.1.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p7/p4.2.jpg",
-      "https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/products/p7/p4.3.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p7/p4.1.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p7/p4.2.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p7/p4.3.jpg",
       "/images/banner_main.png"
     ],
     usagePurpose: "Kê máy cơ khí đặc thù, pin năng lượng mặt trời, hàng hóa quá khổ",

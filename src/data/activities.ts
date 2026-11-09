@@ -1,4 +1,4 @@
-export type ActivityCategory = 'ban-giao' | 'don-gap' | 'trinh-mau' | 'ispm15';
+﻿export type ActivityCategory = 'ban-giao' | 'don-gap' | 'trinh-mau' | 'ispm15';
 
 export interface Activity {
   id: string;
@@ -80,11 +80,11 @@ Bên em hiểu rằng, với hàng xuất khẩu, **uy tín – tiến độ –
 ---
 🤝 **Anh/Chị cần đối tác sản xuất pallet chuyên nghiệp, làm mẫu nhanh – đúng chuẩn – giá cạnh tranh tận xưởng, Pallet Trường An luôn sẵn sàng đồng hành!**`,
     images: [
-      'https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/activities/a1.1.jpg',
-      'https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/activities/a1.2.jpg',
-      'https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/activities/a1.3.jpg',
-      'https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/activities/a1.4.jpg',
-      'https://rjjzuojpbtabzmqlxizx.supabase.co/storage/v1/object/public/product-images/activities/a1.5.jpg'
+      'https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/activities/a1.1.jpg',
+      'https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/activities/a1.2.jpg',
+      'https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/activities/a1.3.jpg',
+      'https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/activities/a1.4.jpg',
+      'https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/activities/a1.5.jpg'
     ],
     customerLocation: 'TP. Hồ Chí Minh & Cảng Cát Lái',
     clientType: 'Doanh nghiệp sản xuất & xuất khẩu đường biển',
