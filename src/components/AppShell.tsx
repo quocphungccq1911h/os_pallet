@@ -4,6 +4,7 @@ import React from 'react';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { FloatingCTA } from './FloatingCTA';
+import { OrderNotificationToast } from './OrderNotificationToast';
 import { QuoteModalProvider, useQuoteModal } from '@/context/QuoteModalContext';
 
 import { usePathname } from 'next/navigation';
@@ -23,6 +24,7 @@ const ShellInner: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <main>{children}</main>
       <Footer />
       <FloatingCTA onOpenQuoteModal={() => openQuoteModal()} />
+      <OrderNotificationToast />
     </>
   );
 };

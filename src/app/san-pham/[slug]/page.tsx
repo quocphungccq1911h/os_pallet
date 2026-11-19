@@ -32,7 +32,7 @@ export default function ProductDetailPage() {
           const found = list.find((p) => p.slug === slug);
           if (found) {
             setProduct(found);
-            setSelectedImage((prev) => prev || found.imageUrl);
+            setSelectedImage(found.imageUrl);
           }
         }
       } catch {
@@ -94,7 +94,7 @@ export default function ProductDetailPage() {
         <div className={styles.breadcrumb}>
           <Link href="/">Trang chủ</Link>
           <span>/</span>
-          <Link href="/san-pham">Sản phẩm Pallet</Link>
+          <Link href="/san-pham">Sản phẩm</Link>
           <span>/</span>
           <span className={styles.activeCrumb}>{product.name}</span>
         </div>

@@ -6,7 +6,7 @@
   categorySlug: string;
   dimensions: string; // e.g., "1200 x 1000 x 140 mm"
   woodType: string; // e.g., "Gỗ Thông nhập khẩu", "Gỗ Tràm tự nhiên", "Ván ép Plywood"
-  materialGroup: 'go-thong' | 'go-tram' | 'van-ep' | 'go-cu'; // Phân loại chất liệu nhanh
+  materialGroup: 'go-thong' | 'go-tram' | 'van-ep' | 'go-cu' | 'nhua'; // Phân loại chất liệu nhanh
   targetMarket: 'xuat-khau-my' | 'xuat-khau-campuchia' | 'xuat-khau-ispm15' | 'noi-dia'; // Thị trường chính
   staticLoad: string; // Tải trọng tĩnh
   dynamicLoad: string; // Tải trọng động
@@ -42,6 +42,12 @@ export const categories: Category[] = [
     description: "Chuyên đóng thùng gỗ kín, thùng gỗ thưa bọc lót máy móc, thiết bị công nghiệp xuất khẩu đi Mỹ, Campuchia, EU."
   },
   {
+    id: "thung-nhua",
+    name: "Thùng Nhựa Công Nghiệp",
+    slug: "thung-nhua",
+    description: "Thùng nhựa đặc, thùng nhựa hở, khay nhựa công nghiệp bền bỉ chuyên dụng cho kho xưởng và vận chuyển hàng hóa."
+  },
+  {
     id: "pallet-van-ep",
     name: "Pallet Ván Ép (Plywood)",
     slug: "pallet-van-ep",
@@ -65,6 +71,18 @@ export const categories: Category[] = [
     slug: "pallet-xuat-khau",
     description: "Khử trùng nhiệt HT tiêu chuẩn quốc tế ISPM 15, đầy đủ mộc dấu và chứng thư thông quan."
   }
+];
+
+export const PALLET_GO_SLUGS = [
+  'pallet-go-moi',
+  'pallet-van-ep',
+  'pallet-xuat-khau',
+  'pallet-theo-yeu-cau',
+];
+
+export const THUNG_SLUGS = [
+  'thung-go-dong-hang',
+  'thung-nhua',
 ];
 
 export const products: Product[] = [
@@ -91,9 +109,9 @@ export const products: Product[] = [
       "Miễn trừ thủ tục hun trùng kiểm dịch thực vật ISPM 15 khi thông quan xuất khẩu Campuchia",
       "Kết cấu 4 thanh đố chịu tải cực khỏe, phù hợp xe nâng tay và xe nâng động cơ"
     ],
-    imageUrl: "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p1/p1.1.jpg",
+    imageUrl: "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/studio/p1.jpg",
     gallery: [
-      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p1/p1.1.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/studio/p1.jpg",
       "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p1/p1.2.jpg",
       "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p1/p1.3.jpg",
       "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p1/p1.4.jpg"
@@ -130,9 +148,9 @@ export const products: Product[] = [
       "Thiết kế đố khuyết nâng 4 hướng tiện lợi cho cả xe nâng tay và xe nâng động cơ",
       "Đã được đối tác kiểm tra thực tế, đánh giá chất lượng cao và chốt deal số lượng lớn"
     ],
-    imageUrl: "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p2/p2.1.jpg",
+    imageUrl: "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/studio/p2.jpg",
     gallery: [
-      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p2/p2.1.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/studio/p2.jpg",
       "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p2/p2.2.jpg",
       "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p2/p2.3.jpg",
       "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p2/p2.4.jpg",
@@ -173,9 +191,9 @@ export const products: Product[] = [
       "Gia công chuẩn quy cách, chịu tải trọng tĩnh lên đến 3.000 kg",
       "Giá gốc cạnh tranh nhất thị trường từ xưởng sản xuất trực tiếp Hóc Môn"
     ],
-    imageUrl: "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p3/p3.1.jpg",
+    imageUrl: "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/studio/p3.jpg",
     gallery: [
-      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p3/p3.1.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/studio/p3.jpg",
       "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p3/p3.2.jpg",
       "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p3/p3.3.jpg",
       "/images/banner_main.png"
@@ -212,9 +230,9 @@ export const products: Product[] = [
       'Phù hợp đóng hàng máy móc, thiết bị công nghiệp khổ lớn xuất khẩu đường biển',
       'Xưởng sản xuất trực tiếp Hóc Môn, giá cạnh tranh, đáp ứng nhanh đơn hàng số lượng lớn'
     ],
-    imageUrl: "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p4/p4.1.jpg",
+    imageUrl: "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/studio/p4.jpg",
     gallery: [
-      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p4/p4.1.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/studio/p4.jpg",
       "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p4/p4.2.jpg",
       "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p4/p4.3.jpg",
       "/images/banner_main.png"
@@ -251,9 +269,9 @@ export const products: Product[] = [
       'Đầy đủ tiêu chuẩn xử lý sấy nhiệt HT & hun trùng kiểm dịch ISPM 15 xuất khẩu container',
       'Hỗ trợ test tải trọng thực tế tận kho và điều chỉnh quy cách theo đúng yêu cầu của khách hàng'
     ],
-    imageUrl: "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p5/p5.1.jpg",
+    imageUrl: "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/studio/p5.jpg",
     gallery: [
-      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p5/p5.1.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/studio/p5.jpg",
       "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p5/p5.2.jpg",
       "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p5/p5.3.jpg",
       "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p5/p5.4.jpg",
@@ -294,9 +312,9 @@ export const products: Product[] = [
       "Xử lý sấy nhiệt HT và cấp chứng thư khử trùng ISPM 15 an tâm xuất khẩu đường biển",
       "Giá tận xưởng sản xuất trực tiếp tại Hóc Môn, không qua trung gian"
     ],
-    imageUrl: "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p6.1.jpg",
+    imageUrl: "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/studio/p6.jpg",
     gallery: [
-      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p6.1.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/studio/p6.jpg",
       "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p6.2.jpg",
       "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p6.3.jpg",
       "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p6.4.jpg",
@@ -335,9 +353,9 @@ export const products: Product[] = [
       "Đội thợ mộc lành nghề tại Hóc Môn trực tiếp gia công",
       "Giao hàng nhanh bằng xe tải riêng của xưởng"
     ],
-    imageUrl: "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p7/p4.1.jpg",
+    imageUrl: "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/studio/p7.jpg",
     gallery: [
-      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p7/p4.1.jpg",
+      "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/studio/p7.jpg",
       "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p7/p4.2.jpg",
       "https://jrgtjjyoebfnajbtsubz.supabase.co/storage/v1/object/public/product-images/products/p7/p4.3.jpg",
       "/images/banner_main.png"

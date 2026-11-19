@@ -1,20 +1,50 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { products as defaultProducts, categories, Product } from '@/data/products';
+import React, { useState, useEffect, Suspense } from 'react';
+import { useSearchParams } from 'next/navigation';
+import {
+  products as defaultProducts,
+  categories,
+  Product,
+  PALLET_GO_SLUGS,
+  THUNG_SLUGS,
+} from '@/data/products';
 import { ProductCard } from '@/components/ProductCard';
 import { Search, Filter, Box, Globe, Layers, ExternalLink, RotateCcw, Check, X } from 'lucide-react';
 import { useQuoteModal } from '@/context/QuoteModalContext';
 import styles from './sanpham.module.css';
 
-export default function ProductsPage() {
+function ProductsContent() {
+  const searchParams = useSearchParams();
   const [allProducts, setAllProducts] = useState<Product[]>(defaultProducts);
+  const [selectedGroup, setSelectedGroup] = useState<string>('all');
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
   const [selectedMaterial, setSelectedMaterial] = useState<string>('all');
   const [selectedMarket, setSelectedMarket] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState<boolean>(false);
   const { openQuoteModal } = useQuoteModal();
+
+  // Đồng bộ bộ lọc từ URL query params (?category=... hoặc ?group=pallet-go|thung)
+  useEffect(() => {
+    const urlCategory = searchParams.get('category');
+    const urlGroup = searchParams.get('group');
+
+    if (urlCategory) {
+      setSelectedCategory(urlCategory);
+      setSelectedGroup('all');
+      setSelectedMaterial('all');
+      setSelectedMarket('all');
+    } else if (urlGroup === 'pallet-go' || urlGroup === 'thung') {
+      setSelectedGroup(urlGroup);
+      setSelectedCategory('all');
+      setSelectedMaterial('all');
+      setSelectedMarket('all');
+    } else {
+      setSelectedGroup('all');
+      setSelectedCategory('all');
+    }
+  }, [searchParams]);
 
   // Đồng bộ sản phẩm từ API (nếu admin vừa thêm/sửa/xóa)
   useEffect(() => {
@@ -37,26 +67,39 @@ export default function ProductsPage() {
   // Quick Filter preset helpers
   const handleQuickFilter = (type: string, value: string) => {
     if (type === 'all') {
+      setSelectedGroup('all');
       setSelectedCategory('all');
       setSelectedMaterial('all');
       setSelectedMarket('all');
       setSearchQuery('');
+    } else if (type === 'group') {
+      setSelectedGroup(value);
+      setSelectedCategory('all');
+      setSelectedMarket('all');
+      setSelectedMaterial('all');
     } else if (type === 'market') {
       setSelectedMarket(value);
+      setSelectedGroup('all');
       setSelectedCategory('all');
       setSelectedMaterial('all');
     } else if (type === 'category') {
       setSelectedCategory(value);
+      setSelectedGroup('all');
       setSelectedMarket('all');
       setSelectedMaterial('all');
     } else if (type === 'material') {
       setSelectedMaterial(value);
+      setSelectedGroup('all');
       setSelectedCategory('all');
       setSelectedMarket('all');
     }
   };
 
   const filteredProducts = allProducts.filter((p) => {
+    const matchesGroup =
+      selectedGroup === 'all' ||
+      (selectedGroup === 'pallet-go' && PALLET_GO_SLUGS.includes(p.categorySlug)) ||
+      (selectedGroup === 'thung' && THUNG_SLUGS.includes(p.categorySlug));
     const matchesCategory = selectedCategory === 'all' || p.categorySlug === selectedCategory;
     const matchesMaterial = selectedMaterial === 'all' || p.materialGroup === selectedMaterial;
     const matchesMarket = selectedMarket === 'all' || p.targetMarket === selectedMarket;
@@ -67,10 +110,11 @@ export default function ProductsPage() {
       p.woodType.toLowerCase().includes(searchQuery.toLowerCase()) ||
       (p.badges && p.badges.some((b) => b.toLowerCase().includes(searchQuery.toLowerCase())));
 
-    return matchesCategory && matchesMaterial && matchesMarket && matchesSearch;
+    return matchesGroup && matchesCategory && matchesMaterial && matchesMarket && matchesSearch;
   });
 
   const resetFilters = () => {
+    setSelectedGroup('all');
     setSelectedCategory('all');
     setSelectedMaterial('all');
     setSelectedMarket('all');
@@ -78,11 +122,23 @@ export default function ProductsPage() {
   };
 
   const activeFilterCount =
+    (selectedGroup !== 'all' ? 1 : 0) +
     (selectedCategory !== 'all' ? 1 : 0) +
     (selectedMaterial !== 'all' ? 1 : 0) +
     (selectedMarket !== 'all' ? 1 : 0);
 
   const isFiltered = activeFilterCount > 0 || searchQuery !== '';
+
+  const pageHeading =
+    selectedGroup === 'pallet-go'
+      ? 'Pallet Gỗ Xuất Khẩu & Đóng Theo Yêu Cầu'
+      : selectedGroup === 'thung'
+      ? 'Thùng Gỗ & Thùng Nhựa Công Nghiệp'
+      : selectedCategory === 'thung-nhua'
+      ? 'Thùng Nhựa Công Nghiệp'
+      : selectedCategory === 'thung-go-dong-hang'
+      ? 'Thùng Gỗ / Kiện Gỗ Đóng Hàng'
+      : 'Pallet Gỗ, Thùng Gỗ & Thùng Nhựa';
 
   return (
     <div className={styles.pageWrapper}>
@@ -92,9 +148,9 @@ export default function ProductsPage() {
           <span className="section-tag" style={{ backgroundColor: 'rgba(255,255,255,0.2)', color: '#ffffff' }}>
             <Box size={14} /> DANH MỤC SẢN PHẨM PALLET TRƯỜNG AN
           </span>
-          <h1 className={styles.pageTitle}>Pallet Gỗ, Ván Ép & Thùng Gỗ Xuất Khẩu</h1>
+          <h1 className={styles.pageTitle}>{pageHeading}</h1>
           <p className={styles.pageDesc}>
-            Pallet gỗ thông sấy xuất khẩu Mỹ, pallet tràm đi Campuchia, thùng gỗ bọc lót máy móc và pallet ván ép plywood gia công trực tiếp tại xưởng Hóc Môn.
+            Pallet gỗ thông sấy xuất khẩu Mỹ, pallet tràm đi Campuchia, thùng gỗ bọc lót máy móc, thùng nhựa công nghiệp và pallet ván ép plywood gia công trực tiếp tại xưởng Hóc Môn.
           </p>
 
           {/* Quick Filter Horizontal Scroll Strip */}
@@ -104,6 +160,24 @@ export default function ProductsPage() {
               className={`${styles.pillBtn} ${!isFiltered ? styles.pillActive : ''}`}
             >
               🌟 Tất Cả ({allProducts.length})
+            </button>
+            <button
+              onClick={() => handleQuickFilter('group', 'pallet-go')}
+              className={`${styles.pillBtn} ${selectedGroup === 'pallet-go' ? styles.pillActive : ''}`}
+            >
+              🪵 Pallet Gỗ
+            </button>
+            <button
+              onClick={() => handleQuickFilter('category', 'thung-go-dong-hang')}
+              className={`${styles.pillBtn} ${selectedCategory === 'thung-go-dong-hang' ? styles.pillActive : ''}`}
+            >
+              📦 Thùng Gỗ
+            </button>
+            <button
+              onClick={() => handleQuickFilter('category', 'thung-nhua')}
+              className={`${styles.pillBtn} ${selectedCategory === 'thung-nhua' ? styles.pillActive : ''}`}
+            >
+              🧺 Thùng Nhựa
             </button>
             <button
               onClick={() => handleQuickFilter('market', 'xuat-khau-my')}
@@ -118,22 +192,10 @@ export default function ProductsPage() {
               🇰🇭 Đi Campuchia
             </button>
             <button
-              onClick={() => handleQuickFilter('category', 'thung-go-dong-hang')}
-              className={`${styles.pillBtn} ${selectedCategory === 'thung-go-dong-hang' ? styles.pillActive : ''}`}
-            >
-              📦 Thùng Gỗ Máy Móc
-            </button>
-            <button
               onClick={() => handleQuickFilter('category', 'pallet-van-ep')}
               className={`${styles.pillBtn} ${selectedCategory === 'pallet-van-ep' ? styles.pillActive : ''}`}
             >
               🪵 Pallet Ván Ép Plywood
-            </button>
-            <button
-              onClick={() => handleQuickFilter('material', 'go-thong')}
-              className={`${styles.pillBtn} ${selectedMaterial === 'go-thong' ? styles.pillActive : ''}`}
-            >
-              🌲 Gỗ Thông Nhập Khẩu
             </button>
             <button
               onClick={() => handleQuickFilter('category', 'pallet-theo-yeu-cau')}
@@ -174,8 +236,11 @@ export default function ProductsPage() {
             </div>
             <div className={styles.categoryList}>
               <button
-                onClick={() => setSelectedCategory('all')}
-                className={`${styles.catBtn} ${selectedCategory === 'all' ? styles.catActive : ''}`}
+                onClick={() => {
+                  setSelectedCategory('all');
+                  setSelectedGroup('all');
+                }}
+                className={`${styles.catBtn} ${selectedCategory === 'all' && selectedGroup === 'all' ? styles.catActive : ''}`}
               >
                 <span>Tất Cả Nhóm</span>
                 <span className={styles.catCount}>({allProducts.length})</span>
@@ -185,7 +250,10 @@ export default function ProductsPage() {
                 return (
                   <button
                     key={cat.id}
-                    onClick={() => setSelectedCategory(cat.slug)}
+                    onClick={() => {
+                      setSelectedCategory(cat.slug);
+                      setSelectedGroup('all');
+                    }}
                     className={`${styles.catBtn} ${selectedCategory === cat.slug ? styles.catActive : ''}`}
                   >
                     <span>{cat.name}</span>
@@ -403,8 +471,11 @@ export default function ProductsPage() {
                 <h4>Nhóm Sản Phẩm</h4>
                 <div className={styles.drawerChipGrid}>
                   <button
-                    onClick={() => setSelectedCategory('all')}
-                    className={`${styles.drawerChip} ${selectedCategory === 'all' ? styles.chipActive : ''}`}
+                    onClick={() => {
+                      setSelectedCategory('all');
+                      setSelectedGroup('all');
+                    }}
+                    className={`${styles.drawerChip} ${selectedCategory === 'all' && selectedGroup === 'all' ? styles.chipActive : ''}`}
                   >
                     Tất cả ({allProducts.length})
                   </button>
@@ -413,7 +484,10 @@ export default function ProductsPage() {
                     return (
                       <button
                         key={cat.id}
-                        onClick={() => setSelectedCategory(cat.slug)}
+                        onClick={() => {
+                          setSelectedCategory(cat.slug);
+                          setSelectedGroup('all');
+                        }}
                         className={`${styles.drawerChip} ${selectedCategory === cat.slug ? styles.chipActive : ''}`}
                       >
                         {cat.name} ({count})
@@ -479,6 +553,14 @@ export default function ProductsPage() {
         </div>
       )}
     </div>
+  );
+}
+
+export default function ProductsPage() {
+  return (
+    <Suspense fallback={<div className="container" style={{ padding: '4rem 1rem', textAlign: 'center' }}>Đang tải danh mục sản phẩm...</div>}>
+      <ProductsContent />
+    </Suspense>
   );
 }
 

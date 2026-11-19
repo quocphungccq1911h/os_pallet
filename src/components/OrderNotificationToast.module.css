@@ -1,0 +1,173 @@
+.toastWrapper {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 1100;
+  max-width: 360px;
+  width: calc(100% - 48px);
+  transition: transform 0.38s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.32s ease;
+  pointer-events: none;
+  animation: toastSlideUp 0.38s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes toastSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.toastVisible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.toastHidden {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+}
+
+.toastCard {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background-color: #ffffff;
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 14px;
+  padding: 0.7rem 0.85rem;
+  box-shadow: 0 12px 32px -6px rgba(15, 23, 42, 0.16), 0 4px 12px -2px rgba(15, 23, 42, 0.06);
+  position: relative;
+  transition: var(--transition-fast);
+}
+
+.toastCard:hover {
+  border-color: rgba(217, 119, 6, 0.35);
+  box-shadow: 0 16px 36px -6px rgba(15, 23, 42, 0.2);
+}
+
+.avatarBox {
+  position: relative;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #c2410c 0%, #9a3412 100%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-weight: 800;
+  font-size: 0.92rem;
+  letter-spacing: 0.02em;
+}
+
+.avatarInitials {
+  line-height: 1;
+}
+
+.verifiedBadge {
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background-color: #2563eb;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.contentBox {
+  flex: 1;
+  min-width: 0;
+  padding-right: 1rem;
+}
+
+.topRow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.15rem;
+}
+
+.customerName {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 140px;
+}
+
+.metaText {
+  font-size: 0.72rem;
+  color: var(--text-light);
+  white-space: nowrap;
+}
+
+.orderLine {
+  font-size: 0.78rem;
+  line-height: 1.38;
+  color: var(--text-muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.productHighlight {
+  color: #b45309;
+  font-weight: 700;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  color: var(--text-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-fast);
+}
+
+.closeBtn:hover {
+  background-color: #f1f5f9;
+  color: var(--secondary);
+}
+
+/* Mobile: đặt nổi phía trên thanh mobileBottomBar (64px) */
+@media (max-width: 768px) {
+  .toastWrapper {
+    bottom: 76px;
+    left: 12px;
+    right: 12px;
+    width: auto;
+    max-width: 340px;
+  }
+
+  .toastCard {
+    padding: 0.6rem 0.75rem;
+    border-radius: 12px;
+  }
+
+  .avatarBox {
+    width: 36px;
+    height: 36px;
+    font-size: 0.82rem;
+  }
+}

@@ -63,6 +63,7 @@
 .mainNav {
   background-color: #ffffff;
   padding: 0.8rem 0;
+  position: relative;
 }
 
 .mainNavContainer {
@@ -118,12 +119,17 @@
 .desktopNav {
   display: flex;
   align-items: center;
-  gap: 2rem;
+  gap: 1.6rem;
   flex-shrink: 0;
 }
 
+.navDropdownTrigger {
+  display: flex;
+  align-items: center;
+}
+
 .navLink {
-  font-size: 0.95rem;
+  font-size: 0.94rem;
   font-weight: 600;
   color: var(--text-main);
   transition: var(--transition-fast);
@@ -133,7 +139,24 @@
   flex-shrink: 0;
 }
 
-.navLink:hover {
+.navLinkWithIcon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.navChevron {
+  transition: transform 0.2s ease;
+  color: var(--text-muted);
+}
+
+.navChevronOpen {
+  transform: rotate(180deg);
+  color: var(--primary);
+}
+
+.navLink:hover,
+.navLinkActive {
   color: var(--primary);
 }
 
@@ -148,8 +171,177 @@
   transition: var(--transition-fast);
 }
 
-.navLink:hover::after {
+.navLink:hover::after,
+.navLinkActive::after {
   width: 100%;
+}
+
+/* Desktop Mega Menu Panel */
+.megaMenuPanel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #ffffff;
+  border-top: 2px solid var(--primary);
+  box-shadow: 0 16px 32px -8px rgba(15, 23, 42, 0.14);
+  z-index: 999;
+  padding: 1rem 0 1.15rem;
+  animation: megaFadeIn 0.18s ease-out;
+}
+
+@keyframes megaFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.megaMenuGrid {
+  display: grid;
+  grid-template-columns: 270px 250px 235px;
+  justify-content: center;
+  gap: 1.15rem;
+  align-items: stretch;
+}
+
+.megaColumn {
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  transition: var(--transition-fast);
+}
+
+.megaColumnHighlight {
+  background-color: #fffbeb;
+  border-color: rgba(217, 119, 6, 0.22);
+}
+
+.megaColHeader {
+  padding-bottom: 0.45rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.megaColumnHighlight .megaColHeader {
+  border-bottom-color: rgba(217, 119, 6, 0.25);
+}
+
+.megaColTitle {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: var(--secondary);
+  text-transform: uppercase;
+}
+
+.megaColumnHighlight .megaColTitle {
+  color: var(--primary);
+}
+
+.megaList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+}
+
+.megaLink {
+  display: block;
+  padding: 0.34rem 0.5rem;
+  margin: 0 -0.5rem;
+  border-radius: 6px;
+  font-size: 0.86rem;
+  font-weight: 500;
+  color: var(--text-main);
+  transition: var(--transition-fast);
+}
+
+.megaLink:hover {
+  background-color: rgba(217, 119, 6, 0.1);
+  color: var(--primary-hover);
+  padding-left: 0.7rem;
+}
+
+.megaViewAll {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin-top: 0.6rem;
+  padding-top: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--primary);
+  transition: var(--transition-fast);
+}
+
+.megaViewAll:hover {
+  color: var(--primary-hover);
+  gap: 0.48rem;
+}
+
+/* Dark CTA Card inside Mega Menu */
+.megaCtaCard {
+  background: linear-gradient(145deg, #1e293b 0%, #0f172a 100%);
+  color: #ffffff;
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 8px 20px -5px rgba(15, 23, 42, 0.28);
+}
+
+.megaCtaTitle {
+  font-size: 0.94rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.3rem;
+}
+
+.megaCtaDesc {
+  font-size: 0.77rem;
+  line-height: 1.42;
+  color: #cbd5e1;
+  margin-bottom: 0.7rem;
+}
+
+.megaCtaPhone {
+  display: block;
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 0.02em;
+  margin-bottom: 0.65rem;
+  transition: var(--transition-fast);
+}
+
+.megaCtaPhone:hover {
+  color: #fbbf24;
+}
+
+.megaCtaBtn {
+  width: 100%;
+  padding: 0.55rem 0.85rem;
+  border-radius: 7px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+  color: #ffffff;
+  font-size: 0.84rem;
+  font-weight: 700;
+  text-align: center;
+  transition: var(--transition-fast);
+}
+
+.megaCtaBtn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(217, 119, 6, 0.4);
 }
 
 .navActions {
@@ -255,6 +447,52 @@
   color: var(--primary-dark);
 }
 
+.mobileAccordionGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileAccordionBtn {
+  width: 100%;
+  text-align: left;
+  font-size: 1rem;
+  color: var(--text-main);
+}
+
+.mobileSubList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.45rem 0.5rem 0.5rem 1.25rem;
+  border-left: 2px solid var(--primary-light);
+  margin-left: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.mobileSubLink {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-main);
+  border-radius: var(--radius-sm);
+  transition: var(--transition-fast);
+}
+
+.mobileSubLink:hover {
+  background-color: #fffbeb;
+  color: var(--primary-dark);
+}
+
+.mobileSubViewAll {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
 .mobileContactBox {
   margin-top: 1rem;
   padding-top: 1rem;
@@ -277,7 +515,8 @@
   .topBarLeft span:first-child {
     display: none;
   }
-  .desktopNav {
+  .desktopNav,
+  .megaMenuPanel {
     display: none;
   }
   .hamburger {
