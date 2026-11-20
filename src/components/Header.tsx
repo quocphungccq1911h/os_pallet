@@ -77,10 +77,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
               <a href={`tel:${companyInfo.hotline}`} className={styles.topBarPhoneLink}>
                 <strong>{companyInfo.hotlineFormatted}</strong>
               </a>
-              <span className={styles.topBarDivider}>-</span>
-              <a href={`tel:${companyInfo.secondaryHotline}`} className={styles.topBarPhoneLink}>
-                <strong>{companyInfo.secondaryHotlineFormatted}</strong>
-              </a>
             </div>
             <a href={`mailto:${companyInfo.email}`} className={styles.topBarItem}>
               <Mail size={14} />
@@ -416,13 +412,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
             </Link>
 
             <div className={styles.mobileContactBox}>
-              <a href={`tel:${companyInfo.hotline}`} className="btn btn-hotline" style={{ width: '100%', marginBottom: '0.4rem' }}>
+              <a href={`tel:${companyInfo.hotline}`} className="btn btn-hotline" style={{ width: '100%', marginBottom: '0.6rem' }}>
                 <Phone size={18} />
-                <span>Line 1: {companyInfo.hotlineFormatted}</span>
-              </a>
-              <a href={`tel:${companyInfo.secondaryHotline}`} className="btn btn-hotline" style={{ width: '100%', marginBottom: '0.6rem', backgroundColor: '#1e3a8a' }}>
-                <Phone size={18} />
-                <span>Line 2: {companyInfo.secondaryHotlineFormatted}</span>
+                <span>Hotline: {companyInfo.hotlineFormatted}</span>
               </a>
               <button
                 onClick={() => {

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React from 'react';
 import { ContactFormSection } from '@/components/home/ContactFormSection';
@@ -53,8 +53,7 @@ export default function ContactPage() {
               <h3 className={styles.cardTitle}>Hotline &amp; Zalo</h3>
             </div>
             <div className={styles.cardDesc}>
-              <p>Hotline 1: <strong>{companyInfo.hotlineFormatted}</strong></p>
-              <p>Hotline 2: <strong>{companyInfo.secondaryHotlineFormatted}</strong></p>
+              <p>Hotline / Zalo: <strong>{companyInfo.hotlineFormatted}</strong></p>
             </div>
           </div>
 

@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
@@ -1190,16 +1190,9 @@ export default function AdminDashboardPage() {
 
                 <div>
                   <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#475569', marginBottom: '0.4rem' }}>
-                    Hotline Chính (Line 1)
+                    Hotline & Zalo Chính
                   </label>
                   <input type="text" readOnly value={companyInfo.hotlineFormatted} className={styles.searchInput} style={{ background: '#f8fafc', fontWeight: 700, color: '#15803d' }} />
-                </div>
-
-                <div>
-                  <label style={{ display: 'block', fontSize: '0.85rem', fontWeight: 700, color: '#475569', marginBottom: '0.4rem' }}>
-                    Hotline Phụ (Line 2)
-                  </label>
-                  <input type="text" readOnly value={companyInfo.secondaryHotlineFormatted} className={styles.searchInput} style={{ background: '#f8fafc', fontWeight: 700, color: '#15803d' }} />
                 </div>
 
                 <div style={{ gridColumn: '1 / -1' }}>

@@ -45,8 +45,6 @@ export const ContactFormSection: React.FC = () => {
                   <strong>Hotline / Zalo Báo Giá 24/7</strong>
                   <p>
                     <a href={`tel:${companyInfo.hotline}`} className={styles.hotlineLink}>{companyInfo.hotlineFormatted}</a>
-                    {" - "}
-                    <a href={`tel:${companyInfo.secondaryHotline}`} className={styles.hotlineLink}>{companyInfo.secondaryHotlineFormatted}</a>
                   </p>
                 </div>
               </div>

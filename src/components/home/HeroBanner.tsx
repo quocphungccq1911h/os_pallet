@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Phone, ShieldCheck, CheckCircle2, FileText, ArrowRight } from 'lucide-react';
 import { companyInfo } from '@/data/companyInfo';
 import styles from './HeroBanner.module.css';
@@ -53,14 +53,9 @@ export const HeroBanner: React.FC<HeroBannerProps> = ({ onOpenQuoteModal }) => {
             </button>
             
             <div className={styles.hotlinesRow}>
-              <a href={`tel:${companyInfo.hotline}`} className={`btn btn-hotline ${styles.btnHotline}`} title="Gọi Hotline Line 1">
+              <a href={`tel:${companyInfo.hotline}`} className={`btn btn-hotline ${styles.btnHotline}`} title="Gọi Hotline Tư Vấn">
                 <Phone size={15} />
                 <span>{companyInfo.hotlineFormatted}</span>
-              </a>
-
-              <a href={`tel:${companyInfo.secondaryHotline}`} className={`btn ${styles.btnHotlineSecondary}`} title="Gọi Hotline Line 2">
-                <Phone size={15} />
-                <span>{companyInfo.secondaryHotlineFormatted}</span>
               </a>
             </div>
           </div>

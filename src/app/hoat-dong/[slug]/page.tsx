@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
@@ -264,11 +264,7 @@ export default function ActivityDetailPage() {
               <div className={styles.contactBox}>
                 <a href={`tel:${companyInfo.hotline}`} className={styles.btnHotline}>
                   <Phone size={16} />
-                  <span>Hotline 1: {companyInfo.hotlineFormatted}</span>
-                </a>
-                <a href={`tel:${companyInfo.secondaryHotline}`} className={styles.btnHotline}>
-                  <Phone size={16} />
-                  <span>Hotline 2: {companyInfo.secondaryHotlineFormatted}</span>
+                  <span>Hotline: {companyInfo.hotlineFormatted}</span>
                 </a>
                 <a href={companyInfo.zaloUrl} target="_blank" rel="noopener noreferrer" className={styles.btnZalo}>
                   <MessageSquare size={16} />

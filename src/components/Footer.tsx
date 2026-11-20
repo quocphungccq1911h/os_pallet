@@ -64,7 +64,7 @@ export const Footer: React.FC = () => {
               </div>
               <div className={styles.contactItem}>
                 <Phone size={18} className={styles.iconAccent} />
-                <span><strong>Hotline báo giá:</strong> <a href={`tel:${companyInfo.hotline}`} style={{ color: '#ffffff' }}>{companyInfo.hotlineFormatted}</a> - <a href={`tel:${companyInfo.secondaryHotline}`} style={{ color: '#ffffff' }}>{companyInfo.secondaryHotlineFormatted}</a></span>
+                <span><strong>Hotline báo giá:</strong> <a href={`tel:${companyInfo.hotline}`} style={{ color: '#ffffff' }}>{companyInfo.hotlineFormatted}</a></span>
               </div>
               <div className={styles.contactItem}>
                 <Mail size={18} className={styles.iconAccent} />
