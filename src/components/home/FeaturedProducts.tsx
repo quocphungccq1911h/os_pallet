@@ -57,7 +57,7 @@ export const FeaturedProducts: React.FC<FeaturedProductsProps> = ({ onOpenQuoteM
             onClick={() => setSelectedCategory('all')}
             className={`${styles.filterBtn} ${selectedCategory === 'all' ? styles.activeFilter : ''}`}
           >
-            Tất Cả Pallet
+            Tất Cả Sản Phẩm
           </button>
           {categories.map((cat) => (
             <button

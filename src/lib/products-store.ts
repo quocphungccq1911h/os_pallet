@@ -1,6 +1,6 @@
 import fs from 'fs/promises';
 import path from 'path';
-import { Product, products as initialProducts } from '@/data/products';
+import { Product, products as initialProducts, sortProductsByPriority } from '@/data/products';
 import { supabase } from '@/lib/supabase';
 
 const DATA_FILE_PATH = path.join(process.cwd(), 'src', 'data', 'products.json');
@@ -16,19 +16,17 @@ export function clearProductsCache() {
 }
 
 /**
- * Chuẩn hóa sản phẩm: Luôn đảm bảo banner_main.png nằm ở vị trí cuối cùng trong gallery
+ * Chuẩn hóa sản phẩm: Giữ nguyên danh sách ảnh sản phẩm sạch (lọc bỏ banner_main.png nếu trùng)
  */
 export function normalizeProduct(p: Product): Product {
   const existingGallery = p.gallery && p.gallery.length > 0 ? p.gallery : (p.imageUrl ? [p.imageUrl] : []);
   const nonBanner = existingGallery.filter((img) => img && !img.endsWith('banner_main.png'));
-  
-  // Đặt DEFAULT_BANNER ở vị trí cuối cùng
-  const normalizedGallery = [...nonBanner, DEFAULT_BANNER];
 
-  // Ảnh đại diện chính là ảnh đầu tiên không phải banner (nếu có), hoặc lấy ảnh đã chọn
   const mainImage = (p.imageUrl && !p.imageUrl.endsWith('banner_main.png'))
     ? p.imageUrl
     : (nonBanner[0] || DEFAULT_BANNER);
+
+  const normalizedGallery = nonBanner.length > 0 ? nonBanner : [mainImage];
 
   return {
     ...p,
@@ -71,12 +69,12 @@ async function getLocalProducts(): Promise<Product[]> {
     const fileContent = await fs.readFile(DATA_FILE_PATH, 'utf-8');
     const data = JSON.parse(fileContent);
     if (Array.isArray(data) && data.length > 0) {
-      return (data as Product[]).map(normalizeProduct);
+      return sortProductsByPriority((data as Product[]).map(normalizeProduct));
     }
   } catch {
     // ignore
   }
-  return initialProducts.map(normalizeProduct);
+  return sortProductsByPriority(initialProducts.map(normalizeProduct));
 }
 
 /**
@@ -113,7 +111,7 @@ export async function getAllProducts(): Promise<Product[]> {
     const { data, error } = (await Promise.race([fetchPromise, timeoutPromise])) as any;
 
     if (!error && Array.isArray(data) && data.length > 0) {
-      memoryCache = (data as Product[]).map(normalizeProduct);
+      memoryCache = sortProductsByPriority((data as Product[]).map(normalizeProduct));
       lastFetchTime = Date.now();
       return memoryCache;
     }

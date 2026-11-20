@@ -36,6 +36,30 @@ export interface Category {
 
 export const categories: Category[] = [
   {
+    id: "pallet-go-moi",
+    name: "Pallet Gỗ Thông & Tràm Mới",
+    slug: "pallet-go-moi",
+    description: "Sản xuất mới 100% từ gỗ tràm tự nhiên, gỗ thông xẻ sấy đạt độ ẩm tiêu chuẩn, chắc khỏe."
+  },
+  {
+    id: "pallet-van-ep",
+    name: "Pallet Ván Ép (Plywood)",
+    slug: "pallet-van-ep",
+    description: "Pallet mặt ván ép phẳng mịn, siêu nhẹ, không giác gỗ, xuất khẩu thuận tiện không vướng thủ tục hun trùng khắt khe."
+  },
+  {
+    id: "pallet-xuat-khau",
+    name: "Pallet Xuất Khẩu (ISPM 15)",
+    slug: "pallet-xuat-khau",
+    description: "Khử trùng nhiệt HT tiêu chuẩn quốc tế ISPM 15, đầy đủ mộc dấu và chứng thư thông quan."
+  },
+  {
+    id: "pallet-theo-yeu-cau",
+    name: "Pallet Đóng Theo Yêu Cầu",
+    slug: "pallet-theo-yeu-cau",
+    description: "Thiết kế, lên mẫu và gia công kích thước, quy cách theo đúng bản vẽ kỹ thuật của khách hàng."
+  },
+  {
     id: "thung-go-dong-hang",
     name: "Thùng Gỗ / Kiện Gỗ Đóng Hàng",
     slug: "thung-go-dong-hang",
@@ -46,30 +70,6 @@ export const categories: Category[] = [
     name: "Thùng Nhựa Công Nghiệp",
     slug: "thung-nhua",
     description: "Thùng nhựa đặc, thùng nhựa hở, khay nhựa công nghiệp bền bỉ chuyên dụng cho kho xưởng và vận chuyển hàng hóa."
-  },
-  {
-    id: "pallet-van-ep",
-    name: "Pallet Ván Ép (Plywood)",
-    slug: "pallet-van-ep",
-    description: "Pallet mặt ván ép phẳng mịn, siêu nhẹ, không giác gỗ, xuất khẩu thuận tiện không vướng thủ tục hun trùng khắt khe."
-  },
-  {
-    id: "pallet-go-moi",
-    name: "Pallet Gỗ Thông & Tràm Mới",
-    slug: "pallet-go-moi",
-    description: "Sản xuất mới 100% từ gỗ tràm tự nhiên, gỗ thông xẻ sấy đạt độ ẩm tiêu chuẩn, chắc khỏe."
-  },
-  {
-    id: "pallet-theo-yeu-cau",
-    name: "Pallet Đóng Theo Yêu Cầu",
-    slug: "pallet-theo-yeu-cau",
-    description: "Thiết kế, lên mẫu và gia công kích thước, quy cách theo đúng bản vẽ kỹ thuật của khách hàng."
-  },
-  {
-    id: "pallet-xuat-khau",
-    name: "Pallet Xuất Khẩu (ISPM 15)",
-    slug: "pallet-xuat-khau",
-    description: "Khử trùng nhiệt HT tiêu chuẩn quốc tế ISPM 15, đầy đủ mộc dấu và chứng thư thông quan."
   }
 ];
 
@@ -85,6 +85,22 @@ export const THUNG_SLUGS = [
   'thung-nhua',
 ];
 
+export const CATEGORY_PRIORITY: Record<string, number> = {
+  'pallet-go-moi': 1,
+  'pallet-van-ep': 2,
+  'pallet-xuat-khau': 3,
+  'pallet-theo-yeu-cau': 4,
+  'thung-go-dong-hang': 5,
+  'thung-nhua': 6,
+};
+
+export function sortProductsByPriority(list: Product[]): Product[] {
+  return [...list].sort((a, b) => {
+    const prioA = CATEGORY_PRIORITY[a.categorySlug] ?? 99;
+    const prioB = CATEGORY_PRIORITY[b.categorySlug] ?? 99;
+    return prioA - prioB;
+  });
+}
 export const products: Product[] = [
   {
     id: "p1",

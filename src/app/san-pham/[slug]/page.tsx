@@ -3,18 +3,46 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
-import { products as defaultProducts, Product } from '@/data/products';
+import {
+  products as defaultProducts,
+  Product,
+  PALLET_GO_SLUGS,
+  THUNG_SLUGS,
+} from '@/data/products';
 import { companyInfo } from '@/data/companyInfo';
-import { ShieldCheck, Phone, MessageCircle, FileText, CheckCircle2, ArrowLeft } from 'lucide-react';
+import { ShieldCheck, Phone, MessageCircle, FileText, CheckCircle2, ArrowLeft, ArrowRight, Layers } from 'lucide-react';
 import { useQuoteModal } from '@/context/QuoteModalContext';
 import { ProductGalleryBanner } from '@/components/ProductGalleryBanner';
+import { ProductCard } from '@/components/ProductCard';
+import { ProductTechnicalDrawing } from '@/components/ProductTechnicalDrawing';
 import styles from './detail.module.css';
+
+function getRelatedProducts(current: Product, all: Product[], limit = 4): Product[] {
+  const isCurrentPallet = PALLET_GO_SLUGS.includes(current.categorySlug);
+  const isCurrentThung = THUNG_SLUGS.includes(current.categorySlug);
+
+  return all
+    .filter((p) => p.id !== current.id && p.slug !== current.slug)
+    .map((p) => {
+      let score = 0;
+      if (p.categorySlug === current.categorySlug) score += 100;
+      if (isCurrentPallet && PALLET_GO_SLUGS.includes(p.categorySlug)) score += 40;
+      if (isCurrentThung && THUNG_SLUGS.includes(p.categorySlug)) score += 40;
+      if (p.targetMarket === current.targetMarket) score += 15;
+      if (p.materialGroup === current.materialGroup) score += 10;
+      return { product: p, score };
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map((item) => item.product);
+}
 
 export default function ProductDetailPage() {
   const params = useParams();
   const slug = params?.slug as string;
   const { openQuoteModal } = useQuoteModal();
 
+  const [allProducts, setAllProducts] = useState<Product[]>(defaultProducts);
   const [product, setProduct] = useState<Product | undefined>(() =>
     defaultProducts.find((p) => p.slug === slug)
   );
@@ -29,6 +57,7 @@ export default function ProductDetailPage() {
         const res = await fetch('/api/products');
         if (res.ok) {
           const list: Product[] = await res.json();
+          if (Array.isArray(list) && list.length > 0) { setAllProducts(list); }
           const found = list.find((p) => p.slug === slug);
           if (found) {
             setProduct(found);
@@ -260,6 +289,12 @@ export default function ProductDetailPage() {
           </div>
         </div>
 
+        {/* Technical Drawing / Blueprint Section */}
+        <ProductTechnicalDrawing
+          product={product}
+          onRequestCustomDrawing={() => openQuoteModal(product.slug)}
+        />
+
         {/* Product Full Description & Highlights */}
         <div className={styles.descSection}>
           <h2 className={styles.sectionHeading}>Chi Tiết Sản Phẩm & Ưu Điểm Nổi Bật</h2>
@@ -311,6 +346,40 @@ export default function ProductDetailPage() {
             </a>
           </div>
         )}
+
+        {/* Related Products Section */}
+        {(() => {
+          const related = getRelatedProducts(product, allProducts, 4);
+          if (related.length === 0) return null;
+          return (
+            <section className={styles.relatedSection}>
+              <div className={styles.relatedHeader}>
+                <div>
+                  <span className="section-tag">
+                    <Layers size={14} /> GỢI Ý CHO BẠN
+                  </span>
+                  <h2 className={styles.relatedTitle}>Sản Phẩm Liên Quan</h2>
+                </div>
+                <Link
+                  href={`/san-pham?category=${product.categorySlug}`}
+                  className={styles.relatedViewAll}
+                >
+                  <span>Xem thêm cùng danh mục</span>
+                  <ArrowRight size={16} />
+                </Link>
+              </div>
+              <div className={styles.relatedGrid}>
+                {related.map((item) => (
+                  <ProductCard
+                    key={item.id}
+                    product={item}
+                    onOpenQuoteModal={(s) => openQuoteModal(s)}
+                  />
+                ))}
+              </div>
+            </section>
+          );
+        })()}
       </div>
     </div>
   );

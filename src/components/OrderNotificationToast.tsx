@@ -9,10 +9,9 @@ import {
 } from '@/data/orderNotifications';
 import styles from './OrderNotificationToast.module.css';
 
-// Tần suất xuất hiện gần và tự nhiên hơn: 5s -> 15s -> 25s -> 40s -> 60s -> 60s -> 90s -> 90s
-const SCHEDULE_DELAYS_MS = [5_000, 15_000, 25_000, 40_000, 60_000, 60_000, 90_000, 90_000];
+// Nhịp hiển thị tự nhiên: 5s -> 15s -> 25s -> 40s -> lặp lại mỗi 60s
+const SCHEDULE_DELAYS_MS = [5_000, 15_000, 25_000, 40_000, 60_000];
 const VISIBLE_DURATION_MS = 6_500;
-const DISMISS_STORAGE_KEY = 'ta_order_toast_dismissed';
 
 function shuffleList<T>(list: T[]): T[] {
   const arr = [...list];
@@ -30,10 +29,11 @@ export const OrderNotificationToast: React.FC = () => {
   const itemsRef = useRef<OrderNotificationItem[]>(shuffleList(defaultOrderNotifications));
   const itemIndexRef = useRef(0);
   const stepIndexRef = useRef(0);
-  const isDismissedRef = useRef(false);
   const isHoveredRef = useRef(false);
+  const pendingWhenVisibleRef = useRef(false);
   const showTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const hideTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const scheduleNextRef = useRef<() => void>(() => {});
 
   const clearTimers = useCallback(() => {
     if (showTimerRef.current) {
@@ -47,8 +47,6 @@ export const OrderNotificationToast: React.FC = () => {
   }, []);
 
   const showToastNow = useCallback(() => {
-    if (isDismissedRef.current) return;
-
     const pool = itemsRef.current;
     if (pool.length === 0) return;
 
@@ -56,10 +54,13 @@ export const OrderNotificationToast: React.FC = () => {
     itemIndexRef.current += 1;
     stepIndexRef.current += 1;
 
+    isHoveredRef.current = false;
     setCurrentItem(nextItem);
     setIsVisible(true);
 
-    // Lên lịch tự ẩn sau VISIBLE_DURATION_MS
+    if (hideTimerRef.current) {
+      clearTimeout(hideTimerRef.current);
+    }
     hideTimerRef.current = setTimeout(() => {
       if (!isHoveredRef.current) {
         setIsVisible(false);
@@ -68,23 +69,21 @@ export const OrderNotificationToast: React.FC = () => {
     }, VISIBLE_DURATION_MS);
   }, []);
 
-  const scheduleNextRef = useRef<() => void>(() => {});
-  const pendingWhenVisibleRef = useRef(false);
-
   const scheduleNext = useCallback(() => {
-    if (isDismissedRef.current) return;
-    if (stepIndexRef.current >= SCHEDULE_DELAYS_MS.length) return;
+    if (showTimerRef.current) {
+      clearTimeout(showTimerRef.current);
+      showTimerRef.current = null;
+    }
 
-    const delay = SCHEDULE_DELAYS_MS[stepIndexRef.current];
+    const delayIdx = Math.min(stepIndexRef.current, SCHEDULE_DELAYS_MS.length - 1);
+    const delay = SCHEDULE_DELAYS_MS[delayIdx];
+
     showTimerRef.current = setTimeout(() => {
-      if (isDismissedRef.current) return;
-
-      // Nếu tab trình duyệt đang ẩn (user ở tab khác), đợi khi user quay lại mới hiện
+      // Nếu tab trình duyệt đang ẩn, đợi khi user quay lại mới hiện
       if (typeof document !== 'undefined' && document.hidden) {
         pendingWhenVisibleRef.current = true;
         return;
       }
-
       showToastNow();
     }, delay);
   }, [showToastNow]);
@@ -94,8 +93,9 @@ export const OrderNotificationToast: React.FC = () => {
   // Khi user quay lại tab trình duyệt mà có thông báo đang chờ -> hiện sau 1.5s
   useEffect(() => {
     const handleVisibilityChange = () => {
-      if (!document.hidden && pendingWhenVisibleRef.current && !isDismissedRef.current) {
+      if (!document.hidden && pendingWhenVisibleRef.current) {
         pendingWhenVisibleRef.current = false;
+        if (showTimerRef.current) clearTimeout(showTimerRef.current);
         showTimerRef.current = setTimeout(() => {
           showToastNow();
         }, 1_500);
@@ -105,25 +105,16 @@ export const OrderNotificationToast: React.FC = () => {
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
   }, [showToastNow]);
 
-  // Nạp đơn hàng thật từ Supabase (đã ẩn thông tin nhạy cảm) và gộp với danh sách B2B mẫu
+  // Nạp đơn hàng thật từ Supabase và bắt đầu chu kỳ hiển thị
   useEffect(() => {
-    try {
-      if (typeof window !== 'undefined' && sessionStorage.getItem(DISMISS_STORAGE_KEY) === '1') {
-        isDismissedRef.current = true;
-        return;
-      }
-    } catch {
-      // Ignore storage access errors
-    }
-
     let cancelled = false;
+
     async function loadRealOrders() {
       try {
         const res = await fetch('/api/orders/recent-public');
         if (!res.ok) return;
         const realItems: OrderNotificationItem[] = await res.json();
         if (!cancelled && Array.isArray(realItems) && realItems.length > 0) {
-          // Xáo trộn đơn hàng thật từ DB để mỗi lần hiện đa dạng, không bị trùng lặp
           itemsRef.current = shuffleList(realItems);
         }
       } catch {
@@ -140,17 +131,22 @@ export const OrderNotificationToast: React.FC = () => {
     };
   }, [scheduleNext, clearTimers]);
 
+  // Bấm nút X: đóng popup hiện tại và tiếp tục lịch cho lần kế tiếp
   const handleDismiss = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    isDismissedRef.current = true;
+    isHoveredRef.current = false;
     setIsVisible(false);
     clearTimers();
-    try {
-      sessionStorage.setItem(DISMISS_STORAGE_KEY, '1');
-    } catch {
-      // Ignore storage errors
-    }
+    scheduleNext();
+  };
+
+  // Bấm vào sản phẩm trong popup: đóng popup, reset hover và tiếp tục lịch
+  const handleCardClick = () => {
+    isHoveredRef.current = false;
+    setIsVisible(false);
+    clearTimers();
+    scheduleNext();
   };
 
   const handleMouseEnter = () => {
@@ -163,7 +159,8 @@ export const OrderNotificationToast: React.FC = () => {
 
   const handleMouseLeave = () => {
     isHoveredRef.current = false;
-    if (isVisible && !isDismissedRef.current) {
+    if (isVisible) {
+      if (hideTimerRef.current) clearTimeout(hideTimerRef.current);
       hideTimerRef.current = setTimeout(() => {
         setIsVisible(false);
         scheduleNext();
@@ -181,7 +178,7 @@ export const OrderNotificationToast: React.FC = () => {
       role="status"
       aria-live="polite"
     >
-      <Link href={currentItem.href} className={styles.toastCard} onClick={() => setIsVisible(false)}>
+      <Link href={currentItem.href} className={styles.toastCard} onClick={handleCardClick}>
         {/* Avatar + Verified Badge */}
         <div className={styles.avatarBox}>
           <span className={styles.avatarInitials}>{currentItem.initials}</span>
