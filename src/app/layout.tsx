@@ -61,8 +61,8 @@ export default function RootLayout({
     },
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: 10.887,
-      longitude: 106.634,
+      latitude: 10.8441373,
+      longitude: 106.5654092,
     },
     sameAs: [
       companyInfo.facebook,

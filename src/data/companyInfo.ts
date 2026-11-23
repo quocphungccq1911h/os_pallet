@@ -31,8 +31,8 @@ export const companyInfo: CompanyInfo = {
   zaloUrl: "https://zalo.me/0568888216",
   facebook: "https://www.facebook.com/PalletTruongAn/",
   email: "ngockycntp@gmail.com",
-  address: "361/75 Huỳnh Thị Na, Xã Đông Thạnh, Huyện Hóc Môn, TP. Hồ Chí Minh",
-  factoryAddress: "361/75 Huỳnh Thị Na, Xã Đông Thạnh, Huyện Hóc Môn, TP. Hồ Chí Minh",
+  address: "94 Dương Công Khi, Bà Điểm, Hồ Chí Minh",
+  factoryAddress: "94 Dương Công Khi, Bà Điểm, Hồ Chí Minh",
   workingHours: "07:30 - 18:00 (Thứ 2 - Chủ Nhật)",
   serviceAreas: [
     "Hóc Môn & Củ Chi",
@@ -42,6 +42,6 @@ export const companyInfo: CompanyInfo = {
     "Đồng Nai (Biên Hòa, Nhơn Trạch, Long Thành)",
     "Tây Ninh & Cụm Cảng Biển Đóng Container"
   ],
-  googleMapsEmbed: "https://www.google.com/maps?q=361/75+Hu%E1%BB%B3nh+Th%E1%BB%8B+Na,+%C4%90%C3%B4ng+Th%E1%BA%A1nh,+H%C3%B3c+M%C3%B4n,+Th%C3%A0nh+ph%E1%BB%91+H%E1%BB%93+Ch%C3%AD+Minh&output=embed"
+  googleMapsEmbed: "https://www.google.com/maps?q=10.8441373,106.5654092+(X%C6%B0%E1%BB%9Fng+g%E1%BB%97+-+Pallet+Tr%C6%B0%E1%BB%9Dng+An)&z=17&output=embed"
 };
 

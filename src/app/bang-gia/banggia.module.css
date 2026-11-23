@@ -245,3 +245,96 @@
   }
 }
 
+
+/* Filter Tabs Bar */
+.filterBar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.filterTab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.58rem 1.05rem;
+  border-radius: 999px;
+  border: 1.5px solid #e2e8f0;
+  background: #ffffff;
+  color: #475569;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.18s ease;
+}
+
+.filterTab:hover {
+  border-color: var(--primary);
+  color: var(--primary-dark);
+}
+
+.filterTabActive {
+  background: var(--secondary);
+  border-color: var(--secondary);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.15);
+}
+
+.filterTabActive:hover {
+  color: #ffffff;
+  border-color: var(--secondary);
+}
+
+.filterCount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 20px;
+  padding: 0 0.4rem;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 700;
+  background: rgba(148, 163, 184, 0.2);
+  color: inherit;
+}
+
+.filterTabActive .filterCount {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.productLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-weight: 700;
+  color: var(--secondary);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+
+.productLink:hover {
+  color: var(--primary-dark);
+}
+
+.productLinkIcon {
+  opacity: 0.45;
+  flex-shrink: 0;
+}
+
+.productLink:hover .productLinkIcon {
+  opacity: 1;
+}
+
+.priceReal {
+  display: inline-block;
+  padding: 0.28rem 0.7rem;
+  border-radius: 6px;
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+  font-weight: 700;
+  font-size: 0.84rem;
+  white-space: nowrap;
+}

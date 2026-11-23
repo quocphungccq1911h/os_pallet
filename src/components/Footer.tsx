@@ -155,7 +155,7 @@ export const Footer: React.FC = () => {
                 loading="lazy"
               ></iframe>
               <a
-                href="https://maps.google.com/?q=361/75+Huỳnh+Thị+Na,+Đông+Thạnh,+Hóc+Môn,+TP.+Hồ+Chí+Minh"
+                href="https://www.google.com/maps/place/X%C6%B0%E1%BB%9Fng+g%E1%BB%97+-+Pallet+Tr%C6%B0%E1%BB%9Dng+An/@10.8441426,106.5628343,17z/data=!3m1!4b1!4m6!3m5!1s0x3174d55be195f14f:0x6afa9f41ef9b6161!8m2!3d10.8441373!4d106.5654092!16s%2Fg%2F11z3npbjlp?entry=ttu&g_ep=EgoyMDI2MTExOC4xIKXMDSoASAFQAw%3D%3D"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.mapDirectionBtn}

@@ -60,7 +60,7 @@ export const ProductGalleryBanner: React.FC<ProductGalleryBannerProps> = ({ onQu
           <div className={styles.infoCol}>
             <div className={styles.infoRow}>
               <MapPin size={15} className={styles.infoIcon} />
-              <span>361/75 Huỳnh Thị Na, Đông Thạnh, Hóc Môn, TP.HCM</span>
+              <span>94 Dương Công Khi, Bà Điểm, Hồ Chí Minh</span>
             </div>
             <div className={styles.infoRow}>
               <Mail size={15} className={styles.infoIcon} />

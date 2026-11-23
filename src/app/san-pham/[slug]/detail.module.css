@@ -330,6 +330,44 @@
   max-width: 60%;
 }
 
+.specRowTop {
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.specRowTop .specName {
+  flex-shrink: 0;
+  padding-top: 0.1rem;
+}
+
+.specBulletList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  max-width: 65%;
+  text-align: left;
+}
+
+.specBulletItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: #0f172a;
+  line-height: 1.45;
+}
+
+.specBulletDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background-color: var(--primary);
+  margin-top: 0.45rem;
+  flex-shrink: 0;
+}
+
 .actionGroup {
   display: flex;
   gap: 0.75rem;

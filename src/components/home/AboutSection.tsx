@@ -29,7 +29,7 @@ export const AboutSection: React.FC = () => {
           </h2>
 
           <p className={styles.description}>
-            <strong>{companyInfo.name}</strong> (tọa lạc tại số 361/75 Huỳnh Thị Na, Đông Thạnh, Hóc Môn, TP.HCM) là xưởng chuyên môn hóa sản xuất Pallet gỗ (gỗ thông, gỗ tràm), Pallet ván ép Plywood và đóng kiện Thùng Gỗ chuyên dụng cho máy móc thiết bị công nghiệp. Chúng tôi là đối tác tin cậy của hàng trăm xí nghiệp, kho vận tại TP.HCM, Bình Dương, Long An và các công ty đóng container xuất khẩu sang Campuchia, Mỹ, Châu Âu.
+            <strong>{companyInfo.name}</strong> (tọa lạc tại số 94 Dương Công Khi, Bà Điểm, Hồ Chí Minh) là xưởng chuyên môn hóa sản xuất Pallet gỗ (gỗ thông, gỗ tràm), Pallet ván ép Plywood và đóng kiện Thùng Gỗ chuyên dụng cho máy móc thiết bị công nghiệp. Chúng tôi là đối tác tin cậy của hàng trăm xí nghiệp, kho vận tại TP.HCM, Bình Dương, Long An và các công ty đóng container xuất khẩu sang Campuchia, Mỹ, Châu Âu.
           </p>
 
           <div className={styles.bulletList}>

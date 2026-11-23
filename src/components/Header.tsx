@@ -67,7 +67,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
           <div className={styles.topBarLeft}>
             <span className={styles.topBarItem}>
               <MapPin size={14} />
-              <span>361/75 Huỳnh Thị Na, Đông Thạnh, Hóc Môn, TP.HCM</span>
+              <span>94 Dương Công Khi, Bà Điểm, Hồ Chí Minh</span>
             </span>
             <span className={styles.topBarItem}>
               <Clock size={14} />

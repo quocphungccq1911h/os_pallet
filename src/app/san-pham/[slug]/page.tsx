@@ -252,7 +252,7 @@ export default function ProductDetailPage() {
                 <span className={styles.specVal}><strong>{product.dimensions}</strong></span>
               </div>
               <div className={styles.specRow}>
-                <span className={styles.specName}>Chất liệu gỗ:</span>
+                <span className={styles.specName}>Chất liệu:</span>
                 <span className={styles.specVal}>{product.woodType}</span>
               </div>
               <div className={styles.specRow}>
@@ -263,9 +263,20 @@ export default function ProductDetailPage() {
                 <span className={styles.specName}>Tải trọng động:</span>
                 <span className={styles.specVal}>{product.dynamicLoad}</span>
               </div>
-              <div className={styles.specRow}>
-                <span className={styles.specName}>Quy cách nâng:</span>
-                <span className={styles.specVal}>{product.specification}</span>
+              <div className={`${styles.specRow} ${styles.specRowTop}`}>
+                <span className={styles.specName}>Quy cách chi tiết:</span>
+                <ul className={styles.specBulletList}>
+                  {product.specification
+                    .split(/[\u00b7\u2022\n]+/)
+                    .map((item) => item.trim())
+                    .filter(Boolean)
+                    .map((item, idx) => (
+                      <li key={idx} className={styles.specBulletItem}>
+                        <span className={styles.specBulletDot} aria-hidden="true" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                </ul>
               </div>
               <div className={styles.specRow}>
                 <span className={styles.specName}>Mục đích sử dụng:</span>

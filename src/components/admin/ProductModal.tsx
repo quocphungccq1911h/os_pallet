@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
 import { Product, categories } from '@/data/products';
 import {
@@ -35,11 +35,13 @@ const MATERIAL_GROUPS = [
 ];
 
 const TARGET_MARKETS = [
-  { value: 'xuat-khau-my', label: 'Xuất khẩu thị trường Mỹ (Chuẩn GMA/ISPM 15)' },
+  { value: 'xuat-khau-my', label: 'Xuất khẩu thị trường Mỹ (Chuẩn GMA / ISPM 15)' },
   { value: 'xuat-khau-campuchia', label: 'Xuất khẩu Campuchia / ASEAN' },
   { value: 'xuat-khau-ispm15', label: 'Xuất khẩu Tiêu chuẩn ISPM 15 (Chung)' },
   { value: 'noi-dia', label: 'Lưu kho & Vận chuyển nội địa Việt Nam' },
 ];
+
+type SectionKey = 'basic' | 'spec' | 'images' | 'desc';
 
 export const ProductModal: React.FC<ProductModalProps> = ({
   isOpen,
@@ -50,22 +52,22 @@ export const ProductModal: React.FC<ProductModalProps> = ({
   const [formData, setFormData] = useState<Partial<Product>>({
     name: '',
     slug: '',
-    category: categories[0]?.name || 'Pallet Gỗ Thông & Tràm Mới',
+    category: categories[0]?.name || 'Pallet Gỗ Tràm (3 Gánh & 9 Chân Gù)',
     categorySlug: categories[0]?.slug || 'pallet-go-tram',
-    dimensions: '1200 x 1000 x 140 mm',
-    woodType: 'Gỗ Thông nhập khẩu xẻ sấy',
-    materialGroup: 'go-thong',
+    dimensions: '1200 x 1000 x 120 mm',
+    woodType: 'Gỗ Tràm tự nhiên tuyển chọn',
+    materialGroup: 'go-tram',
     targetMarket: 'noi-dia',
     staticLoad: '2.000 kg',
     dynamicLoad: '1.000 kg',
-    specification: 'Nan dày 20mm, đố khoét 4 hướng nâng xe máy',
+    specification: '',
     isExportStandard: false,
     isNew: true,
     priceDisplay: 'Liên hệ',
     description: '',
-    usagePurpose: 'Kê kho, đóng hàng xuất khẩu máy móc',
-    imageUrl: '/images/banner_main.png',
-    highlights: ['Chịu tải trọng tốt', 'Xẻ sấy chống mối mọt'],
+    usagePurpose: 'Kê kho, vận chuyển nội địa & xuất khẩu',
+    imageUrl: '',
+    highlights: ['Chịu tải trọng tốt', 'Sản xuất trực tiếp tại xưởng'],
     badges: ['GIÁ XƯỞNG', 'SẴN KHO'],
     facebookProof: {
       title: '',
@@ -80,12 +82,20 @@ export const ProductModal: React.FC<ProductModalProps> = ({
   const [isSaving, setIsSaving] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [badgeInput, setBadgeInput] = useState('');
+  const [specRows, setSpecRows] = useState<string[]>(['']);
+  const [activeSection, setActiveSection] = useState<SectionKey>('basic');
+
+  const secBasicRef = useRef<HTMLDivElement>(null);
+  const secSpecRef = useRef<HTMLDivElement>(null);
+  const secImagesRef = useRef<HTMLDivElement>(null);
+  const secDescRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (product) {
+      const cleanGallery = (product.gallery || []).filter((img) => Boolean(img && !img.endsWith('banner_main.png')));
       setFormData({
         ...product,
-        gallery: product.gallery && product.gallery.length > 0 ? [...product.gallery] : (product.imageUrl ? [product.imageUrl] : []),
+        gallery: cleanGallery.length > 0 ? cleanGallery : (product.imageUrl ? [product.imageUrl] : []),
         highlights: product.highlights?.length ? [...product.highlights] : ['Chịu tải trọng tốt'],
         badges: product.badges?.length ? [...product.badges] : ['GIÁ XƯỞNG'],
         facebookProof: product.facebookProof || {
@@ -95,27 +105,32 @@ export const ProductModal: React.FC<ProductModalProps> = ({
         },
       });
       setBadgeInput(product.badges ? product.badges.join(', ') : '');
+      const parsedSpecs = (product.specification || '')
+        .split(/[\u00b7\u2022\n]+/)
+        .map((s) => s.trim())
+        .filter(Boolean);
+      setSpecRows(parsedSpecs.length > 0 ? parsedSpecs : ['']);
     } else {
       setFormData({
         name: '',
         slug: '',
-        category: categories[0]?.name || 'Pallet Gỗ Thông & Tràm Mới',
+        category: categories[0]?.name || 'Pallet Gỗ Tràm (3 Gánh & 9 Chân Gù)',
         categorySlug: categories[0]?.slug || 'pallet-go-tram',
-        dimensions: '1200 x 1000 x 140 mm',
-        woodType: 'Gỗ Thông nhập khẩu xẻ sấy',
-        materialGroup: 'go-thong',
+        dimensions: '1200 x 1000 x 120 mm',
+        woodType: 'Gỗ Tràm tự nhiên tuyển chọn',
+        materialGroup: 'go-tram',
         targetMarket: 'noi-dia',
         staticLoad: '2.000 kg',
         dynamicLoad: '1.000 kg',
-        specification: 'Nan dày 20mm, đố khoét 4 hướng nâng',
+        specification: '',
         isExportStandard: false,
         isNew: true,
         priceDisplay: 'Liên hệ',
         description: '',
         usagePurpose: 'Kê kho, đóng hàng xuất khẩu',
-        imageUrl: '/images/banner_main.png',
-        gallery: ['/images/banner_main.png'],
-        highlights: ['Gỗ chuẩn quy cách', 'Chống mối mọt ẩm mốc'],
+        imageUrl: '',
+        gallery: [],
+        highlights: ['Chuẩn quy cách kỹ thuật', 'Giá gốc tại xưởng không qua trung gian'],
         badges: ['GIÁ TẠI XƯỞNG'],
         facebookProof: {
           title: '',
@@ -124,12 +139,25 @@ export const ProductModal: React.FC<ProductModalProps> = ({
         },
       });
       setBadgeInput('GIÁ TẠI XƯỞNG');
+      setSpecRows(['']);
     }
     setErrorMessage('');
     setGalleryUrlInput('');
+    setActiveSection('basic');
   }, [product, isOpen]);
 
   if (!isOpen) return null;
+
+  const scrollToSection = (key: SectionKey) => {
+    setActiveSection(key);
+    const refMap: Record<SectionKey, React.RefObject<HTMLDivElement>> = {
+      basic: secBasicRef,
+      spec: secSpecRef,
+      images: secImagesRef,
+      desc: secDescRef,
+    };
+    refMap[key].current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   // Handle Category Change
   const handleCategoryChange = (catSlug: string) => {
@@ -157,7 +185,25 @@ export const ProductModal: React.FC<ProductModalProps> = ({
 
   const removeHighlightRow = (index: number) => {
     const updated = (formData.highlights || []).filter((_, i) => i !== index);
-    setFormData({ ...formData, highlights: updated });
+    setFormData({ ...formData, highlights: updated.length > 0 ? updated : [''] });
+  };
+
+  // Handle Specification rows (mỗi dòng tương ứng 1 gạch đầu dòng trên web)
+  const handleSpecChange = (index: number, val: string) => {
+    const updated = [...specRows];
+    updated[index] = val;
+    setSpecRows(updated);
+  };
+
+  const addSpecRow = () => {
+    setSpecRows((prev) => [...prev, '']);
+  };
+
+  const removeSpecRow = (index: number) => {
+    setSpecRows((prev) => {
+      const next = prev.filter((_, i) => i !== index);
+      return next.length > 0 ? next : [''];
+    });
   };
 
   // Handle File Upload to /api/admin/upload
@@ -262,32 +308,42 @@ export const ProductModal: React.FC<ProductModalProps> = ({
 
     if (!formData.name?.trim()) {
       setErrorMessage('Vui lòng nhập tên sản phẩm.');
+      scrollToSection('basic');
       return;
     }
 
-    // Process badges from comma-separated string
     const processedBadges = badgeInput
       .split(',')
       .map((b) => b.trim().toUpperCase())
       .filter(Boolean);
 
-    // Clean up empty highlights
     const cleanedHighlights = (formData.highlights || []).filter((h) => h.trim().length > 0);
 
-    const nonBannerImages = (formData.gallery && formData.gallery.length > 0 ? formData.gallery : [formData.imageUrl || ''])
-      .filter((img): img is string => Boolean(img && !img.endsWith('banner_main.png')));
+    const joinedSpecification = specRows
+      .map((s) => s.trim())
+      .filter(Boolean)
+      .join(' \u00b7 ');
 
-    // Mặc định luôn đặt banner_main.png ở hình cuối cùng của từng sản phẩm
-    const finalGallery = [...nonBannerImages, '/images/banner_main.png'];
-    const finalImageUrl = (formData.imageUrl && !formData.imageUrl.endsWith('banner_main.png'))
-      ? formData.imageUrl
-      : (nonBannerImages[0] || '/images/banner_main.png');
+    const nonBannerImages = (
+      formData.gallery && formData.gallery.length > 0
+        ? formData.gallery
+        : [formData.imageUrl || '']
+    ).filter((img): img is string => Boolean(img && !img.endsWith('banner_main.png')));
+
+    const finalImageUrl =
+      formData.imageUrl && !formData.imageUrl.endsWith('banner_main.png')
+        ? formData.imageUrl
+        : nonBannerImages[0] || '/images/banner_main.png';
+
+    const finalGallery = nonBannerImages.length > 0 ? nonBannerImages : [finalImageUrl];
 
     setIsSaving(true);
 
     try {
       await onSave({
         ...formData,
+        priceDisplay: formData.priceDisplay?.trim() || 'Liên hệ',
+        specification: joinedSpecification,
         imageUrl: finalImageUrl,
         gallery: finalGallery,
         badges: processedBadges,
@@ -301,477 +357,612 @@ export const ProductModal: React.FC<ProductModalProps> = ({
     }
   };
 
+  const galleryCount = (formData.gallery || []).filter((img) => !img.endsWith('banner_main.png')).length;
+
   return (
     <div className={styles.backdrop} onClick={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        {/* Header */}
+        {/* Sticky Header */}
         <div className={styles.modalHeader}>
-          <div className={styles.modalTitle}>
-            <Package size={22} color="#b45309" />
-            <span>{product ? 'Chỉnh Sửa Sản Phẩm' : 'Thêm Sản Phẩm Pallet Mới'}</span>
+          <div className={styles.modalHeaderLeft}>
+            <div className={styles.headerIconBox}>
+              <Package size={20} />
+            </div>
+            <div className={styles.modalTitleWrap}>
+              <div className={styles.modalTitle}>
+                {product ? 'Chỉnh Sửa Sản Phẩm' : 'Thêm Sản Phẩm Mới'}
+              </div>
+              <div className={styles.modalSubtitle}>
+                {formData.name?.trim()
+                  ? formData.name
+                  : 'Nhập đầy đủ thông tin kỹ thuật, quy cách và hình ảnh thực tế tại xưởng'}
+              </div>
+            </div>
           </div>
-          <button onClick={onClose} className={styles.closeBtn} title="Đóng">
-            <X size={20} />
+          <button type="button" onClick={onClose} className={styles.closeBtn} title="Đóng">
+            <X size={18} />
           </button>
         </div>
 
-        {/* Form Body */}
-        <form onSubmit={handleSubmit} className={styles.modalBody}>
-          {errorMessage && (
-            <div style={{ padding: '0.75rem 1rem', background: '#fee2e2', color: '#b91c1c', borderRadius: '8px', fontSize: '0.875rem' }}>
-              ⚠️ {errorMessage}
-            </div>
-          )}
+        {/* Sticky Quick-Jump Navigation */}
+        <div className={styles.sectionNav}>
+          <button
+            type="button"
+            onClick={() => scrollToSection('basic')}
+            className={`${styles.sectionNavBtn} ${activeSection === 'basic' ? styles.sectionNavBtnActive : ''}`}
+          >
+            <Layers size={14} />
+            <span>1. Thông tin cơ bản</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollToSection('spec')}
+            className={`${styles.sectionNavBtn} ${activeSection === 'spec' ? styles.sectionNavBtnActive : ''}`}
+          >
+            <ShieldCheck size={14} />
+            <span>2. Kỹ thuật & Quy cách</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollToSection('images')}
+            className={`${styles.sectionNavBtn} ${activeSection === 'images' ? styles.sectionNavBtnActive : ''}`}
+          >
+            <ImageIcon size={14} />
+            <span>3. Hình ảnh ({galleryCount})</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollToSection('desc')}
+            className={`${styles.sectionNavBtn} ${activeSection === 'desc' ? styles.sectionNavBtnActive : ''}`}
+          >
+            <FileText size={14} />
+            <span>4. Mô tả & Facebook</span>
+          </button>
+        </div>
 
-          {/* 1. THÔNG TIN CƠ BẢN */}
-          <div className={styles.sectionBlock}>
-            <div className={styles.sectionTitle}>
-              <Layers size={18} color="#b45309" />
-              <span>1. Thông Tin Cơ Bản</span>
-            </div>
+        {/* Form Container (Scrollable Body + Sticky Footer) */}
+        <form onSubmit={handleSubmit} className={styles.modalForm}>
+          <div className={styles.modalBody}>
+            {errorMessage && (
+              <div className={styles.errorBanner}>⚠️ {errorMessage}</div>
+            )}
 
-            <div className={styles.grid2}>
+            {/* 1. THÔNG TIN CƠ BẢN */}
+            <div ref={secBasicRef} className={styles.sectionBlock}>
+              <div className={styles.sectionHeader}>
+                <div className={styles.sectionTitle}>
+                  <span className={styles.sectionStep}>01</span>
+                  <span>Thông Tin Cơ Bản</span>
+                </div>
+                <span className={styles.sectionHint}>Tên, đường dẫn & phân loại</span>
+              </div>
+
+              {/* Tên sản phẩm full-width */}
               <div className={styles.formGroup}>
                 <label className={styles.label}>Tên sản phẩm *</label>
                 <input
                   type="text"
                   required
-                  placeholder="VD: Pallet Gỗ Thông Xuất Khẩu Mỹ 1200x1000mm"
+                  placeholder="VD: Pallet Gỗ Tràm Đố Bằng 3 Gánh Phổ Thông — Mã PTA-T01"
                   value={formData.name || ''}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className={styles.input}
                 />
               </div>
 
-              <div className={styles.formGroup}>
-                <label className={styles.label}>URL Slug (đường dẫn web)</label>
-                <input
-                  type="text"
-                  placeholder="Tự sinh nếu để trống"
-                  value={formData.slug || ''}
-                  onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
-                  className={styles.input}
-                />
-              </div>
-            </div>
-
-            <div className={styles.grid3}>
-              <div className={styles.formGroup}>
-                <label className={styles.label}>Danh mục sản phẩm *</label>
-                <select
-                  value={formData.categorySlug || ''}
-                  onChange={(e) => handleCategoryChange(e.target.value)}
-                  className={styles.select}
-                >
-                  {categories.map((c) => (
-                    <option key={c.slug} value={c.slug}>
-                      {c.name}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className={styles.formGroup}>
-                <label className={styles.label}>Nhóm chất liệu *</label>
-                <select
-                  value={formData.materialGroup || 'go-thong'}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      materialGroup: e.target.value as Product['materialGroup'],
-                    })
-                  }
-                  className={styles.select}
-                >
-                  {MATERIAL_GROUPS.map((m) => (
-                    <option key={m.value} value={m.value}>
-                      {m.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-
-              <div className={styles.formGroup}>
-                <label className={styles.label}>Thị trường mục tiêu *</label>
-                <select
-                  value={formData.targetMarket || 'noi-dia'}
-                  onChange={(e) =>
-                    setFormData({
-                      ...formData,
-                      targetMarket: e.target.value as Product['targetMarket'],
-                    })
-                  }
-                  className={styles.select}
-                >
-                  {TARGET_MARKETS.map((t) => (
-                    <option key={t.value} value={t.value}>
-                      {t.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-          </div>
-
-          {/* 2. QUY CÁCH KỸ THUẬT */}
-          <div className={styles.sectionBlock}>
-            <div className={styles.sectionTitle}>
-              <ShieldCheck size={18} color="#b45309" />
-              <span>2. Quy Cách Kỹ Thuật & Tải Trọng</span>
-            </div>
-
-            <div className={styles.grid3}>
-              <div className={styles.formGroup}>
-                <label className={styles.label}>Kích thước (D x R x C)</label>
-                <input
-                  type="text"
-                  placeholder="VD: 1200 x 1000 x 140 mm"
-                  value={formData.dimensions || ''}
-                  onChange={(e) => setFormData({ ...formData, dimensions: e.target.value })}
-                  className={styles.input}
-                />
-              </div>
-
-              <div className={styles.formGroup}>
-                <label className={styles.label}>Loại gỗ cụ thể</label>
-                <input
-                  type="text"
-                  placeholder="VD: Gỗ Thông Chile xẻ sấy"
-                  value={formData.woodType || ''}
-                  onChange={(e) => setFormData({ ...formData, woodType: e.target.value })}
-                  className={styles.input}
-                />
-              </div>
-
-              <div className={styles.formGroup}>
-                <label className={styles.label}>Giá hiển thị</label>
-                <input
-                  type="text"
-                  placeholder="VD: Liên hệ hoặc 180.000đ"
-                  value={formData.priceDisplay || 'Liên hệ'}
-                  onChange={(e) => setFormData({ ...formData, priceDisplay: e.target.value })}
-                  className={styles.input}
-                />
-              </div>
-            </div>
-
-            <div className={styles.grid3}>
-              <div className={styles.formGroup}>
-                <label className={styles.label}>Tải trọng tĩnh</label>
-                <input
-                  type="text"
-                  placeholder="VD: 2.500 kg"
-                  value={formData.staticLoad || ''}
-                  onChange={(e) => setFormData({ ...formData, staticLoad: e.target.value })}
-                  className={styles.input}
-                />
-              </div>
-
-              <div className={styles.formGroup}>
-                <label className={styles.label}>Tải trọng động</label>
-                <input
-                  type="text"
-                  placeholder="VD: 1.200 kg"
-                  value={formData.dynamicLoad || ''}
-                  onChange={(e) => setFormData({ ...formData, dynamicLoad: e.target.value })}
-                  className={styles.input}
-                />
-              </div>
-
-              <div className={styles.formGroup}>
-                <label className={styles.label}>Quy cách nan đố / hướng nâng</label>
-                <input
-                  type="text"
-                  placeholder="VD: 4 hướng nâng, nan 20mm"
-                  value={formData.specification || ''}
-                  onChange={(e) => setFormData({ ...formData, specification: e.target.value })}
-                  className={styles.input}
-                />
-              </div>
-            </div>
-
-            <div className={styles.grid2}>
-              <label className={styles.checkboxGroup}>
-                <input
-                  type="checkbox"
-                  checked={formData.isExportStandard || false}
-                  onChange={(e) => setFormData({ ...formData, isExportStandard: e.target.checked })}
-                  className={styles.checkboxInput}
-                />
-                <span className={styles.checkboxLabel}>
-                  🌲 Đạt tiêu chuẩn xuất khẩu ISPM 15 (Hun trùng nhiệt HT & mộc dấu)
-                </span>
-              </label>
-
-              <label className={styles.checkboxGroup}>
-                <input
-                  type="checkbox"
-                  checked={formData.isNew ?? true}
-                  onChange={(e) => setFormData({ ...formData, isNew: e.target.checked })}
-                  className={styles.checkboxInput}
-                />
-                <span className={styles.checkboxLabel}>
-                  ✨ Gắn nhãn "Sản Phẩm Mới" tại xưởng
-                </span>
-              </label>
-            </div>
-          </div>
-
-          {/* 3. HÌNH ẢNH SẢN PHẨM THẬT TẠI XƯỞNG & ALBUM ĐA GÓC ĐỘ */}
-          <div className={styles.sectionBlock}>
-            <div className={styles.sectionTitle}>
-              <ImageIcon size={18} color="#b45309" />
-              <span>3. Hình Ảnh Thực Tế Tại Xưởng & Album Đa Góc Độ</span>
-            </div>
-
-            <div className={styles.imagePreviewRow}>
-              <div className={styles.imgThumb}>
-                {formData.imageUrl ? (
-                  <Image
-                    src={formData.imageUrl}
-                    alt="Preview"
-                    fill
-                    sizes="110px"
-                    style={{ objectFit: 'cover' }}
-                  />
-                ) : (
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', color: '#94a3b8' }}>
-                    Chưa có ảnh
-                  </div>
-                )}
-              </div>
-
-              <div className={styles.uploadActions}>
-                <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
-                  <label className={styles.fileInputLabel}>
-                    <Upload size={16} />
-                    <span>{isUploading ? 'Đang tải lên máy chủ...' : 'Tải Ảnh Đại Diện Mới'}</span>
-                    <input
-                      type="file"
-                      accept="image/jpeg,image/png,image/webp"
-                      onChange={handleFileUpload}
-                      disabled={isUploading}
-                      className={styles.hiddenFileInput}
-                    />
-                  </label>
-                  {isUploading && <span style={{ fontSize: '0.8rem', color: '#b45309' }}>Vui lòng đợi giây lát...</span>}
-                </div>
-
-                <div className={styles.formGroup} style={{ marginTop: '0.25rem' }}>
-                  <label className={styles.label}>Đường dẫn ảnh đại diện chính (URL)</label>
+              <div className={styles.grid2}>
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>URL Slug (đường dẫn web)</label>
                   <input
                     type="text"
-                    placeholder="VD: /images/banner_main.png hoặc https://..."
-                    value={formData.imageUrl || ''}
-                    onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
+                    placeholder="Tự sinh nếu để trống"
+                    value={formData.slug || ''}
+                    onChange={(e) => setFormData({ ...formData, slug: e.target.value })}
                     className={styles.input}
                   />
                 </div>
-              </div>
-            </div>
 
-            {/* Album Gallery Images */}
-            <div className={styles.gallerySection}>
-              <div className={styles.galleryHeader}>
-                <label className={styles.label}>
-                  <strong>Album hình ảnh đa góc độ ({formData.gallery?.length || 0} ảnh):</strong>
-                </label>
-                <label className={styles.fileInputLabel} style={{ padding: '0.4rem 0.8rem', fontSize: '0.8rem' }}>
-                  <Upload size={14} />
-                  <span>{isGalleryUploading ? 'Đang tải...' : 'Tải thêm ảnh vào Album'}</span>
-                  <input
-                    type="file"
-                    accept="image/jpeg,image/png,image/webp"
-                    onChange={handleGalleryUpload}
-                    disabled={isGalleryUploading}
-                    className={styles.hiddenFileInput}
-                  />
-                </label>
-              </div>
-
-              {formData.gallery && formData.gallery.length > 0 && (
-                <div className={styles.galleryGrid}>
-                  {formData.gallery.map((imgUrl, idx) => (
-                    <div key={idx} className={styles.galleryThumbItem} title={`Ảnh ${idx + 1}`}>
-                      <img src={imgUrl} alt={`Ảnh ${idx + 1}`} />
-                      <button
-                        type="button"
-                        onClick={() => handleRemoveGalleryImage(idx)}
-                        className={styles.removeGalleryBtn}
-                        title="Xóa ảnh này khỏi album"
-                        aria-label="Xóa ảnh"
-                      >
-                        <X size={12} />
-                      </button>
-                    </div>
-                  ))}
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Danh mục sản phẩm *</label>
+                  <select
+                    value={formData.categorySlug || ''}
+                    onChange={(e) => handleCategoryChange(e.target.value)}
+                    className={styles.select}
+                  >
+                    {categories.map((c) => (
+                      <option key={c.slug} value={c.slug}>
+                        {c.name}
+                      </option>
+                    ))}
+                  </select>
                 </div>
-              )}
-
-              <div className={styles.addGalleryRow}>
-                <input
-                  type="text"
-                  placeholder="Dán link ảnh phụ (URL) rồi bấm Thêm..."
-                  value={galleryUrlInput}
-                  onChange={(e) => setGalleryUrlInput(e.target.value)}
-                  className={styles.input}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter') {
-                      e.preventDefault();
-                      handleAddGalleryUrl();
-                    }
-                  }}
-                />
-                <button
-                  type="button"
-                  onClick={handleAddGalleryUrl}
-                  className="btn btn-primary"
-                  style={{ padding: '0.65rem 1rem', fontSize: '0.85rem', flexShrink: 0 }}
-                >
-                  <Plus size={16} /> Thêm ảnh
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* 4. MÔ TẢ CHI TIẾT & BẰNG CHỨNG FACEBOOK */}
-          <div className={styles.sectionBlock}>
-            <div className={styles.sectionTitle}>
-              <FileText size={18} color="#b45309" />
-              <span>4. Mô Tả & Bằng Chứng Sản Xuất Facebook</span>
-            </div>
-
-            <div className={styles.formGroup}>
-              <label className={styles.label}>Mô tả sản phẩm</label>
-              <textarea
-                rows={3}
-                placeholder="Mô tả công năng, ứng dụng chịu tải thực tế của sản phẩm tại xưởng..."
-                value={formData.description || ''}
-                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                className={styles.textarea}
-              />
-            </div>
-
-            <div className={styles.grid2}>
-              <div className={styles.formGroup}>
-                <label className={styles.label}>Mục đích sử dụng phù hợp</label>
-                <input
-                  type="text"
-                  placeholder="VD: Đóng kiện máy CNC, kê hàng xuất sang Mỹ"
-                  value={formData.usagePurpose || ''}
-                  onChange={(e) => setFormData({ ...formData, usagePurpose: e.target.value })}
-                  className={styles.input}
-                />
-              </div>
-
-              <div className={styles.formGroup}>
-                <label className={styles.label}>Thẻ nhãn nổi bật (Badges - cách nhau bằng dấu phẩy)</label>
-                <input
-                  type="text"
-                  placeholder="VD: XUẤT MỸ, CHỊU LỰC 2 TẤN, GIÁ XƯỞNG"
-                  value={badgeInput}
-                  onChange={(e) => setBadgeInput(e.target.value)}
-                  className={styles.input}
-                />
-              </div>
-            </div>
-
-            {/* Highlights List */}
-            <div className={styles.formGroup}>
-              <label className={styles.label}>Các điểm nổi bật chính (Highlights)</label>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                {(formData.highlights || []).map((hl, idx) => (
-                  <div key={idx} className={styles.listRow}>
-                    <input
-                      type="text"
-                      value={hl}
-                      placeholder={`Điểm nổi bật #${idx + 1}`}
-                      onChange={(e) => handleHighlightChange(idx, e.target.value)}
-                      className={styles.input}
-                    />
-                    <button
-                      type="button"
-                      onClick={() => removeHighlightRow(idx)}
-                      className={styles.removeRowBtn}
-                      title="Xóa dòng này"
-                    >
-                      <Trash2 size={16} />
-                    </button>
-                  </div>
-                ))}
-                <button
-                  type="button"
-                  onClick={addHighlightRow}
-                  className={styles.addRowBtn}
-                >
-                  <Plus size={16} />
-                  <span>Thêm gạch đầu dòng nổi bật</span>
-                </button>
-              </div>
-            </div>
-
-            {/* Facebook Proof of Work */}
-            <div style={{ marginTop: '0.5rem', background: '#eff6ff', border: '1px solid #bfdbfe', borderRadius: '8px', padding: '1rem' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', fontWeight: '700', color: '#1d4ed8', marginBottom: '0.75rem', fontSize: '0.9rem' }}>
-                <Facebook size={18} />
-                <span>Bằng chứng sản xuất thực tế trên Fanpage Facebook</span>
               </div>
 
               <div className={styles.grid2}>
                 <div className={styles.formGroup}>
-                  <label className={styles.label}>Tiêu đề bài viết thực tế</label>
-                  <input
-                    type="text"
-                    placeholder="VD: Lô 300 thùng kiện gỗ máy móc xuất đi Campuchia"
-                    value={formData.facebookProof?.title || ''}
+                  <label className={styles.label}>Nhóm chất liệu *</label>
+                  <select
+                    value={formData.materialGroup || 'go-tram'}
                     onChange={(e) =>
                       setFormData({
                         ...formData,
-                        facebookProof: {
-                          ...formData.facebookProof,
-                          title: e.target.value,
-                          description: formData.facebookProof?.description || '',
-                          fbUrl: formData.facebookProof?.fbUrl || '',
-                        },
+                        materialGroup: e.target.value as Product['materialGroup'],
                       })
                     }
+                    className={styles.select}
+                  >
+                    {MATERIAL_GROUPS.map((m) => (
+                      <option key={m.value} value={m.value}>
+                        {m.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Thị trường mục tiêu *</label>
+                  <select
+                    value={formData.targetMarket || 'noi-dia'}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        targetMarket: e.target.value as Product['targetMarket'],
+                      })
+                    }
+                    className={styles.select}
+                  >
+                    {TARGET_MARKETS.map((t) => (
+                      <option key={t.value} value={t.value}>
+                        {t.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            {/* 2. QUY CÁCH KỸ THUẬT & TẢI TRỌNG */}
+            <div ref={secSpecRef} className={styles.sectionBlock}>
+              <div className={styles.sectionHeader}>
+                <div className={styles.sectionTitle}>
+                  <span className={styles.sectionStep}>02</span>
+                  <span>Quy Cách Kỹ Thuật & Tải Trọng</span>
+                </div>
+                <span className={styles.sectionHint}>Hiển thị trong bảng Thông số kỹ thuật</span>
+              </div>
+
+              <div className={styles.grid3}>
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Kích thước (D × R × C)</label>
+                  <input
+                    type="text"
+                    placeholder="VD: 1200 × 1000 × 120 mm"
+                    value={formData.dimensions || ''}
+                    onChange={(e) => setFormData({ ...formData, dimensions: e.target.value })}
                     className={styles.input}
                   />
                 </div>
 
                 <div className={styles.formGroup}>
-                  <label className={styles.label}>Đường link bài viết Facebook (fbUrl)</label>
+                  <label className={styles.label}>Tải trọng tĩnh</label>
                   <input
                     type="text"
-                    placeholder="https://www.facebook.com/PalletTruongAn/posts/..."
-                    value={formData.facebookProof?.fbUrl || ''}
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        facebookProof: {
-                          ...formData.facebookProof,
-                          title: formData.facebookProof?.title || '',
-                          description: formData.facebookProof?.description || '',
-                          fbUrl: e.target.value,
-                        },
-                      })
-                    }
+                    placeholder="VD: 2.000 - 3.000 kg"
+                    value={formData.staticLoad || ''}
+                    onChange={(e) => setFormData({ ...formData, staticLoad: e.target.value })}
                     className={styles.input}
                   />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Tải trọng động</label>
+                  <input
+                    type="text"
+                    placeholder="VD: 1.000 - 1.500 kg"
+                    value={formData.dynamicLoad || ''}
+                    onChange={(e) => setFormData({ ...formData, dynamicLoad: e.target.value })}
+                    className={styles.input}
+                  />
+                </div>
+              </div>
+
+              <div className={styles.grid2Wide}>
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Chất liệu cụ thể</label>
+                  <input
+                    type="text"
+                    placeholder="VD: Gỗ Tràm tự nhiên tuyển chọn, phôi thẳng không mục/mối"
+                    value={formData.woodType || ''}
+                    onChange={(e) => setFormData({ ...formData, woodType: e.target.value })}
+                    className={styles.input}
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Giá hiển thị</label>
+                  <input
+                    type="text"
+                    placeholder="VD: Liên hệ hoặc 180.000đ"
+                    value={formData.priceDisplay ?? ''}
+                    onChange={(e) => setFormData({ ...formData, priceDisplay: e.target.value })}
+                    className={styles.input}
+                  />
+                </div>
+              </div>
+
+              {/* Quy cách chi tiết dạng từng dòng */}
+              <div className={styles.formGroup}>
+                <label className={styles.label}>
+                  <span>Quy cách chi tiết</span>
+                  <span className={styles.labelHint}>(mỗi dòng hiển thị thành 1 gạch đầu dòng trên web)</span>
+                </label>
+                <div className={styles.listContainer}>
+                  {specRows.map((row, idx) => (
+                    <div key={idx} className={styles.listRow}>
+                      <span className={styles.rowIndexBadge}>{idx + 1}</span>
+                      <input
+                        type="text"
+                        value={row}
+                        placeholder={
+                          idx === 0
+                            ? 'VD: 3 gánh dọc nâng 2 hướng'
+                            : idx === 1
+                              ? 'VD: 7 nan mặt (1200×90×17 mm)'
+                              : `Dòng quy cách #${idx + 1}`
+                        }
+                        onChange={(e) => handleSpecChange(idx, e.target.value)}
+                        className={styles.input}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => removeSpecRow(idx)}
+                        className={styles.removeRowBtn}
+                        title="Xóa dòng quy cách này"
+                      >
+                        <Trash2 size={15} />
+                      </button>
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={addSpecRow}
+                    className={styles.addRowBtn}
+                  >
+                    <Plus size={15} />
+                    <span>Thêm dòng quy cách</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Toggle Cards */}
+              <div className={styles.grid2}>
+                <label
+                  className={`${styles.checkboxCard} ${formData.isExportStandard ? styles.checkboxCardActive : ''}`}
+                >
+                  <input
+                    type="checkbox"
+                    checked={formData.isExportStandard || false}
+                    onChange={(e) => setFormData({ ...formData, isExportStandard: e.target.checked })}
+                    className={styles.checkboxInput}
+                  />
+                  <div className={styles.checkboxTextWrap}>
+                    <span className={styles.checkboxLabel}>Tiêu chuẩn xuất khẩu ISPM 15</span>
+                    <span className={styles.checkboxSub}>Hun trùng nhiệt HT & đóng dấu mộc xuất khẩu</span>
+                  </div>
+                </label>
+
+                <label
+                  className={`${styles.checkboxCard} ${(formData.isNew ?? true) ? styles.checkboxCardActive : ''}`}
+                >
+                  <input
+                    type="checkbox"
+                    checked={formData.isNew ?? true}
+                    onChange={(e) => setFormData({ ...formData, isNew: e.target.checked })}
+                    className={styles.checkboxInput}
+                  />
+                  <div className={styles.checkboxTextWrap}>
+                    <span className={styles.checkboxLabel}>Gắn nhãn &ldquo;Sản Phẩm Mới&rdquo;</span>
+                    <span className={styles.checkboxSub}>Hiển thị badge nổi bật trên danh sách sản phẩm</span>
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            {/* 3. HÌNH ẢNH THỰC TẾ & ALBUM ĐA GÓC ĐỘ */}
+            <div ref={secImagesRef} className={styles.sectionBlock}>
+              <div className={styles.sectionHeader}>
+                <div className={styles.sectionTitle}>
+                  <span className={styles.sectionStep}>03</span>
+                  <span>Hình Ảnh Thực Tế & Album Đa Góc Độ</span>
+                </div>
+                <span className={styles.sectionHint}>{galleryCount} ảnh trong album</span>
+              </div>
+
+              <div className={styles.imagePreviewRow}>
+                <div className={styles.imgThumb}>
+                  {formData.imageUrl ? (
+                    <Image
+                      src={formData.imageUrl}
+                      alt="Preview"
+                      fill
+                      sizes="132px"
+                      style={{ objectFit: 'cover' }}
+                    />
+                  ) : (
+                    <div
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        height: '100%',
+                        color: '#94a3b8',
+                        fontSize: '0.8rem',
+                      }}
+                    >
+                      Chưa có ảnh
+                    </div>
+                  )}
+                </div>
+
+                <div className={styles.uploadActions}>
+                  <div style={{ display: 'flex', gap: '0.75rem', alignItems: 'center', flexWrap: 'wrap' }}>
+                    <label className={styles.fileInputLabel}>
+                      <Upload size={15} />
+                      <span>{isUploading ? 'Đang tải lên...' : 'Tải Ảnh Đại Diện Mới'}</span>
+                      <input
+                        type="file"
+                        accept="image/jpeg,image/png,image/webp"
+                        onChange={handleFileUpload}
+                        disabled={isUploading}
+                        className={styles.hiddenFileInput}
+                      />
+                    </label>
+                    <span style={{ fontSize: '0.76rem', color: '#64748b' }}>
+                      Hỗ trợ JPG, PNG, WebP (tối đa 5MB)
+                    </span>
+                  </div>
+
+                  <div className={styles.formGroup}>
+                    <label className={styles.label}>Đường dẫn ảnh đại diện chính (URL)</label>
+                    <input
+                      type="text"
+                      placeholder="https://... hoặc /images/..."
+                      value={formData.imageUrl || ''}
+                      onChange={(e) => setFormData({ ...formData, imageUrl: e.target.value })}
+                      className={styles.input}
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Album Gallery */}
+              <div className={styles.gallerySection}>
+                <div className={styles.galleryHeader}>
+                  <label className={styles.label}>
+                    <span>Album ảnh chi tiết đa góc độ</span>
+                    <span className={styles.labelHint}>(khuyến nghị 4–5 ảnh)</span>
+                  </label>
+                  <label className={styles.fileInputLabel}>
+                    <Plus size={15} />
+                    <span>{isGalleryUploading ? 'Đang tải ảnh...' : 'Tải thêm ảnh vào Album'}</span>
+                    <input
+                      type="file"
+                      accept="image/jpeg,image/png,image/webp"
+                      onChange={handleGalleryUpload}
+                      disabled={isGalleryUploading}
+                      className={styles.hiddenFileInput}
+                    />
+                  </label>
+                </div>
+
+                {formData.gallery && formData.gallery.length > 0 && (
+                  <div className={styles.galleryGrid}>
+                    {formData.gallery
+                      .filter((img) => !img.endsWith('banner_main.png'))
+                      .map((imgUrl, idx) => (
+                        <div key={idx} className={styles.galleryThumbItem}>
+                          <img src={imgUrl} alt={`Album ${idx + 1}`} />
+                          <button
+                            type="button"
+                            onClick={() => handleRemoveGalleryImage(idx)}
+                            className={styles.removeGalleryBtn}
+                            title="Xóa ảnh này khỏi album"
+                            aria-label="Xóa ảnh"
+                          >
+                            <X size={12} />
+                          </button>
+                        </div>
+                      ))}
+                  </div>
+                )}
+
+                <div className={styles.addGalleryRow}>
+                  <input
+                    type="text"
+                    placeholder="Dán link ảnh phụ (URL) rồi bấm Thêm ảnh..."
+                    value={galleryUrlInput}
+                    onChange={(e) => setGalleryUrlInput(e.target.value)}
+                    className={styles.input}
+                    onKeyDown={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        handleAddGalleryUrl();
+                      }
+                    }}
+                  />
+                  <button
+                    type="button"
+                    onClick={handleAddGalleryUrl}
+                    className="btn btn-primary"
+                    style={{ padding: '0.6rem 1rem', fontSize: '0.84rem', flexShrink: 0 }}
+                  >
+                    <Plus size={15} /> Thêm ảnh
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* 4. MÔ TẢ CHI TIẾT & BẰNG CHỨNG FACEBOOK */}
+            <div ref={secDescRef} className={styles.sectionBlock}>
+              <div className={styles.sectionHeader}>
+                <div className={styles.sectionTitle}>
+                  <span className={styles.sectionStep}>04</span>
+                  <span>Mô Tả, Điểm Nổi Bật & Bằng Chứng Facebook</span>
+                </div>
+                <span className={styles.sectionHint}>Nội dung thuyết phục khách B2B</span>
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Mô tả sản phẩm</label>
+                <textarea
+                  rows={3}
+                  placeholder="Mô tả công năng, ứng dụng chịu tải thực tế của sản phẩm tại xưởng..."
+                  value={formData.description || ''}
+                  onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                  className={styles.textarea}
+                />
+              </div>
+
+              <div className={styles.grid2}>
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>Mục đích sử dụng phù hợp</label>
+                  <input
+                    type="text"
+                    placeholder="VD: Đóng kiện máy CNC, kê hàng kho xưởng & xuất khẩu"
+                    value={formData.usagePurpose || ''}
+                    onChange={(e) => setFormData({ ...formData, usagePurpose: e.target.value })}
+                    className={styles.input}
+                  />
+                </div>
+
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>
+                    <span>Thẻ nhãn nổi bật</span>
+                    <span className={styles.labelHint}>(cách nhau bằng dấu phẩy)</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="VD: GIÁ XƯỞNG, SẴN KHO, CHỊU TẢI 3 TẤN"
+                    value={badgeInput}
+                    onChange={(e) => setBadgeInput(e.target.value)}
+                    className={styles.input}
+                  />
+                </div>
+              </div>
+
+              {/* Highlights List */}
+              <div className={styles.formGroup}>
+                <label className={styles.label}>Các điểm nổi bật chính (Highlights)</label>
+                <div className={styles.listContainer}>
+                  {(formData.highlights || []).map((hl, idx) => (
+                    <div key={idx} className={styles.listRow}>
+                      <span className={styles.rowIndexBadge}>{idx + 1}</span>
+                      <input
+                        type="text"
+                        value={hl}
+                        placeholder={`Điểm nổi bật #${idx + 1}`}
+                        onChange={(e) => handleHighlightChange(idx, e.target.value)}
+                        className={styles.input}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => removeHighlightRow(idx)}
+                        className={styles.removeRowBtn}
+                        title="Xóa dòng này"
+                      >
+                        <Trash2 size={15} />
+                      </button>
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={addHighlightRow}
+                    className={styles.addRowBtn}
+                  >
+                    <Plus size={15} />
+                    <span>Thêm điểm nổi bật</span>
+                  </button>
+                </div>
+              </div>
+
+              {/* Facebook Proof of Work */}
+              <div className={styles.fbProofCard}>
+                <div className={styles.fbProofTitle}>
+                  <Facebook size={17} />
+                  <span>Bằng chứng sản xuất thực tế trên Fanpage Facebook (tùy chọn)</span>
+                </div>
+
+                <div className={styles.grid2}>
+                  <div className={styles.formGroup}>
+                    <label className={styles.label}>Tiêu đề bài viết thực tế</label>
+                    <input
+                      type="text"
+                      placeholder="VD: Lô 300 pallet gỗ tràm giao KCN Tân Tạo"
+                      value={formData.facebookProof?.title || ''}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          facebookProof: {
+                            ...formData.facebookProof,
+                            title: e.target.value,
+                            description: formData.facebookProof?.description || '',
+                            fbUrl: formData.facebookProof?.fbUrl || '',
+                          },
+                        })
+                      }
+                      className={styles.input}
+                    />
+                  </div>
+
+                  <div className={styles.formGroup}>
+                    <label className={styles.label}>Đường link bài viết Facebook</label>
+                    <input
+                      type="text"
+                      placeholder="https://www.facebook.com/..."
+                      value={formData.facebookProof?.fbUrl || ''}
+                      onChange={(e) =>
+                        setFormData({
+                          ...formData,
+                          facebookProof: {
+                            ...formData.facebookProof,
+                            title: formData.facebookProof?.title || '',
+                            description: formData.facebookProof?.description || '',
+                            fbUrl: e.target.value,
+                          },
+                        })
+                      }
+                      className={styles.input}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Modal Footer inside form */}
+          {/* Sticky Footer */}
           <div className={styles.modalFooter}>
-            <button type="button" onClick={onClose} className={styles.cancelBtn} disabled={isSaving}>
-              Hủy Bỏ
-            </button>
-            <button type="submit" className={styles.saveBtn} disabled={isSaving || isUploading}>
-              <Save size={18} />
-              <span>{isSaving ? 'Đang lưu vào hệ thống...' : 'Lưu Sản Phẩm'}</span>
-            </button>
+            <div className={styles.footerHint}>
+              <CheckCircle size={15} color="#16a34a" />
+              <span>Dữ liệu sẽ được đồng bộ trực tiếp lên website sau khi lưu</span>
+            </div>
+            <div className={styles.footerActions}>
+              <button
+                type="button"
+                onClick={onClose}
+                className={styles.cancelBtn}
+                disabled={isSaving}
+              >
+                Hủy Bỏ
+              </button>
+              <button
+                type="submit"
+                className={styles.saveBtn}
+                disabled={isSaving || isUploading}
+              >
+                <Save size={17} />
+                <span>{isSaving ? 'Đang lưu...' : 'Lưu Sản Phẩm'}</span>
+              </button>
+            </div>
           </div>
         </form>
       </div>
