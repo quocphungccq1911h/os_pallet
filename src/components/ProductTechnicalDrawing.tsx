@@ -14,6 +14,8 @@ type DrawingVariant =
   | 'pallet-block'
   | 'pallet-stringer'
   | 'pallet-plywood'
+  | 'pallet-plastic-mesh'
+  | 'pallet-plastic-nestable'
   | 'crate-closed'
   | 'crate-open'
   | 'plastic-solid'
@@ -37,6 +39,10 @@ function resolveVariant(product: Product): DrawingVariant {
   const slug = product.slug.toLowerCase();
   const cat = product.categorySlug;
 
+  if (cat === 'pallet-nhua-moi' || cat === 'pallet-nhua-cu') {
+    if (name.includes('chân cốc') || slug.includes('chan-coc')) return 'pallet-plastic-nestable';
+    return 'pallet-plastic-mesh';
+  }
   if (cat === 'thung-nhua') {
     if (name.includes('hở') || slug.includes('ho')) return 'plastic-vented';
     return 'plastic-solid';
@@ -68,6 +74,10 @@ function getVariantTitle(variant: DrawingVariant): string {
       return 'Bản vẽ kỹ thuật Pallet Gỗ Đố Khuyết / Stringer';
     case 'pallet-plywood':
       return 'Bản vẽ kỹ thuật Pallet Ván Ép Mặt Phẳng (Plywood)';
+    case 'pallet-plastic-mesh':
+      return 'Bản vẽ kỹ thuật Pallet Nhựa Mặt Lưới HDPE (4 hướng nâng)';
+    case 'pallet-plastic-nestable':
+      return 'Bản vẽ kỹ thuật Pallet Nhựa 9 Chân Cốc Xếp Lồng Xuất Khẩu';
     case 'crate-closed':
       return 'Bản vẽ kỹ thuật Thùng Gỗ Kín Gia Cố Khung Đế Pallet';
     case 'crate-open':
@@ -84,7 +94,9 @@ const BlueprintSVG: React.FC<{
   dims: { L: string; W: string; H: string };
 }> = ({ variant, dims }) => {
   const isCrate = variant === 'crate-closed' || variant === 'crate-open';
-  const isPlastic = variant === 'plastic-solid' || variant === 'plastic-vented';
+  const isPlasticCrate = variant === 'plastic-solid' || variant === 'plastic-vented';
+  const isPlasticPallet = variant === 'pallet-plastic-mesh' || variant === 'pallet-plastic-nestable';
+  const isPlastic = isPlasticCrate || isPlasticPallet;
 
   return (
     <svg
@@ -141,7 +153,34 @@ const BlueprintSVG: React.FC<{
             </>
           )}
         </g>
-      ) : isPlastic ? (
+      ) : isPlasticPallet ? (
+        <g>
+          {/* Plastic Pallet Top View (HDPE Mesh Grid + 9 molded legs) */}
+          <rect x="95" y="75" width="210" height="165" rx="6" fill="#dbeafe" stroke="#1d4ed8" strokeWidth="2.2" />
+          {[95, 115, 135, 155, 175, 195, 215].map((y) => (
+            <line key={`pm-h-${y}`} x1="100" y1={y} x2="300" y2={y} stroke="#60a5fa" strokeWidth="1" />
+          ))}
+          {[120, 145, 170, 195, 220, 245, 270, 290].map((x) => (
+            <line key={`pm-v-${x}`} x1={x} y1="80" x2={x} y2="235" stroke="#60a5fa" strokeWidth="1" />
+          ))}
+          {[104, 188, 272].map((bx) =>
+            [84, 146, 208].map((by) => (
+              <rect
+                key={`pm-b-${bx}-${by}`}
+                x={bx}
+                y={by}
+                width="24"
+                height="24"
+                rx={variant === 'pallet-plastic-nestable' ? 6 : 2}
+                fill="#93c5fd"
+                fillOpacity="0.65"
+                stroke="#1e40af"
+                strokeWidth="1.2"
+              />
+            ))
+          )}
+        </g>
+      ) : isPlasticCrate ? (
         <g>
           {/* Plastic Crate Top View */}
           <rect x="95" y="78" width="210" height="160" rx="10" fill="#dbeafe" stroke="#1d4ed8" strokeWidth="2.2" />
@@ -300,7 +339,30 @@ const BlueprintSVG: React.FC<{
           <text x="541" y="232" textAnchor="middle" fontSize="9.5" fill="#475569" fontWeight="600">Lối xe nâng</text>
           <text x="650" y="232" textAnchor="middle" fontSize="9.5" fill="#475569" fontWeight="600">Lối xe nâng</text>
         </g>
-      ) : isPlastic ? (
+      ) : isPlasticPallet ? (
+        <g>
+          {/* Plastic Pallet Front Elevation */}
+          <rect x="460" y="160" width="270" height="18" rx="3" fill="#93c5fd" stroke="#1d4ed8" strokeWidth="2" />
+          {variant === 'pallet-plastic-nestable' ? (
+            <>
+              <polygon points="468,178 510,178 502,240 476,240" fill="#dbeafe" stroke="#1d4ed8" strokeWidth="1.8" />
+              <polygon points="574,178 616,178 608,240 582,240" fill="#dbeafe" stroke="#1d4ed8" strokeWidth="1.8" />
+              <polygon points="680,178 722,178 714,240 688,240" fill="#dbeafe" stroke="#1d4ed8" strokeWidth="1.8" />
+              <text x="542" y="212" textAnchor="middle" fontSize="9.5" fill="#1e40af" fontWeight="600">Chân cốc xếp lồng</text>
+              <text x="648" y="212" textAnchor="middle" fontSize="9.5" fill="#1e40af" fontWeight="600">4 hướng nâng</text>
+            </>
+          ) : (
+            <>
+              <rect x="464" y="178" width="40" height="48" rx="2" fill="#dbeafe" stroke="#1d4ed8" strokeWidth="1.8" />
+              <rect x="575" y="178" width="40" height="48" rx="2" fill="#dbeafe" stroke="#1d4ed8" strokeWidth="1.8" />
+              <rect x="686" y="178" width="40" height="48" rx="2" fill="#dbeafe" stroke="#1d4ed8" strokeWidth="1.8" />
+              <rect x="460" y="226" width="270" height="14" rx="2" fill="#93c5fd" stroke="#1d4ed8" strokeWidth="1.8" />
+              <text x="539" y="205" textAnchor="middle" fontSize="9.5" fill="#1e40af" fontWeight="600">Lối xe nâng</text>
+              <text x="650" y="205" textAnchor="middle" fontSize="9.5" fill="#1e40af" fontWeight="600">Lối xe nâng</text>
+            </>
+          )}
+        </g>
+      ) : isPlasticCrate ? (
         <g>
           {/* Plastic Crate Front Elevation */}
           {variant === 'plastic-solid' && (
@@ -352,11 +414,11 @@ const BlueprintSVG: React.FC<{
       )}
 
       {/* Dimension Line: Height (H) on Right of Elevation */}
-      <line x1="736" y1={isCrate ? 88 : isPlastic ? 120 : 160} x2="762" y2={isCrate ? 88 : isPlastic ? 120 : 160} stroke="#b45309" strokeWidth="1" />
+      <line x1="736" y1={isCrate ? 88 : isPlasticCrate ? 120 : 160} x2="762" y2={isCrate ? 88 : isPlasticCrate ? 120 : 160} stroke="#b45309" strokeWidth="1" />
       <line x1="736" y1="240" x2="762" y2="240" stroke="#b45309" strokeWidth="1" />
       <line
         x1="752"
-        y1={isCrate ? 91 : isPlastic ? 123 : 163}
+        y1={isCrate ? 91 : isPlasticCrate ? 123 : 163}
         x2="752"
         y2="237"
         stroke="#b45309"
@@ -364,7 +426,7 @@ const BlueprintSVG: React.FC<{
         markerStart="url(#arrowStart)"
         markerEnd="url(#arrowEnd)"
       />
-      <text x="782" y={isCrate ? 168 : isPlastic ? 184 : 204} textAnchor="middle" fontSize="11.5" fontWeight="800" fill="#b45309">
+      <text x="782" y={isCrate ? 168 : isPlasticCrate ? 184 : 204} textAnchor="middle" fontSize="11.5" fontWeight="800" fill="#b45309">
         {dims.H}
       </text>
 

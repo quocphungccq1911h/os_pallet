@@ -30,6 +30,7 @@ const MATERIAL_GROUPS = [
   { value: 'go-thong', label: 'Gỗ Thông (Nhập khẩu / xẻ sấy)' },
   { value: 'go-tram', label: 'Gỗ Tràm (Tự nhiên / chịu lực)' },
   { value: 'van-ep', label: 'Ván Ép Plywood (Mặt phẳng mịn)' },
+  { value: 'nhua', label: 'Nhựa HDPE / PP Công Nghiệp' },
   { value: 'go-cu', label: 'Gỗ Cũ / Thanh Lý (Tiết kiệm)' },
 ];
 
@@ -50,7 +51,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
     name: '',
     slug: '',
     category: categories[0]?.name || 'Pallet Gỗ Thông & Tràm Mới',
-    categorySlug: categories[0]?.slug || 'pallet-go-moi',
+    categorySlug: categories[0]?.slug || 'pallet-go-tram',
     dimensions: '1200 x 1000 x 140 mm',
     woodType: 'Gỗ Thông nhập khẩu xẻ sấy',
     materialGroup: 'go-thong',
@@ -99,7 +100,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
         name: '',
         slug: '',
         category: categories[0]?.name || 'Pallet Gỗ Thông & Tràm Mới',
-        categorySlug: categories[0]?.slug || 'pallet-go-moi',
+        categorySlug: categories[0]?.slug || 'pallet-go-tram',
         dimensions: '1200 x 1000 x 140 mm',
         woodType: 'Gỗ Thông nhập khẩu xẻ sấy',
         materialGroup: 'go-thong',

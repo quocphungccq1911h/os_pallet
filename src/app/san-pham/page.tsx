@@ -7,6 +7,7 @@ import {
   categories,
   Product,
   PALLET_GO_SLUGS,
+  PALLET_NHUA_SLUGS,
   THUNG_SLUGS,
 } from '@/data/products';
 import { ProductCard } from '@/components/ProductCard';
@@ -35,7 +36,7 @@ function ProductsContent() {
       setSelectedGroup('all');
       setSelectedMaterial('all');
       setSelectedMarket('all');
-    } else if (urlGroup === 'pallet-go' || urlGroup === 'thung') {
+    } else if (urlGroup === 'pallet-go' || urlGroup === 'pallet-nhua' || urlGroup === 'thung') {
       setSelectedGroup(urlGroup);
       setSelectedCategory('all');
       setSelectedMaterial('all');
@@ -99,6 +100,7 @@ function ProductsContent() {
     const matchesGroup =
       selectedGroup === 'all' ||
       (selectedGroup === 'pallet-go' && PALLET_GO_SLUGS.includes(p.categorySlug)) ||
+      (selectedGroup === 'pallet-nhua' && PALLET_NHUA_SLUGS.includes(p.categorySlug)) ||
       (selectedGroup === 'thung' && THUNG_SLUGS.includes(p.categorySlug));
     const matchesCategory = selectedCategory === 'all' || p.categorySlug === selectedCategory;
     const matchesMaterial = selectedMaterial === 'all' || p.materialGroup === selectedMaterial;
@@ -131,14 +133,16 @@ function ProductsContent() {
 
   const pageHeading =
     selectedGroup === 'pallet-go'
-      ? 'Pallet Gỗ Xuất Khẩu & Đóng Theo Yêu Cầu'
+      ? 'Pallet Gỗ Tràm, Gỗ Thông & Ván Ép Xuất Khẩu'
+      : selectedGroup === 'pallet-nhua'
+      ? 'Pallet Nhựa Mới & Pallet Nhựa Cũ Công Nghiệp'
       : selectedGroup === 'thung'
       ? 'Thùng Gỗ & Thùng Nhựa Công Nghiệp'
       : selectedCategory === 'thung-nhua'
       ? 'Thùng Nhựa Công Nghiệp'
       : selectedCategory === 'thung-go-dong-hang'
       ? 'Thùng Gỗ / Kiện Gỗ Đóng Hàng'
-      : 'Pallet Gỗ, Thùng Gỗ & Thùng Nhựa';
+      : 'Pallet Gỗ, Pallet Nhựa & Thùng Công Nghiệp';
 
   return (
     <div className={styles.pageWrapper}>
@@ -166,6 +170,12 @@ function ProductsContent() {
               className={`${styles.pillBtn} ${selectedGroup === 'pallet-go' ? styles.pillActive : ''}`}
             >
               🪵 Pallet Gỗ
+            </button>
+            <button
+              onClick={() => handleQuickFilter('group', 'pallet-nhua')}
+              className={`${styles.pillBtn} ${selectedGroup === 'pallet-nhua' ? styles.pillActive : ''}`}
+            >
+              🟦 Pallet Nhựa
             </button>
             <button
               onClick={() => handleQuickFilter('category', 'thung-go-dong-hang')}
@@ -277,9 +287,10 @@ function ProductsContent() {
             <div className={styles.categoryList}>
               {[
                 { id: 'all', label: 'Tất Cả Chất Liệu' },
-                { id: 'go-thong', label: 'Gỗ Thông Nhập Khẩu' },
                 { id: 'go-tram', label: 'Gỗ Tràm Tự Nhiên' },
+                { id: 'go-thong', label: 'Gỗ Thông Nhập Khẩu' },
                 { id: 'van-ep', label: 'Ván Ép Plywood' },
+                { id: 'nhua', label: 'Nhựa HDPE / PP' },
               ].map((m) => (
                 <button
                   key={m.id}
@@ -503,9 +514,10 @@ function ProductsContent() {
                 <div className={styles.drawerChipGrid}>
                   {[
                     { id: 'all', label: 'Tất cả chất liệu' },
-                    { id: 'go-thong', label: 'Gỗ Thông Nhập Khẩu' },
                     { id: 'go-tram', label: 'Gỗ Tràm Tự Nhiên' },
+                    { id: 'go-thong', label: 'Gỗ Thông Nhập Khẩu' },
                     { id: 'van-ep', label: 'Ván Ép Plywood' },
+                    { id: 'nhua', label: 'Nhựa HDPE / PP' },
                   ].map((m) => (
                     <button
                       key={m.id}

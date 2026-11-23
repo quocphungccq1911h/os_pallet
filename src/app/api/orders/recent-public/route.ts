@@ -75,29 +75,29 @@ function extractLocation(customer: string, notes?: string): string {
 
 function resolveProductHref(productName: string): string {
   const lower = productName.toLowerCase();
+  if (lower.includes('pallet nhựa')) {
+    return '/san-pham?group=pallet-nhua';
+  }
   if (lower.includes('thùng nhựa') || lower.includes('sóng nhựa')) {
     return '/san-pham?category=thung-nhua';
   }
   if (lower.includes('thùng gỗ') || lower.includes('kiện gỗ')) {
-    return '/san-pham/thung-go-kien-go-dong-hang-xuat-khau';
+    return '/san-pham/thung-go-kin-van-ep-dong-may-moc-lap-rap-tan-noi';
   }
   if (lower.includes('ván ép') || lower.includes('plywood')) {
-    return '/san-pham/pallet-do-van-ep-xuat-khau-campuchia-1000x1200';
+    return '/san-pham/pallet-van-ep-mat-kin-9-gu-1200x1000x120';
   }
   if (lower.includes('chân gù')) {
-    return '/san-pham/pallet-go-chan-gu-chuan-4-huong-nang-1219x1016';
+    return '/san-pham/pallet-go-tram-chan-gu-9-cuc-4-huong-nang-pta-g03';
   }
-  if (lower.includes('đố khuyết')) {
-    return '/san-pham/pallet-go-thong-do-khuyet-xuat-khau-ispm15-1200x1000';
+  if (lower.includes('đố khuyết') || lower.includes('gma') || lower.includes('mỹ')) {
+    return '/san-pham/pallet-go-thong-moi-xuat-khau-ispm15-1200x1000x120';
   }
   if (lower.includes('bản vẽ') || lower.includes('yêu cầu')) {
-    return '/san-pham/pallet-go-dong-theo-yeu-cau';
-  }
-  if (lower.includes('gma') || lower.includes('mỹ')) {
-    return '/san-pham/pallet-go-thong-moi-xuat-khau-my-1219x1016';
+    return '/san-pham/gia-cong-pallet-go-1-mat-2-mat-theo-ban-ve-1300x1100';
   }
   if (lower.includes('kích thước lớn') || lower.includes('đóng máy')) {
-    return '/san-pham/pallet-go-xuat-khau-kich-thuoc-lon-1400x1100';
+    return '/san-pham/pallet-go-tram-kich-thuoc-lon-chiu-tai-nang-1400x1100';
   }
   return '/san-pham';
 }

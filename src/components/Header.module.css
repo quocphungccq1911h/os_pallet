@@ -119,7 +119,7 @@
 .desktopNav {
   display: flex;
   align-items: center;
-  gap: 1.6rem;
+  gap: 1.25rem;
   flex-shrink: 0;
 }
 
@@ -203,9 +203,9 @@
 
 .megaMenuGrid {
   display: grid;
-  grid-template-columns: 270px 250px 235px;
+  grid-template-columns: 260px 225px 225px 225px;
   justify-content: center;
-  gap: 1.15rem;
+  gap: 1rem;
   align-items: stretch;
 }
 

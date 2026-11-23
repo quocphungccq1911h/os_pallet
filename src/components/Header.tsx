@@ -19,13 +19,18 @@ interface HeaderProps {
   onOpenQuoteModal: () => void;
 }
 
-type MegaGroup = 'pallet-go' | 'thung' | null;
+type MegaGroup = 'pallet-go' | 'pallet-nhua' | 'thung' | null;
 
 const PALLET_GO_ITEMS = [
-  { label: 'Pallet Gỗ Thông & Tràm Mới', href: '/san-pham?category=pallet-go-moi' },
-  { label: 'Pallet Ván Ép (Plywood)', href: '/san-pham?category=pallet-van-ep' },
-  { label: 'Pallet Xuất Khẩu (ISPM 15)', href: '/san-pham?category=pallet-xuat-khau' },
-  { label: 'Pallet Đóng Theo Yêu Cầu', href: '/san-pham?category=pallet-theo-yeu-cau' },
+  { label: 'Pallet Gỗ Tràm (3 Gánh & 9 Gù)', href: '/san-pham?category=pallet-go-tram' },
+  { label: 'Pallet Gỗ Thông Xuất Khẩu (ISPM 15)', href: '/san-pham?category=pallet-go-thong' },
+  { label: 'Pallet Ván Ép (Plywood 10–15mm)', href: '/san-pham?category=pallet-van-ep' },
+  { label: 'Pallet Đóng Theo Bản Vẽ', href: '/san-pham?category=pallet-theo-yeu-cau' },
+];
+
+const PALLET_NHUA_ITEMS = [
+  { label: 'Pallet Nhựa Mới Công Nghiệp', href: '/san-pham?category=pallet-nhua-moi' },
+  { label: 'Pallet Nhựa Cũ (Độ Mới 85–95%)', href: '/san-pham?category=pallet-nhua-cu' },
 ];
 
 const THUNG_ITEMS = [
@@ -38,7 +43,6 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
   const [activeMegaGroup, setActiveMegaGroup] = useState<MegaGroup>(null);
   const [mobileAccordion, setMobileAccordion] = useState<MegaGroup>(null);
 
-  // Close Mega Menu on Escape key
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -107,11 +111,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
 
           {/* Desktop Navigation Links */}
           <nav className={styles.desktopNav}>
-            <Link
-              href="/"
-              className={styles.navLink}
-              onMouseEnter={closeMegaMenu}
-            >
+            <Link href="/" className={styles.navLink} onMouseEnter={closeMegaMenu}>
               Trang Chủ
             </Link>
 
@@ -138,6 +138,27 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
 
             <div
               className={styles.navDropdownTrigger}
+              onMouseEnter={() => setActiveMegaGroup('pallet-nhua')}
+            >
+              <Link
+                href="/san-pham?group=pallet-nhua"
+                className={`${styles.navLink} ${styles.navLinkWithIcon} ${
+                  activeMegaGroup === 'pallet-nhua' ? styles.navLinkActive : ''
+                }`}
+                onClick={closeMegaMenu}
+              >
+                <span>Pallet Nhựa</span>
+                <ChevronDown
+                  size={15}
+                  className={`${styles.navChevron} ${
+                    activeMegaGroup === 'pallet-nhua' ? styles.navChevronOpen : ''
+                  }`}
+                />
+              </Link>
+            </div>
+
+            <div
+              className={styles.navDropdownTrigger}
               onMouseEnter={() => setActiveMegaGroup('thung')}
             >
               <Link
@@ -157,32 +178,16 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
               </Link>
             </div>
 
-            <Link
-              href="/hoat-dong"
-              className={styles.navLink}
-              onMouseEnter={closeMegaMenu}
-            >
-              Hoạt Động Xưởng
+            <Link href="/hoat-dong" className={styles.navLink} onMouseEnter={closeMegaMenu}>
+              Hoạt Động
             </Link>
-            <Link
-              href="/bang-gia"
-              className={styles.navLink}
-              onMouseEnter={closeMegaMenu}
-            >
+            <Link href="/bang-gia" className={styles.navLink} onMouseEnter={closeMegaMenu}>
               Bảng Giá
             </Link>
-            <Link
-              href="/tin-tuc"
-              className={styles.navLink}
-              onMouseEnter={closeMegaMenu}
-            >
+            <Link href="/tin-tuc" className={styles.navLink} onMouseEnter={closeMegaMenu}>
               Kiến Thức
             </Link>
-            <Link
-              href="/lien-he"
-              className={styles.navLink}
-              onMouseEnter={closeMegaMenu}
-            >
+            <Link href="/lien-he" className={styles.navLink} onMouseEnter={closeMegaMenu}>
               Liên Hệ
             </Link>
           </nav>
@@ -195,9 +200,9 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                 onOpenQuoteModal();
               }}
               className="btn btn-primary"
-              style={{ padding: '0.65rem 1.25rem' }}
+              style={{ padding: '0.6rem 1.15rem' }}
             >
-              <FileText size={18} />
+              <FileText size={17} />
               <span>Nhận Báo Giá</span>
             </button>
 
@@ -212,7 +217,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
           </div>
         </div>
 
-        {/* Desktop Mega Menu Panel */}
+        {/* Desktop Mega Menu Panel (3 Product Columns + CTA Card) */}
         {activeMegaGroup && (
           <div className={styles.megaMenuPanel}>
             <div className={`container ${styles.megaMenuGrid}`}>
@@ -229,11 +234,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                 <ul className={styles.megaList}>
                   {PALLET_GO_ITEMS.map((item) => (
                     <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        className={styles.megaLink}
-                        onClick={closeMegaMenu}
-                      >
+                      <Link href={item.href} className={styles.megaLink} onClick={closeMegaMenu}>
                         {item.label}
                       </Link>
                     </li>
@@ -249,7 +250,36 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                 </Link>
               </div>
 
-              {/* Column 2: THÙNG */}
+              {/* Column 2: PALLET NHỰA */}
+              <div
+                className={`${styles.megaColumn} ${
+                  activeMegaGroup === 'pallet-nhua' ? styles.megaColumnHighlight : ''
+                }`}
+                onMouseEnter={() => setActiveMegaGroup('pallet-nhua')}
+              >
+                <div className={styles.megaColHeader}>
+                  <span className={styles.megaColTitle}>PALLET NHỰA</span>
+                </div>
+                <ul className={styles.megaList}>
+                  {PALLET_NHUA_ITEMS.map((item) => (
+                    <li key={item.href}>
+                      <Link href={item.href} className={styles.megaLink} onClick={closeMegaMenu}>
+                        {item.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  href="/san-pham?group=pallet-nhua"
+                  className={styles.megaViewAll}
+                  onClick={closeMegaMenu}
+                >
+                  <span>Xem tất cả</span>
+                  <ArrowRight size={14} />
+                </Link>
+              </div>
+
+              {/* Column 3: THÙNG */}
               <div
                 className={`${styles.megaColumn} ${
                   activeMegaGroup === 'thung' ? styles.megaColumnHighlight : ''
@@ -262,11 +292,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                 <ul className={styles.megaList}>
                   {THUNG_ITEMS.map((item) => (
                     <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        className={styles.megaLink}
-                        onClick={closeMegaMenu}
-                      >
+                      <Link href={item.href} className={styles.megaLink} onClick={closeMegaMenu}>
                         {item.label}
                       </Link>
                     </li>
@@ -282,7 +308,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                 </Link>
               </div>
 
-              {/* Column 3: Dark Consultation Card */}
+              {/* Column 4: Dark Consultation Card */}
               <div className={styles.megaCtaCard}>
                 <h4 className={styles.megaCtaTitle}>Cần tư vấn nhanh?</h4>
                 <p className={styles.megaCtaDesc}>
@@ -349,6 +375,45 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                     className={styles.mobileSubViewAll}
                   >
                     <span>Xem tất cả Pallet Gỗ</span>
+                    <ArrowRight size={14} />
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* Mobile Accordion: Pallet Nhựa */}
+            <div className={styles.mobileAccordionGroup}>
+              <button
+                type="button"
+                className={`${styles.mobileNavLink} ${styles.mobileAccordionBtn}`}
+                onClick={() => toggleMobileAccordion('pallet-nhua')}
+              >
+                <span>Pallet Nhựa</span>
+                <ChevronDown
+                  size={16}
+                  className={`${styles.navChevron} ${
+                    mobileAccordion === 'pallet-nhua' ? styles.navChevronOpen : ''
+                  }`}
+                />
+              </button>
+              {mobileAccordion === 'pallet-nhua' && (
+                <div className={styles.mobileSubList}>
+                  {PALLET_NHUA_ITEMS.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className={styles.mobileSubLink}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                  <Link
+                    href="/san-pham?group=pallet-nhua"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={styles.mobileSubViewAll}
+                  >
+                    <span>Xem tất cả Pallet Nhựa</span>
                     <ArrowRight size={14} />
                   </Link>
                 </div>

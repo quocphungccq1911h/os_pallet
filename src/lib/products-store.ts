@@ -205,7 +205,7 @@ export async function saveProduct(productData: Partial<Product>): Promise<Produc
       slug: newSlug,
       name: productData.name || 'Sản phẩm Pallet mới',
       category: productData.category || 'Pallet Gỗ Thông & Tràm Mới',
-      categorySlug: productData.categorySlug || 'pallet-go-moi',
+      categorySlug: productData.categorySlug || 'pallet-go-tram',
       dimensions: productData.dimensions || '1200 x 1000 x 140 mm',
       woodType: productData.woodType || 'Gỗ Thông xẻ sấy',
       materialGroup: productData.materialGroup || 'go-thong',

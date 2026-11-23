@@ -7,6 +7,7 @@ import {
   products as defaultProducts,
   Product,
   PALLET_GO_SLUGS,
+  PALLET_NHUA_SLUGS,
   THUNG_SLUGS,
 } from '@/data/products';
 import { companyInfo } from '@/data/companyInfo';
@@ -15,10 +16,12 @@ import { useQuoteModal } from '@/context/QuoteModalContext';
 import { ProductGalleryBanner } from '@/components/ProductGalleryBanner';
 import { ProductCard } from '@/components/ProductCard';
 import { ProductTechnicalDrawing } from '@/components/ProductTechnicalDrawing';
+import { WorkshopSpecsTable } from '@/components/WorkshopSpecsTable';
 import styles from './detail.module.css';
 
 function getRelatedProducts(current: Product, all: Product[], limit = 4): Product[] {
   const isCurrentPallet = PALLET_GO_SLUGS.includes(current.categorySlug);
+  const isCurrentPlasticPallet = PALLET_NHUA_SLUGS.includes(current.categorySlug);
   const isCurrentThung = THUNG_SLUGS.includes(current.categorySlug);
 
   return all
@@ -27,6 +30,7 @@ function getRelatedProducts(current: Product, all: Product[], limit = 4): Produc
       let score = 0;
       if (p.categorySlug === current.categorySlug) score += 100;
       if (isCurrentPallet && PALLET_GO_SLUGS.includes(p.categorySlug)) score += 40;
+      if (isCurrentPlasticPallet && PALLET_NHUA_SLUGS.includes(p.categorySlug)) score += 40;
       if (isCurrentThung && THUNG_SLUGS.includes(p.categorySlug)) score += 40;
       if (p.targetMarket === current.targetMarket) score += 15;
       if (p.materialGroup === current.materialGroup) score += 10;
@@ -293,6 +297,12 @@ export default function ProductDetailPage() {
         <ProductTechnicalDrawing
           product={product}
           onRequestCustomDrawing={() => openQuoteModal(product.slug)}
+        />
+
+        {/* Workshop BOM / Size Matrix Table from Excel */}
+        <WorkshopSpecsTable
+          categorySlug={product.categorySlug}
+          onRequestQuote={(specLabel) => openQuoteModal(specLabel)}
         />
 
         {/* Product Full Description & Highlights */}
