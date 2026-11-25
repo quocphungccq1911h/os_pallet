@@ -48,6 +48,19 @@ import styles from './admin.module.css';
 
 type AdminTab = 'quotes' | 'orders' | 'products' | 'activities' | 'settings';
 
+function normalizeSearch(str?: string): string {
+  if (!str) return '';
+  return str
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'd')
+    .replace(/[×x]/g, 'x')
+    .replace(/[·•()\[]—–-]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 export default function AdminDashboardPage() {
   const router = useRouter();
 
@@ -290,14 +303,14 @@ export default function AdminDashboardPage() {
   }, [orders, orderStatusFilter, searchQuery]);
 
   const filteredProducts = useMemo(() => {
+    const qNorm = normalizeSearch(searchQuery);
     return products.filter((p) => {
       const matchCat = productCatFilter === 'all' || p.categorySlug === productCatFilter;
-      const matchSearch =
-        !searchQuery.trim() ||
-        p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.dimensions.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        p.woodType.toLowerCase().includes(searchQuery.toLowerCase());
-      return matchCat && matchSearch;
+      if (!qNorm) return matchCat;
+      const haystack = normalizeSearch(
+        `${p.id} ${p.name} ${p.dimensions} ${p.woodType} ${p.specification} ${p.slug}`
+      );
+      return matchCat && haystack.includes(qNorm);
     });
   }, [products, productCatFilter, searchQuery]);
 
@@ -343,7 +356,7 @@ export default function AdminDashboardPage() {
           </div>
           <div className={styles.sidebarBrandText}>
             <span className={styles.brandName}>Pallet Trường An</span>
-            <span className={styles.brandSub}>Xưởng Hóc Môn • Admin</span>
+            <span className={styles.brandSub}>Xưởng Bà Điểm • Admin</span>
           </div>
         </div>
 
@@ -544,6 +557,17 @@ export default function AdminDashboardPage() {
                   <div className={styles.emptyState}>
                     <MessageSquare size={44} color="#94a3b8" />
                     <p style={{ fontWeight: 600 }}>Không tìm thấy yêu cầu báo giá nào</p>
+                    {searchQuery.trim() && filteredProducts.length > 0 && (
+                      <button
+                        type="button"
+                        onClick={() => { setActiveTab('products'); setProductCatFilter('all'); }}
+                        className={styles.btnAddNew}
+                        style={{ marginTop: '0.75rem' }}
+                      >
+                        <Package size={16} />
+                        <span>Chuyển sang Danh Mục Sản Phẩm ({filteredProducts.length} sản phẩm khớp)</span>
+                      </button>
+                    )}
                   </div>
                 ) : (
                   <table className={styles.table}>

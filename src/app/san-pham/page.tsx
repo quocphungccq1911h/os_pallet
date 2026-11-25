@@ -17,6 +17,19 @@ import styles from './sanpham.module.css';
 
 const ITEMS_PER_PAGE = 10;
 
+function normalizeSearch(str?: string): string {
+  if (!str) return '';
+  return str
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/đ/g, 'd')
+    .replace(/[×x]/g, 'x')
+    .replace(/[·•()\[]—–-]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 function buildPageNumbers(current: number, total: number): (number | 'dots')[] {
   if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
   const pages: (number | 'dots')[] = [1];
@@ -121,15 +134,10 @@ function ProductsContent() {
     const matchesCategory = selectedCategory === 'all' || p.categorySlug === selectedCategory;
     const matchesMaterial = selectedMaterial === 'all' || p.materialGroup === selectedMaterial;
     const matchesMarket = selectedMarket === 'all' || p.targetMarket === selectedMarket;
-    const q = searchQuery.trim().toLowerCase();
+    const q = normalizeSearch(searchQuery);
     const matchesSearch =
       q === '' ||
-      p.id.toLowerCase().includes(q) ||
-      p.name.toLowerCase().includes(q) ||
-      p.dimensions.toLowerCase().includes(q) ||
-      p.woodType.toLowerCase().includes(q) ||
-      p.specification.toLowerCase().includes(q) ||
-      (p.badges && p.badges.some((b) => b.toLowerCase().includes(q)));
+      normalizeSearch(`${p.id} ${p.name} ${p.dimensions} ${p.woodType} ${p.specification} ${(p.badges || []).join(' ')}`).includes(q);
 
     return matchesGroup && matchesCategory && matchesMaterial && matchesMarket && matchesSearch;
   });
