@@ -1,23 +1,27 @@
-﻿'use client';
+'use client';
 
 import React from 'react';
 import { ContactFormSection } from '@/components/home/ContactFormSection';
 import { companyInfo } from '@/data/companyInfo';
-import { MapPin, Phone, Mail, Clock, Factory } from 'lucide-react';
+import { MapPin, Phone, Clock, Factory } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
 import styles from './lienhe.module.css';
 
 export default function ContactPage() {
+  const { t } = useLanguage();
+
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.pageHeader}>
         <div className="container">
-          <span className="section-tag" style={{ backgroundColor: 'rgba(255,255,255,0.2)', color: '#ffffff' }}>
-            THÔNG TIN LIÊN HỆ & NHÀ XƯỞNG
+          <span
+            className="section-tag"
+            style={{ backgroundColor: 'rgba(255,255,255,0.2)', color: '#ffffff' }}
+          >
+            {t.contactPage.tag}
           </span>
-          <h1 className={styles.pageTitle}>Liên Hệ {companyInfo.name}</h1>
-          <p className={styles.pageDesc}>
-            Chúng tôi luôn sẵn sàng hỗ trợ khảo sát kích thước máy móc, lên bản vẽ thiết kế mẫu và báo giá tận xưởng tốt nhất cho doanh nghiệp.
-          </p>
+          <h1 className={styles.pageTitle}>{t.contactPage.title}</h1>
+          <p className={styles.pageDesc}>{t.contactPage.desc}</p>
         </div>
       </div>
 
@@ -28,9 +32,9 @@ export default function ContactPage() {
               <div className={styles.iconBox}>
                 <MapPin size={22} />
               </div>
-              <h3 className={styles.cardTitle}>Xưởng Sản Xuất</h3>
+              <h3 className={styles.cardTitle}>{t.contactPage.c1Title}</h3>
             </div>
-            <p className={styles.cardDesc}>{companyInfo.address}</p>
+            <p className={styles.cardDesc}>{t.common.address}</p>
           </div>
 
           <div className={styles.card}>
@@ -38,11 +42,9 @@ export default function ContactPage() {
               <div className={styles.iconBox}>
                 <Factory size={22} />
               </div>
-              <h3 className={styles.cardTitle}>Khu Vực Phục Vụ</h3>
+              <h3 className={styles.cardTitle}>{t.contactPage.c2Title}</h3>
             </div>
-            <p className={styles.cardDesc}>
-              Hóc Môn, Củ Chi, Q.12, Bình Dương, Long An, các KCN miền Nam &amp; Đóng hàng xuất khẩu
-            </p>
+            <p className={styles.cardDesc}>{t.contactPage.c2Desc}</p>
           </div>
 
           <div className={styles.card}>
@@ -50,10 +52,12 @@ export default function ContactPage() {
               <div className={styles.iconBox}>
                 <Phone size={22} />
               </div>
-              <h3 className={styles.cardTitle}>Hotline &amp; Zalo</h3>
+              <h3 className={styles.cardTitle}>{t.contactPage.c3Title}</h3>
             </div>
             <div className={styles.cardDesc}>
-              <p>Hotline / Zalo: <strong>{companyInfo.hotlineFormatted}</strong></p>
+              <p>
+                Hotline / Zalo: <strong>{companyInfo.hotlineFormatted}</strong>
+              </p>
             </div>
           </div>
 
@@ -62,17 +66,18 @@ export default function ContactPage() {
               <div className={styles.iconBox}>
                 <Clock size={22} />
               </div>
-              <h3 className={styles.cardTitle}>Giờ Làm Việc</h3>
+              <h3 className={styles.cardTitle}>{t.contactPage.c4Title}</h3>
             </div>
             <div className={styles.cardDesc}>
-              <p>{companyInfo.workingHours}</p>
-              <p style={{ color: 'var(--primary-dark)', fontWeight: 600 }}>Tư vấn kỹ thuật Zalo 24/7</p>
+              <p>{t.common.workingHours}</p>
+              <p style={{ color: 'var(--primary-dark)', fontWeight: 600 }}>
+                {t.contactPage.c4Note}
+              </p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Main Contact Form Block */}
       <ContactFormSection />
     </div>
   );

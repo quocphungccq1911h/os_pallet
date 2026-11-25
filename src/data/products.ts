@@ -1,3 +1,22 @@
+export interface ProductTranslation {
+  name?: string;
+  category?: string;
+  woodType?: string;
+  staticLoad?: string;
+  dynamicLoad?: string;
+  specification?: string;
+  priceDisplay?: string;
+  description?: string;
+  highlights?: string[];
+  usagePurpose?: string;
+  badges?: string[];
+  facebookProof?: {
+    title: string;
+    description: string;
+    fbUrl?: string;
+  };
+}
+
 export interface Product {
   id: string;
   slug: string;
@@ -24,6 +43,10 @@ export interface Product {
     title: string;
     description: string;
     fbUrl?: string;
+  };
+  translations?: {
+    en?: ProductTranslation;
+    zh?: ProductTranslation;
   };
 }
 
@@ -171,6 +194,62 @@ export const products: Product[] = [
       "title": "Sản xuất lô Pallet tràm đố bằng phổ thông (PTA-T01) tại Xưởng Pallet Trường An",
       "description": "Phôi gỗ tràm xẻ đều đẹp, kiểm tra kỹ kích thước và tải trọng trước khi giao xe tải tận nơi.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Standard 3-Stringer Acacia Pallet — PTA-T01 (1200 × 1000 × 120 mm)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "Selected straight-grain Acacia hardwood, rot & borer-free",
+        "staticLoad": "2.000 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.500 kg",
+        "specification": "Structure: 3 longitudinal stringers, 2-way forklift entry (height 86mm) · Top deck boards: 7 boards (1200×90×17 mm) · Bottom boards: 3 boards (1200×90×17 mm) · Standard timber volume: 0.0297 m³",
+        "priceDisplay": "Contact Us",
+        "description": "Standard 3-Stringer Acacia Pallet — PTA-T01 (1200 × 1000 × 120 mm) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (2.000 - 3.000 kg) and dynamic (1.000 - 1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Structure: 3 longitudinal stringers, 2-way forklift entry (height 86mm)",
+          "Top deck boards: 7 boards (1200×90×17 mm)",
+          "Bottom boards: 3 boards (1200×90×17 mm)",
+          "Direct factory-gate pricing with custom dimension adjustments & 24h sample prototyping"
+        ],
+        "usagePurpose": "Factory floor warehousing, domestic distribution, packaging & industrial racking",
+        "badges": [
+          "CODE PTA-T01",
+          "3-STRINGER / 2-WAY",
+          "FACTORY DIRECT"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Standard 3-Stringer Acacia Pallet — PTA-T01 (1200 × 1000 × 120 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "通用平纵梁相思木托盘 — PTA-T01 (1200 × 1000 × 120 mm)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "严选笔直无腐无虫天然相思木硬木",
+        "staticLoad": "2.000 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.500 kg",
+        "specification": "进叉结构： 3根纵梁 · 双向进叉 (高86mm) · 顶板木条： 7根 (1200×90×17 mm) · 底板木条： 3根 (1200×90×17 mm) · 单只标准木材材积： 0.0297 m³",
+        "priceDisplay": "联系询价",
+        "description": "通用平纵梁相思木托盘 — PTA-T01 (1200 × 1000 × 120 mm) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (2.000 - 3.000 kg) 与动载 (1.000 - 1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "进叉结构： 3根纵梁",
+          "双向进叉 (高86mm)",
+          "顶板木条： 7根 (1200×90×17 mm)",
+          "源头工厂一手批发价，支持按客户图纸微调尺寸并在24小时内快速打样测载"
+        ],
+        "usagePurpose": "工厂车间垫仓、国内物流周转、纸箱包装材料及重物堆放",
+        "badges": [
+          "型号 PTA-T01",
+          "三纵梁 / 双向进叉",
+          "工厂直供价"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：通用平纵梁相思木托盘 — PTA-T01 (1200 × 1000 × 120 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -214,6 +293,62 @@ export const products: Product[] = [
       "title": "Sản xuất lô Pallet tràm đố bằng xuất khẩu (PTA-T02) tại Xưởng Pallet Trường An",
       "description": "Phôi gỗ tràm xẻ đều đẹp, kiểm tra kỹ kích thước và tải trọng trước khi giao xe tải tận nơi.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Export 3-Stringer Acacia Pallet — PTA-T02 (1200 × 1000 × 140 mm)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "Selected natural Acacia hardwood, optional kiln-drying & ISPM 15 HT",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "Structure: 3 longitudinal stringers, 2-way forklift entry (height 104mm) · Top deck boards: 7 boards (1200×90×18 mm) · Bottom boards: 3 boards (1200×90×18 mm) · Standard timber volume: 0.03564 m³",
+        "priceDisplay": "Contact Us",
+        "description": "Export 3-Stringer Acacia Pallet — PTA-T02 (1200 × 1000 × 140 mm) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (3.000 - 4.000 kg) and dynamic (1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Structure: 3 longitudinal stringers, 2-way forklift entry (height 104mm)",
+          "Top deck boards: 7 boards (1200×90×18 mm)",
+          "Bottom boards: 3 boards (1200×90×18 mm)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Export container loading (US, EU, Asia), heavy warehouse stacking & industrial logistics",
+        "badges": [
+          "CODE PTA-T02",
+          "3-STRINGER / 2-WAY",
+          "ISPM 15"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Export 3-Stringer Acacia Pallet — PTA-T02 (1200 × 1000 × 140 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "出口型三纵梁相思木托盘 — PTA-T02 (1200 × 1000 × 140 mm)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "严选天然相思木硬木，支持烘干及ISPM 15热处理熏蒸",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "进叉结构： 3根纵梁 · 双向进叉 (高104mm) · 顶板木条： 7根 (1200×90×18 mm) · 底板木条： 3根 (1200×90×18 mm) · 单只标准木材材积： 0.03564 m³",
+        "priceDisplay": "联系询价",
+        "description": "出口型三纵梁相思木托盘 — PTA-T02 (1200 × 1000 × 140 mm) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (3.000 - 4.000 kg) 与动载 (1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "进叉结构： 3根纵梁",
+          "双向进叉 (高104mm)",
+          "顶板木条： 7根 (1200×90×18 mm)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "出口集装箱装柜（欧美、日韩、东盟）、重型货物多层堆码与工厂立体仓周转",
+        "badges": [
+          "型号 PTA-T02",
+          "三纵梁 / 双向进叉",
+          "ISPM 15"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：出口型三纵梁相思木托盘 — PTA-T02 (1200 × 1000 × 140 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -257,6 +392,62 @@ export const products: Product[] = [
       "title": "Sản xuất lô Pallet tràm 1219×1016 (PTA-T03) tại Xưởng Pallet Trường An",
       "description": "Phôi gỗ tràm xẻ đều đẹp, kiểm tra kỹ kích thước và tải trọng trước khi giao xe tải tận nơi.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "3-Stringer Acacia Pallet 1219×1016 — PTA-T03 (1219 × 1016 × 145 mm)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "Selected natural Acacia hardwood, optional kiln-drying & ISPM 15 HT",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "Structure: 3 longitudinal stringers, 2-way forklift entry (height 109mm) · Top deck boards: 7 boards (1219×100×18 mm) · Bottom boards: 3 boards (1219×100×18 mm) · Standard timber volume: 0.04206 m³",
+        "priceDisplay": "Contact Us",
+        "description": "3-Stringer Acacia Pallet 1219×1016 — PTA-T03 (1219 × 1016 × 145 mm) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (3.000 - 4.000 kg) and dynamic (1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Structure: 3 longitudinal stringers, 2-way forklift entry (height 109mm)",
+          "Top deck boards: 7 boards (1219×100×18 mm)",
+          "Bottom boards: 3 boards (1219×100×18 mm)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Export container loading (US, EU, Asia), heavy warehouse stacking & industrial logistics",
+        "badges": [
+          "CODE PTA-T03",
+          "3-STRINGER / 2-WAY",
+          "ISPM 15"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: 3-Stringer Acacia Pallet 1219×1016 — PTA-T03 (1219 × 1016 × 145 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "三纵梁相思木托盘 1219×1016 — PTA-T03 (1219 × 1016 × 145 mm)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "严选天然相思木硬木，支持烘干及ISPM 15热处理熏蒸",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "进叉结构： 3根纵梁 · 双向进叉 (高109mm) · 顶板木条： 7根 (1219×100×18 mm) · 底板木条： 3根 (1219×100×18 mm) · 单只标准木材材积： 0.04206 m³",
+        "priceDisplay": "联系询价",
+        "description": "三纵梁相思木托盘 1219×1016 — PTA-T03 (1219 × 1016 × 145 mm) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (3.000 - 4.000 kg) 与动载 (1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "进叉结构： 3根纵梁",
+          "双向进叉 (高109mm)",
+          "顶板木条： 7根 (1219×100×18 mm)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "出口集装箱装柜（欧美、日韩、东盟）、重型货物多层堆码与工厂立体仓周转",
+        "badges": [
+          "型号 PTA-T03",
+          "三纵梁 / 双向进叉",
+          "ISPM 15"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：三纵梁相思木托盘 1219×1016 — PTA-T03 (1219 × 1016 × 145 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -300,6 +491,62 @@ export const products: Product[] = [
       "title": "Sản xuất lô Pallet tràm 1100×1000 (PTA-T04) tại Xưởng Pallet Trường An",
       "description": "Phôi gỗ tràm xẻ đều đẹp, kiểm tra kỹ kích thước và tải trọng trước khi giao xe tải tận nơi.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "3-Stringer Acacia Pallet 1100×1000 — PTA-T04 (1100 × 1000 × 110 mm)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "Selected straight-grain Acacia hardwood, rot & borer-free",
+        "staticLoad": "2.000 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.500 kg",
+        "specification": "Structure: 3 longitudinal stringers, 2-way forklift entry (height 78mm) · Top deck boards: 7 boards (1100×90×16 mm) · Bottom boards: 3 boards (1100×90×16 mm) · Standard timber volume: 0.0295 m³",
+        "priceDisplay": "Contact Us",
+        "description": "3-Stringer Acacia Pallet 1100×1000 — PTA-T04 (1100 × 1000 × 110 mm) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (2.000 - 3.000 kg) and dynamic (1.000 - 1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Structure: 3 longitudinal stringers, 2-way forklift entry (height 78mm)",
+          "Top deck boards: 7 boards (1100×90×16 mm)",
+          "Bottom boards: 3 boards (1100×90×16 mm)",
+          "Direct factory-gate pricing with custom dimension adjustments & 24h sample prototyping"
+        ],
+        "usagePurpose": "Factory floor warehousing, domestic distribution, packaging & industrial racking",
+        "badges": [
+          "CODE PTA-T04",
+          "3-STRINGER / 2-WAY",
+          "FACTORY DIRECT"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: 3-Stringer Acacia Pallet 1100×1000 — PTA-T04 (1100 × 1000 × 110 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "三纵梁相思木托盘 1100×1000 — PTA-T04 (1100 × 1000 × 110 mm)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "严选笔直无腐无虫天然相思木硬木",
+        "staticLoad": "2.000 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.500 kg",
+        "specification": "进叉结构： 3根纵梁 · 双向进叉 (高78mm) · 顶板木条： 7根 (1100×90×16 mm) · 底板木条： 3根 (1100×90×16 mm) · 单只标准木材材积： 0.0295 m³",
+        "priceDisplay": "联系询价",
+        "description": "三纵梁相思木托盘 1100×1000 — PTA-T04 (1100 × 1000 × 110 mm) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (2.000 - 3.000 kg) 与动载 (1.000 - 1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "进叉结构： 3根纵梁",
+          "双向进叉 (高78mm)",
+          "顶板木条： 7根 (1100×90×16 mm)",
+          "源头工厂一手批发价，支持按客户图纸微调尺寸并在24小时内快速打样测载"
+        ],
+        "usagePurpose": "工厂车间垫仓、国内物流周转、纸箱包装材料及重物堆放",
+        "badges": [
+          "型号 PTA-T04",
+          "三纵梁 / 双向进叉",
+          "工厂直供价"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：三纵梁相思木托盘 1100×1000 — PTA-T04 (1100 × 1000 × 110 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -343,6 +590,62 @@ export const products: Product[] = [
       "title": "Sản xuất lô Pallet tràm 1100×1100 (PTA-T05) tại Xưởng Pallet Trường An",
       "description": "Phôi gỗ tràm xẻ đều đẹp, kiểm tra kỹ kích thước và tải trọng trước khi giao xe tải tận nơi.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "3-Stringer Acacia Pallet 1100×1100 — PTA-T05 (1100 × 1100 × 140 mm)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "Selected natural Acacia hardwood, optional kiln-drying & ISPM 15 HT",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "Structure: 3 longitudinal stringers, 2-way forklift entry (height 104mm) · Top deck boards: 8 boards (1100×90×18 mm) · Bottom boards: 3 boards (1100×90×18 mm) · Standard timber volume: 0.0361 m³",
+        "priceDisplay": "Contact Us",
+        "description": "3-Stringer Acacia Pallet 1100×1100 — PTA-T05 (1100 × 1100 × 140 mm) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (3.000 - 4.000 kg) and dynamic (1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Structure: 3 longitudinal stringers, 2-way forklift entry (height 104mm)",
+          "Top deck boards: 8 boards (1100×90×18 mm)",
+          "Bottom boards: 3 boards (1100×90×18 mm)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Export container loading (US, EU, Asia), heavy warehouse stacking & industrial logistics",
+        "badges": [
+          "CODE PTA-T05",
+          "3-STRINGER / 2-WAY",
+          "ISPM 15"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: 3-Stringer Acacia Pallet 1100×1100 — PTA-T05 (1100 × 1100 × 140 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "三纵梁相思木托盘 1100×1100 — PTA-T05 (1100 × 1100 × 140 mm)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "严选天然相思木硬木，支持烘干及ISPM 15热处理熏蒸",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "进叉结构： 3根纵梁 · 双向进叉 (高104mm) · 顶板木条： 8根 (1100×90×18 mm) · 底板木条： 3根 (1100×90×18 mm) · 单只标准木材材积： 0.0361 m³",
+        "priceDisplay": "联系询价",
+        "description": "三纵梁相思木托盘 1100×1100 — PTA-T05 (1100 × 1100 × 140 mm) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (3.000 - 4.000 kg) 与动载 (1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "进叉结构： 3根纵梁",
+          "双向进叉 (高104mm)",
+          "顶板木条： 8根 (1100×90×18 mm)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "出口集装箱装柜（欧美、日韩、东盟）、重型货物多层堆码与工厂立体仓周转",
+        "badges": [
+          "型号 PTA-T05",
+          "三纵梁 / 双向进叉",
+          "ISPM 15"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：三纵梁相思木托盘 1100×1100 — PTA-T05 (1100 × 1100 × 140 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -386,6 +689,62 @@ export const products: Product[] = [
       "title": "Sản xuất lô Pallet tràm 1200×800 (PTA-T06) tại Xưởng Pallet Trường An",
       "description": "Phôi gỗ tràm xẻ đều đẹp, kiểm tra kỹ kích thước và tải trọng trước khi giao xe tải tận nơi.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "3-Stringer Acacia Pallet 1200×800 — PTA-T06 (1200 × 800 × 120 mm)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "Selected natural Acacia hardwood, optional kiln-drying & ISPM 15 HT",
+        "staticLoad": "2.000 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.500 kg",
+        "specification": "Structure: 3 longitudinal stringers, 2-way forklift entry (height 86mm) · Top deck boards: 6 boards (1200×90×17 mm) · Bottom boards: 3 boards (1200×90×17 mm) · Standard timber volume: 0.02786 m³",
+        "priceDisplay": "Contact Us",
+        "description": "3-Stringer Acacia Pallet 1200×800 — PTA-T06 (1200 × 800 × 120 mm) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (2.000 - 3.000 kg) and dynamic (1.000 - 1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Structure: 3 longitudinal stringers, 2-way forklift entry (height 86mm)",
+          "Top deck boards: 6 boards (1200×90×17 mm)",
+          "Bottom boards: 3 boards (1200×90×17 mm)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Export container loading (US, EU, Asia), heavy warehouse stacking & industrial logistics",
+        "badges": [
+          "CODE PTA-T06",
+          "3-STRINGER / 2-WAY",
+          "ISPM 15"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: 3-Stringer Acacia Pallet 1200×800 — PTA-T06 (1200 × 800 × 120 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "三纵梁相思木托盘 1200×800 — PTA-T06 (1200 × 800 × 120 mm)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "严选天然相思木硬木，支持烘干及ISPM 15热处理熏蒸",
+        "staticLoad": "2.000 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.500 kg",
+        "specification": "进叉结构： 3根纵梁 · 双向进叉 (高86mm) · 顶板木条： 6根 (1200×90×17 mm) · 底板木条： 3根 (1200×90×17 mm) · 单只标准木材材积： 0.02786 m³",
+        "priceDisplay": "联系询价",
+        "description": "三纵梁相思木托盘 1200×800 — PTA-T06 (1200 × 800 × 120 mm) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (2.000 - 3.000 kg) 与动载 (1.000 - 1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "进叉结构： 3根纵梁",
+          "双向进叉 (高86mm)",
+          "顶板木条： 6根 (1200×90×17 mm)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "出口集装箱装柜（欧美、日韩、东盟）、重型货物多层堆码与工厂立体仓周转",
+        "badges": [
+          "型号 PTA-T06",
+          "三纵梁 / 双向进叉",
+          "ISPM 15"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：三纵梁相思木托盘 1200×800 — PTA-T06 (1200 × 800 × 120 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -429,6 +788,62 @@ export const products: Product[] = [
       "title": "Sản xuất lô Pallet tràm 1170×1080 (PTA-T07) tại Xưởng Pallet Trường An",
       "description": "Phôi gỗ tràm xẻ đều đẹp, kiểm tra kỹ kích thước và tải trọng trước khi giao xe tải tận nơi.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "3-Stringer Acacia Pallet 1170×1080 — PTA-T07 (1170 × 1080 × 140 mm)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "Selected straight-grain Acacia hardwood, rot & borer-free",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "Structure: 3 longitudinal stringers, 2-way forklift entry (height 104mm) · Top deck boards: 8 boards (1170×90×18 mm) · Bottom boards: 3 boards (1170×90×18 mm) · Standard timber volume: 0.0384 m³",
+        "priceDisplay": "Contact Us",
+        "description": "3-Stringer Acacia Pallet 1170×1080 — PTA-T07 (1170 × 1080 × 140 mm) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (3.000 - 4.000 kg) and dynamic (1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Structure: 3 longitudinal stringers, 2-way forklift entry (height 104mm)",
+          "Top deck boards: 8 boards (1170×90×18 mm)",
+          "Bottom boards: 3 boards (1170×90×18 mm)",
+          "Direct factory-gate pricing with custom dimension adjustments & 24h sample prototyping"
+        ],
+        "usagePurpose": "Factory floor warehousing, domestic distribution, packaging & industrial racking",
+        "badges": [
+          "CODE PTA-T07",
+          "3-STRINGER / 2-WAY",
+          "FACTORY DIRECT"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: 3-Stringer Acacia Pallet 1170×1080 — PTA-T07 (1170 × 1080 × 140 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "三纵梁相思木托盘 1170×1080 — PTA-T07 (1170 × 1080 × 140 mm)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "严选笔直无腐无虫天然相思木硬木",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "进叉结构： 3根纵梁 · 双向进叉 (高104mm) · 顶板木条： 8根 (1170×90×18 mm) · 底板木条： 3根 (1170×90×18 mm) · 单只标准木材材积： 0.0384 m³",
+        "priceDisplay": "联系询价",
+        "description": "三纵梁相思木托盘 1170×1080 — PTA-T07 (1170 × 1080 × 140 mm) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (3.000 - 4.000 kg) 与动载 (1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "进叉结构： 3根纵梁",
+          "双向进叉 (高104mm)",
+          "顶板木条： 8根 (1170×90×18 mm)",
+          "源头工厂一手批发价，支持按客户图纸微调尺寸并在24小时内快速打样测载"
+        ],
+        "usagePurpose": "工厂车间垫仓、国内物流周转、纸箱包装材料及重物堆放",
+        "badges": [
+          "型号 PTA-T07",
+          "三纵梁 / 双向进叉",
+          "工厂直供价"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：三纵梁相思木托盘 1170×1080 — PTA-T07 (1170 × 1080 × 140 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -472,6 +887,62 @@ export const products: Product[] = [
       "title": "Sản xuất lô Pallet tràm 1260×1005 (PTA-T08) tại Xưởng Pallet Trường An",
       "description": "Phôi gỗ tràm xẻ đều đẹp, kiểm tra kỹ kích thước và tải trọng trước khi giao xe tải tận nơi.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "3-Stringer Acacia Pallet 1260×1005 — PTA-T08 (1260 × 1005 × 143 mm)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "Selected natural Acacia hardwood, optional kiln-drying & ISPM 15 HT",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "Structure: 3 longitudinal stringers, 2-way forklift entry (height 107mm) · Top deck boards: 7 boards (1260×100×18 mm) · Bottom boards: 3 boards (1260×100×18 mm) · Standard timber volume: 0.04347 m³",
+        "priceDisplay": "Contact Us",
+        "description": "3-Stringer Acacia Pallet 1260×1005 — PTA-T08 (1260 × 1005 × 143 mm) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (3.000 - 4.000 kg) and dynamic (1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Structure: 3 longitudinal stringers, 2-way forklift entry (height 107mm)",
+          "Top deck boards: 7 boards (1260×100×18 mm)",
+          "Bottom boards: 3 boards (1260×100×18 mm)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Export container loading (US, EU, Asia), heavy warehouse stacking & industrial logistics",
+        "badges": [
+          "CODE PTA-T08",
+          "3-STRINGER / 2-WAY",
+          "ISPM 15"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: 3-Stringer Acacia Pallet 1260×1005 — PTA-T08 (1260 × 1005 × 143 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "三纵梁相思木托盘 1260×1005 — PTA-T08 (1260 × 1005 × 143 mm)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "严选天然相思木硬木，支持烘干及ISPM 15热处理熏蒸",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "进叉结构： 3根纵梁 · 双向进叉 (高107mm) · 顶板木条： 7根 (1260×100×18 mm) · 底板木条： 3根 (1260×100×18 mm) · 单只标准木材材积： 0.04347 m³",
+        "priceDisplay": "联系询价",
+        "description": "三纵梁相思木托盘 1260×1005 — PTA-T08 (1260 × 1005 × 143 mm) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (3.000 - 4.000 kg) 与动载 (1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "进叉结构： 3根纵梁",
+          "双向进叉 (高107mm)",
+          "顶板木条： 7根 (1260×100×18 mm)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "出口集装箱装柜（欧美、日韩、东盟）、重型货物多层堆码与工厂立体仓周转",
+        "badges": [
+          "型号 PTA-T08",
+          "三纵梁 / 双向进叉",
+          "ISPM 15"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：三纵梁相思木托盘 1260×1005 — PTA-T08 (1260 × 1005 × 143 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -515,6 +986,62 @@ export const products: Product[] = [
       "title": "Sản xuất lô Pallet tràm 1550×1000 (PTA-T09) tại Xưởng Pallet Trường An",
       "description": "Phôi gỗ tràm xẻ đều đẹp, kiểm tra kỹ kích thước và tải trọng trước khi giao xe tải tận nơi.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "3-Stringer Acacia Pallet 1550×1000 — PTA-T09 (1550 × 1000 × 127 mm)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "Selected straight-grain Acacia hardwood, rot & borer-free",
+        "staticLoad": "2.000 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.500 kg",
+        "specification": "Structure: 3 longitudinal stringers, 2-way forklift entry (height 93mm) · Top deck boards: 7 boards (1550×90×17 mm) · Bottom boards: 3 boards (1550×90×17 mm) · Standard timber volume: 0.04087 m³",
+        "priceDisplay": "Contact Us",
+        "description": "3-Stringer Acacia Pallet 1550×1000 — PTA-T09 (1550 × 1000 × 127 mm) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (2.000 - 3.000 kg) and dynamic (1.000 - 1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Structure: 3 longitudinal stringers, 2-way forklift entry (height 93mm)",
+          "Top deck boards: 7 boards (1550×90×17 mm)",
+          "Bottom boards: 3 boards (1550×90×17 mm)",
+          "Direct factory-gate pricing with custom dimension adjustments & 24h sample prototyping"
+        ],
+        "usagePurpose": "Factory floor warehousing, domestic distribution, packaging & industrial racking",
+        "badges": [
+          "CODE PTA-T09",
+          "3-STRINGER / 2-WAY",
+          "FACTORY DIRECT"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: 3-Stringer Acacia Pallet 1550×1000 — PTA-T09 (1550 × 1000 × 127 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "三纵梁相思木托盘 1550×1000 — PTA-T09 (1550 × 1000 × 127 mm)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "严选笔直无腐无虫天然相思木硬木",
+        "staticLoad": "2.000 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.500 kg",
+        "specification": "进叉结构： 3根纵梁 · 双向进叉 (高93mm) · 顶板木条： 7根 (1550×90×17 mm) · 底板木条： 3根 (1550×90×17 mm) · 单只标准木材材积： 0.04087 m³",
+        "priceDisplay": "联系询价",
+        "description": "三纵梁相思木托盘 1550×1000 — PTA-T09 (1550 × 1000 × 127 mm) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (2.000 - 3.000 kg) 与动载 (1.000 - 1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "进叉结构： 3根纵梁",
+          "双向进叉 (高93mm)",
+          "顶板木条： 7根 (1550×90×17 mm)",
+          "源头工厂一手批发价，支持按客户图纸微调尺寸并在24小时内快速打样测载"
+        ],
+        "usagePurpose": "工厂车间垫仓、国内物流周转、纸箱包装材料及重物堆放",
+        "badges": [
+          "型号 PTA-T09",
+          "三纵梁 / 双向进叉",
+          "工厂直供价"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：三纵梁相思木托盘 1550×1000 — PTA-T09 (1550 × 1000 × 127 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -558,6 +1085,62 @@ export const products: Product[] = [
       "title": "Sản xuất lô Pallet tràm 820×980 (PTA-T10) tại Xưởng Pallet Trường An",
       "description": "Phôi gỗ tràm xẻ đều đẹp, kiểm tra kỹ kích thước và tải trọng trước khi giao xe tải tận nơi.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "3-Stringer Acacia Pallet 820×980 — PTA-T10 (820 × 980 × 127 mm)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "Selected straight-grain Acacia hardwood, rot & borer-free",
+        "staticLoad": "2.000 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.500 kg",
+        "specification": "Structure: 3 longitudinal stringers, 2-way forklift entry (height 93mm) · Top deck boards: 7 boards (820×90×17 mm) · Bottom boards: 3 boards (820×90×17 mm) · Standard timber volume: 0.02162 m³",
+        "priceDisplay": "Contact Us",
+        "description": "3-Stringer Acacia Pallet 820×980 — PTA-T10 (820 × 980 × 127 mm) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (2.000 - 3.000 kg) and dynamic (1.000 - 1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Structure: 3 longitudinal stringers, 2-way forklift entry (height 93mm)",
+          "Top deck boards: 7 boards (820×90×17 mm)",
+          "Bottom boards: 3 boards (820×90×17 mm)",
+          "Direct factory-gate pricing with custom dimension adjustments & 24h sample prototyping"
+        ],
+        "usagePurpose": "Factory floor warehousing, domestic distribution, packaging & industrial racking",
+        "badges": [
+          "CODE PTA-T10",
+          "3-STRINGER / 2-WAY",
+          "FACTORY DIRECT"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: 3-Stringer Acacia Pallet 820×980 — PTA-T10 (820 × 980 × 127 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "三纵梁相思木托盘 820×980 — PTA-T10 (820 × 980 × 127 mm)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "严选笔直无腐无虫天然相思木硬木",
+        "staticLoad": "2.000 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.500 kg",
+        "specification": "进叉结构： 3根纵梁 · 双向进叉 (高93mm) · 顶板木条： 7根 (820×90×17 mm) · 底板木条： 3根 (820×90×17 mm) · 单只标准木材材积： 0.02162 m³",
+        "priceDisplay": "联系询价",
+        "description": "三纵梁相思木托盘 820×980 — PTA-T10 (820 × 980 × 127 mm) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (2.000 - 3.000 kg) 与动载 (1.000 - 1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "进叉结构： 3根纵梁",
+          "双向进叉 (高93mm)",
+          "顶板木条： 7根 (820×90×17 mm)",
+          "源头工厂一手批发价，支持按客户图纸微调尺寸并在24小时内快速打样测载"
+        ],
+        "usagePurpose": "工厂车间垫仓、国内物流周转、纸箱包装材料及重物堆放",
+        "badges": [
+          "型号 PTA-T10",
+          "三纵梁 / 双向进叉",
+          "工厂直供价"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：三纵梁相思木托盘 820×980 — PTA-T10 (820 × 980 × 127 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -601,6 +1184,62 @@ export const products: Product[] = [
       "title": "Sản xuất lô Pallet tràm gù 1000×1200 (PTA-G01) tại Xưởng Pallet Trường An",
       "description": "Phôi gỗ tràm xẻ đều đẹp, kiểm tra kỹ kích thước và tải trọng trước khi giao xe tải tận nơi.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "9-Block 4-Way Acacia Pallet 1000×1200 — PTA-G01 (1200 × 1000 × 140 mm)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "Selected natural Acacia hardwood, optional kiln-drying & ISPM 15 HT",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "Structure: 9 solid blocks, 4-way forklift entry (90×90×104 mm) · Top deck boards: 7 boards (1200×90×18 mm) · Bottom boards: 3 boards (1200×90×18 mm) · Standard timber volume: 0.02702 m³",
+        "priceDisplay": "Contact Us",
+        "description": "9-Block 4-Way Acacia Pallet 1000×1200 — PTA-G01 (1200 × 1000 × 140 mm) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (3.000 - 4.000 kg) and dynamic (1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Structure: 9 solid blocks, 4-way forklift entry (90×90×104 mm)",
+          "Top deck boards: 7 boards (1200×90×18 mm)",
+          "Bottom boards: 3 boards (1200×90×18 mm)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Export container loading (US, EU, Asia), heavy warehouse stacking & industrial logistics",
+        "badges": [
+          "CODE PTA-G01",
+          "9-BLOCK / 4-WAY",
+          "ISPM 15"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: 9-Block 4-Way Acacia Pallet 1000×1200 — PTA-G01 (1200 × 1000 × 140 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "四向进叉九脚相思木托盘 1000×1200 — PTA-G01 (1200 × 1000 × 140 mm)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "严选天然相思木硬木，支持烘干及ISPM 15热处理熏蒸",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "进叉结构： 9个实心脚墩 · 四向进叉 (90×90×104 mm) · 顶板木条： 7根 (1200×90×18 mm) · 底板木条： 3根 (1200×90×18 mm) · 单只标准木材材积： 0.02702 m³",
+        "priceDisplay": "联系询价",
+        "description": "四向进叉九脚相思木托盘 1000×1200 — PTA-G01 (1200 × 1000 × 140 mm) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (3.000 - 4.000 kg) 与动载 (1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "进叉结构： 9个实心脚墩",
+          "四向进叉 (90×90×104 mm)",
+          "顶板木条： 7根 (1200×90×18 mm)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "出口集装箱装柜（欧美、日韩、东盟）、重型货物多层堆码与工厂立体仓周转",
+        "badges": [
+          "型号 PTA-G01",
+          "九脚 / 四向进叉",
+          "ISPM 15"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：四向进叉九脚相思木托盘 1000×1200 — PTA-G01 (1200 × 1000 × 140 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -644,6 +1283,62 @@ export const products: Product[] = [
       "title": "Sản xuất lô Pallet tràm gù 1100×1100 (PTA-G02) tại Xưởng Pallet Trường An",
       "description": "Phôi gỗ tràm xẻ đều đẹp, kiểm tra kỹ kích thước và tải trọng trước khi giao xe tải tận nơi.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "9-Block 4-Way Acacia Pallet 1100×1100 — PTA-G02 (1100 × 1100 × 140 mm)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "Selected natural Acacia hardwood, optional kiln-drying & ISPM 15 HT",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "Structure: 9 solid blocks, 4-way forklift entry (90×90×104 mm) · Top deck boards: 8 boards (1100×90×18 mm) · Bottom boards: 3 boards (1100×90×18 mm) · Standard timber volume: 0.02718 m³",
+        "priceDisplay": "Contact Us",
+        "description": "9-Block 4-Way Acacia Pallet 1100×1100 — PTA-G02 (1100 × 1100 × 140 mm) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (3.000 - 4.000 kg) and dynamic (1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Structure: 9 solid blocks, 4-way forklift entry (90×90×104 mm)",
+          "Top deck boards: 8 boards (1100×90×18 mm)",
+          "Bottom boards: 3 boards (1100×90×18 mm)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Export container loading (US, EU, Asia), heavy warehouse stacking & industrial logistics",
+        "badges": [
+          "CODE PTA-G02",
+          "9-BLOCK / 4-WAY",
+          "ISPM 15"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: 9-Block 4-Way Acacia Pallet 1100×1100 — PTA-G02 (1100 × 1100 × 140 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "四向进叉九脚相思木托盘 1100×1100 — PTA-G02 (1100 × 1100 × 140 mm)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "严选天然相思木硬木，支持烘干及ISPM 15热处理熏蒸",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "进叉结构： 9个实心脚墩 · 四向进叉 (90×90×104 mm) · 顶板木条： 8根 (1100×90×18 mm) · 底板木条： 3根 (1100×90×18 mm) · 单只标准木材材积： 0.02718 m³",
+        "priceDisplay": "联系询价",
+        "description": "四向进叉九脚相思木托盘 1100×1100 — PTA-G02 (1100 × 1100 × 140 mm) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (3.000 - 4.000 kg) 与动载 (1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "进叉结构： 9个实心脚墩",
+          "四向进叉 (90×90×104 mm)",
+          "顶板木条： 8根 (1100×90×18 mm)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "出口集装箱装柜（欧美、日韩、东盟）、重型货物多层堆码与工厂立体仓周转",
+        "badges": [
+          "型号 PTA-G02",
+          "九脚 / 四向进叉",
+          "ISPM 15"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：四向进叉九脚相思木托盘 1100×1100 — PTA-G02 (1100 × 1100 × 140 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -687,6 +1382,62 @@ export const products: Product[] = [
       "title": "Sản xuất lô Pallet tràm gù 1200×1000 (PTA-G03) tại Xưởng Pallet Trường An",
       "description": "Phôi gỗ tràm xẻ đều đẹp, kiểm tra kỹ kích thước và tải trọng trước khi giao xe tải tận nơi.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "9-Block 4-Way Acacia Pallet 1200×1000 — PTA-G03 (1200 × 1000 × 140 mm)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "Selected natural Acacia hardwood, optional kiln-drying & ISPM 15 HT",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "Structure: 9 solid blocks, 4-way forklift entry (90×90×104 mm) · Top deck boards: 7 boards (1200×100×18 mm) · Bottom boards: 3 boards (1200×90×18 mm) · Standard timber volume: 0.02853 m³",
+        "priceDisplay": "Contact Us",
+        "description": "9-Block 4-Way Acacia Pallet 1200×1000 — PTA-G03 (1200 × 1000 × 140 mm) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (3.000 - 4.000 kg) and dynamic (1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Structure: 9 solid blocks, 4-way forklift entry (90×90×104 mm)",
+          "Top deck boards: 7 boards (1200×100×18 mm)",
+          "Bottom boards: 3 boards (1200×90×18 mm)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Export container loading (US, EU, Asia), heavy warehouse stacking & industrial logistics",
+        "badges": [
+          "CODE PTA-G03",
+          "9-BLOCK / 4-WAY",
+          "ISPM 15"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: 9-Block 4-Way Acacia Pallet 1200×1000 — PTA-G03 (1200 × 1000 × 140 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "四向进叉九脚相思木托盘 1200×1000 — PTA-G03 (1200 × 1000 × 140 mm)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "严选天然相思木硬木，支持烘干及ISPM 15热处理熏蒸",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "进叉结构： 9个实心脚墩 · 四向进叉 (90×90×104 mm) · 顶板木条： 7根 (1200×100×18 mm) · 底板木条： 3根 (1200×90×18 mm) · 单只标准木材材积： 0.02853 m³",
+        "priceDisplay": "联系询价",
+        "description": "四向进叉九脚相思木托盘 1200×1000 — PTA-G03 (1200 × 1000 × 140 mm) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (3.000 - 4.000 kg) 与动载 (1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "进叉结构： 9个实心脚墩",
+          "四向进叉 (90×90×104 mm)",
+          "顶板木条： 7根 (1200×100×18 mm)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "出口集装箱装柜（欧美、日韩、东盟）、重型货物多层堆码与工厂立体仓周转",
+        "badges": [
+          "型号 PTA-G03",
+          "九脚 / 四向进叉",
+          "ISPM 15"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：四向进叉九脚相思木托盘 1200×1000 — PTA-G03 (1200 × 1000 × 140 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -730,6 +1481,62 @@ export const products: Product[] = [
       "title": "Sản xuất lô Pallet tràm gù 1219×1016 (PTA-G04) tại Xưởng Pallet Trường An",
       "description": "Phôi gỗ tràm xẻ đều đẹp, kiểm tra kỹ kích thước và tải trọng trước khi giao xe tải tận nơi.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "9-Block 4-Way Acacia Pallet 1219×1016 — PTA-G04 (1219 × 1016 × 145 mm)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "Selected natural Acacia hardwood, optional kiln-drying & ISPM 15 HT",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "Structure: 9 solid blocks, 4-way forklift entry (90×90×109 mm) · Top deck boards: 7 boards (1219×100×18 mm) · Bottom boards: 3 boards (1219×90×18 mm) · Standard timber volume: 0.02923 m³",
+        "priceDisplay": "Contact Us",
+        "description": "9-Block 4-Way Acacia Pallet 1219×1016 — PTA-G04 (1219 × 1016 × 145 mm) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (3.000 - 4.000 kg) and dynamic (1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Structure: 9 solid blocks, 4-way forklift entry (90×90×109 mm)",
+          "Top deck boards: 7 boards (1219×100×18 mm)",
+          "Bottom boards: 3 boards (1219×90×18 mm)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Export container loading (US, EU, Asia), heavy warehouse stacking & industrial logistics",
+        "badges": [
+          "CODE PTA-G04",
+          "9-BLOCK / 4-WAY",
+          "ISPM 15"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: 9-Block 4-Way Acacia Pallet 1219×1016 — PTA-G04 (1219 × 1016 × 145 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "四向进叉九脚相思木托盘 1219×1016 — PTA-G04 (1219 × 1016 × 145 mm)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "严选天然相思木硬木，支持烘干及ISPM 15热处理熏蒸",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "进叉结构： 9个实心脚墩 · 四向进叉 (90×90×109 mm) · 顶板木条： 7根 (1219×100×18 mm) · 底板木条： 3根 (1219×90×18 mm) · 单只标准木材材积： 0.02923 m³",
+        "priceDisplay": "联系询价",
+        "description": "四向进叉九脚相思木托盘 1219×1016 — PTA-G04 (1219 × 1016 × 145 mm) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (3.000 - 4.000 kg) 与动载 (1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "进叉结构： 9个实心脚墩",
+          "四向进叉 (90×90×109 mm)",
+          "顶板木条： 7根 (1219×100×18 mm)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "出口集装箱装柜（欧美、日韩、东盟）、重型货物多层堆码与工厂立体仓周转",
+        "badges": [
+          "型号 PTA-G04",
+          "九脚 / 四向进叉",
+          "ISPM 15"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：四向进叉九脚相思木托盘 1219×1016 — PTA-G04 (1219 × 1016 × 145 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -773,6 +1580,62 @@ export const products: Product[] = [
       "title": "Sản xuất lô Pallet tràm gù 1100×1000 (PTA-G05) tại Xưởng Pallet Trường An",
       "description": "Phôi gỗ tràm xẻ đều đẹp, kiểm tra kỹ kích thước và tải trọng trước khi giao xe tải tận nơi.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "9-Block 4-Way Acacia Pallet 1100×1000 — PTA-G05 (1100 × 1000 × 120 mm)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "Selected straight-grain Acacia hardwood, rot & borer-free",
+        "staticLoad": "2.000 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.500 kg",
+        "specification": "Structure: 9 solid blocks, 4-way forklift entry (90×90×86 mm) · Top deck boards: 7 boards (1100×90×17 mm) · Bottom boards: 3 boards (1100×90×17 mm) · Standard timber volume: 0.0231 m³",
+        "priceDisplay": "Contact Us",
+        "description": "9-Block 4-Way Acacia Pallet 1100×1000 — PTA-G05 (1100 × 1000 × 120 mm) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (2.000 - 3.000 kg) and dynamic (1.000 - 1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Structure: 9 solid blocks, 4-way forklift entry (90×90×86 mm)",
+          "Top deck boards: 7 boards (1100×90×17 mm)",
+          "Bottom boards: 3 boards (1100×90×17 mm)",
+          "Direct factory-gate pricing with custom dimension adjustments & 24h sample prototyping"
+        ],
+        "usagePurpose": "Factory floor warehousing, domestic distribution, packaging & industrial racking",
+        "badges": [
+          "CODE PTA-G05",
+          "9-BLOCK / 4-WAY",
+          "FACTORY DIRECT"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: 9-Block 4-Way Acacia Pallet 1100×1000 — PTA-G05 (1100 × 1000 × 120 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "四向进叉九脚相思木托盘 1100×1000 — PTA-G05 (1100 × 1000 × 120 mm)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "严选笔直无腐无虫天然相思木硬木",
+        "staticLoad": "2.000 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.500 kg",
+        "specification": "进叉结构： 9个实心脚墩 · 四向进叉 (90×90×86 mm) · 顶板木条： 7根 (1100×90×17 mm) · 底板木条： 3根 (1100×90×17 mm) · 单只标准木材材积： 0.0231 m³",
+        "priceDisplay": "联系询价",
+        "description": "四向进叉九脚相思木托盘 1100×1000 — PTA-G05 (1100 × 1000 × 120 mm) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (2.000 - 3.000 kg) 与动载 (1.000 - 1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "进叉结构： 9个实心脚墩",
+          "四向进叉 (90×90×86 mm)",
+          "顶板木条： 7根 (1100×90×17 mm)",
+          "源头工厂一手批发价，支持按客户图纸微调尺寸并在24小时内快速打样测载"
+        ],
+        "usagePurpose": "工厂车间垫仓、国内物流周转、纸箱包装材料及重物堆放",
+        "badges": [
+          "型号 PTA-G05",
+          "九脚 / 四向进叉",
+          "工厂直供价"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：四向进叉九脚相思木托盘 1100×1000 — PTA-G05 (1100 × 1000 × 120 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -816,6 +1679,62 @@ export const products: Product[] = [
       "title": "Sản xuất lô Pallet tràm gù 1200×800 (PTA-G06) tại Xưởng Pallet Trường An",
       "description": "Phôi gỗ tràm xẻ đều đẹp, kiểm tra kỹ kích thước và tải trọng trước khi giao xe tải tận nơi.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "9-Block 4-Way Acacia Pallet 1200×800 — PTA-G06 (1200 × 800 × 120 mm)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "Selected natural Acacia hardwood, optional kiln-drying & ISPM 15 HT",
+        "staticLoad": "2.000 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.500 kg",
+        "specification": "Structure: 9 solid blocks, 4-way forklift entry (90×90×86 mm) · Top deck boards: 6 boards (1200×90×17 mm) · Bottom boards: 3 boards (1200×90×17 mm) · Standard timber volume: 0.02279 m³",
+        "priceDisplay": "Contact Us",
+        "description": "9-Block 4-Way Acacia Pallet 1200×800 — PTA-G06 (1200 × 800 × 120 mm) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (2.000 - 3.000 kg) and dynamic (1.000 - 1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Structure: 9 solid blocks, 4-way forklift entry (90×90×86 mm)",
+          "Top deck boards: 6 boards (1200×90×17 mm)",
+          "Bottom boards: 3 boards (1200×90×17 mm)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Export container loading (US, EU, Asia), heavy warehouse stacking & industrial logistics",
+        "badges": [
+          "CODE PTA-G06",
+          "9-BLOCK / 4-WAY",
+          "ISPM 15"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: 9-Block 4-Way Acacia Pallet 1200×800 — PTA-G06 (1200 × 800 × 120 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "四向进叉九脚相思木托盘 1200×800 — PTA-G06 (1200 × 800 × 120 mm)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "严选天然相思木硬木，支持烘干及ISPM 15热处理熏蒸",
+        "staticLoad": "2.000 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.500 kg",
+        "specification": "进叉结构： 9个实心脚墩 · 四向进叉 (90×90×86 mm) · 顶板木条： 6根 (1200×90×17 mm) · 底板木条： 3根 (1200×90×17 mm) · 单只标准木材材积： 0.02279 m³",
+        "priceDisplay": "联系询价",
+        "description": "四向进叉九脚相思木托盘 1200×800 — PTA-G06 (1200 × 800 × 120 mm) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (2.000 - 3.000 kg) 与动载 (1.000 - 1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "进叉结构： 9个实心脚墩",
+          "四向进叉 (90×90×86 mm)",
+          "顶板木条： 6根 (1200×90×17 mm)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "出口集装箱装柜（欧美、日韩、东盟）、重型货物多层堆码与工厂立体仓周转",
+        "badges": [
+          "型号 PTA-G06",
+          "九脚 / 四向进叉",
+          "ISPM 15"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：四向进叉九脚相思木托盘 1200×800 — PTA-G06 (1200 × 800 × 120 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -859,6 +1778,62 @@ export const products: Product[] = [
       "title": "Sản xuất lô Pallet tràm gù 1260×1005 (PTA-G07) tại Xưởng Pallet Trường An",
       "description": "Phôi gỗ tràm xẻ đều đẹp, kiểm tra kỹ kích thước và tải trọng trước khi giao xe tải tận nơi.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "9-Block 4-Way Acacia Pallet 1260×1005 — PTA-G07 (1260 × 1005 × 143 mm)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "Selected natural Acacia hardwood, optional kiln-drying & ISPM 15 HT",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "Structure: 9 solid blocks, 4-way forklift entry (90×90×107 mm) · Top deck boards: 7 boards (1260×100×18 mm) · Bottom boards: 3 boards (1260×90×18 mm) · Standard timber volume: 0.0298 m³",
+        "priceDisplay": "Contact Us",
+        "description": "9-Block 4-Way Acacia Pallet 1260×1005 — PTA-G07 (1260 × 1005 × 143 mm) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (3.000 - 4.000 kg) and dynamic (1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Structure: 9 solid blocks, 4-way forklift entry (90×90×107 mm)",
+          "Top deck boards: 7 boards (1260×100×18 mm)",
+          "Bottom boards: 3 boards (1260×90×18 mm)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Export container loading (US, EU, Asia), heavy warehouse stacking & industrial logistics",
+        "badges": [
+          "CODE PTA-G07",
+          "9-BLOCK / 4-WAY",
+          "ISPM 15"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: 9-Block 4-Way Acacia Pallet 1260×1005 — PTA-G07 (1260 × 1005 × 143 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "四向进叉九脚相思木托盘 1260×1005 — PTA-G07 (1260 × 1005 × 143 mm)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "严选天然相思木硬木，支持烘干及ISPM 15热处理熏蒸",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "进叉结构： 9个实心脚墩 · 四向进叉 (90×90×107 mm) · 顶板木条： 7根 (1260×100×18 mm) · 底板木条： 3根 (1260×90×18 mm) · 单只标准木材材积： 0.0298 m³",
+        "priceDisplay": "联系询价",
+        "description": "四向进叉九脚相思木托盘 1260×1005 — PTA-G07 (1260 × 1005 × 143 mm) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (3.000 - 4.000 kg) 与动载 (1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "进叉结构： 9个实心脚墩",
+          "四向进叉 (90×90×107 mm)",
+          "顶板木条： 7根 (1260×100×18 mm)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "出口集装箱装柜（欧美、日韩、东盟）、重型货物多层堆码与工厂立体仓周转",
+        "badges": [
+          "型号 PTA-G07",
+          "九脚 / 四向进叉",
+          "ISPM 15"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：四向进叉九脚相思木托盘 1260×1005 — PTA-G07 (1260 × 1005 × 143 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -902,6 +1877,62 @@ export const products: Product[] = [
       "title": "Sản xuất lô Pallet tràm gù 1170×1080 (PTA-G08) tại Xưởng Pallet Trường An",
       "description": "Phôi gỗ tràm xẻ đều đẹp, kiểm tra kỹ kích thước và tải trọng trước khi giao xe tải tận nơi.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "9-Block 4-Way Acacia Pallet 1170×1080 — PTA-G08 (1170 × 1080 × 140 mm)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "Selected straight-grain Acacia hardwood, rot & borer-free",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "Structure: 9 solid blocks, 4-way forklift entry (90×90×104 mm) · Top deck boards: 8 boards (1170×90×18 mm) · Bottom boards: 3 boards (1170×90×18 mm) · Standard timber volume: 0.02843 m³",
+        "priceDisplay": "Contact Us",
+        "description": "9-Block 4-Way Acacia Pallet 1170×1080 — PTA-G08 (1170 × 1080 × 140 mm) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (3.000 - 4.000 kg) and dynamic (1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Structure: 9 solid blocks, 4-way forklift entry (90×90×104 mm)",
+          "Top deck boards: 8 boards (1170×90×18 mm)",
+          "Bottom boards: 3 boards (1170×90×18 mm)",
+          "Direct factory-gate pricing with custom dimension adjustments & 24h sample prototyping"
+        ],
+        "usagePurpose": "Factory floor warehousing, domestic distribution, packaging & industrial racking",
+        "badges": [
+          "CODE PTA-G08",
+          "9-BLOCK / 4-WAY",
+          "FACTORY DIRECT"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: 9-Block 4-Way Acacia Pallet 1170×1080 — PTA-G08 (1170 × 1080 × 140 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "四向进叉九脚相思木托盘 1170×1080 — PTA-G08 (1170 × 1080 × 140 mm)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "严选笔直无腐无虫天然相思木硬木",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "进叉结构： 9个实心脚墩 · 四向进叉 (90×90×104 mm) · 顶板木条： 8根 (1170×90×18 mm) · 底板木条： 3根 (1170×90×18 mm) · 单只标准木材材积： 0.02843 m³",
+        "priceDisplay": "联系询价",
+        "description": "四向进叉九脚相思木托盘 1170×1080 — PTA-G08 (1170 × 1080 × 140 mm) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (3.000 - 4.000 kg) 与动载 (1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "进叉结构： 9个实心脚墩",
+          "四向进叉 (90×90×104 mm)",
+          "顶板木条： 8根 (1170×90×18 mm)",
+          "源头工厂一手批发价，支持按客户图纸微调尺寸并在24小时内快速打样测载"
+        ],
+        "usagePurpose": "工厂车间垫仓、国内物流周转、纸箱包装材料及重物堆放",
+        "badges": [
+          "型号 PTA-G08",
+          "九脚 / 四向进叉",
+          "工厂直供价"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：四向进叉九脚相思木托盘 1170×1080 — PTA-G08 (1170 × 1080 × 140 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -945,6 +1976,62 @@ export const products: Product[] = [
       "title": "Sản xuất lô Pallet tràm gù 1550×1000 (PTA-G09) tại Xưởng Pallet Trường An",
       "description": "Phôi gỗ tràm xẻ đều đẹp, kiểm tra kỹ kích thước và tải trọng trước khi giao xe tải tận nơi.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "9-Block 4-Way Acacia Pallet 1550×1000 — PTA-G09 (1550 × 1000 × 140 mm)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "Selected natural Acacia hardwood, optional kiln-drying & ISPM 15 HT",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "Structure: 9 solid blocks, 4-way forklift entry (90×90×104 mm) · Top deck boards: 8 boards (1550×90×18 mm) · Bottom boards: 3 boards (1550×90×18 mm) · Standard timber volume: 0.0352 m³",
+        "priceDisplay": "Contact Us",
+        "description": "9-Block 4-Way Acacia Pallet 1550×1000 — PTA-G09 (1550 × 1000 × 140 mm) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (3.000 - 4.000 kg) and dynamic (1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Structure: 9 solid blocks, 4-way forklift entry (90×90×104 mm)",
+          "Top deck boards: 8 boards (1550×90×18 mm)",
+          "Bottom boards: 3 boards (1550×90×18 mm)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Export container loading (US, EU, Asia), heavy warehouse stacking & industrial logistics",
+        "badges": [
+          "CODE PTA-G09",
+          "9-BLOCK / 4-WAY",
+          "ISPM 15"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: 9-Block 4-Way Acacia Pallet 1550×1000 — PTA-G09 (1550 × 1000 × 140 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "四向进叉九脚相思木托盘 1550×1000 — PTA-G09 (1550 × 1000 × 140 mm)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "严选天然相思木硬木，支持烘干及ISPM 15热处理熏蒸",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "进叉结构： 9个实心脚墩 · 四向进叉 (90×90×104 mm) · 顶板木条： 8根 (1550×90×18 mm) · 底板木条： 3根 (1550×90×18 mm) · 单只标准木材材积： 0.0352 m³",
+        "priceDisplay": "联系询价",
+        "description": "四向进叉九脚相思木托盘 1550×1000 — PTA-G09 (1550 × 1000 × 140 mm) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (3.000 - 4.000 kg) 与动载 (1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "进叉结构： 9个实心脚墩",
+          "四向进叉 (90×90×104 mm)",
+          "顶板木条： 8根 (1550×90×18 mm)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "出口集装箱装柜（欧美、日韩、东盟）、重型货物多层堆码与工厂立体仓周转",
+        "badges": [
+          "型号 PTA-G09",
+          "九脚 / 四向进叉",
+          "ISPM 15"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：四向进叉九脚相思木托盘 1550×1000 — PTA-G09 (1550 × 1000 × 140 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -988,6 +2075,62 @@ export const products: Product[] = [
       "title": "Sản xuất lô Pallet tràm gù 1000×1000 (PTA-G10) tại Xưởng Pallet Trường An",
       "description": "Phôi gỗ tràm xẻ đều đẹp, kiểm tra kỹ kích thước và tải trọng trước khi giao xe tải tận nơi.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "9-Block 4-Way Acacia Pallet 1000×1000 — PTA-G10 (1000 × 1000 × 120 mm)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "Selected straight-grain Acacia hardwood, rot & borer-free",
+        "staticLoad": "2.000 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.500 kg",
+        "specification": "Structure: 9 solid blocks, 4-way forklift entry (90×90×86 mm) · Top deck boards: 7 boards (1000×90×17 mm) · Bottom boards: 3 boards (1000×90×17 mm) · Standard timber volume: 0.02157 m³",
+        "priceDisplay": "Contact Us",
+        "description": "9-Block 4-Way Acacia Pallet 1000×1000 — PTA-G10 (1000 × 1000 × 120 mm) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (2.000 - 3.000 kg) and dynamic (1.000 - 1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Structure: 9 solid blocks, 4-way forklift entry (90×90×86 mm)",
+          "Top deck boards: 7 boards (1000×90×17 mm)",
+          "Bottom boards: 3 boards (1000×90×17 mm)",
+          "Direct factory-gate pricing with custom dimension adjustments & 24h sample prototyping"
+        ],
+        "usagePurpose": "Factory floor warehousing, domestic distribution, packaging & industrial racking",
+        "badges": [
+          "CODE PTA-G10",
+          "9-BLOCK / 4-WAY",
+          "FACTORY DIRECT"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: 9-Block 4-Way Acacia Pallet 1000×1000 — PTA-G10 (1000 × 1000 × 120 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "四向进叉九脚相思木托盘 1000×1000 — PTA-G10 (1000 × 1000 × 120 mm)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "严选笔直无腐无虫天然相思木硬木",
+        "staticLoad": "2.000 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.500 kg",
+        "specification": "进叉结构： 9个实心脚墩 · 四向进叉 (90×90×86 mm) · 顶板木条： 7根 (1000×90×17 mm) · 底板木条： 3根 (1000×90×17 mm) · 单只标准木材材积： 0.02157 m³",
+        "priceDisplay": "联系询价",
+        "description": "四向进叉九脚相思木托盘 1000×1000 — PTA-G10 (1000 × 1000 × 120 mm) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (2.000 - 3.000 kg) 与动载 (1.000 - 1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "进叉结构： 9个实心脚墩",
+          "四向进叉 (90×90×86 mm)",
+          "顶板木条： 7根 (1000×90×17 mm)",
+          "源头工厂一手批发价，支持按客户图纸微调尺寸并在24小时内快速打样测载"
+        ],
+        "usagePurpose": "工厂车间垫仓、国内物流周转、纸箱包装材料及重物堆放",
+        "badges": [
+          "型号 PTA-G10",
+          "九脚 / 四向进叉",
+          "工厂直供价"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：四向进叉九脚相思木托盘 1000×1000 — PTA-G10 (1000 × 1000 × 120 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -1031,6 +2174,62 @@ export const products: Product[] = [
       "title": "Gia công thực tế Pallet gỗ tràm 1400 × 1100 × 130 mm (9 gù · 11 nan mặt 17mm) tại Xưởng Trường An",
       "description": "Đóng đúng quy cách bản vẽ, kiểm tra tải trọng và độ ẩm kỹ lưỡng trước khi xuất xưởng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Acacia Hardwood Pallet 1400 × 1100 × 130 mm (9-Block · 11×17mm Slats)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "High-strength natural Acacia hardwood",
+        "staticLoad": "3.000 - 3.500 kg",
+        "dynamicLoad": "> 1.500 kg",
+        "specification": "Working load: > 1.500 kg (compatible with hand pallet jacks & forklifts) · Top deck boards: 1400 × 70 × 17 mm (11 boards) · Upper stringer boards: 1100 × 70 × 17 mm (03 boards) · Support blocks: 70 × 70 × 90 mm (09 blocks) · Bottom deck boards: 1400 × 70 × 17 mm (03 boards)",
+        "priceDisplay": "Contact Us",
+        "description": "Acacia Hardwood Pallet 1400 × 1100 × 130 mm (9-Block · 11×17mm Slats) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (3.000 - 3.500 kg) and dynamic (> 1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Working load: > 1.500 kg (compatible with hand pallet jacks & forklifts)",
+          "Top deck boards: 1400 × 70 × 17 mm (11 boards)",
+          "Upper stringer boards: 1100 × 70 × 17 mm (03 boards)",
+          "Direct factory-gate pricing with custom dimension adjustments & 24h sample prototyping"
+        ],
+        "usagePurpose": "Factory floor warehousing, domestic distribution, packaging & industrial racking",
+        "badges": [
+          "OVERSIZED 1400×1100",
+          "11×17MM DECK SLATS",
+          "LOAD > 1,500 KG"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Acacia Hardwood Pallet 1400 × 1100 × 130 mm (9-Block · 11×17mm Slats)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "相思木重型木托盘 1400 × 1100 × 130 mm (九脚 · 11根17mm顶板)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "高强度天然相思木硬木",
+        "staticLoad": "3.000 - 3.500 kg",
+        "dynamicLoad": "> 1.500 kg",
+        "specification": "额定工作承重： > 1.500 kg (兼容手动液压车与机动叉车) · 顶板木条： 1400 × 70 × 17 mm (11根) · 上层承重横梁： 1100 × 70 × 17 mm (03根) · 承重脚墩： 70 × 70 × 90 mm (09个) · 底面木条： 1400 × 70 × 17 mm (03根)",
+        "priceDisplay": "联系询价",
+        "description": "相思木重型木托盘 1400 × 1100 × 130 mm (九脚 · 11根17mm顶板) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (3.000 - 3.500 kg) 与动载 (> 1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "额定工作承重： > 1.500 kg (兼容手动液压车与机动叉车)",
+          "顶板木条： 1400 × 70 × 17 mm (11根)",
+          "上层承重横梁： 1100 × 70 × 17 mm (03根)",
+          "源头工厂一手批发价，支持按客户图纸微调尺寸并在24小时内快速打样测载"
+        ],
+        "usagePurpose": "工厂车间垫仓、国内物流周转、纸箱包装材料及重物堆放",
+        "badges": [
+          "大尺寸重型 1400×1100",
+          "11根17MM顶板",
+          "承重 > 1500KG"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：相思木重型木托盘 1400 × 1100 × 130 mm (九脚 · 11根17mm顶板)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -1074,6 +2273,62 @@ export const products: Product[] = [
       "title": "Gia công thực tế Pallet gỗ 1100 × 1100 × 130 mm (4 đố · Hun trùng ISPM 15) tại Xưởng Trường An",
       "description": "Đóng đúng quy cách bản vẽ, kiểm tra tải trọng và độ ẩm kỹ lưỡng trước khi xuất xưởng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Heavy-Duty Wooden Pallet 1100 × 1100 × 130 mm (4-Stringer · ISPM 15 HT)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "Natural Acacia hardwood, ISPM 15 HT heat-treated",
+        "staticLoad": "3.000 kg",
+        "dynamicLoad": "1.200 - 1.500 kg",
+        "specification": "Spec: 1100 × 1100 × 130 mm (±5mm) · Top deck boards: 1100 × 80 × 18 mm (8 boards) · Solid stringers: 1100 × 35 × 90 mm (4 boards) · Bottom boards: 1100 × 80 × 18 mm (3 boards) · ISPM 15 HT heat-treated with official phytosanitary certificate",
+        "priceDisplay": "Contact Us",
+        "description": "Heavy-Duty Wooden Pallet 1100 × 1100 × 130 mm (4-Stringer · ISPM 15 HT) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (3.000 kg) and dynamic (1.200 - 1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Spec: 1100 × 1100 × 130 mm (±5mm)",
+          "Top deck boards: 1100 × 80 × 18 mm (8 boards)",
+          "Solid stringers: 1100 × 35 × 90 mm (4 boards)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Export container loading (US, EU, Asia), heavy warehouse stacking & industrial logistics",
+        "badges": [
+          "SQUARE 1100×1100",
+          "4 SOLID STRINGERS",
+          "ISPM 15 / HT"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Heavy-Duty Wooden Pallet 1100 × 1100 × 130 mm (4-Stringer · ISPM 15 HT)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "出口承重实木托盘 1100 × 1100 × 130 mm (四纵梁 · ISPM 15熏蒸)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "优质相思木实木，配套ISPM 15 HT热处理熏蒸",
+        "staticLoad": "3.000 kg",
+        "dynamicLoad": "1.200 - 1.500 kg",
+        "specification": "产品规格： 1100 × 1100 × 130 mm (±5mm) · 顶板木条： 1100 × 80 × 18 mm (8根) · 承重纵梁： 1100 × 35 × 90 mm (4根) · 底部拉板： 1100 × 80 × 18 mm (3根) · 符合ISPM 15国际HT热处理熏蒸标准（附官方检疫证书）",
+        "priceDisplay": "联系询价",
+        "description": "出口承重实木托盘 1100 × 1100 × 130 mm (四纵梁 · ISPM 15熏蒸) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (3.000 kg) 与动载 (1.200 - 1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "产品规格： 1100 × 1100 × 130 mm (±5mm)",
+          "顶板木条： 1100 × 80 × 18 mm (8根)",
+          "承重纵梁： 1100 × 35 × 90 mm (4根)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "出口集装箱装柜（欧美、日韩、东盟）、重型货物多层堆码与工厂立体仓周转",
+        "badges": [
+          "方形 1100×1100",
+          "四纵梁高承重",
+          "ISPM 15 / HT"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：出口承重实木托盘 1100 × 1100 × 130 mm (四纵梁 · ISPM 15熏蒸)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -1117,6 +2372,62 @@ export const products: Product[] = [
       "title": "Gia công thực tế Pallet gỗ tràm 1100 × 1100 × 150 mm (4 đố · Ván dày 20mm) tại Xưởng Trường An",
       "description": "Đóng đúng quy cách bản vẽ, kiểm tra tải trọng và độ ẩm kỹ lưỡng trước khi xuất xưởng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Acacia Hardwood Pallet 1100 × 1100 × 150 mm (4-Stringer · 20mm Deck)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "20mm thick natural Acacia hardwood",
+        "staticLoad": "4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "Spec: 1100 × 1100 × 150 mm (±5mm) · Top deck boards: 1100 × 80 × 20 mm (9 boards) · Longitudinal stringers: 1100 × 35 × 90 mm (4 boards) · Bottom boards: 1100 × 80 × 20 mm (3 boards) · Load rating: dynamic 1.500 kg / static 4.000 kg",
+        "priceDisplay": "Contact Us",
+        "description": "Acacia Hardwood Pallet 1100 × 1100 × 150 mm (4-Stringer · 20mm Deck) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (4.000 kg) and dynamic (1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Spec: 1100 × 1100 × 150 mm (±5mm)",
+          "Top deck boards: 1100 × 80 × 20 mm (9 boards)",
+          "Longitudinal stringers: 1100 × 35 × 90 mm (4 boards)",
+          "Direct factory-gate pricing with custom dimension adjustments & 24h sample prototyping"
+        ],
+        "usagePurpose": "Factory floor warehousing, domestic distribution, packaging & industrial racking",
+        "badges": [
+          "20mm Thick Boards",
+          "static 4.000 KG",
+          "4 STRINGERS"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Acacia Hardwood Pallet 1100 × 1100 × 150 mm (4-Stringer · 20mm Deck)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "相思木重型木托盘 1100 × 1100 × 150 mm (四纵梁 · 20mm厚板)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "20mm加厚天然相思木板材",
+        "staticLoad": "4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "产品规格： 1100 × 1100 × 150 mm (±5mm) · 顶面木板： 1100 × 80 × 20 mm (9根) · 纵向承重梁： 1100 × 35 × 90 mm (4根) · 底面木板： 1100 × 80 × 20 mm (3根) · 承重能力： 动载 1.500 kg / 静载 4.000 kg",
+        "priceDisplay": "联系询价",
+        "description": "相思木重型木托盘 1100 × 1100 × 150 mm (四纵梁 · 20mm厚板) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (4.000 kg) 与动载 (1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "产品规格： 1100 × 1100 × 150 mm (±5mm)",
+          "顶面木板： 1100 × 80 × 20 mm (9根)",
+          "纵向承重梁： 1100 × 35 × 90 mm (4根)",
+          "源头工厂一手批发价，支持按客户图纸微调尺寸并在24小时内快速打样测载"
+        ],
+        "usagePurpose": "工厂车间垫仓、国内物流周转、纸箱包装材料及重物堆放",
+        "badges": [
+          "20mm加厚实木板",
+          "静载 4.000 KG",
+          "四根纵梁"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：相思木重型木托盘 1100 × 1100 × 150 mm (四纵梁 · 20mm厚板)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -1160,6 +2471,62 @@ export const products: Product[] = [
       "title": "Gia công thực tế Pallet gỗ tràm 1100 × 1100 × 150 mm (9 gù · Tải tĩnh 4.000 kg) tại Xưởng Trường An",
       "description": "Đóng đúng quy cách bản vẽ, kiểm tra tải trọng và độ ẩm kỹ lưỡng trước khi xuất xưởng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Acacia Hardwood Pallet 1100 × 1100 × 150 mm (9-Block · 4,000kg Static)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "Heavy-duty natural Acacia hardwood",
+        "staticLoad": "4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "Spec: 1100 × 1100 × 150 mm (±5mm) · Top deck boards: 1100 × 70 × 17 mm (9 boards) · Stringer boards: 1100 × 90 × 20 mm (3 boards) · Support blocks: 90 × 90 × 90 mm (9 blocks) · Bottom boards: 960 × 90 × 20 mm (3 boards) + 1100 × 70 × 20 mm (2 boards) · Load rating: dynamic 1.500 kg / static 4.000 kg",
+        "priceDisplay": "Contact Us",
+        "description": "Acacia Hardwood Pallet 1100 × 1100 × 150 mm (9-Block · 4,000kg Static) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (4.000 kg) and dynamic (1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Spec: 1100 × 1100 × 150 mm (±5mm)",
+          "Top deck boards: 1100 × 70 × 17 mm (9 boards)",
+          "Stringer boards: 1100 × 90 × 20 mm (3 boards)",
+          "Direct factory-gate pricing with custom dimension adjustments & 24h sample prototyping"
+        ],
+        "usagePurpose": "Factory floor warehousing, domestic distribution, packaging & industrial racking",
+        "badges": [
+          "9-BLOCK / 4-WAY",
+          "static 4.000 KG",
+          "PERIMETER BASE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Acacia Hardwood Pallet 1100 × 1100 × 150 mm (9-Block · 4,000kg Static)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "相思木重型木托盘 1100 × 1100 × 150 mm (九脚 · 静载4000kg)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "高密度坚硬相思木实木",
+        "staticLoad": "4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "产品规格： 1100 × 1100 × 150 mm (±5mm) · 顶面木板： 1100 × 70 × 17 mm (9根) · 承重横梁： 1100 × 90 × 20 mm (3根) · 承重脚墩： 90 × 90 × 90 mm (9个) · 底面木板： 960 × 90 × 20 mm (3根) + 1100 × 70 × 20 mm (2根) · 承重能力： 动载 1.500 kg / 静载 4.000 kg",
+        "priceDisplay": "联系询价",
+        "description": "相思木重型木托盘 1100 × 1100 × 150 mm (九脚 · 静载4000kg) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (4.000 kg) 与动载 (1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "产品规格： 1100 × 1100 × 150 mm (±5mm)",
+          "顶面木板： 1100 × 70 × 17 mm (9根)",
+          "承重横梁： 1100 × 90 × 20 mm (3根)",
+          "源头工厂一手批发价，支持按客户图纸微调尺寸并在24小时内快速打样测载"
+        ],
+        "usagePurpose": "工厂车间垫仓、国内物流周转、纸箱包装材料及重物堆放",
+        "badges": [
+          "九脚 / 四向进叉",
+          "静载 4.000 KG",
+          "田字全封闭底"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：相思木重型木托盘 1100 × 1100 × 150 mm (九脚 · 静载4000kg)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -1203,6 +2570,62 @@ export const products: Product[] = [
       "title": "Gia công thực tế Pallet gỗ Tràm 1219 × 1016 × 140 mm (Bào láng 4 mặt · Độ ẩm ≤ 19%) tại Xưởng Trường An",
       "description": "Đóng đúng quy cách bản vẽ, kiểm tra tải trọng và độ ẩm kỹ lưỡng trước khi xuất xưởng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Acacia Hardwood Pallet 1219 × 1016 × 140 mm (4-Side Planed · Moisture ≤ 19%)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "Kiln-dried Acacia (≤19% moisture), 4-side smooth planed",
+        "staticLoad": "4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "US GMA Spec: 1219 × 1016 × 140 mm (±5mm) · Top deck boards: 1016 × 90 × 17.5 mm (6 boards) + 3 boards 1016 × 140 × 17.5 mm · Stringer boards: 1219 × 90 × 17.5 mm (3 boards) · Support blocks: 190.5 × 90 × 90 mm (6 blocks) + 90 × 90 × 90 mm (3 blocks) · Bottom boards: 1040 × 90 × 17.5 mm (3 boards) + 1016 × 90 × 17.5 mm (2 boards) · 4-side planed smooth, kiln-dried moisture ≤ 19%, dynamic 1.500 kg / static 4.000 kg",
+        "priceDisplay": "Contact Us",
+        "description": "Acacia Hardwood Pallet 1219 × 1016 × 140 mm (4-Side Planed · Moisture ≤ 19%) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (4.000 kg) and dynamic (1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "US GMA Spec: 1219 × 1016 × 140 mm (±5mm)",
+          "Top deck boards: 1016 × 90 × 17.5 mm (6 boards) + 3 boards 1016 × 140 × 17.5 mm",
+          "Stringer boards: 1219 × 90 × 17.5 mm (3 boards)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Export container loading (US, EU, Asia), heavy warehouse stacking & industrial logistics",
+        "badges": [
+          "US GMA 1219×1016",
+          "4-side planed smooth",
+          "moisture ≤ 19%"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Acacia Hardwood Pallet 1219 × 1016 × 140 mm (4-Side Planed · Moisture ≤ 19%)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "相思木重型木托盘 1219 × 1016 × 140 mm (四面刨光 · 含水率 ≤ 19%)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "烘干相思木（含水率≤19%），四面精细刨光",
+        "staticLoad": "4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "美国GMA标准规格： 1219 × 1016 × 140 mm (±5mm) · 顶面木板： 1016 × 90 × 17.5 mm (6根) + 3根 1016 × 140 × 17.5 mm · 承重横梁： 1219 × 90 × 17.5 mm (3根) · 承重脚墩： 190.5 × 90 × 90 mm (6个) + 90 × 90 × 90 mm (3个) · 底面木板： 1040 × 90 × 17.5 mm (3根) + 1016 × 90 × 17.5 mm (2根) · 四面精细刨光, 烘干处理 含水率 ≤ 19%, 动载 1.500 kg / 静载 4.000 kg",
+        "priceDisplay": "联系询价",
+        "description": "相思木重型木托盘 1219 × 1016 × 140 mm (四面刨光 · 含水率 ≤ 19%) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (4.000 kg) 与动载 (1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "美国GMA标准规格： 1219 × 1016 × 140 mm (±5mm)",
+          "顶面木板： 1016 × 90 × 17.5 mm (6根) + 3根 1016 × 140 × 17.5 mm",
+          "承重横梁： 1219 × 90 × 17.5 mm (3根)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "出口集装箱装柜（欧美、日韩、东盟）、重型货物多层堆码与工厂立体仓周转",
+        "badges": [
+          "美国GMA标准 1219×1016",
+          "四面精细刨光",
+          "含水率 ≤ 19%"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：相思木重型木托盘 1219 × 1016 × 140 mm (四面刨光 · 含水率 ≤ 19%)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -1246,6 +2669,62 @@ export const products: Product[] = [
       "title": "Gia công thực tế Pallet gỗ 1400 × 1100 × 130 mm (9 gù · 11 nan mặt 16mm) tại Xưởng Trường An",
       "description": "Đóng đúng quy cách bản vẽ, kiểm tra tải trọng và độ ẩm kỹ lưỡng trước khi xuất xưởng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Heavy-Duty Wooden Pallet 1400 × 1100 × 130 mm (9-Block · 11×16mm Slats)",
+        "category": "Acacia Wood Pallets (Stringer & 9-Block)",
+        "woodType": "Selected Acacia hardwood, optional ISPM 15 stamping",
+        "staticLoad": "3.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "Spec: 1400 × 1100 × 130 mm (±5mm) · Top deck boards: 1400 × 70 × 16 mm (11 boards) · Stringer boards: 1100 × 70 × 16 mm (3 boards) · Support blocks: 70 × 70 × 80 mm (9 blocks) · Bottom boards: 1400 × 70 × 16 mm (3 boards) · dynamic 1.500 kg · ISPM 15 IPPC stamping available",
+        "priceDisplay": "Contact Us",
+        "description": "Heavy-Duty Wooden Pallet 1400 × 1100 × 130 mm (9-Block · 11×16mm Slats) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (3.000 kg) and dynamic (1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Spec: 1400 × 1100 × 130 mm (±5mm)",
+          "Top deck boards: 1400 × 70 × 16 mm (11 boards)",
+          "Stringer boards: 1100 × 70 × 16 mm (3 boards)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Export container loading (US, EU, Asia), heavy warehouse stacking & industrial logistics",
+        "badges": [
+          "OVERSIZED 1400×1100",
+          "11×16MM SLATS",
+          "ISPM 15 OPTIONAL"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Heavy-Duty Wooden Pallet 1400 × 1100 × 130 mm (9-Block · 11×16mm Slats)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "出口承重实木托盘 1400 × 1100 × 130 mm (九脚 · 11根16mm顶板)",
+        "category": "相思木托盘（三纵梁与九脚）",
+        "woodType": "精选相思木实木，支持加盖ISPM 15熏蒸印章",
+        "staticLoad": "3.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "产品规格： 1400 × 1100 × 130 mm (±5mm) · 顶面木板： 1400 × 70 × 16 mm (11根) · 承重横梁： 1100 × 70 × 16 mm (3根) · 承重脚墩： 70 × 70 × 80 mm (9个) · 底部拉板： 1400 × 70 × 16 mm (3根) · 动载 1.500 kg · 支持加盖ISPM 15 IPPC熏蒸章",
+        "priceDisplay": "联系询价",
+        "description": "出口承重实木托盘 1400 × 1100 × 130 mm (九脚 · 11根16mm顶板) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (3.000 kg) 与动载 (1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "产品规格： 1400 × 1100 × 130 mm (±5mm)",
+          "顶面木板： 1400 × 70 × 16 mm (11根)",
+          "承重横梁： 1100 × 70 × 16 mm (3根)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "出口集装箱装柜（欧美、日韩、东盟）、重型货物多层堆码与工厂立体仓周转",
+        "badges": [
+          "大尺寸重型 1400×1100",
+          "11根16MM木条",
+          "支持热处理熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：出口承重实木托盘 1400 × 1100 × 130 mm (九脚 · 11根16mm顶板)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -1289,6 +2768,62 @@ export const products: Product[] = [
       "title": "Xuất xưởng lô pallet gỗ thông sấy khô < 18% chuẩn ISPM 15",
       "description": "Bề mặt sáng sạch, đo độ ẩm đạt chuẩn trước khi đóng container xuất khẩu.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Heavy-Duty Wooden Pallet 1200 × 1000 × 120 mm (Kiln-Dried Pine <18% · ISPM 15)",
+        "category": "Export Pine Pallets (ISPM 15)",
+        "woodType": "Kiln-dried Pine (<18% moisture), ISPM 15 HT certified",
+        "staticLoad": "2.500 - 3.000 kg",
+        "dynamicLoad": "1.200 - 1.500 kg",
+        "specification": "Dimensions: 1200 × 1000 × 120 mm (±5 mm) · Top deck: 1000 × 101.6 × 17 mm × 6 boards · Bottom deck: 1000 × 101.6 × 17 mm × 6 boards · Longitudinal stringers: 1200 × 38 × 88.9 mm (3 boards) · Kiln-dried pine (<18% moisture) · ISPM 15 HT heat-treated for global export",
+        "priceDisplay": "Contact Us",
+        "description": "Heavy-Duty Wooden Pallet 1200 × 1000 × 120 mm (Kiln-Dried Pine <18% · ISPM 15) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (2.500 - 3.000 kg) and dynamic (1.200 - 1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Dimensions: 1200 × 1000 × 120 mm (±5 mm)",
+          "Top deck: 1000 × 101.6 × 17 mm × 6 boards",
+          "Bottom deck: 1000 × 101.6 × 17 mm × 6 boards",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Export container loading (US, EU, Asia), heavy warehouse stacking & industrial logistics",
+        "badges": [
+          "PINE < 18% MC",
+          "ISPM 15 / HT",
+          "6 TOP + 6 BOTTOM"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Heavy-Duty Wooden Pallet 1200 × 1000 × 120 mm (Kiln-Dried Pine <18% · ISPM 15)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "出口承重实木托盘 1200 × 1000 × 120 mm (烘干松木 <18% · ISPM 15)",
+        "category": "出口松木托盘 (ISPM 15)",
+        "woodType": "烘干进口松木（含水率<18%），ISPM 15 HT认证",
+        "staticLoad": "2.500 - 3.000 kg",
+        "dynamicLoad": "1.200 - 1.500 kg",
+        "specification": "外形尺寸： 1200 × 1000 × 120 mm (±5 mm) · 顶面用料： 1000 × 101.6 × 17 mm × 6根 · 底面用料： 1000 × 101.6 × 17 mm × 6根 · 纵向承重梁： 1200 × 38 × 88.9 mm (3根) · 烘干松木（含水率 < 18%） · 符合国际ISPM 15热处理出口标准",
+        "priceDisplay": "联系询价",
+        "description": "出口承重实木托盘 1200 × 1000 × 120 mm (烘干松木 <18% · ISPM 15) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (2.500 - 3.000 kg) 与动载 (1.200 - 1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "外形尺寸： 1200 × 1000 × 120 mm (±5 mm)",
+          "顶面用料： 1000 × 101.6 × 17 mm × 6根",
+          "底面用料： 1000 × 101.6 × 17 mm × 6根",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "出口集装箱装柜（欧美、日韩、东盟）、重型货物多层堆码与工厂立体仓周转",
+        "badges": [
+          "烘干松木 <18%",
+          "ISPM 15 / HT",
+          "上6根+下6根"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：出口承重实木托盘 1200 × 1000 × 120 mm (烘干松木 <18% · ISPM 15)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -1332,6 +2867,62 @@ export const products: Product[] = [
       "title": "Gia công & bàn giao lô pallet gỗ thông mới 1200×1000×150 bào 4 mặt",
       "description": "Chuẩn từng milimet, hỗ trợ vận chuyển thẳng ra cảng Cát Lái kịp lịch đóng cont.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "New Kiln-Dried Pine Pallet 1200 × 1000 × 150 mm (4-side planed smooth · ISPM 15)",
+        "category": "Export Pine Pallets (ISPM 15)",
+        "woodType": "New 4-side planed Pine wood, kiln-dried ≤20% moisture",
+        "staticLoad": "4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "Spec: 1200 × 1000 × 150 mm (±5mm) · Top deck boards: 1000 × 80 × 20 mm (12 boards) · Stringer boards: 1200 × 90 × 25 mm (3 boards) · Blocks: 150 × 90 × 85 mm (6 blocks) + 120 × 90 × 85 mm (3 blocks) · Bottom boards: 1200 × 80 × 20 mm (2 boards) + 1040 × 90 × 20 mm (3 boards) · 4-side planed smooth (moisture ≤ 20%) · ISPM 15 HT certified · Ex-works or direct Cat Lai Port delivery",
+        "priceDisplay": "Contact Us",
+        "description": "New Kiln-Dried Pine Pallet 1200 × 1000 × 150 mm (4-side planed smooth · ISPM 15) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (4.000 kg) and dynamic (1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Spec: 1200 × 1000 × 150 mm (±5mm)",
+          "Top deck boards: 1000 × 80 × 20 mm (12 boards)",
+          "Stringer boards: 1200 × 90 × 25 mm (3 boards)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Export container loading (US, EU, Asia), heavy warehouse stacking & industrial logistics",
+        "badges": [
+          "static 4.000 KG",
+          "4-side planed smooth",
+          "moisture ≤ 20%"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: New Kiln-Dried Pine Pallet 1200 × 1000 × 150 mm (4-side planed smooth · ISPM 15)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "全新烘干进口松木托盘 1200 × 1000 × 150 mm (四面精细刨光 · ISPM 15)",
+        "category": "出口松木托盘 (ISPM 15)",
+        "woodType": "全新四面刨光进口松木（烘干含水率≤20%）",
+        "staticLoad": "4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "产品规格： 1200 × 1000 × 150 mm (±5mm) · 顶面木板： 1000 × 80 × 20 mm (12根) · 承重横梁： 1200 × 90 × 25 mm (3根) · 脚墩： 150 × 90 × 85 mm (6个) + 120 × 90 × 85 mm (3个) · 底面木板： 1200 × 80 × 20 mm (2根) + 1040 × 90 × 20 mm (3根) · 四面精细刨光 (含水率 ≤ 20%) · ISPM 15 热处理熏蒸认证 · 支持工厂自提或专车直送吉来港(Cat Lai)",
+        "priceDisplay": "联系询价",
+        "description": "全新烘干进口松木托盘 1200 × 1000 × 150 mm (四面精细刨光 · ISPM 15) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (4.000 kg) 与动载 (1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "产品规格： 1200 × 1000 × 150 mm (±5mm)",
+          "顶面木板： 1000 × 80 × 20 mm (12根)",
+          "承重横梁： 1200 × 90 × 25 mm (3根)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "出口集装箱装柜（欧美、日韩、东盟）、重型货物多层堆码与工厂立体仓周转",
+        "badges": [
+          "静载 4.000 KG",
+          "四面精细刨光",
+          "含水率 ≤ 20%"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：全新烘干进口松木托盘 1200 × 1000 × 150 mm (四面精细刨光 · ISPM 15)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -1375,6 +2966,62 @@ export const products: Product[] = [
       "title": "Đóng pallet gỗ thông 1000×1000 kết cấu 12 cục gù siêu chắc",
       "description": "Đáp ứng yêu cầu chịu tải khắc nghiệt và xuất khẩu chính ngạch ISPM 15.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Kiln-Dried Pine Pallet 1000 × 1000 × 150 mm (12-Block Heavy Duty · ISPM 15)",
+        "category": "Export Pine Pallets (ISPM 15)",
+        "woodType": "Kiln-dried Pine (≤20% moisture), ISPM 15 HT certified",
+        "staticLoad": "4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "Spec: 1000 × 1000 × 150 mm (±5mm) · Top deck boards: 1000 × 80 × 20 mm (8 boards) · Upper stringer boards: 1000 × 80 × 20 mm (8 boards) · Load-bearing blocks: 100 × 80 × 90 mm (12 blocks) · Bottom boards: 1000 × 80 × 20 mm (3 boards) · moisture ≤ 20% · dynamic 1.500 kg / static 4.000 kg · ISPM 15 HT certified",
+        "priceDisplay": "Contact Us",
+        "description": "Kiln-Dried Pine Pallet 1000 × 1000 × 150 mm (12-Block Heavy Duty · ISPM 15) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (4.000 kg) and dynamic (1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Spec: 1000 × 1000 × 150 mm (±5mm)",
+          "Top deck boards: 1000 × 80 × 20 mm (8 boards)",
+          "Upper stringer boards: 1000 × 80 × 20 mm (8 boards)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Export container loading (US, EU, Asia), heavy warehouse stacking & industrial logistics",
+        "badges": [
+          "12 HEAVY BLOCKS",
+          "SQUARE 1000×1000",
+          "static 4.000 KG"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Kiln-Dried Pine Pallet 1000 × 1000 × 150 mm (12-Block Heavy Duty · ISPM 15)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "进口烘干松木托盘 1000 × 1000 × 150 mm (12脚墩重型 · ISPM 15)",
+        "category": "出口松木托盘 (ISPM 15)",
+        "woodType": "烘干进口松木（含水率≤20%），ISPM 15热处理认证",
+        "staticLoad": "4.000 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "产品规格： 1000 × 1000 × 150 mm (±5mm) · 顶面木板： 1000 × 80 × 20 mm (8根) · 面板承重横梁： 1000 × 80 × 20 mm (8根) · 承重脚墩： 100 × 80 × 90 mm (12个) · 底面木板： 1000 × 80 × 20 mm (3根) · 含水率 ≤ 20% · 动载 1.500 kg / 静载 4.000 kg · ISPM 15 热处理熏蒸认证",
+        "priceDisplay": "联系询价",
+        "description": "进口烘干松木托盘 1000 × 1000 × 150 mm (12脚墩重型 · ISPM 15) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (4.000 kg) 与动载 (1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "产品规格： 1000 × 1000 × 150 mm (±5mm)",
+          "顶面木板： 1000 × 80 × 20 mm (8根)",
+          "面板承重横梁： 1000 × 80 × 20 mm (8根)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "出口集装箱装柜（欧美、日韩、东盟）、重型货物多层堆码与工厂立体仓周转",
+        "badges": [
+          "12个重型脚墩",
+          "方形 1000×1000",
+          "静载 4.000 KG"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：进口烘干松木托盘 1000 × 1000 × 150 mm (12脚墩重型 · ISPM 15)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -1418,6 +3065,62 @@ export const products: Product[] = [
       "title": "Sản xuất pallet cao 170mm gù đại 120×120 chuẩn nhà máy đồ uống",
       "description": "Đóng đinh xoắn 5–7cm siêu chắc, bào láng mặt và sơn cạnh nhận diện theo đơn đặt hàng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Heavy-Duty Wooden Pallet 1200 × 1000 × 170 mm (±5mm · 120×120 Jumbo Blocks · ISPM 15)",
+        "category": "Export Pine Pallets (ISPM 15)",
+        "woodType": "Smooth-planed Pine / Hardwood (≤28% moisture), ISPM 15 HT",
+        "staticLoad": "4.000 - 4.500 kg",
+        "dynamicLoad": "1.500 - 2.000 kg",
+        "specification": "Spec: 1200 × 1000 × 170 mm (±5mm) · Top deck: 2 outer boards 1200×120×20 + 4 middle boards 1200×90×20 + 2 center boards 1200×80×20 mm · Stringer boards over blocks: 1000 × 120 × 20 mm (3 boards) · Heavy-duty blocks: 120 × 120 × 90 mm (9 blocks) · Bottom deck: 3 boards 1200×120×20 + 3 boards 1000×120×20 + 3 boards 320×120×90 mm · Smooth-planed top surface · 5–7cm spiral nails · Custom 4-side brand stencil painting · ISPM 15 HT certified",
+        "priceDisplay": "Contact Us",
+        "description": "Heavy-Duty Wooden Pallet 1200 × 1000 × 170 mm (±5mm · 120×120 Jumbo Blocks · ISPM 15) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (4.000 - 4.500 kg) and dynamic (1.500 - 2.000 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Spec: 1200 × 1000 × 170 mm (±5mm)",
+          "Top deck: 2 outer boards 1200×120×20 + 4 middle boards 1200×90×20 + 2 center boards 1200×80×20 mm",
+          "Stringer boards over blocks: 1000 × 120 × 20 mm (3 boards)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Export container loading (US, EU, Asia), heavy warehouse stacking & industrial logistics",
+        "badges": [
+          "height 170mm",
+          "9 JUMBO BLOCKS",
+          "CUSTOM STENCILING"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Heavy-Duty Wooden Pallet 1200 × 1000 × 170 mm (±5mm · 120×120 Jumbo Blocks · ISPM 15)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "出口承重实木托盘 1200 × 1000 × 170 mm (±5mm · 120×120大脚墩 · ISPM 15)",
+        "category": "出口松木托盘 (ISPM 15)",
+        "woodType": "面板刨光松木/硬木（含水率≤28%），ISPM 15热处理",
+        "staticLoad": "4.000 - 4.500 kg",
+        "dynamicLoad": "1.500 - 2.000 kg",
+        "specification": "产品规格： 1200 × 1000 × 170 mm (±5mm) · 顶面用料： 2根边板 1200×120×20 + 4根中间板 1200×90×20 + 2根中心板 1200×80×20 mm · 脚墩上承重梁： 1000 × 120 × 20 mm (3根) · 加厚大脚墩： 120 × 120 × 90 mm (9个) · 底面用料： 3根 1200×120×20 + 3根 1000×120×20 + 3根 320×120×90 mm · 面板刨光平整 · 5–7cm防脱螺纹钢钉 · 支持四边喷涂企业标识Logo · ISPM 15 热处理熏蒸认证",
+        "priceDisplay": "联系询价",
+        "description": "出口承重实木托盘 1200 × 1000 × 170 mm (±5mm · 120×120大脚墩 · ISPM 15) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (4.000 - 4.500 kg) 与动载 (1.500 - 2.000 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "产品规格： 1200 × 1000 × 170 mm (±5mm)",
+          "顶面用料： 2根边板 1200×120×20 + 4根中间板 1200×90×20 + 2根中心板 1200×80×20 mm",
+          "脚墩上承重梁： 1000 × 120 × 20 mm (3根)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "出口集装箱装柜（欧美、日韩、东盟）、重型货物多层堆码与工厂立体仓周转",
+        "badges": [
+          "高170mm",
+          "9个120×120大脚墩",
+          "支持喷印标识"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：出口承重实木托盘 1200 × 1000 × 170 mm (±5mm · 120×120大脚墩 · ISPM 15)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -1461,6 +3164,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1200 × 1000 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1200 × 1000 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1200 × 1000 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1200 × 1000 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1200 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1200 × 1000 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1200 × 1000 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1200 × 1000 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1200×1000",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1200 × 1000 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1200 × 1000 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1200 × 1000 × 12 mm = 1张 · 上层加固衬板： 1200 × 1000 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1200 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1200 × 1000 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1200 × 1000 × 12 mm = 1张",
+          "上层加固衬板： 1200 × 1000 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1200×1000",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1200 × 1000 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -1504,6 +3263,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1350 × 950 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1350 × 950 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1350 × 950 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1350 × 950 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1350 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1350 × 950 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1350 × 950 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1350 × 950 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1350×950",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1350 × 950 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1350 × 950 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1350 × 950 × 12 mm = 1张 · 上层加固衬板： 1350 × 950 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1350 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1350 × 950 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1350 × 950 × 12 mm = 1张",
+          "上层加固衬板： 1350 × 950 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1350×950",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1350 × 950 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -1547,6 +3362,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1000 × 1000 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1000 × 1000 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1000 × 1000 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1000 × 1000 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1000 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1000 × 1000 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1000 × 1000 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1000 × 1000 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1000×1000",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1000 × 1000 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1000 × 1000 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1000 × 1000 × 12 mm = 1张 · 上层加固衬板： 1000 × 1000 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1000 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1000 × 1000 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1000 × 1000 × 12 mm = 1张",
+          "上层加固衬板： 1000 × 1000 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1000×1000",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1000 × 1000 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -1590,6 +3461,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1250 × 950 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1250 × 950 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1250 × 950 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1250 × 950 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1250 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1250 × 950 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1250 × 950 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1250 × 950 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1250×950",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1250 × 950 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1250 × 950 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1250 × 950 × 12 mm = 1张 · 上层加固衬板： 1250 × 950 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1250 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1250 × 950 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1250 × 950 × 12 mm = 1张",
+          "上层加固衬板： 1250 × 950 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1250×950",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1250 × 950 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -1633,6 +3560,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1150 × 1100 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1150 × 1100 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1150 × 1100 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1150 × 1100 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1150 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1150 × 1100 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1150 × 1100 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1150 × 1100 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1150×1100",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1150 × 1100 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1150 × 1100 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1150 × 1100 × 12 mm = 1张 · 上层加固衬板： 1150 × 1100 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1150 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1150 × 1100 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1150 × 1100 × 12 mm = 1张",
+          "上层加固衬板： 1150 × 1100 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1150×1100",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1150 × 1100 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -1676,6 +3659,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1200 × 800 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1200 × 800 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1200 × 800 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1200 × 800 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1200 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1200 × 800 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1200 × 800 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1200 × 800 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1200×800",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1200 × 800 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1200 × 800 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1200 × 800 × 12 mm = 1张 · 上层加固衬板： 1200 × 800 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1200 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1200 × 800 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1200 × 800 × 12 mm = 1张",
+          "上层加固衬板： 1200 × 800 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1200×800",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1200 × 800 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -1719,6 +3758,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1200 × 1100 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1200 × 1100 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1200 × 1100 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1200 × 1100 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1200 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1200 × 1100 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1200 × 1100 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1200 × 1100 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1200×1100",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1200 × 1100 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1200 × 1100 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1200 × 1100 × 12 mm = 1张 · 上层加固衬板： 1200 × 1100 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1200 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1200 × 1100 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1200 × 1100 × 12 mm = 1张",
+          "上层加固衬板： 1200 × 1100 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1200×1100",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1200 × 1100 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -1762,6 +3857,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1180 × 1150 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1180 × 1150 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1180 × 1150 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1180 × 1150 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1180 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1180 × 1150 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1180 × 1150 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1180 × 1150 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1180×1150",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1180 × 1150 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1180 × 1150 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1180 × 1150 × 12 mm = 1张 · 上层加固衬板： 1180 × 1150 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1180 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1180 × 1150 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1180 × 1150 × 12 mm = 1张",
+          "上层加固衬板： 1180 × 1150 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1180×1150",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1180 × 1150 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -1805,6 +3956,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1180 × 1100 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1180 × 1100 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1180 × 1100 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1180 × 1100 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1180 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1180 × 1100 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1180 × 1100 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1180 × 1100 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1180×1100",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1180 × 1100 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1180 × 1100 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1180 × 1100 × 12 mm = 1张 · 上层加固衬板： 1180 × 1100 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1180 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1180 × 1100 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1180 × 1100 × 12 mm = 1张",
+          "上层加固衬板： 1180 × 1100 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1180×1100",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1180 × 1100 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -1848,6 +4055,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1250 × 1000 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1250 × 1000 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1250 × 1000 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1250 × 1000 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1250 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1250 × 1000 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1250 × 1000 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1250 × 1000 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1250×1000",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1250 × 1000 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1250 × 1000 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1250 × 1000 × 12 mm = 1张 · 上层加固衬板： 1250 × 1000 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1250 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1250 × 1000 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1250 × 1000 × 12 mm = 1张",
+          "上层加固衬板： 1250 × 1000 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1250×1000",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1250 × 1000 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -1891,6 +4154,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1200 × 900 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1200 × 900 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1200 × 900 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1200 × 900 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1200 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1200 × 900 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1200 × 900 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1200 × 900 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1200×900",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1200 × 900 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1200 × 900 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1200 × 900 × 12 mm = 1张 · 上层加固衬板： 1200 × 900 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1200 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1200 × 900 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1200 × 900 × 12 mm = 1张",
+          "上层加固衬板： 1200 × 900 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1200×900",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1200 × 900 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -1934,6 +4253,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1250 × 1100 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1250 × 1100 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1250 × 1100 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1250 × 1100 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1250 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1250 × 1100 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1250 × 1100 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1250 × 1100 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1250×1100",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1250 × 1100 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1250 × 1100 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1250 × 1100 × 12 mm = 1张 · 上层加固衬板： 1250 × 1100 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1250 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1250 × 1100 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1250 × 1100 × 12 mm = 1张",
+          "上层加固衬板： 1250 × 1100 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1250×1100",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1250 × 1100 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -1977,6 +4352,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1320 × 950 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1320 × 950 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1320 × 950 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1320 × 950 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1320 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1320 × 950 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1320 × 950 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1320 × 950 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1320×950",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1320 × 950 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1320 × 950 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1320 × 950 × 12 mm = 1张 · 上层加固衬板： 1320 × 950 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1320 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1320 × 950 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1320 × 950 × 12 mm = 1张",
+          "上层加固衬板： 1320 × 950 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1320×950",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1320 × 950 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -2020,6 +4451,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 950 × 950 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 950 × 950 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 950 × 950 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 950 × 950 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 950 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 950 × 950 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 950 × 950 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 950 × 950 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 950×950",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 950 × 950 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 950 × 950 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 950 × 950 × 12 mm = 1张 · 上层加固衬板： 950 × 950 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 950 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 950 × 950 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 950 × 950 × 12 mm = 1张",
+          "上层加固衬板： 950 × 950 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 950×950",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 950 × 950 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -2063,6 +4550,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1300 × 1100 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1300 × 1100 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1300 × 1100 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1300 × 1100 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1300 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1300 × 1100 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1300 × 1100 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1300 × 1100 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1300×1100",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1300 × 1100 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1300 × 1100 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1300 × 1100 × 12 mm = 1张 · 上层加固衬板： 1300 × 1100 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1300 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1300 × 1100 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1300 × 1100 × 12 mm = 1张",
+          "上层加固衬板： 1300 × 1100 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1300×1100",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1300 × 1100 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -2106,6 +4649,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1100 × 1050 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1100 × 1050 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1100 × 1050 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1100 × 1050 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1100 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1100 × 1050 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1100 × 1050 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1100 × 1050 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1100×1050",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1100 × 1050 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1100 × 1050 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1100 × 1050 × 12 mm = 1张 · 上层加固衬板： 1100 × 1050 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1100 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1100 × 1050 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1100 × 1050 × 12 mm = 1张",
+          "上层加固衬板： 1100 × 1050 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1100×1050",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1100 × 1050 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -2149,6 +4748,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1180 × 1050 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1180 × 1050 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1180 × 1050 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1180 × 1050 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1180 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1180 × 1050 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1180 × 1050 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1180 × 1050 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1180×1050",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1180 × 1050 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1180 × 1050 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1180 × 1050 × 12 mm = 1张 · 上层加固衬板： 1180 × 1050 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1180 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1180 × 1050 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1180 × 1050 × 12 mm = 1张",
+          "上层加固衬板： 1180 × 1050 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1180×1050",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1180 × 1050 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -2192,6 +4847,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1150 × 1150 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1150 × 1150 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1150 × 1150 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1150 × 1150 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1150 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1150 × 1150 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1150 × 1150 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1150 × 1150 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1150×1150",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1150 × 1150 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1150 × 1150 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1150 × 1150 × 12 mm = 1张 · 上层加固衬板： 1150 × 1150 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1150 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1150 × 1150 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1150 × 1150 × 12 mm = 1张",
+          "上层加固衬板： 1150 × 1150 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1150×1150",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1150 × 1150 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -2235,6 +4946,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1250 × 1050 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1250 × 1050 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1250 × 1050 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1250 × 1050 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1250 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1250 × 1050 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1250 × 1050 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1250 × 1050 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1250×1050",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1250 × 1050 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1250 × 1050 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1250 × 1050 × 12 mm = 1张 · 上层加固衬板： 1250 × 1050 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1250 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1250 × 1050 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1250 × 1050 × 12 mm = 1张",
+          "上层加固衬板： 1250 × 1050 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1250×1050",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1250 × 1050 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -2278,6 +5045,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1150 × 950 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1150 × 950 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1150 × 950 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1150 × 950 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1150 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1150 × 950 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1150 × 950 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1150 × 950 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1150×950",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1150 × 950 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1150 × 950 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1150 × 950 × 12 mm = 1张 · 上层加固衬板： 1150 × 950 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1150 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1150 × 950 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1150 × 950 × 12 mm = 1张",
+          "上层加固衬板： 1150 × 950 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1150×950",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1150 × 950 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -2321,6 +5144,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1100 × 1100 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1100 × 1100 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1100 × 1100 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1100 × 1100 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1100 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1100 × 1100 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1100 × 1100 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1100 × 1100 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1100×1100",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1100 × 1100 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1100 × 1100 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1100 × 1100 × 12 mm = 1张 · 上层加固衬板： 1100 × 1100 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1100 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1100 × 1100 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1100 × 1100 × 12 mm = 1张",
+          "上层加固衬板： 1100 × 1100 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1100×1100",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1100 × 1100 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -2364,6 +5243,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1200 × 950 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1200 × 950 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1200 × 950 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1200 × 950 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1200 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1200 × 950 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1200 × 950 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1200 × 950 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1200×950",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1200 × 950 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1200 × 950 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1200 × 950 × 12 mm = 1张 · 上层加固衬板： 1200 × 950 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1200 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1200 × 950 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1200 × 950 × 12 mm = 1张",
+          "上层加固衬板： 1200 × 950 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1200×950",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1200 × 950 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -2407,6 +5342,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1180 × 950 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1180 × 950 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1180 × 950 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1180 × 950 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1180 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1180 × 950 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1180 × 950 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1180 × 950 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1180×950",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1180 × 950 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1180 × 950 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1180 × 950 × 12 mm = 1张 · 上层加固衬板： 1180 × 950 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1180 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1180 × 950 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1180 × 950 × 12 mm = 1张",
+          "上层加固衬板： 1180 × 950 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1180×950",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1180 × 950 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -2450,6 +5441,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1100 × 1000 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1100 × 1000 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1100 × 1000 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1100 × 1000 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1100 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1100 × 1000 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1100 × 1000 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1100 × 1000 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1100×1000",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1100 × 1000 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1100 × 1000 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1100 × 1000 × 12 mm = 1张 · 上层加固衬板： 1100 × 1000 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1100 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1100 × 1000 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1100 × 1000 × 12 mm = 1张",
+          "上层加固衬板： 1100 × 1000 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1100×1000",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1100 × 1000 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -2493,6 +5540,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1150 × 1050 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1150 × 1050 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1150 × 1050 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1150 × 1050 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1150 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1150 × 1050 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1150 × 1050 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1150 × 1050 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1150×1050",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1150 × 1050 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1150 × 1050 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1150 × 1050 × 12 mm = 1张 · 上层加固衬板： 1150 × 1050 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1150 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1150 × 1050 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1150 × 1050 × 12 mm = 1张",
+          "上层加固衬板： 1150 × 1050 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1150×1050",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1150 × 1050 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -2536,6 +5639,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1150 × 1000 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1150 × 1000 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1150 × 1000 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1150 × 1000 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1150 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1150 × 1000 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1150 × 1000 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1150 × 1000 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1150×1000",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1150 × 1000 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1150 × 1000 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1150 × 1000 × 12 mm = 1张 · 上层加固衬板： 1150 × 1000 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1150 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1150 × 1000 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1150 × 1000 × 12 mm = 1张",
+          "上层加固衬板： 1150 × 1000 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1150×1000",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1150 × 1000 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -2579,6 +5738,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1250 × 900 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1250 × 900 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1250 × 900 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1250 × 900 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1250 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1250 × 900 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1250 × 900 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1250 × 900 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1250×900",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1250 × 900 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1250 × 900 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1250 × 900 × 12 mm = 1张 · 上层加固衬板： 1250 × 900 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1250 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1250 × 900 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1250 × 900 × 12 mm = 1张",
+          "上层加固衬板： 1250 × 900 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1250×900",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1250 × 900 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -2622,6 +5837,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1150 × 850 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1150 × 850 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1150 × 850 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1150 × 850 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1150 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1150 × 850 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1150 × 850 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1150 × 850 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1150×850",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1150 × 850 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1150 × 850 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1150 × 850 × 12 mm = 1张 · 上层加固衬板： 1150 × 850 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1150 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1150 × 850 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1150 × 850 × 12 mm = 1张",
+          "上层加固衬板： 1150 × 850 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1150×850",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1150 × 850 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -2665,6 +5936,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1050 × 1050 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1050 × 1050 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1050 × 1050 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1050 × 1050 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1050 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1050 × 1050 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1050 × 1050 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1050 × 1050 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1050×1050",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1050 × 1050 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1050 × 1050 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1050 × 1050 × 12 mm = 1张 · 上层加固衬板： 1050 × 1050 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1050 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1050 × 1050 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1050 × 1050 × 12 mm = 1张",
+          "上层加固衬板： 1050 × 1050 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1050×1050",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1050 × 1050 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -2708,6 +6035,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1250 × 850 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1250 × 850 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1250 × 850 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1250 × 850 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1250 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1250 × 850 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1250 × 850 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1250 × 850 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1250×850",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1250 × 850 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1250 × 850 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1250 × 850 × 12 mm = 1张 · 上层加固衬板： 1250 × 850 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1250 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1250 × 850 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1250 × 850 × 12 mm = 1张",
+          "上层加固衬板： 1250 × 850 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1250×850",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1250 × 850 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -2751,6 +6134,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1200 × 1050 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1200 × 1050 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1200 × 1050 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1200 × 1050 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1200 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1200 × 1050 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1200 × 1050 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1200 × 1050 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1200×1050",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1200 × 1050 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1200 × 1050 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1200 × 1050 × 12 mm = 1张 · 上层加固衬板： 1200 × 1050 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1200 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1200 × 1050 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1200 × 1050 × 12 mm = 1张",
+          "上层加固衬板： 1200 × 1050 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1200×1050",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1200 × 1050 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -2794,6 +6233,62 @@ export const products: Product[] = [
       "title": "Sản xuất Pallet gỗ ép 1050 × 1000 × 120 mm mặt kín 9 gù giao nhanh cho khách xuất khẩu",
       "description": "Cắt tấm phẳng đẹp đúng kích thước, miễn thủ tục hun trùng thông quan nhanh chóng.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1050 × 1000 × 120 mm",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "12mm Plywood deck + 9mm underlayment + 9 compressed blocks (100×100×100)",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "Top plywood sheet: 1050 × 1000 × 12 mm = 1 sheet · Reinforcing underlayment sheet: 1050 × 1000 × 9 mm = 1 sheet · Support blocks: 100 × 100 × 100 mm = 9 blocks · Bottom cross boards: 1050 × 100 × 12 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1050 × 1000 × 120 mm manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood sheet: 1050 × 1000 × 12 mm = 1 sheet",
+          "Reinforcing underlayment sheet: 1050 × 1000 × 9 mm = 1 sheet",
+          "Support blocks: 100 × 100 × 100 mm = 9 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "SIZE 1050×1000",
+          "12MM + 9MM DECK",
+          "FUMIGATION FREE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1050 × 1000 × 120 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1050 × 1000 × 120 mm",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "12mm免熏蒸胶合板 + 9mm加固衬板 + 9个100×100×100压缩脚墩",
+        "staticLoad": "2.000 - 2.500 kg",
+        "dynamicLoad": "1.000 - 1.200 kg",
+        "specification": "顶面胶合板： 1050 × 1000 × 12 mm = 1张 · 上层加固衬板： 1050 × 1000 × 9 mm = 1张 · 承重脚墩： 100 × 100 × 100 mm = 9个 · 底部横板： 1050 × 100 × 12 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1050 × 1000 × 120 mm 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1050 × 1000 × 12 mm = 1张",
+          "上层加固衬板： 1050 × 1000 × 9 mm = 1张",
+          "承重脚墩： 100 × 100 × 100 mm = 9个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "规格 1050×1000",
+          "12mm面板+9mm衬板",
+          "出口免熏蒸"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1050 × 1000 × 120 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -2837,6 +6332,62 @@ export const products: Product[] = [
       "title": "Gia công pallet gỗ ép 1000×760×110mm siêu nhẹ đi hàng bay Air Cargo",
       "description": "Gọn nhẹ, phẳng mịn, giao đúng tiến độ đóng hàng xuất khẩu.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 1000 × 760 × 110 mm (10mm Lightweight Deck)",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "Lightweight 10mm Plywood + 9 blocks (80×80×90mm)",
+        "staticLoad": "1.500 kg",
+        "dynamicLoad": "800 kg",
+        "specification": "Top plywood deck: 1000 × 760 × 10 mm = 1 sheet · Support blocks: 80 × 80 × 90 mm = 9 blocks · Base pallet: 1000 × 80 × 10 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 1000 × 760 × 110 mm (10mm Lightweight Deck) manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood deck: 1000 × 760 × 10 mm = 1 sheet",
+          "Support blocks: 80 × 80 × 90 mm = 9 blocks",
+          "Base pallet: 1000 × 80 × 10 mm = 3 boards",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "COMPACT 1000×760",
+          "10MM LIGHTWEIGHT",
+          "AIR CARGO"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 1000 × 760 × 110 mm (10mm Lightweight Deck)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 1000 × 760 × 110 mm (10mm轻型空运款)",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "10mm超轻免熏蒸胶合板 + 9个80×80×90脚墩",
+        "staticLoad": "1.500 kg",
+        "dynamicLoad": "800 kg",
+        "specification": "顶面胶合板： 1000 × 760 × 10 mm = 1张 · 承重脚墩： 80 × 80 × 90 mm = 9个 · 底座结构： 1000 × 80 × 10 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 1000 × 760 × 110 mm (10mm轻型空运款) 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 1000 × 760 × 10 mm = 1张",
+          "承重脚墩： 80 × 80 × 90 mm = 9个",
+          "底座结构： 1000 × 80 × 10 mm = 3根",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "紧凑轻巧款 1000×760",
+          "10mm空运轻型",
+          "AIR CARGO"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 1000 × 760 × 110 mm (10mm轻型空运款)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -2880,6 +6431,62 @@ export const products: Product[] = [
       "title": "Đóng pallet gỗ ép 930×930×126mm ván dày 15mm chịu tải cao",
       "description": "Gia cố chân gù lớn 140×100mm và ván đáy 15mm chắc khỏe cho hàng công nghiệp.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Smooth-Deck Plywood Pallet 930 × 930 × 126 mm (15mm Heavy-Duty Reinforced)",
+        "category": "Plywood Pallets (10–15mm)",
+        "woodType": "15mm Heavy-duty Plywood + 4 support battens + 9 large blocks",
+        "staticLoad": "2.500 - 3.500 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "Top plywood deck: 930 × 930 × 15 mm = 1 sheet · Upper support battens: 930 × 100 × 5 mm = 4 boards · Standard blocks: 100 × 100 × 90 mm = 5 blocks · Oversized corner blocks: 140 × 100 × 90 mm = 4 blocks · Bottom deck boards: 930 × 100 × 15 mm = 3 boards",
+        "priceDisplay": "Contact Us",
+        "description": "Smooth-Deck Plywood Pallet 930 × 930 × 126 mm (15mm Heavy-Duty Reinforced) manufactured directly at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Built with smooth multi-ply industrial plywood and high-density compressed blocks for 4-way forklift entry — lightweight, splinter-free, and 100% exempt from ISPM 15 fumigation for fast global customs clearance.",
+        "highlights": [
+          "Top plywood deck: 930 × 930 × 15 mm = 1 sheet",
+          "Upper support battens: 930 × 100 × 5 mm = 4 boards",
+          "Standard blocks: 100 × 100 × 90 mm = 5 blocks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Air Cargo, ocean container exports to US/EU/Cambodia/Japan, electronics & carton packaging",
+        "badges": [
+          "15MM HEAVY DECK",
+          "4 SUPPORT BATTENS",
+          "HEAVY DUTY"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Smooth-Deck Plywood Pallet 930 × 930 × 126 mm (15mm Heavy-Duty Reinforced)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "免熏蒸胶合板木托盘 930 × 930 × 126 mm (15mm加厚重型加固款)",
+        "category": "免熏蒸胶合板托盘 (10–15mm)",
+        "woodType": "15mm加厚胶合板 + 4根支撑条 + 9个大号脚墩",
+        "staticLoad": "2.500 - 3.500 kg",
+        "dynamicLoad": "1.500 kg",
+        "specification": "顶面胶合板： 930 × 930 × 15 mm = 1张 · 面板加固横条： 930 × 100 × 5 mm = 4根 · 标准脚墩： 100 × 100 × 90 mm = 5个 · 加宽承重脚墩： 140 × 100 × 90 mm = 4个 · 底面木板： 930 × 100 × 15 mm = 3根",
+        "priceDisplay": "联系询价",
+        "description": "免熏蒸胶合板木托盘 930 × 930 × 126 mm (15mm加厚重型加固款) 由胡志明市巴点区长安木托盘厂源头直产。采用高强度多层胶合板面板搭配高密度压缩脚墩，支持四向叉车进叉；表面平整无毛刺、自重轻，出口欧美日韩及东盟100%免除ISPM 15熏蒸检疫手续，通关极速便捷。",
+        "highlights": [
+          "顶面胶合板： 930 × 930 × 15 mm = 1张",
+          "面板加固横条： 930 × 100 × 5 mm = 4根",
+          "标准脚墩： 100 × 100 × 90 mm = 5个",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "国际空运(Air Cargo)、海运出口欧美/柬埔寨/日韩、电子精密仪器与纸箱包装",
+        "badges": [
+          "15mm加厚面板",
+          "4根加固横条",
+          "重型高承重"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：免熏蒸胶合板木托盘 930 × 930 × 126 mm (15mm加厚重型加固款)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -2923,6 +6530,62 @@ export const products: Product[] = [
       "title": "Gia công lô pallet gỗ 1300×1100mm full 2 mặt 4 đố chịu tải nặng",
       "description": "Đóng 11 nan trên + 11 nan dưới đều tăm tắp, xếp chồng kho xưởng an toàn tuyệt đối.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Heavy-Duty Wooden Pallet 1300 × 1100 × 130 mm (Full Double-Deck · ISPM 15)",
+        "category": "Custom-Built Pallets per Drawing",
+        "woodType": "Natural Acacia hardwood, ISPM 15 HT heat-treated",
+        "staticLoad": "3.500 - 4.500 kg",
+        "dynamicLoad": "1.500 - 2.000 kg",
+        "specification": "Spec: 1300 × 1100 × 130 mm (±5mm) reversible full double-deck · Top deck boards: 1300 × 80 × 18 mm (11 boards) · Solid stringers: 1100 × 35 × 90 mm (4 boards) · Bottom deck boards: 1300 × 80 × 18 mm (11 boards) · ISPM 15 HT heat-treated with official phytosanitary certificate",
+        "priceDisplay": "Contact Us",
+        "description": "Heavy-Duty Wooden Pallet 1300 × 1100 × 130 mm (Full Double-Deck · ISPM 15) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (3.500 - 4.500 kg) and dynamic (1.500 - 2.000 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Spec: 1300 × 1100 × 130 mm (±5mm) reversible full double-deck",
+          "Top deck boards: 1300 × 80 × 18 mm (11 boards)",
+          "Solid stringers: 1100 × 35 × 90 mm (4 boards)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Export container loading (US, EU, Asia), heavy warehouse stacking & industrial logistics",
+        "badges": [
+          "DOUBLE-DECK (22 SLATS)",
+          "4 STRAIGHT STRINGERS",
+          "ISPM 15 / HT"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Heavy-Duty Wooden Pallet 1300 × 1100 × 130 mm (Full Double-Deck · ISPM 15)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "出口承重实木托盘 1300 × 1100 × 130 mm (双面满铺 · ISPM 15)",
+        "category": "按图纸非标定制木托盘",
+        "woodType": "优质相思木实木，配套ISPM 15 HT热处理熏蒸",
+        "staticLoad": "3.500 - 4.500 kg",
+        "dynamicLoad": "1.500 - 2.000 kg",
+        "specification": "产品规格： 1300 × 1100 × 130 mm (±5mm) 双面满铺加固结构 · 顶板木条： 1300 × 80 × 18 mm (11根) · 承重直纵梁： 1100 × 35 × 90 mm (4根) · 底面满铺木板： 1300 × 80 × 18 mm (11根) · 符合ISPM 15国际HT热处理熏蒸标准（附官方检疫证书）",
+        "priceDisplay": "联系询价",
+        "description": "出口承重实木托盘 1300 × 1100 × 130 mm (双面满铺 · ISPM 15) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (3.500 - 4.500 kg) 与动载 (1.500 - 2.000 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "产品规格： 1300 × 1100 × 130 mm (±5mm) 双面满铺加固结构",
+          "顶板木条： 1300 × 80 × 18 mm (11根)",
+          "承重直纵梁： 1100 × 35 × 90 mm (4根)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "出口集装箱装柜（欧美、日韩、东盟）、重型货物多层堆码与工厂立体仓周转",
+        "badges": [
+          "双面满铺(22根)",
+          "四根直纵梁",
+          "ISPM 15 / HT"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：出口承重实木托盘 1300 × 1100 × 130 mm (双面满铺 · ISPM 15)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -2966,6 +6629,62 @@ export const products: Product[] = [
       "title": "Sản xuất pallet 1 mặt 1300×1100mm hun trùng HT xuất khẩu",
       "description": "Tối ưu giá thành cho doanh nghiệp xuất khẩu, giao hàng đúng hẹn tận kho.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Heavy-Duty Wooden Pallet 1300 × 1100 × 110 mm (Single-Deck 4-Stringer · ISPM 15)",
+        "category": "Custom-Built Pallets per Drawing",
+        "woodType": "Natural Acacia hardwood, ISPM 15 HT heat-treated",
+        "staticLoad": "2.500 - 3.000 kg",
+        "dynamicLoad": "1.200 - 1.500 kg",
+        "specification": "Spec: 1300 × 1100 × 110–130 mm (±5mm) single-deck design · Top deck boards: 1300 × 80 × 18 mm (11 boards) · Solid stringers: 1100 × 35 × 90 mm (4 boards) · ISPM 15 HT heat-treated with official phytosanitary certificate",
+        "priceDisplay": "Contact Us",
+        "description": "Heavy-Duty Wooden Pallet 1300 × 1100 × 110 mm (Single-Deck 4-Stringer · ISPM 15) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (2.500 - 3.000 kg) and dynamic (1.200 - 1.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Spec: 1300 × 1100 × 110–130 mm (±5mm) single-deck design",
+          "Top deck boards: 1300 × 80 × 18 mm (11 boards)",
+          "Solid stringers: 1100 × 35 × 90 mm (4 boards)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Export container loading (US, EU, Asia), heavy warehouse stacking & industrial logistics",
+        "badges": [
+          "single-deck design",
+          "COST-EFFECTIVE",
+          "ISPM 15 / HT"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Heavy-Duty Wooden Pallet 1300 × 1100 × 110 mm (Single-Deck 4-Stringer · ISPM 15)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "出口承重实木托盘 1300 × 1100 × 110 mm (单面四纵梁 · ISPM 15)",
+        "category": "按图纸非标定制木托盘",
+        "woodType": "优质相思木实木，配套ISPM 15 HT热处理熏蒸",
+        "staticLoad": "2.500 - 3.000 kg",
+        "dynamicLoad": "1.200 - 1.500 kg",
+        "specification": "产品规格： 1300 × 1100 × 110–130 mm (±5mm) 单面经济型结构 · 顶板木条： 1300 × 80 × 18 mm (11根) · 承重直纵梁： 1100 × 35 × 90 mm (4根) · 符合ISPM 15国际HT热处理熏蒸标准（附官方检疫证书）",
+        "priceDisplay": "联系询价",
+        "description": "出口承重实木托盘 1300 × 1100 × 110 mm (单面四纵梁 · ISPM 15) 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (2.500 - 3.000 kg) 与动载 (1.200 - 1.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "产品规格： 1300 × 1100 × 110–130 mm (±5mm) 单面经济型结构",
+          "顶板木条： 1300 × 80 × 18 mm (11根)",
+          "承重直纵梁： 1100 × 35 × 90 mm (4根)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "出口集装箱装柜（欧美、日韩、东盟）、重型货物多层堆码与工厂立体仓周转",
+        "badges": [
+          "单面经济型结构",
+          "高性价比",
+          "ISPM 15 / HT"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：出口承重实木托盘 1300 × 1100 × 110 mm (单面四纵梁 · ISPM 15)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -3009,6 +6728,62 @@ export const products: Product[] = [
       "title": "Trực tiếp thiết kế & lên mẫu pallet theo bản vẽ riêng cho nhà máy",
       "description": "Đội ngũ thợ lành nghề tại Bà Điểm, TP.HCM đáp ứng nhanh mọi quy cách khó.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Custom-Built Wooden Pallet per CAD Drawing (Any Size)",
+        "category": "Custom-Built Pallets per Drawing",
+        "woodType": "Acacia / Pine / Plywood tailored to load requirement",
+        "staticLoad": "Custom 1.500 - 5.000 kg",
+        "dynamicLoad": "Custom 1.000 - 2.500 kg",
+        "specification": "Free CAD engineering drawings tailored to your cargo & warehouse racks · Flexible structures: 3–4 stringers, notched, 9–12 blocks, single or double-deck · Precision manufacturing tolerance ±2mm to ±5mm · Load-test sample prototyping within 24 hours · Optional 4-side planing, kiln-drying, brand logo stenciling & ISPM 15 HT",
+        "priceDisplay": "Contact Us",
+        "description": "Custom-Built Wooden Pallet per CAD Drawing (Any Size) manufactured in-house at Truong An Pallet Factory (Ba Diem, Ho Chi Minh City). Precision-cut timber fastened with industrial spiral nails to deliver reliable static (Custom 1.500 - 5.000 kg) and dynamic (Custom 1.000 - 2.500 kg) load performance for factory warehousing and export container shipping.",
+        "highlights": [
+          "Free CAD engineering drawings tailored to your cargo & warehouse racks",
+          "Flexible structures: 3–4 stringers, notched, 9–12 blocks, single or double-deck",
+          "Precision manufacturing tolerance ±2mm to ±5mm",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Export container loading (US, EU, Asia), heavy warehouse stacking & industrial logistics",
+        "badges": [
+          "CUSTOM CAD",
+          "24H SAMPLE",
+          "FREE CAD DESIGN"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Custom-Built Wooden Pallet per CAD Drawing (Any Size)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "按客户CAD图纸非标定制实木托盘（全尺寸）",
+        "category": "按图纸非标定制木托盘",
+        "woodType": "相思木 / 进口松木 / 胶合板（按承重要求选配）",
+        "staticLoad": "按需定制 1.500 - 5.000 kg",
+        "dynamicLoad": "按需定制 1.000 - 2.500 kg",
+        "specification": "按货物尺寸与立体货架免费提供专业CAD工程图纸设计 · 结构灵活定制：3–4根纵梁、缺口梁、9–12脚墩、单面或双面结构 · 精密裁切加工公差 ±2mm ~ ±5mm · 24小时内快速打样并实测承重 · 支持四面刨光、烘干防霉、四边喷印Logo及ISPM 15热处理熏蒸",
+        "priceDisplay": "联系询价",
+        "description": "按客户CAD图纸非标定制实木托盘（全尺寸） 由胡志明市长安木托盘源头工厂直接开料生产。严选无腐优质实木板材，采用工业防脱螺纹钢钉加固，静载 (按需定制 1.500 - 5.000 kg) 与动载 (按需定制 1.000 - 2.500 kg) 表现优异，广泛适用于工厂仓储周转与海运集装箱出口。",
+        "highlights": [
+          "按货物尺寸与立体货架免费提供专业CAD工程图纸设计",
+          "结构灵活定制：3–4根纵梁、缺口梁、9–12脚墩、单面或双面结构",
+          "精密裁切加工公差 ±2mm ~ ±5mm",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "出口集装箱装柜（欧美、日韩、东盟）、重型货物多层堆码与工厂立体仓周转",
+        "badges": [
+          "按图非标定制",
+          "24小时快速打样",
+          "免费CAD设计"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：按客户CAD图纸非标定制实木托盘（全尺寸）",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -3052,6 +6827,62 @@ export const products: Product[] = [
       "title": "Cung cấp sỉ pallet nhựa mới HDPE cho kho lạnh & nhà máy thực phẩm",
       "description": "Hàng sẵn kho số lượng lớn, giao nhanh tại TP.HCM, Bình Dương, Long An.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "New Heavy-Duty HDPE Mesh Plastic Pallet (1200 × 1000 × 150 mm)",
+        "category": "New Industrial Plastic Pallets",
+        "woodType": "100% Virgin UV-stabilized HDPE",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.000 - 1.500 kg",
+        "specification": "Ventilated anti-slip mesh deck · 3-runner base, 4-way forklift entry · Anti-slip rubber grommets · Cold-storage rated (-20°C)",
+        "priceDisplay": "Contact Us",
+        "description": "New Heavy-Duty HDPE Mesh Plastic Pallet (1200 × 1000 × 150 mm) supplied at factory-direct B2B wholesale pricing. Engineered from high-impact HDPE/PP resin for waterproof durability, zero mold or insect risk, easy washdown, and smooth 4-way forklift & pallet-jack handling.",
+        "highlights": [
+          "Ventilated anti-slip mesh deck",
+          "3-runner base, 4-way forklift entry",
+          "Anti-slip rubber grommets",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Cold storage, food & pharma GMP warehouses, racking systems & one-way export shipments",
+        "badges": [
+          "VIRGIN HDPE",
+          "COLD STORAGE",
+          "4-WAY ENTRY"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: New Heavy-Duty HDPE Mesh Plastic Pallet (1200 × 1000 × 150 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "全新HDPE一体网格塑料托盘 (1200 × 1000 × 150 mm)",
+        "category": "全新工业塑料托盘",
+        "woodType": "100%全新抗紫外线高密度聚乙烯 (HDPE)",
+        "staticLoad": "3.000 - 4.000 kg",
+        "dynamicLoad": "1.000 - 1.500 kg",
+        "specification": "单面透气防滑网格 · 川字三底脚 · 四向进叉 · 配防滑橡胶垫 · 耐受-20°C冷库低温",
+        "priceDisplay": "联系询价",
+        "description": "全新HDPE一体网格塑料托盘 (1200 × 1000 × 150 mm) 源头仓库大宗批发直供。采用高强度HDPE/PP原料一体注塑成型，防水防潮、无虫蛀发霉风险、耐冷库低温且易冲洗清洁，完美适配机动叉车与手动液压搬运车四向进叉。",
+        "highlights": [
+          "单面透气防滑网格",
+          "川字三底脚",
+          "四向进叉",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "水产冷库、食品医药GMP洁净车间、立体货架周转及一次性出口装柜",
+        "badges": [
+          "100%全新HDPE",
+          "耐冷库低温",
+          "四向进叉"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：全新HDPE一体网格塑料托盘 (1200 × 1000 × 150 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -3095,6 +6926,62 @@ export const products: Product[] = [
       "title": "Pallet nhựa 9 chân cốc xuất khẩu 1 chiều giá sỉ tận kho",
       "description": "Xếp lồng gọn nhẹ, sẵn số lượng lớn phục vụ đơn đóng cont gấp.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Lightweight 9-Leg Nestable Export Plastic Pallet (1200 × 1000 × 140 mm)",
+        "category": "New Industrial Plastic Pallets",
+        "woodType": "Grade-A lightweight recycled PP / HDPE",
+        "staticLoad": "1.500 - 2.000 kg",
+        "dynamicLoad": "600 - 1.000 kg",
+        "specification": "9-leg nestable space-saving design · 4-way entry · Ultra-lightweight ~6.5 - 7.5 kg · ISPM 15 exempt",
+        "priceDisplay": "Contact Us",
+        "description": "Lightweight 9-Leg Nestable Export Plastic Pallet (1200 × 1000 × 140 mm) supplied at factory-direct B2B wholesale pricing. Engineered from high-impact HDPE/PP resin for waterproof durability, zero mold or insect risk, easy washdown, and smooth 4-way forklift & pallet-jack handling.",
+        "highlights": [
+          "9-leg nestable space-saving design",
+          "4-way entry",
+          "Ultra-lightweight ~6.5 - 7.5 kg",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Cold storage, food & pharma GMP warehouses, racking systems & one-way export shipments",
+        "badges": [
+          "NESTABLE 9-LEG",
+          "ULTRALIGHT ~7KG",
+          "ISPM 15 exempt"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Lightweight 9-Leg Nestable Export Plastic Pallet (1200 × 1000 × 140 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "九脚可套叠超轻出口一次性塑料托盘 (1200 × 1000 × 140 mm)",
+        "category": "全新工业塑料托盘",
+        "woodType": "一级轻量化环保再生 PP / HDPE 材质",
+        "staticLoad": "1.500 - 2.000 kg",
+        "dynamicLoad": "600 - 1.000 kg",
+        "specification": "九脚杯可套叠设计（省65%空间） · 四向进叉 · 超轻自重 ~6.5 - 7.5 kg · 免熏蒸出口",
+        "priceDisplay": "联系询价",
+        "description": "九脚可套叠超轻出口一次性塑料托盘 (1200 × 1000 × 140 mm) 源头仓库大宗批发直供。采用高强度HDPE/PP原料一体注塑成型，防水防潮、无虫蛀发霉风险、耐冷库低温且易冲洗清洁，完美适配机动叉车与手动液压搬运车四向进叉。",
+        "highlights": [
+          "九脚杯可套叠设计（省65%空间）",
+          "四向进叉",
+          "超轻自重 ~6.5 - 7.5 kg",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "水产冷库、食品医药GMP洁净车间、立体货架周转及一次性出口装柜",
+        "badges": [
+          "九脚可套叠",
+          "超轻约7kg",
+          "免熏蒸出口"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：九脚可套叠超轻出口一次性塑料托盘 (1200 × 1000 × 140 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -3138,6 +7025,62 @@ export const products: Product[] = [
       "title": "Kho pallet nhựa cũ tuyển chọn độ mới 90% giá tốt tại TP.HCM",
       "description": "Hỗ trợ quay video kiểm hàng thực tế trước khi bốc xếp lên xe giao tận nơi.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Selected Used HDPE Plastic Pallet (85–95% Condition) (1100×1100 / 1200×1000 mm)",
+        "category": "Used Plastic Pallets (85–95% New)",
+        "woodType": "Selected imported Japan / Korea HDPE",
+        "staticLoad": "2.500 - 4.000 kg",
+        "dynamicLoad": "1.000 - 1.500 kg",
+        "specification": "Inspected crack-free structural condition · 85–95% like-new condition · Available in mesh, solid & 3-runner styles · 4-way entry",
+        "priceDisplay": "Contact Us",
+        "description": "Selected Used HDPE Plastic Pallet (85–95% Condition) (1100×1100 / 1200×1000 mm) supplied at factory-direct B2B wholesale pricing. Engineered from high-impact HDPE/PP resin for waterproof durability, zero mold or insect risk, easy washdown, and smooth 4-way forklift & pallet-jack handling.",
+        "highlights": [
+          "Inspected crack-free structural condition",
+          "85–95% like-new condition",
+          "Available in mesh, solid & 3-runner styles",
+          "Direct factory-gate pricing with custom dimension adjustments & 24h sample prototyping"
+        ],
+        "usagePurpose": "Cold storage, food & pharma GMP warehouses, racking systems & one-way export shipments",
+        "badges": [
+          "SAVE 40%",
+          "85–95% like-new condition",
+          "IN STOCK"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Selected Used HDPE Plastic Pallet (85–95% Condition) (1100×1100 / 1200×1000 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "精选日韩二手HDPE塑料托盘 (85–95成新) (1100×1100 / 1200×1000 mm)",
+        "category": "精选二手塑料托盘 (85–95成新)",
+        "woodType": "严选日韩进口高强度 HDPE 材质",
+        "staticLoad": "2.500 - 4.000 kg",
+        "dynamicLoad": "1.000 - 1.500 kg",
+        "specification": "逐一严选无裂纹破损 · 85–95成新优质品相 · 网格/平板/川字/田字规格齐全 · 四向进叉",
+        "priceDisplay": "联系询价",
+        "description": "精选日韩二手HDPE塑料托盘 (85–95成新) (1100×1100 / 1200×1000 mm) 源头仓库大宗批发直供。采用高强度HDPE/PP原料一体注塑成型，防水防潮、无虫蛀发霉风险、耐冷库低温且易冲洗清洁，完美适配机动叉车与手动液压搬运车四向进叉。",
+        "highlights": [
+          "逐一严选无裂纹破损",
+          "85–95成新优质品相",
+          "网格/平板/川字/田字规格齐全",
+          "源头工厂一手批发价，支持按客户图纸微调尺寸并在24小时内快速打样测载"
+        ],
+        "usagePurpose": "水产冷库、食品医药GMP洁净车间、立体货架周转及一次性出口装柜",
+        "badges": [
+          "立省40%成本",
+          "85–95成新优质品相",
+          "大量现货"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：精选日韩二手HDPE塑料托盘 (85–95成新) (1100×1100 / 1200×1000 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -3181,6 +7124,62 @@ export const products: Product[] = [
       "title": "Gia công Thùng gỗ 980 × 680 × 420 mm có đế 9 gù và vách giằng chéo xuất khẩu",
       "description": "Bóc tách chính xác từng thanh nan 70×16mm, lắp ghép khít đẹp và chịu lực cao.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Cross-Braced Slatted Wooden Crate 980 × 680 × 420 mm",
+        "category": "Export Wooden Crates & Cases",
+        "woodType": "70×16mm Acacia / Pine slats + 9 solid blocks (90×90×90mm)",
+        "staticLoad": "1.500 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.800 kg",
+        "specification": "Base pallet: 8 deck boards (980×70×16) + 3 stringer boards (712×70×16) + 9 support blocks (90×90×90) + 3 bottom boards (1012×70×16) · Long side walls: 3 horizontal (1012×70×16) + 3 vertical (558×70×16) + 4 diagonal braces (533×70×16) · Short end walls: 3 horizontal (680×70×16) + 3 vertical (558×70×16) + 4 diagonal braces (399×70×16) · Top lid: 5 long horizontal slats (1044×70×16) + 4 short vertical slats (744×70×16)",
+        "priceDisplay": "Contact Us",
+        "description": "Cross-Braced Slatted Wooden Crate 980 × 680 × 420 mm fabricated at Truong An Wooden Crate Factory. Engineered with a heavy-duty forklift pallet base, diagonal structural bracing, and full ISPM 15 HT export certification to safeguard industrial machinery and export cargo.",
+        "highlights": [
+          "Base pallet: 8 deck boards (980×70×16) + 3 stringer boards (712×70×16) + 9 support blocks (90×90×90) + 3 bottom boards (1012×70×16)",
+          "Long side walls: 3 horizontal (1012×70×16) + 3 vertical (558×70×16) + 4 diagonal braces (533×70×16)",
+          "Short end walls: 3 horizontal (680×70×16) + 3 vertical (558×70×16) + 4 diagonal braces (399×70×16)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Heavy CNC machinery, electrical cabinets, auto parts & ocean freight export crating",
+        "badges": [
+          "CODE TG-01",
+          "9-BLOCK + BRACED",
+          "WITH TOP LID"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Cross-Braced Slatted Wooden Crate 980 × 680 × 420 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "斜撑加固带盖出口花格木箱 980 × 680 × 420 mm",
+        "category": "出口木箱与机械包装箱",
+        "woodType": "70×16mm相思木/松木标准木条 + 9个90×90×90实心脚墩",
+        "staticLoad": "1.500 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.800 kg",
+        "specification": "底座结构： 8块面板 (980×70×16) + 3根横梁 (712×70×16) + 9个脚墩 (90×90×90) + 3根底板 (1012×70×16) · 长侧箱壁： 3根横条 (1012×70×16) + 3根立柱 (558×70×16) + 4根斜撑木条 (533×70×16) · 短端箱壁： 3根横条 (680×70×16) + 3根立柱 (558×70×16) + 4根斜撑木条 (399×70×16) · 顶部箱盖： 5根长横条 (1044×70×16) + 4根短纵条 (744×70×16)",
+        "priceDisplay": "联系询价",
+        "description": "斜撑加固带盖出口花格木箱 980 × 680 × 420 mm 由长安包装厂严格按标准开料精工制作。底部自带重型叉车托盘底座，四面箱壁配抗扭斜撑加固（或全封闭胶合板防护），可配套ISPM 15热处理熏蒸证书及上门驻厂打箱服务，全方位保障出口机械设备安全。",
+        "highlights": [
+          "底座结构： 8块面板 (980×70×16) + 3根横梁 (712×70×16) + 9个脚墩 (90×90×90) + 3根底板 (1012×70×16)",
+          "长侧箱壁： 3根横条 (1012×70×16) + 3根立柱 (558×70×16) + 4根斜撑木条 (533×70×16)",
+          "短端箱壁： 3根横条 (680×70×16) + 3根立柱 (558×70×16) + 4根斜撑木条 (399×70×16)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "CNC数控机床、配电柜、五金模具及大型工业设备海运出口包装",
+        "badges": [
+          "型号 TG-01",
+          "九脚底座+斜撑加固",
+          "配齐顶盖"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：斜撑加固带盖出口花格木箱 980 × 680 × 420 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -3224,6 +7223,62 @@ export const products: Product[] = [
       "title": "Gia công Thùng gỗ 1020 × 880 × 960 mm có đế 9 gù và vách giằng chéo xuất khẩu",
       "description": "Bóc tách chính xác từng thanh nan 70×16mm, lắp ghép khít đẹp và chịu lực cao.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Cross-Braced Slatted Wooden Crate 1020 × 880 × 960 mm",
+        "category": "Export Wooden Crates & Cases",
+        "woodType": "70×16mm Acacia / Pine slats + 9 solid blocks (90×90×90mm)",
+        "staticLoad": "1.500 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.800 kg",
+        "specification": "Base pallet: 8 deck boards (1020×70×16) + 3 stringer boards (912×70×16) + 9 support blocks (90×90×90) + 3 bottom boards (1052×70×16) · Long side walls: 3 horizontal (1052×70×16) + 3 vertical (1098×70×16) + 4 diagonal braces (700×70×16) · Short end walls: 3 horizontal (880×70×16) + 3 vertical (1098×70×16) + 4 diagonal braces (651×70×16) · Top lid: 5 long horizontal slats (1084×70×16) + 4 short vertical slats (944×70×16)",
+        "priceDisplay": "Contact Us",
+        "description": "Cross-Braced Slatted Wooden Crate 1020 × 880 × 960 mm fabricated at Truong An Wooden Crate Factory. Engineered with a heavy-duty forklift pallet base, diagonal structural bracing, and full ISPM 15 HT export certification to safeguard industrial machinery and export cargo.",
+        "highlights": [
+          "Base pallet: 8 deck boards (1020×70×16) + 3 stringer boards (912×70×16) + 9 support blocks (90×90×90) + 3 bottom boards (1052×70×16)",
+          "Long side walls: 3 horizontal (1052×70×16) + 3 vertical (1098×70×16) + 4 diagonal braces (700×70×16)",
+          "Short end walls: 3 horizontal (880×70×16) + 3 vertical (1098×70×16) + 4 diagonal braces (651×70×16)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Heavy CNC machinery, electrical cabinets, auto parts & ocean freight export crating",
+        "badges": [
+          "CODE TG-02",
+          "9-BLOCK + BRACED",
+          "WITH TOP LID"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Cross-Braced Slatted Wooden Crate 1020 × 880 × 960 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "斜撑加固带盖出口花格木箱 1020 × 880 × 960 mm",
+        "category": "出口木箱与机械包装箱",
+        "woodType": "70×16mm相思木/松木标准木条 + 9个90×90×90实心脚墩",
+        "staticLoad": "1.500 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.800 kg",
+        "specification": "底座结构： 8块面板 (1020×70×16) + 3根横梁 (912×70×16) + 9个脚墩 (90×90×90) + 3根底板 (1052×70×16) · 长侧箱壁： 3根横条 (1052×70×16) + 3根立柱 (1098×70×16) + 4根斜撑木条 (700×70×16) · 短端箱壁： 3根横条 (880×70×16) + 3根立柱 (1098×70×16) + 4根斜撑木条 (651×70×16) · 顶部箱盖： 5根长横条 (1084×70×16) + 4根短纵条 (944×70×16)",
+        "priceDisplay": "联系询价",
+        "description": "斜撑加固带盖出口花格木箱 1020 × 880 × 960 mm 由长安包装厂严格按标准开料精工制作。底部自带重型叉车托盘底座，四面箱壁配抗扭斜撑加固（或全封闭胶合板防护），可配套ISPM 15热处理熏蒸证书及上门驻厂打箱服务，全方位保障出口机械设备安全。",
+        "highlights": [
+          "底座结构： 8块面板 (1020×70×16) + 3根横梁 (912×70×16) + 9个脚墩 (90×90×90) + 3根底板 (1052×70×16)",
+          "长侧箱壁： 3根横条 (1052×70×16) + 3根立柱 (1098×70×16) + 4根斜撑木条 (700×70×16)",
+          "短端箱壁： 3根横条 (880×70×16) + 3根立柱 (1098×70×16) + 4根斜撑木条 (651×70×16)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "CNC数控机床、配电柜、五金模具及大型工业设备海运出口包装",
+        "badges": [
+          "型号 TG-02",
+          "九脚底座+斜撑加固",
+          "配齐顶盖"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：斜撑加固带盖出口花格木箱 1020 × 880 × 960 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -3267,6 +7322,62 @@ export const products: Product[] = [
       "title": "Gia công Thùng gỗ 800 × 750 × 580 mm có đế 9 gù và vách giằng chéo xuất khẩu",
       "description": "Bóc tách chính xác từng thanh nan 70×16mm, lắp ghép khít đẹp và chịu lực cao.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Cross-Braced Slatted Wooden Crate 800 × 750 × 580 mm",
+        "category": "Export Wooden Crates & Cases",
+        "woodType": "70×16mm Acacia / Pine slats + 9 solid blocks (90×90×90mm)",
+        "staticLoad": "1.500 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.800 kg",
+        "specification": "Base pallet: 8 deck boards (800×70×16) + 3 stringer boards (782×70×16) + 9 support blocks (90×90×90) + 3 bottom boards (832×70×16) · Long side walls: 3 horizontal (832×70×16) + 3 vertical (718×70×16) + 4 diagonal braces (494×70×16) · Short end walls: 3 horizontal (750×70×16) + 3 vertical (718×70×16) + 4 diagonal braces (474×70×16) · Top lid: 5 long horizontal slats (864×70×16) + 4 short vertical slats (814×70×16)",
+        "priceDisplay": "Contact Us",
+        "description": "Cross-Braced Slatted Wooden Crate 800 × 750 × 580 mm fabricated at Truong An Wooden Crate Factory. Engineered with a heavy-duty forklift pallet base, diagonal structural bracing, and full ISPM 15 HT export certification to safeguard industrial machinery and export cargo.",
+        "highlights": [
+          "Base pallet: 8 deck boards (800×70×16) + 3 stringer boards (782×70×16) + 9 support blocks (90×90×90) + 3 bottom boards (832×70×16)",
+          "Long side walls: 3 horizontal (832×70×16) + 3 vertical (718×70×16) + 4 diagonal braces (494×70×16)",
+          "Short end walls: 3 horizontal (750×70×16) + 3 vertical (718×70×16) + 4 diagonal braces (474×70×16)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Heavy CNC machinery, electrical cabinets, auto parts & ocean freight export crating",
+        "badges": [
+          "CODE TG-03",
+          "9-BLOCK + BRACED",
+          "WITH TOP LID"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Cross-Braced Slatted Wooden Crate 800 × 750 × 580 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "斜撑加固带盖出口花格木箱 800 × 750 × 580 mm",
+        "category": "出口木箱与机械包装箱",
+        "woodType": "70×16mm相思木/松木标准木条 + 9个90×90×90实心脚墩",
+        "staticLoad": "1.500 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.800 kg",
+        "specification": "底座结构： 8块面板 (800×70×16) + 3根横梁 (782×70×16) + 9个脚墩 (90×90×90) + 3根底板 (832×70×16) · 长侧箱壁： 3根横条 (832×70×16) + 3根立柱 (718×70×16) + 4根斜撑木条 (494×70×16) · 短端箱壁： 3根横条 (750×70×16) + 3根立柱 (718×70×16) + 4根斜撑木条 (474×70×16) · 顶部箱盖： 5根长横条 (864×70×16) + 4根短纵条 (814×70×16)",
+        "priceDisplay": "联系询价",
+        "description": "斜撑加固带盖出口花格木箱 800 × 750 × 580 mm 由长安包装厂严格按标准开料精工制作。底部自带重型叉车托盘底座，四面箱壁配抗扭斜撑加固（或全封闭胶合板防护），可配套ISPM 15热处理熏蒸证书及上门驻厂打箱服务，全方位保障出口机械设备安全。",
+        "highlights": [
+          "底座结构： 8块面板 (800×70×16) + 3根横梁 (782×70×16) + 9个脚墩 (90×90×90) + 3根底板 (832×70×16)",
+          "长侧箱壁： 3根横条 (832×70×16) + 3根立柱 (718×70×16) + 4根斜撑木条 (494×70×16)",
+          "短端箱壁： 3根横条 (750×70×16) + 3根立柱 (718×70×16) + 4根斜撑木条 (474×70×16)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "CNC数控机床、配电柜、五金模具及大型工业设备海运出口包装",
+        "badges": [
+          "型号 TG-03",
+          "九脚底座+斜撑加固",
+          "配齐顶盖"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：斜撑加固带盖出口花格木箱 800 × 750 × 580 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -3310,6 +7421,62 @@ export const products: Product[] = [
       "title": "Gia công Thùng gỗ 1050 × 830 × 900 mm có đế 9 gù và vách giằng chéo xuất khẩu",
       "description": "Bóc tách chính xác từng thanh nan 70×16mm, lắp ghép khít đẹp và chịu lực cao.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Cross-Braced Slatted Wooden Crate 1050 × 830 × 900 mm",
+        "category": "Export Wooden Crates & Cases",
+        "woodType": "70×16mm Acacia / Pine slats + 9 solid blocks (90×90×90mm)",
+        "staticLoad": "1.500 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.800 kg",
+        "specification": "Base pallet: 8 deck boards (1050×70×16) + 3 stringer boards (862×70×16) + 9 support blocks (90×90×90) + 3 bottom boards (1082×70×16) · Long side walls: 3 horizontal (1082×70×16) + 3 vertical (1038×70×16) + 4 diagonal braces (691×70×16) · Short end walls: 3 horizontal (830×70×16) + 3 vertical (1038×70×16) + 4 diagonal braces (612×70×16) · Top lid: 5 long horizontal slats (1114×70×16) + 4 short vertical slats (894×70×16)",
+        "priceDisplay": "Contact Us",
+        "description": "Cross-Braced Slatted Wooden Crate 1050 × 830 × 900 mm fabricated at Truong An Wooden Crate Factory. Engineered with a heavy-duty forklift pallet base, diagonal structural bracing, and full ISPM 15 HT export certification to safeguard industrial machinery and export cargo.",
+        "highlights": [
+          "Base pallet: 8 deck boards (1050×70×16) + 3 stringer boards (862×70×16) + 9 support blocks (90×90×90) + 3 bottom boards (1082×70×16)",
+          "Long side walls: 3 horizontal (1082×70×16) + 3 vertical (1038×70×16) + 4 diagonal braces (691×70×16)",
+          "Short end walls: 3 horizontal (830×70×16) + 3 vertical (1038×70×16) + 4 diagonal braces (612×70×16)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Heavy CNC machinery, electrical cabinets, auto parts & ocean freight export crating",
+        "badges": [
+          "CODE TG-04",
+          "9-BLOCK + BRACED",
+          "WITH TOP LID"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Cross-Braced Slatted Wooden Crate 1050 × 830 × 900 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "斜撑加固带盖出口花格木箱 1050 × 830 × 900 mm",
+        "category": "出口木箱与机械包装箱",
+        "woodType": "70×16mm相思木/松木标准木条 + 9个90×90×90实心脚墩",
+        "staticLoad": "1.500 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.800 kg",
+        "specification": "底座结构： 8块面板 (1050×70×16) + 3根横梁 (862×70×16) + 9个脚墩 (90×90×90) + 3根底板 (1082×70×16) · 长侧箱壁： 3根横条 (1082×70×16) + 3根立柱 (1038×70×16) + 4根斜撑木条 (691×70×16) · 短端箱壁： 3根横条 (830×70×16) + 3根立柱 (1038×70×16) + 4根斜撑木条 (612×70×16) · 顶部箱盖： 5根长横条 (1114×70×16) + 4根短纵条 (894×70×16)",
+        "priceDisplay": "联系询价",
+        "description": "斜撑加固带盖出口花格木箱 1050 × 830 × 900 mm 由长安包装厂严格按标准开料精工制作。底部自带重型叉车托盘底座，四面箱壁配抗扭斜撑加固（或全封闭胶合板防护），可配套ISPM 15热处理熏蒸证书及上门驻厂打箱服务，全方位保障出口机械设备安全。",
+        "highlights": [
+          "底座结构： 8块面板 (1050×70×16) + 3根横梁 (862×70×16) + 9个脚墩 (90×90×90) + 3根底板 (1082×70×16)",
+          "长侧箱壁： 3根横条 (1082×70×16) + 3根立柱 (1038×70×16) + 4根斜撑木条 (691×70×16)",
+          "短端箱壁： 3根横条 (830×70×16) + 3根立柱 (1038×70×16) + 4根斜撑木条 (612×70×16)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "CNC数控机床、配电柜、五金模具及大型工业设备海运出口包装",
+        "badges": [
+          "型号 TG-04",
+          "九脚底座+斜撑加固",
+          "配齐顶盖"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：斜撑加固带盖出口花格木箱 1050 × 830 × 900 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -3353,6 +7520,62 @@ export const products: Product[] = [
       "title": "Gia công Thùng gỗ 920 × 920 × 410 mm có đế 9 gù và vách giằng chéo xuất khẩu",
       "description": "Bóc tách chính xác từng thanh nan 70×16mm, lắp ghép khít đẹp và chịu lực cao.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Cross-Braced Slatted Wooden Crate 920 × 920 × 410 mm",
+        "category": "Export Wooden Crates & Cases",
+        "woodType": "70×16mm Acacia / Pine slats + 9 solid blocks (90×90×90mm)",
+        "staticLoad": "1.500 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.800 kg",
+        "specification": "Base pallet: 8 deck boards (920×70×16) + 3 stringer boards (952×70×16) + 9 support blocks (90×90×90) + 3 bottom boards (952×70×16) · Long side walls: 3 horizontal (952×70×16) + 3 vertical (548×70×16) + 4 diagonal braces (503.6×70×16) · Short end walls: 3 horizontal (920×70×16) + 3 vertical (548×70×16) + 4 diagonal braces (503.6×70×16) · Top lid: 5 long horizontal slats (984×70×16) + 4 short vertical slats (984×70×16)",
+        "priceDisplay": "Contact Us",
+        "description": "Cross-Braced Slatted Wooden Crate 920 × 920 × 410 mm fabricated at Truong An Wooden Crate Factory. Engineered with a heavy-duty forklift pallet base, diagonal structural bracing, and full ISPM 15 HT export certification to safeguard industrial machinery and export cargo.",
+        "highlights": [
+          "Base pallet: 8 deck boards (920×70×16) + 3 stringer boards (952×70×16) + 9 support blocks (90×90×90) + 3 bottom boards (952×70×16)",
+          "Long side walls: 3 horizontal (952×70×16) + 3 vertical (548×70×16) + 4 diagonal braces (503.6×70×16)",
+          "Short end walls: 3 horizontal (920×70×16) + 3 vertical (548×70×16) + 4 diagonal braces (503.6×70×16)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Heavy CNC machinery, electrical cabinets, auto parts & ocean freight export crating",
+        "badges": [
+          "CODE TG-05",
+          "9-BLOCK + BRACED",
+          "WITH TOP LID"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Cross-Braced Slatted Wooden Crate 920 × 920 × 410 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "斜撑加固带盖出口花格木箱 920 × 920 × 410 mm",
+        "category": "出口木箱与机械包装箱",
+        "woodType": "70×16mm相思木/松木标准木条 + 9个90×90×90实心脚墩",
+        "staticLoad": "1.500 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.800 kg",
+        "specification": "底座结构： 8块面板 (920×70×16) + 3根横梁 (952×70×16) + 9个脚墩 (90×90×90) + 3根底板 (952×70×16) · 长侧箱壁： 3根横条 (952×70×16) + 3根立柱 (548×70×16) + 4根斜撑木条 (503.6×70×16) · 短端箱壁： 3根横条 (920×70×16) + 3根立柱 (548×70×16) + 4根斜撑木条 (503.6×70×16) · 顶部箱盖： 5根长横条 (984×70×16) + 4根短纵条 (984×70×16)",
+        "priceDisplay": "联系询价",
+        "description": "斜撑加固带盖出口花格木箱 920 × 920 × 410 mm 由长安包装厂严格按标准开料精工制作。底部自带重型叉车托盘底座，四面箱壁配抗扭斜撑加固（或全封闭胶合板防护），可配套ISPM 15热处理熏蒸证书及上门驻厂打箱服务，全方位保障出口机械设备安全。",
+        "highlights": [
+          "底座结构： 8块面板 (920×70×16) + 3根横梁 (952×70×16) + 9个脚墩 (90×90×90) + 3根底板 (952×70×16)",
+          "长侧箱壁： 3根横条 (952×70×16) + 3根立柱 (548×70×16) + 4根斜撑木条 (503.6×70×16)",
+          "短端箱壁： 3根横条 (920×70×16) + 3根立柱 (548×70×16) + 4根斜撑木条 (503.6×70×16)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "CNC数控机床、配电柜、五金模具及大型工业设备海运出口包装",
+        "badges": [
+          "型号 TG-05",
+          "九脚底座+斜撑加固",
+          "配齐顶盖"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：斜撑加固带盖出口花格木箱 920 × 920 × 410 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -3396,6 +7619,62 @@ export const products: Product[] = [
       "title": "Gia công Thùng gỗ 650 × 570 × 1000 mm có đế 9 gù và vách giằng chéo xuất khẩu",
       "description": "Bóc tách chính xác từng thanh nan 70×16mm, lắp ghép khít đẹp và chịu lực cao.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Cross-Braced Slatted Wooden Crate 650 × 570 × 1000 mm",
+        "category": "Export Wooden Crates & Cases",
+        "woodType": "70×16mm Acacia / Pine slats + 9 solid blocks (90×90×90mm)",
+        "staticLoad": "1.500 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.800 kg",
+        "specification": "Base pallet: 8 deck boards (650×70×16) + 3 stringer boards (602×70×16) + 9 support blocks (90×90×90) + 3 bottom boards (682×70×16) · Long side walls: 3 horizontal (682×70×16) + 3 vertical (1138×70×16) + 4 diagonal braces (575.3×70×16) · Short end walls: 3 horizontal (570×70×16) + 3 vertical (1138×70×16) + 4 diagonal braces (575.5×70×16) · Top lid: 5 long horizontal slats (714×70×16) + 4 short vertical slats (634×70×16)",
+        "priceDisplay": "Contact Us",
+        "description": "Cross-Braced Slatted Wooden Crate 650 × 570 × 1000 mm fabricated at Truong An Wooden Crate Factory. Engineered with a heavy-duty forklift pallet base, diagonal structural bracing, and full ISPM 15 HT export certification to safeguard industrial machinery and export cargo.",
+        "highlights": [
+          "Base pallet: 8 deck boards (650×70×16) + 3 stringer boards (602×70×16) + 9 support blocks (90×90×90) + 3 bottom boards (682×70×16)",
+          "Long side walls: 3 horizontal (682×70×16) + 3 vertical (1138×70×16) + 4 diagonal braces (575.3×70×16)",
+          "Short end walls: 3 horizontal (570×70×16) + 3 vertical (1138×70×16) + 4 diagonal braces (575.5×70×16)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Heavy CNC machinery, electrical cabinets, auto parts & ocean freight export crating",
+        "badges": [
+          "CODE TG-06",
+          "9-BLOCK + BRACED",
+          "WITH TOP LID"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Cross-Braced Slatted Wooden Crate 650 × 570 × 1000 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "斜撑加固带盖出口花格木箱 650 × 570 × 1000 mm",
+        "category": "出口木箱与机械包装箱",
+        "woodType": "70×16mm相思木/松木标准木条 + 9个90×90×90实心脚墩",
+        "staticLoad": "1.500 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.800 kg",
+        "specification": "底座结构： 8块面板 (650×70×16) + 3根横梁 (602×70×16) + 9个脚墩 (90×90×90) + 3根底板 (682×70×16) · 长侧箱壁： 3根横条 (682×70×16) + 3根立柱 (1138×70×16) + 4根斜撑木条 (575.3×70×16) · 短端箱壁： 3根横条 (570×70×16) + 3根立柱 (1138×70×16) + 4根斜撑木条 (575.5×70×16) · 顶部箱盖： 5根长横条 (714×70×16) + 4根短纵条 (634×70×16)",
+        "priceDisplay": "联系询价",
+        "description": "斜撑加固带盖出口花格木箱 650 × 570 × 1000 mm 由长安包装厂严格按标准开料精工制作。底部自带重型叉车托盘底座，四面箱壁配抗扭斜撑加固（或全封闭胶合板防护），可配套ISPM 15热处理熏蒸证书及上门驻厂打箱服务，全方位保障出口机械设备安全。",
+        "highlights": [
+          "底座结构： 8块面板 (650×70×16) + 3根横梁 (602×70×16) + 9个脚墩 (90×90×90) + 3根底板 (682×70×16)",
+          "长侧箱壁： 3根横条 (682×70×16) + 3根立柱 (1138×70×16) + 4根斜撑木条 (575.3×70×16)",
+          "短端箱壁： 3根横条 (570×70×16) + 3根立柱 (1138×70×16) + 4根斜撑木条 (575.5×70×16)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "CNC数控机床、配电柜、五金模具及大型工业设备海运出口包装",
+        "badges": [
+          "型号 TG-06",
+          "九脚底座+斜撑加固",
+          "配齐顶盖"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：斜撑加固带盖出口花格木箱 650 × 570 × 1000 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -3439,6 +7718,62 @@ export const products: Product[] = [
       "title": "Gia công Thùng gỗ 1090 × 830 × 570 mm có đế 9 gù và vách giằng chéo xuất khẩu",
       "description": "Bóc tách chính xác từng thanh nan 70×16mm, lắp ghép khít đẹp và chịu lực cao.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Cross-Braced Slatted Wooden Crate 1090 × 830 × 570 mm",
+        "category": "Export Wooden Crates & Cases",
+        "woodType": "70×16mm Acacia / Pine slats + 9 solid blocks (90×90×90mm)",
+        "staticLoad": "1.500 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.800 kg",
+        "specification": "Base pallet: 8 deck boards (1090×70×16) + 3 stringer boards (862×70×16) + 9 support blocks (90×90×90) + 3 bottom boards (1122×70×16) · Long side walls: 3 horizontal (1122×70×16) + 3 vertical (708×70×16) + 4 diagonal braces (615×70×16) · Short end walls: 3 horizontal (830×70×16) + 3 vertical (708×70×16) + 4 diagonal braces (503.4×70×16) · Top lid: 5 long horizontal slats (1154×70×16) + 4 short vertical slats (894×70×16)",
+        "priceDisplay": "Contact Us",
+        "description": "Cross-Braced Slatted Wooden Crate 1090 × 830 × 570 mm fabricated at Truong An Wooden Crate Factory. Engineered with a heavy-duty forklift pallet base, diagonal structural bracing, and full ISPM 15 HT export certification to safeguard industrial machinery and export cargo.",
+        "highlights": [
+          "Base pallet: 8 deck boards (1090×70×16) + 3 stringer boards (862×70×16) + 9 support blocks (90×90×90) + 3 bottom boards (1122×70×16)",
+          "Long side walls: 3 horizontal (1122×70×16) + 3 vertical (708×70×16) + 4 diagonal braces (615×70×16)",
+          "Short end walls: 3 horizontal (830×70×16) + 3 vertical (708×70×16) + 4 diagonal braces (503.4×70×16)",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Heavy CNC machinery, electrical cabinets, auto parts & ocean freight export crating",
+        "badges": [
+          "CODE TG-07",
+          "9-BLOCK + BRACED",
+          "WITH TOP LID"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Cross-Braced Slatted Wooden Crate 1090 × 830 × 570 mm",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "斜撑加固带盖出口花格木箱 1090 × 830 × 570 mm",
+        "category": "出口木箱与机械包装箱",
+        "woodType": "70×16mm相思木/松木标准木条 + 9个90×90×90实心脚墩",
+        "staticLoad": "1.500 - 3.000 kg",
+        "dynamicLoad": "1.000 - 1.800 kg",
+        "specification": "底座结构： 8块面板 (1090×70×16) + 3根横梁 (862×70×16) + 9个脚墩 (90×90×90) + 3根底板 (1122×70×16) · 长侧箱壁： 3根横条 (1122×70×16) + 3根立柱 (708×70×16) + 4根斜撑木条 (615×70×16) · 短端箱壁： 3根横条 (830×70×16) + 3根立柱 (708×70×16) + 4根斜撑木条 (503.4×70×16) · 顶部箱盖： 5根长横条 (1154×70×16) + 4根短纵条 (894×70×16)",
+        "priceDisplay": "联系询价",
+        "description": "斜撑加固带盖出口花格木箱 1090 × 830 × 570 mm 由长安包装厂严格按标准开料精工制作。底部自带重型叉车托盘底座，四面箱壁配抗扭斜撑加固（或全封闭胶合板防护），可配套ISPM 15热处理熏蒸证书及上门驻厂打箱服务，全方位保障出口机械设备安全。",
+        "highlights": [
+          "底座结构： 8块面板 (1090×70×16) + 3根横梁 (862×70×16) + 9个脚墩 (90×90×90) + 3根底板 (1122×70×16)",
+          "长侧箱壁： 3根横条 (1122×70×16) + 3根立柱 (708×70×16) + 4根斜撑木条 (615×70×16)",
+          "短端箱壁： 3根横条 (830×70×16) + 3根立柱 (708×70×16) + 4根斜撑木条 (503.4×70×16)",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "CNC数控机床、配电柜、五金模具及大型工业设备海运出口包装",
+        "badges": [
+          "型号 TG-07",
+          "九脚底座+斜撑加固",
+          "配齐顶盖"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：斜撑加固带盖出口花格木箱 1090 × 830 × 570 mm",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -3482,6 +7817,62 @@ export const products: Product[] = [
       "title": "Lắp ráp thùng gỗ kín đóng máy móc tận nhà máy khách hàng",
       "description": "Đội thợ cơ động tại Bà Điểm, TP.HCM, Bình Dương, Long An — hoàn thiện nhanh kịp lịch tàu.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Custom Enclosed Plywood Machinery Wooden Crate (ISPM 15)",
+        "category": "Export Wooden Crates & Cases",
+        "woodType": "12–18mm Plywood panels + Pine / Acacia structural framing",
+        "staticLoad": "2.000 - 5.000 kg",
+        "dynamicLoad": "1.500 - 3.000 kg",
+        "specification": "Heavy-duty forklift pallet base · Enclosed plywood or slatted walls per CAD drawing · Vacuum foil barrier & on-site factory crating available",
+        "priceDisplay": "Contact Us",
+        "description": "Custom Enclosed Plywood Machinery Wooden Crate (ISPM 15) fabricated at Truong An Wooden Crate Factory. Engineered with a heavy-duty forklift pallet base, diagonal structural bracing, and full ISPM 15 HT export certification to safeguard industrial machinery and export cargo.",
+        "highlights": [
+          "Heavy-duty forklift pallet base",
+          "Enclosed plywood or slatted walls per CAD drawing",
+          "Vacuum foil barrier & on-site factory crating available",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Heavy CNC machinery, electrical cabinets, auto parts & ocean freight export crating",
+        "badges": [
+          "CUSTOM BUILT",
+          "ON-SITE CRATING",
+          "ISPM 15 CERTIFIED"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Custom Enclosed Plywood Machinery Wooden Crate (ISPM 15)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "非标定制重型机械全封闭胶合板出口木箱 (ISPM 15)",
+        "category": "出口木箱与机械包装箱",
+        "woodType": "12–18mm高强胶合板箱壁 + 松木/相思木承重框架",
+        "staticLoad": "2.000 - 5.000 kg",
+        "dynamicLoad": "1.500 - 3.000 kg",
+        "specification": "底部重型叉车托盘底座 · 按图纸定制全封闭胶合板或花格箱壁 · 支持铝箔抽真空防潮及木工上门打箱",
+        "priceDisplay": "联系询价",
+        "description": "非标定制重型机械全封闭胶合板出口木箱 (ISPM 15) 由长安包装厂严格按标准开料精工制作。底部自带重型叉车托盘底座，四面箱壁配抗扭斜撑加固（或全封闭胶合板防护），可配套ISPM 15热处理熏蒸证书及上门驻厂打箱服务，全方位保障出口机械设备安全。",
+        "highlights": [
+          "底部重型叉车托盘底座",
+          "按图纸定制全封闭胶合板或花格箱壁",
+          "支持铝箔抽真空防潮及木工上门打箱",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "CNC数控机床、配电柜、五金模具及大型工业设备海运出口包装",
+        "badges": [
+          "按设备尺寸定制",
+          "上门驻厂打箱",
+          "ISPM 15 认证"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：非标定制重型机械全封闭胶合板出口木箱 (ISPM 15)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -3525,6 +7916,62 @@ export const products: Product[] = [
       "title": "Cung cấp sỉ thùng nhựa đặc công nghiệp cho nhà máy & kho xưởng",
       "description": "Sẵn kho số lượng lớn đủ màu, giao nhanh tại TP.HCM và các tỉnh lân cận.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Heavy-Duty Solid HDPE Plastic Box with Lid (610 × 420 × 310 mm)",
+        "category": "Industrial Plastic Crates & Bins",
+        "woodType": "High-impact 100% Virgin HDPE",
+        "staticLoad": "200 kg (stacked)",
+        "dynamicLoad": "40 - 50 kg / box",
+        "specification": "Dustproof & moisture-proof solid walls · Reinforced structural ribs · Ergonomic load handles · Includes tight-fitting lid",
+        "priceDisplay": "Contact Us",
+        "description": "Heavy-Duty Solid HDPE Plastic Box with Lid (610 × 420 × 310 mm) molded from heavy-duty virgin HDPE/PP resin for industrial warehousing, electronics components, agricultural produce, and cold-chain logistics. Designed to stack securely on standard 1200×1000mm pallets.",
+        "highlights": [
+          "Dustproof & moisture-proof solid walls",
+          "Reinforced structural ribs",
+          "Ergonomic load handles",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Component sorting, electronics, garment factories, cold-chain food & warehouse shelving",
+        "badges": [
+          "VIRGIN HDPE",
+          "SEALED LID",
+          "STACKABLE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Heavy-Duty Solid HDPE Plastic Box with Lid (610 × 420 × 310 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "工业级带盖实心HDPE塑料周转箱 (610 × 420 × 310 mm)",
+        "category": "工业塑料周转箱与零件盒",
+        "woodType": "高抗冲100%全新HDPE原料",
+        "staticLoad": "200 kg (堆码承重)",
+        "dynamicLoad": "40 - 50 kg / 箱",
+        "specification": "全封闭箱壁防尘防潮 · 四周密集加强筋抗冲击 · 人性化加固提手 · 配密封防尘箱盖",
+        "priceDisplay": "联系询价",
+        "description": "工业级带盖实心HDPE塑料周转箱 (610 × 420 × 310 mm) 采用优质全新HDPE/PP工业原料制造，抗冲击性强、多层堆码稳固，广泛适用于五金电子零件分类、生鲜果蔬水产周转及现代化工厂货架配套。",
+        "highlights": [
+          "全封闭箱壁防尘防潮",
+          "四周密集加强筋抗冲击",
+          "人性化加固提手",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "五金电子物料分类、服装鞋帽厂、果蔬农产品周转与标准货架存储",
+        "badges": [
+          "全新HDPE原料",
+          "密封带盖",
+          "多层稳固堆码"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：工业级带盖实心HDPE塑料周转箱 (610 × 420 × 310 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -3568,6 +8015,62 @@ export const products: Product[] = [
       "title": "Giao lô sóng nhựa hở cho kho nông sản & nhà máy may mặc",
       "description": "Hỗ trợ giao nhanh bằng xe tải xưởng đi TP.HCM, Bình Dương, Long An, Đồng Nai.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Ventilated Industrial HDPE Mesh Crate (610 × 420 × 250 mm)",
+        "category": "Industrial Plastic Crates & Bins",
+        "woodType": "Durable 100% Virgin HDPE",
+        "staticLoad": "180 kg (stacked)",
+        "dynamicLoad": "35 - 45 kg / box",
+        "specification": "Ventilated mesh walls for airflow & drainage · Reinforced rim for high stacking · Dual-end carry handles",
+        "priceDisplay": "Contact Us",
+        "description": "Ventilated Industrial HDPE Mesh Crate (610 × 420 × 250 mm) molded from heavy-duty virgin HDPE/PP resin for industrial warehousing, electronics components, agricultural produce, and cold-chain logistics. Designed to stack securely on standard 1200×1000mm pallets.",
+        "highlights": [
+          "Ventilated mesh walls for airflow & drainage",
+          "Reinforced rim for high stacking",
+          "Dual-end carry handles",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Component sorting, electronics, garment factories, cold-chain food & warehouse shelving",
+        "badges": [
+          "VENTILATED CRATE",
+          "BREATHABLE",
+          "WHOLESALE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Ventilated Industrial HDPE Mesh Crate (610 × 420 × 250 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "工业透气网格HDPE塑料周转箩 (610 × 420 × 250 mm)",
+        "category": "工业塑料周转箱与零件盒",
+        "woodType": "高韧性100%全新HDPE原料",
+        "staticLoad": "180 kg (堆码承重)",
+        "dynamicLoad": "35 - 45 kg / 箱",
+        "specification": "网格透气箱壁，排水通风快 · 箱口加厚加固，多层堆码稳固 · 两端防滑搬运把手",
+        "priceDisplay": "联系询价",
+        "description": "工业透气网格HDPE塑料周转箩 (610 × 420 × 250 mm) 采用优质全新HDPE/PP工业原料制造，抗冲击性强、多层堆码稳固，广泛适用于五金电子零件分类、生鲜果蔬水产周转及现代化工厂货架配套。",
+        "highlights": [
+          "网格透气箱壁，排水通风快",
+          "箱口加厚加固，多层堆码稳固",
+          "两端防滑搬运把手",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "五金电子物料分类、服装鞋帽厂、果蔬农产品周转与标准货架存储",
+        "badges": [
+          "透气周转箩",
+          "通风沥水",
+          "源头批发价"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：工业透气网格HDPE塑料周转箩 (610 × 420 × 250 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   },
   {
@@ -3611,6 +8114,60 @@ export const products: Product[] = [
       "title": "Cung cấp khay nhựa & thùng nhựa công nghiệp đồng bộ cho kho xưởng",
       "description": "Giao hàng tận nơi kèm pallet kê kho trọn gói cho nhà máy.",
       "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+    },
+    "translations": {
+      "en": {
+        "name": "Stackable Industrial Component Plastic Bin (Eurobox) (480 × 350 × 180 mm)",
+        "category": "Industrial Plastic Crates & Bins",
+        "woodType": "Impact-resistant Virgin PP / HDPE",
+        "staticLoad": "150 kg (stacked)",
+        "dynamicLoad": "25 - 35 kg / bin",
+        "specification": "Vertical walls maximizing internal volume · Smooth flat base for roller conveyors & warehouse racks",
+        "priceDisplay": "Contact Us",
+        "description": "Stackable Industrial Component Plastic Bin (Eurobox) (480 × 350 × 180 mm) molded from heavy-duty virgin HDPE/PP resin for industrial warehousing, electronics components, agricultural produce, and cold-chain logistics. Designed to stack securely on standard 1200×1000mm pallets.",
+        "highlights": [
+          "Vertical walls maximizing internal volume",
+          "Smooth flat base for roller conveyors & warehouse racks",
+          "Full export compliance (ISPM 15 HT certified / fumigation-free) with fast HCMC & Southern IP delivery"
+        ],
+        "usagePurpose": "Component sorting, electronics, garment factories, cold-chain food & warehouse shelving",
+        "badges": [
+          "RACK STANDARD",
+          "VIRGIN RESIN",
+          "B2B WHOLESALE"
+        ],
+        "facebookProof": {
+          "title": "Workshop production: Stackable Industrial Component Plastic Bin (Eurobox) (480 × 350 × 180 mm)",
+          "description": "Precision-cut materials, strict load & moisture inspection prior to direct truck delivery.",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      },
+      "zh": {
+        "name": "可堆叠仓库货架塑料零件箱 (Eurobox) (480 × 350 × 180 mm)",
+        "category": "工业塑料周转箱与零件盒",
+        "woodType": "耐冲击全新 PP / HDPE 工业原料",
+        "staticLoad": "150 kg (堆码承重)",
+        "dynamicLoad": "25 - 35 kg / 盒",
+        "specification": "垂直箱壁最大化内部容积 · 平底加固设计，顺畅适配流水线滚筒与货架",
+        "priceDisplay": "联系询价",
+        "description": "可堆叠仓库货架塑料零件箱 (Eurobox) (480 × 350 × 180 mm) 采用优质全新HDPE/PP工业原料制造，抗冲击性强、多层堆码稳固，广泛适用于五金电子零件分类、生鲜果蔬水产周转及现代化工厂货架配套。",
+        "highlights": [
+          "垂直箱壁最大化内部容积",
+          "平底加固设计，顺畅适配流水线滚筒与货架",
+          "符合国际出口检疫规范（支持ISPM 15热处理证书 / 免熏蒸通关），专车极速送达厂区"
+        ],
+        "usagePurpose": "五金电子物料分类、服装鞋帽厂、果蔬农产品周转与标准货架存储",
+        "badges": [
+          "标准货架尺寸",
+          "全新原生塑料",
+          "B2B批发直供"
+        ],
+        "facebookProof": {
+          "title": "长安工厂车间实产：可堆叠仓库货架塑料零件箱 (Eurobox) (480 × 350 × 180 mm)",
+          "description": "板材足尺开料，出厂前严格核验结构承重与含水率，自有货车队准时送达。",
+          "fbUrl": "https://www.facebook.com/PalletTruongAn/"
+        }
+      }
     }
   }
 ];

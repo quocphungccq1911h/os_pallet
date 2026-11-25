@@ -1,40 +1,38 @@
-﻿'use client';
+'use client';
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { notFound, useParams } from 'next/navigation';
-import { 
-  initialActivities, 
-  activityCategories, 
-  Activity, 
-  ActivityCategory 
-} from '@/data/activities';
+import { initialActivities, activityCategories, Activity } from '@/data/activities';
 import { companyInfo } from '@/data/companyInfo';
-import { 
-  Calendar, 
-  MapPin, 
-  ChevronRight, 
-  CheckCircle2, 
-  Phone, 
-  MessageSquare, 
-  ExternalLink, 
-  ShieldCheck, 
-  Clock, 
+import {
+  Calendar,
+  MapPin,
+  ChevronRight,
+  CheckCircle2,
+  Phone,
+  MessageSquare,
+  ExternalLink,
+  ShieldCheck,
+  Clock,
   Truck,
-  Building
+  Building,
 } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
+import { localizeActivity, localizeActivityCategory } from '@/i18n/productLocalizer';
 import styles from './detail.module.css';
 
 export default function ActivityDetailPage() {
   const params = useParams();
   const slug = params?.slug as string;
+  const { locale, t } = useLanguage();
 
-  const [activity, setActivity] = useState<Activity | null>(() => {
+  const [rawActivity, setRawActivity] = useState<Activity | null>(() => {
     return initialActivities.find((a) => a.slug === slug) || null;
   });
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [allActivities, setAllActivities] = useState<Activity[]>(initialActivities);
-  const [loading, setLoading] = useState(!activity);
+  const [loading, setLoading] = useState(!rawActivity);
 
   useEffect(() => {
     async function loadActivity() {
@@ -46,12 +44,12 @@ export default function ActivityDetailPage() {
             setAllActivities(list);
             const found = list.find((a) => a.slug === slug);
             if (found) {
-              setActivity(found);
+              setRawActivity(found);
             }
           }
         }
       } catch {
-        // Fallback
+        // fallback
       } finally {
         setLoading(false);
       }
@@ -59,29 +57,30 @@ export default function ActivityDetailPage() {
     loadActivity();
   }, [slug]);
 
-  if (!activity && !loading) {
+  if (!rawActivity && !loading) {
     return notFound();
   }
 
-  if (!activity) {
+  if (!rawActivity) {
     return (
       <div className={styles.detailPage} style={{ padding: '5rem 0', textAlign: 'center' }}>
         <div className="container">
-          <p>Đang tải thông tin hoạt động xưởng...</p>
+          <p>{t.common.loading}</p>
         </div>
       </div>
     );
   }
 
-  const images = activity.images && activity.images.length > 0
-    ? activity.images
-    : ['/images/pallet_factory_43.jpg'];
-
+  const activity = localizeActivity(rawActivity, locale);
+  const images =
+    activity.images && activity.images.length > 0
+      ? activity.images
+      : ['/images/pallet_factory_43.jpg'];
   const currentImage = images[selectedImageIndex] || images[0];
 
-  const catInfo = activityCategories.find((c) => c.id === activity.category);
+  const rawCat = activityCategories.find((c) => c.id === activity.category);
+  const catInfo = rawCat ? localizeActivityCategory(rawCat, locale) : null;
 
-  // Parse simple markdown-like content into sections
   const renderFormattedContent = (content: string) => {
     const paragraphs = content.split('\n\n');
     return paragraphs.map((para, i) => {
@@ -94,9 +93,7 @@ export default function ActivityDetailPage() {
         return (
           <ul key={i}>
             {items.map((it, idx) => (
-              <li key={idx}>
-                {it.replace(/^[-*]\s+/, '')}
-              </li>
+              <li key={idx}>{it.replace(/^[-*]\s+/, '')}</li>
             ))}
           </ul>
         );
@@ -106,9 +103,7 @@ export default function ActivityDetailPage() {
         return (
           <ol key={i}>
             {items.map((it, idx) => (
-              <li key={idx}>
-                {it.replace(/^\d+\.\s+/, '')}
-              </li>
+              <li key={idx}>{it.replace(/^\d+\.\s+/, '')}</li>
             ))}
           </ol>
         );
@@ -118,8 +113,9 @@ export default function ActivityDetailPage() {
   };
 
   const relatedActivities = allActivities
-    .filter((a) => a.id !== activity.id)
-    .slice(0, 3);
+    .filter((a) => a.id !== rawActivity.id)
+    .slice(0, 3)
+    .map((a) => localizeActivity(a, locale));
 
   return (
     <div className={styles.detailPage}>
@@ -127,9 +123,9 @@ export default function ActivityDetailPage() {
       <div className={styles.topHeader}>
         <div className="container">
           <nav className={styles.breadcrumb}>
-            <Link href="/">Trang Chủ</Link>
+            <Link href="/">{t.common.home}</Link>
             <ChevronRight size={14} />
-            <Link href="/hoat-dong">Hoạt Động Xưởng</Link>
+            <Link href="/hoat-dong">{t.activitiesPage.breadcrumb}</Link>
             <ChevronRight size={14} />
             <span className={styles.breadcrumbCurrent}>{activity.title}</span>
           </nav>
@@ -151,20 +147,26 @@ export default function ActivityDetailPage() {
           <div className={styles.metaRow}>
             <div className={styles.metaItem}>
               <Calendar size={15} />
-              <span>Ngày đăng: <strong>{activity.publishedAt}</strong></span>
+              <span>
+                {t.activitiesPage.publishedLabel} <strong>{activity.publishedAt}</strong>
+              </span>
             </div>
 
             {activity.customerLocation && (
               <div className={styles.metaItem}>
                 <MapPin size={15} />
-                <span>Địa điểm: <strong>{activity.customerLocation}</strong></span>
+                <span>
+                  {t.activitiesPage.locationLabel} <strong>{activity.customerLocation}</strong>
+                </span>
               </div>
             )}
 
             {activity.clientType && (
               <div className={styles.metaItem}>
                 <Building size={15} />
-                <span>Khách hàng: <strong>{activity.clientType}</strong></span>
+                <span>
+                  {t.activitiesPage.clientLabel} <strong>{activity.clientType}</strong>
+                </span>
               </div>
             )}
           </div>
@@ -172,16 +174,10 @@ export default function ActivityDetailPage() {
 
         {/* Main Layout Grid */}
         <div className={styles.layoutGrid}>
-          {/* Main Left Column */}
           <main>
-            {/* Gallery Viewer */}
             <div className={styles.gallerySection}>
               <div className={styles.mainPhotoWrap}>
-                <img
-                  src={currentImage}
-                  alt={activity.title}
-                  className={styles.mainPhoto}
-                />
+                <img src={currentImage} alt={activity.title} className={styles.mainPhoto} />
               </div>
 
               {images.length > 1 && (
@@ -189,33 +185,26 @@ export default function ActivityDetailPage() {
                   {images.map((img, idx) => (
                     <button
                       key={idx}
-                      className={`${styles.thumbBtn} ${selectedImageIndex === idx ? styles.thumbActive : ''}`}
+                      className={`${styles.thumbBtn} ${
+                        selectedImageIndex === idx ? styles.thumbActive : ''
+                      }`}
                       onClick={() => setSelectedImageIndex(idx)}
                     >
-                      <img
-                        src={img}
-                        alt={`Ảnh quy trình xưởng ${idx + 1}`}
-                        className={styles.thumbImg}
-                      />
+                      <img src={img} alt={`${idx + 1}`} className={styles.thumbImg} />
                     </button>
                   ))}
                 </div>
               )}
             </div>
 
-            {/* Article Content */}
             <div className={styles.contentBox}>
-              {activity.summary && (
-                <div className={styles.summaryBox}>
-                  {activity.summary}
-                </div>
-              )}
+              {activity.summary && <div className={styles.summaryBox}>{activity.summary}</div>}
 
               {activity.highlights && activity.highlights.length > 0 && (
                 <div className={styles.highlightsCard}>
                   <h4 className={styles.highlightsTitle}>
                     <CheckCircle2 size={18} color="#16a34a" />
-                    <span>Điểm Nổi Bật Của Hoạt Động Này:</span>
+                    <span>{t.activitiesPage.highlightsTitle}</span>
                   </h4>
                   <ul className={styles.highlightsList}>
                     {activity.highlights.map((hl, i) => (
@@ -232,12 +221,11 @@ export default function ActivityDetailPage() {
                 {renderFormattedContent(activity.content)}
               </div>
 
-              {/* Facebook Proof Card */}
               {activity.fbUrl && (
                 <div className={styles.fbProofBox}>
                   <div className={styles.fbProofLeft}>
-                    <h4>Bài Viết Thực Tế Trên Fanpage Facebook</h4>
-                    <p>Theo dõi các hoạt động bàn giao và sản xuất hàng ngày của Pallet Trường An</p>
+                    <h4>Facebook Fanpage</h4>
+                    <p>{t.catalog.fbDesc}</p>
                   </div>
                   <a
                     href={activity.fbUrl}
@@ -245,7 +233,7 @@ export default function ActivityDetailPage() {
                     rel="noopener noreferrer"
                     className={styles.fbProofBtn}
                   >
-                    <span>Xem Bài Viết Gốc</span>
+                    <span>{t.activitiesPage.fbOriginalBtn}</span>
                     <ExternalLink size={16} />
                   </a>
                 </div>
@@ -253,53 +241,63 @@ export default function ActivityDetailPage() {
             </div>
           </main>
 
-          {/* Right Sidebar */}
           <aside className={styles.sidebar}>
-            {/* Quick Consultation Card */}
             <div className={styles.sideCard}>
-              <h3 className={styles.sideCardTitle}>Tư Vấn & Đặt Hàng Gấp</h3>
-              <p style={{ fontSize: '0.88rem', color: '#64748b', marginBottom: '1.25rem', lineHeight: '1.5' }}>
-                Quý khách có nhu cầu đóng pallet theo bản vẽ hoặc cần xử lý đơn hàng gấp phục vụ xuất khẩu, hãy liên hệ ngay xưởng:
+              <h3 className={styles.sideCardTitle}>{t.activitiesPage.sidebarConsultTitle}</h3>
+              <p
+                style={{
+                  fontSize: '0.88rem',
+                  color: '#64748b',
+                  marginBottom: '1.25rem',
+                  lineHeight: '1.5',
+                }}
+              >
+                {t.activitiesPage.sidebarConsultDesc}
               </p>
               <div className={styles.contactBox}>
                 <a href={`tel:${companyInfo.hotline}`} className={styles.btnHotline}>
                   <Phone size={16} />
-                  <span>Hotline: {companyInfo.hotlineFormatted}</span>
+                  <span>
+                    {t.common.hotline}: {companyInfo.hotlineFormatted}
+                  </span>
                 </a>
-                <a href={companyInfo.zaloUrl} target="_blank" rel="noopener noreferrer" className={styles.btnZalo}>
+                <a
+                  href={companyInfo.zaloUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.btnZalo}
+                >
                   <MessageSquare size={16} />
-                  <span>Zalo Báo Giá Nhanh</span>
+                  <span>{t.common.chatZalo}</span>
                 </a>
               </div>
             </div>
 
-            {/* Factory Trust Highlights */}
             <div className={styles.sideCard}>
-              <h3 className={styles.sideCardTitle}>Năng Lực Xưởng Trường An</h3>
+              <h3 className={styles.sideCardTitle}>{t.common.shortName}</h3>
               <div className={styles.featurePillList}>
                 <div className={styles.featurePill}>
                   <ShieldCheck size={18} className={styles.featureIcon} />
-                  <span>Xử lý sấy nhiệt HT đạt chuẩn ISPM 15</span>
+                  <span>{t.footer.p2Desc}</span>
                 </div>
                 <div className={styles.featurePill}>
                   <Truck size={18} className={styles.featureIcon} />
-                  <span>Giao hàng tận nơi KCN TP.HCM & Đông Nam Bộ</span>
+                  <span>{t.footer.p4Desc}</span>
                 </div>
                 <div className={styles.featurePill}>
                   <Clock size={18} className={styles.featureIcon} />
-                  <span>Gia công nhanh – Hỗ trợ đơn hàng gấp 24/7</span>
+                  <span>{t.footer.p1Desc}</span>
                 </div>
                 <div className={styles.featurePill}>
                   <CheckCircle2 size={18} className={styles.featureIcon} />
-                  <span>Trình pallet mẫu kiểm tra tải trọng thực tế</span>
+                  <span>{t.footer.p3Desc}</span>
                 </div>
               </div>
             </div>
 
-            {/* Other Activities */}
             {relatedActivities.length > 0 && (
               <div className={styles.sideCard}>
-                <h3 className={styles.sideCardTitle}>Hoạt Động Khác</h3>
+                <h3 className={styles.sideCardTitle}>{t.activitiesPage.relatedTitle}</h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                   {relatedActivities.map((rel) => (
                     <Link
@@ -307,7 +305,15 @@ export default function ActivityDetailPage() {
                       href={`/hoat-dong/${rel.slug}`}
                       style={{ textDecoration: 'none', color: 'inherit' }}
                     >
-                      <h4 style={{ fontSize: '0.92rem', fontWeight: 600, color: '#0f172a', lineHeight: '1.4', marginBottom: '0.25rem' }}>
+                      <h4
+                        style={{
+                          fontSize: '0.92rem',
+                          fontWeight: 600,
+                          color: '#0f172a',
+                          lineHeight: '1.4',
+                          marginBottom: '0.25rem',
+                        }}
+                      >
                         {rel.title}
                       </h4>
                       <span style={{ fontSize: '0.78rem', color: '#64748b' }}>

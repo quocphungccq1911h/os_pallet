@@ -8,6 +8,8 @@ import {
   THUNG_GO_SPECS,
   WorkshopSpecRow,
 } from '@/data/workshopSpecs';
+import { useLanguage } from '@/context/LanguageContext';
+import { localizeWorkshopRow } from '@/i18n/productLocalizer';
 
 interface WorkshopSpecsTableProps {
   categorySlug: string;
@@ -18,6 +20,7 @@ export const WorkshopSpecsTable: React.FC<WorkshopSpecsTableProps> = ({
   categorySlug,
   onRequestQuote,
 }) => {
+  const { locale, t } = useLanguage();
   const [expanded, setExpanded] = useState(false);
 
   let title = '';
@@ -25,22 +28,24 @@ export const WorkshopSpecsTable: React.FC<WorkshopSpecsTableProps> = ({
   let rows: WorkshopSpecRow[] = [];
 
   if (categorySlug === 'pallet-go-tram') {
-    title = 'Bảng Quy Cách 20 Mẫu Pallet Gỗ Tràm Chuẩn Xưởng Trường An';
-    subtitle = 'Gồm 10 mẫu 3 gánh nâng 2 hướng (PTA-T01 → PTA-T10) và 10 mẫu 9 gù nâng 4 hướng (PTA-G01 → PTA-G10).';
+    title = t.workshopTable.tramTitle;
+    subtitle = t.workshopTable.tramSub;
     rows = PALLET_TRAM_SPECS;
   } else if (categorySlug === 'pallet-van-ep') {
-    title = 'Bảng 34 Kích Thước Pallet Ván Ép (Plywood) Có Sẵn Bản Vẽ Tại Xưởng';
-    subtitle = 'Ván mặt dày 10mm – 15mm, 9 cục gù nâng 4 hướng, miễn thủ tục hun trùng ISPM 15.';
+    title = t.workshopTable.plywoodTitle;
+    subtitle = t.workshopTable.plywoodSub;
     rows = PALLET_PLYWOOD_SPECS;
   } else if (categorySlug === 'thung-go-dong-hang') {
-    title = 'Bảng Bóc Tách 7 Quy Cách Thùng Gỗ Nan Thưa Có Nắp Chuẩn Xưởng';
-    subtitle = 'Đế pallet 9 gù 90×90×90 mm, vách giằng chéo chịu lực 4 phía, có nắp đóng kín.';
+    title = t.workshopTable.crateTitle;
+    subtitle = t.workshopTable.crateSub;
     rows = THUNG_GO_SPECS;
   } else {
     return null;
   }
 
-  const visibleRows = expanded ? rows : rows.slice(0, 6);
+  const visibleRows = (expanded ? rows : rows.slice(0, 6)).map((r) =>
+    localizeWorkshopRow(r, locale)
+  );
 
   return (
     <section
@@ -56,9 +61,16 @@ export const WorkshopSpecsTable: React.FC<WorkshopSpecsTableProps> = ({
     >
       <div style={{ marginBottom: '1.15rem' }}>
         <span className="section-tag">
-          <Table2 size={14} /> QUY CÁCH BÓC TÁCH THỰC TẾ TẠI XƯỞNG
+          <Table2 size={14} /> {t.workshopTable.tag}
         </span>
-        <h2 style={{ fontSize: '1.3rem', fontWeight: 800, color: 'var(--secondary)', margin: '0.25rem 0 0.3rem' }}>
+        <h2
+          style={{
+            fontSize: '1.3rem',
+            fontWeight: 800,
+            color: 'var(--secondary)',
+            margin: '0.25rem 0 0.3rem',
+          }}
+        >
           {title}
         </h2>
         <p style={{ fontSize: '0.88rem', color: 'var(--text-muted)', margin: 0 }}>{subtitle}</p>
@@ -68,12 +80,31 @@ export const WorkshopSpecsTable: React.FC<WorkshopSpecsTableProps> = ({
         <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '0.84rem', minWidth: '680px' }}>
           <thead>
             <tr style={{ background: '#f8fafc', borderBottom: '1px solid #e2e8f0', textAlign: 'left' }}>
-              <th style={{ padding: '0.7rem 0.75rem', fontWeight: 700, color: 'var(--secondary)' }}>Mã</th>
-              <th style={{ padding: '0.7rem 0.75rem', fontWeight: 700, color: 'var(--secondary)' }}>Kích Thước (D×R×C)</th>
-              <th style={{ padding: '0.7rem 0.75rem', fontWeight: 700, color: 'var(--secondary)' }}>Kết Cấu</th>
-              <th style={{ padding: '0.7rem 0.75rem', fontWeight: 700, color: 'var(--secondary)' }}>Mặt Trên / Nắp</th>
-              <th style={{ padding: '0.7rem 0.75rem', fontWeight: 700, color: 'var(--secondary)' }}>Gánh / Gù / Vách</th>
-              <th style={{ padding: '0.7rem 0.75rem', fontWeight: 700, color: 'var(--secondary)', textAlign: 'right' }}>Báo Giá</th>
+              <th style={{ padding: '0.7rem 0.75rem', fontWeight: 700, color: 'var(--secondary)' }}>
+                {t.workshopTable.colCode}
+              </th>
+              <th style={{ padding: '0.7rem 0.75rem', fontWeight: 700, color: 'var(--secondary)' }}>
+                {t.workshopTable.colDim}
+              </th>
+              <th style={{ padding: '0.7rem 0.75rem', fontWeight: 700, color: 'var(--secondary)' }}>
+                {t.workshopTable.colStruct}
+              </th>
+              <th style={{ padding: '0.7rem 0.75rem', fontWeight: 700, color: 'var(--secondary)' }}>
+                {t.workshopTable.colTop}
+              </th>
+              <th style={{ padding: '0.7rem 0.75rem', fontWeight: 700, color: 'var(--secondary)' }}>
+                {t.workshopTable.colSupport}
+              </th>
+              <th
+                style={{
+                  padding: '0.7rem 0.75rem',
+                  fontWeight: 700,
+                  color: 'var(--secondary)',
+                  textAlign: 'right',
+                }}
+              >
+                {t.workshopTable.colAction}
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -85,10 +116,24 @@ export const WorkshopSpecsTable: React.FC<WorkshopSpecsTableProps> = ({
                   background: idx % 2 === 1 ? '#fcfcfd' : '#ffffff',
                 }}
               >
-                <td style={{ padding: '0.65rem 0.75rem', fontWeight: 800, color: 'var(--primary-dark)', whiteSpace: 'nowrap' }}>
+                <td
+                  style={{
+                    padding: '0.65rem 0.75rem',
+                    fontWeight: 800,
+                    color: 'var(--primary-dark)',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
                   {row.code}
                 </td>
-                <td style={{ padding: '0.65rem 0.75rem', fontWeight: 700, color: 'var(--secondary)', whiteSpace: 'nowrap' }}>
+                <td
+                  style={{
+                    padding: '0.65rem 0.75rem',
+                    fontWeight: 700,
+                    color: 'var(--secondary)',
+                    whiteSpace: 'nowrap',
+                  }}
+                >
                   {row.dimensions}
                 </td>
                 <td style={{ padding: '0.65rem 0.75rem', color: '#475569' }}>{row.structure}</td>
@@ -109,9 +154,10 @@ export const WorkshopSpecsTable: React.FC<WorkshopSpecsTableProps> = ({
                       fontWeight: 700,
                       fontSize: '0.78rem',
                       border: '1px solid rgba(217, 119, 6, 0.3)',
+                      cursor: 'pointer',
                     }}
                   >
-                    <FileText size={12} /> Báo giá
+                    <FileText size={12} /> {t.workshopTable.quoteBtn}
                   </button>
                 </td>
               </tr>
@@ -130,11 +176,12 @@ export const WorkshopSpecsTable: React.FC<WorkshopSpecsTableProps> = ({
           >
             {expanded ? (
               <>
-                <ChevronUp size={16} /> Thu gọn bảng quy cách
+                <ChevronUp size={16} /> {t.workshopTable.collapseBtn}
               </>
             ) : (
               <>
-                <ChevronDown size={16} /> Xem đầy đủ toàn bộ {rows.length} quy cách chuẩn xưởng
+                <ChevronDown size={16} />{' '}
+                {t.workshopTable.expandBtn.replace('{count}', String(rows.length))}
               </>
             )}
           </button>

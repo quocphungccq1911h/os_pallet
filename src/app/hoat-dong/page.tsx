@@ -1,31 +1,30 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import Link from 'next/link';
 import { initialActivities, activityCategories, Activity, ActivityCategory } from '@/data/activities';
 import { companyInfo } from '@/data/companyInfo';
-import { 
-  Calendar, 
-  MapPin, 
-  ArrowRight, 
-  Camera, 
-  CheckCircle2, 
-  Phone, 
-  MessageSquare, 
+import {
+  Calendar,
+  MapPin,
+  ArrowRight,
+  Camera,
+  Phone,
+  MessageSquare,
   ChevronRight,
-  Filter
 } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
+import { localizeActivity, localizeActivityCategory } from '@/i18n/productLocalizer';
 import styles from './hoatdong.module.css';
 
 export default function HoatDongPage() {
+  const { locale, t } = useLanguage();
   const [activities, setActivities] = useState<Activity[]>(initialActivities);
   const [activeTab, setActiveTab] = useState<string>('all');
-  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function loadActivities() {
       try {
-        setLoading(true);
         const res = await fetch('/api/activities');
         if (res.ok) {
           const data = await res.json();
@@ -33,21 +32,25 @@ export default function HoatDongPage() {
             setActivities(data);
           }
         }
-      } catch (err) {
-        // Fallback giữ initialActivities
-      } finally {
-        setLoading(false);
+      } catch {
+        // fallback
       }
     }
     loadActivities();
   }, []);
 
-  const filteredActivities = activeTab === 'all'
-    ? activities
-    : activities.filter((a) => a.category === activeTab);
+  const localizedCats = useMemo(
+    () => activityCategories.map((c) => localizeActivityCategory(c, locale)),
+    [locale]
+  );
+
+  const filteredActivities = useMemo(() => {
+    const base = activeTab === 'all' ? activities : activities.filter((a) => a.category === activeTab);
+    return base.map((a) => localizeActivity(a, locale));
+  }, [activities, activeTab, locale]);
 
   const getCategoryName = (catId: ActivityCategory) => {
-    const found = activityCategories.find((c) => c.id === catId);
+    const found = localizedCats.find((c) => c.id === catId);
     return found ? `${found.icon} ${found.name}` : catId;
   };
 
@@ -63,16 +66,14 @@ export default function HoatDongPage() {
         <div className="container">
           <div className={styles.heroBadge}>
             <Camera size={15} />
-            <span>Hình Ảnh & Quy Trình Thực Tế 100%</span>
+            <span>{t.activitiesPage.badge}</span>
           </div>
-          <h1 className={styles.heroTitle}>Nhật Ký Hoạt Động Xưởng Pallet Trường An</h1>
-          <p className={styles.heroSubtitle}>
-            Minh bạch năng lực sản xuất thực tế – Bàn giao đúng tiến độ – Xử lý đơn gấp theo bản vẽ – Khử trùng ISPM 15 chuẩn quốc tế phục vụ xuất khẩu.
-          </p>
+          <h1 className={styles.heroTitle}>{t.activitiesPage.title}</h1>
+          <p className={styles.heroSubtitle}>{t.activitiesPage.subtitle}</p>
           <div className={styles.breadcrumb}>
-            <Link href="/">Trang Chủ</Link>
+            <Link href="/">{t.common.home}</Link>
             <ChevronRight size={14} />
-            <span>Hoạt Động Xưởng</span>
+            <span>{t.activitiesPage.breadcrumb}</span>
           </div>
         </div>
       </section>
@@ -85,17 +86,19 @@ export default function HoatDongPage() {
               onClick={() => setActiveTab('all')}
               className={`${styles.tabBtn} ${activeTab === 'all' ? styles.tabActive : ''}`}
             >
-              <span>Tất Cả Hoạt Động</span>
+              <span>{t.activitiesPage.tabAll}</span>
               <span className={styles.tabBadgeCount}>{getCategoryCount('all')}</span>
             </button>
 
-            {activityCategories.map((cat) => (
+            {localizedCats.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveTab(cat.id)}
                 className={`${styles.tabBtn} ${activeTab === cat.id ? styles.tabActive : ''}`}
               >
-                <span>{cat.icon} {cat.name}</span>
+                <span>
+                  {cat.icon} {cat.name}
+                </span>
                 <span className={styles.tabBadgeCount}>{getCategoryCount(cat.id)}</span>
               </button>
             ))}
@@ -109,9 +112,9 @@ export default function HoatDongPage() {
           {filteredActivities.length === 0 ? (
             <div className={styles.emptyBox}>
               <div className={styles.emptyIcon}>📦</div>
-              <h3>Chưa có bài viết trong danh mục này</h3>
+              <h3>{t.activitiesPage.emptyTitle}</h3>
               <p style={{ color: '#64748b', marginTop: '0.5rem' }}>
-                Xưởng đang tiếp tục cập nhật các hoạt động mới nhất lên hệ thống.
+                {t.activitiesPage.emptyDesc}
               </p>
             </div>
           ) : (
@@ -131,13 +134,13 @@ export default function HoatDongPage() {
                         className={styles.cardImg}
                         loading="lazy"
                       />
-                      <span className={styles.catBadge}>
-                        {getCategoryName(act.category)}
-                      </span>
+                      <span className={styles.catBadge}>{getCategoryName(act.category)}</span>
                       {act.images && act.images.length > 1 && (
                         <span className={styles.photoCount}>
                           <Camera size={13} />
-                          <span>{act.images.length} ảnh</span>
+                          <span>
+                            {act.images.length} {t.activitiesPage.photoUnit}
+                          </span>
                         </span>
                       )}
                     </div>
@@ -170,7 +173,7 @@ export default function HoatDongPage() {
                       )}
 
                       <div className={styles.cardFooter}>
-                        <span>Xem chi tiết quy trình</span>
+                        <span>{t.activitiesPage.readDetail}</span>
                         <ArrowRight size={16} />
                       </div>
                     </div>
@@ -183,19 +186,24 @@ export default function HoatDongPage() {
           {/* CTA Banner Bottom */}
           <div className={styles.ctaBanner}>
             <div className={styles.ctaText}>
-              <h3>Quý Khách Cần Báo Giá Pallet Đơn Gấp Hoặc Trình Mẫu Thử Tải?</h3>
-              <p>
-                Pallet Trường An nhận gia công theo mọi bản vẽ kỹ thuật máy móc, chịu tải trọng lớn, hỗ trợ hun trùng chứng thư ISPM 15 xuất khẩu nhanh chóng.
-              </p>
+              <h3>{t.activitiesPage.ctaTitle}</h3>
+              <p>{t.activitiesPage.ctaDesc}</p>
             </div>
             <div className={styles.ctaButtons}>
               <a href={`tel:${companyInfo.hotline}`} className={styles.btnCtaHotline}>
                 <Phone size={18} />
-                <span>Gọi Ngay: {companyInfo.hotlineFormatted}</span>
+                <span>
+                  {t.common.callNow}: {companyInfo.hotlineFormatted}
+                </span>
               </a>
-              <a href={companyInfo.zaloUrl} target="_blank" rel="noopener noreferrer" className={styles.btnCtaZalo}>
+              <a
+                href={companyInfo.zaloUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={styles.btnCtaZalo}
+              >
                 <MessageSquare size={18} />
-                <span>Chat Zalo Báo Giá</span>
+                <span>{t.common.chatZalo}</span>
               </a>
             </div>
           </div>

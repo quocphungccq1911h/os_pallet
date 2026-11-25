@@ -1,7 +1,11 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import { Product } from '@/data/products';
-import { ShieldCheck, ArrowRight, PhoneCall } from 'lucide-react';
+import { ArrowRight, PhoneCall } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
+import { localizeProduct } from '@/i18n/productLocalizer';
 import styles from './ProductCard.module.css';
 
 interface ProductCardProps {
@@ -9,24 +13,27 @@ interface ProductCardProps {
   onOpenQuoteModal: (productSlug: string) => void;
 }
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenQuoteModal }) => {
+export const ProductCard: React.FC<ProductCardProps> = ({ product: rawProduct, onOpenQuoteModal }) => {
+  const { locale, t } = useLanguage();
+  const product = localizeProduct(rawProduct, locale);
+
   return (
     <div className={`card ${styles.productCard}`}>
       {/* Product Image Box */}
       <div className={styles.imageContainer}>
         <img src={product.imageUrl} alt={product.name} className={styles.image} loading="lazy" />
-        
+
         {/* Dynamic Badges */}
         <div className={styles.badgeGroup}>
           {product.badges && product.badges.length > 0 ? (
             product.badges.slice(0, 2).map((b, idx) => (
-              <span key={idx} className={idx === 0 ? "badge badge-export" : "badge badge-new"}>
+              <span key={idx} className={idx === 0 ? 'badge badge-export' : 'badge badge-new'}>
                 {b}
               </span>
             ))
           ) : (
             product.isExportStandard && (
-              <span className="badge badge-export">ISPM 15 Xuất Khẩu</span>
+              <span className="badge badge-export">{t.productCard.exportBadge}</span>
             )
           )}
         </div>
@@ -42,22 +49,24 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenQuoteMo
         {/* Specifications Grid */}
         <div className={styles.specGrid}>
           <div className={styles.specItem}>
-            <span className={styles.specLabel}>Kích thước:</span>
+            <span className={styles.specLabel}>{t.productCard.dimLabel}</span>
             <span className={styles.specValue}>{product.dimensions}</span>
           </div>
           <div className={styles.specItem}>
-            <span className={styles.specLabel}>Chất liệu:</span>
+            <span className={styles.specLabel}>{t.productCard.matLabel}</span>
             <span className={styles.specValue}>{product.woodType}</span>
           </div>
           <div className={styles.specItem}>
-            <span className={styles.specLabel}>Tải tĩnh / Động:</span>
-            <span className={styles.specValue}>{product.staticLoad} / {product.dynamicLoad}</span>
+            <span className={styles.specLabel}>{t.productCard.loadLabel}</span>
+            <span className={styles.specValue}>
+              {product.staticLoad} / {product.dynamicLoad}
+            </span>
           </div>
         </div>
 
         {/* Price Display */}
         <div className={styles.priceRow}>
-          <span className={styles.priceLabel}>Giá sản phẩm:</span>
+          <span className={styles.priceLabel}>{t.productCard.priceLabel}</span>
           <span className="badge badge-price">{product.priceDisplay}</span>
         </div>
 
@@ -71,8 +80,12 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenQuoteMo
 
         {/* Action Buttons */}
         <div className={styles.actions}>
-          <Link href={`/san-pham/${product.slug}`} className="btn btn-outline" style={{ flex: 1, padding: '0.55rem' }}>
-            <span>Chi Tiết</span>
+          <Link
+            href={`/san-pham/${product.slug}`}
+            className="btn btn-outline"
+            style={{ flex: 1, padding: '0.55rem' }}
+          >
+            <span>{t.productCard.detailBtn}</span>
             <ArrowRight size={14} />
           </Link>
           <button
@@ -81,7 +94,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, onOpenQuoteMo
             style={{ flex: 1, padding: '0.55rem' }}
           >
             <PhoneCall size={14} />
-            <span>Báo Giá</span>
+            <span>{t.productCard.quoteBtn}</span>
           </button>
         </div>
       </div>

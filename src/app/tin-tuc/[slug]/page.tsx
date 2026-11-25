@@ -4,33 +4,38 @@ import React from 'react';
 import { useParams } from 'next/navigation';
 import Link from 'next/link';
 import { blogPosts } from '@/data/blogs';
-import { Calendar, Clock, ArrowLeft, Share2, Tag } from 'lucide-react';
+import { Calendar, Clock, ArrowLeft } from 'lucide-react';
+import { useLanguage } from '@/context/LanguageContext';
+import { localizeBlogPost } from '@/i18n/productLocalizer';
 import styles from './post.module.css';
 
 export default function BlogDetailPage() {
   const params = useParams();
   const slug = params?.slug as string;
+  const { locale, t } = useLanguage();
 
-  const post = blogPosts.find((b) => b.slug === slug);
+  const rawPost = blogPosts.find((b) => b.slug === slug);
 
-  if (!post) {
+  if (!rawPost) {
     return (
       <div className="container" style={{ padding: '5rem 0', textAlign: 'center' }}>
-        <h2>Không Tìm Thấy Bài Viết</h2>
+        <h2>{t.blogPage.notFound}</h2>
         <Link href="/tin-tuc" className="btn btn-primary" style={{ marginTop: '1rem' }}>
-          Quay Lại Danh Sách
+          {t.blogPage.backList}
         </Link>
       </div>
     );
   }
 
+  const post = localizeBlogPost(rawPost, locale);
+
   return (
     <div className={styles.pageWrapper}>
       <div className="container">
         <div className={styles.breadcrumb}>
-          <Link href="/">Trang chủ</Link>
+          <Link href="/">{t.common.home}</Link>
           <span>/</span>
-          <Link href="/tin-tuc">Tin tức & Kiến thức</Link>
+          <Link href="/tin-tuc">{t.blogPage.crumbList}</Link>
           <span>/</span>
           <span className={styles.activeCrumb}>{post.title}</span>
         </div>
@@ -40,8 +45,12 @@ export default function BlogDetailPage() {
             <span className="section-tag">{post.category}</span>
             <h1 className={styles.title}>{post.title}</h1>
             <div className={styles.meta}>
-              <span><Calendar size={14} /> Ngày đăng: {post.publishedAt}</span>
-              <span><Clock size={14} /> Thời gian: {post.readTime}</span>
+              <span>
+                <Calendar size={14} /> {t.blogPage.publishedAt} {post.publishedAt}
+              </span>
+              <span>
+                <Clock size={14} /> {t.blogPage.readTime} {post.readTime}
+              </span>
             </div>
           </div>
 
@@ -56,7 +65,7 @@ export default function BlogDetailPage() {
 
           <div className={styles.footerBar}>
             <Link href="/tin-tuc" className="btn btn-outline">
-              <ArrowLeft size={16} /> Xem Các Bài Viết Khác
+              <ArrowLeft size={16} /> {t.blogPage.otherPosts}
             </Link>
           </div>
         </article>

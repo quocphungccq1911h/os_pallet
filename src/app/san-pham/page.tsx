@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, useRef, Suspense } from 'react';
+import React, { useState, useEffect, useRef, useMemo, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import {
   products as defaultProducts,
@@ -11,8 +11,22 @@ import {
   THUNG_SLUGS,
 } from '@/data/products';
 import { ProductCard } from '@/components/ProductCard';
-import { Search, Filter, Box, Globe, Layers, ExternalLink, RotateCcw, Check, X, ChevronLeft, ChevronRight } from 'lucide-react';
+import {
+  Search,
+  Filter,
+  Box,
+  Globe,
+  Layers,
+  ExternalLink,
+  RotateCcw,
+  Check,
+  X,
+  ChevronLeft,
+  ChevronRight,
+} from 'lucide-react';
 import { useQuoteModal } from '@/context/QuoteModalContext';
+import { useLanguage } from '@/context/LanguageContext';
+import { localizeCategory, localizeProduct } from '@/i18n/productLocalizer';
 import styles from './sanpham.module.css';
 
 const ITEMS_PER_PAGE = 10;
@@ -25,7 +39,7 @@ function normalizeSearch(str?: string): string {
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/đ/g, 'd')
     .replace(/[×x]/g, 'x')
-    .replace(/[·•()\[]—–-]/g, ' ')
+    .replace(/[·•()[\]—–-]/g, ' ')
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -43,6 +57,7 @@ function buildPageNumbers(current: number, total: number): (number | 'dots')[] {
 }
 
 function ProductsContent() {
+  const { locale, t } = useLanguage();
   const searchParams = useSearchParams();
   const [allProducts, setAllProducts] = useState<Product[]>(defaultProducts);
   const [selectedGroup, setSelectedGroup] = useState<string>('all');
@@ -55,7 +70,6 @@ function ProductsContent() {
   const mainTopRef = useRef<HTMLElement>(null);
   const { openQuoteModal } = useQuoteModal();
 
-  // Đồng bộ bộ lọc từ URL query params (?category=... hoặc ?group=pallet-go|thung)
   useEffect(() => {
     const urlCategory = searchParams.get('category');
     const urlGroup = searchParams.get('group');
@@ -76,7 +90,6 @@ function ProductsContent() {
     }
   }, [searchParams]);
 
-  // Đồng bộ sản phẩm từ API (nếu admin vừa thêm/sửa/xóa)
   useEffect(() => {
     async function fetchLatestProducts() {
       try {
@@ -88,13 +101,17 @@ function ProductsContent() {
           }
         }
       } catch {
-        // Fallback giữ nguyên defaultProducts
+        // fallback
       }
     }
     fetchLatestProducts();
   }, []);
 
-  // Quick Filter preset helpers
+  const localizedCategories = useMemo(
+    () => categories.map((c) => localizeCategory(c, locale)),
+    [locale]
+  );
+
   const handleQuickFilter = (type: string, value: string) => {
     if (type === 'all') {
       setSelectedGroup('all');
@@ -125,24 +142,29 @@ function ProductsContent() {
     }
   };
 
-  const filteredProducts = allProducts.filter((p) => {
-    const matchesGroup =
-      selectedGroup === 'all' ||
-      (selectedGroup === 'pallet-go' && PALLET_GO_SLUGS.includes(p.categorySlug)) ||
-      (selectedGroup === 'pallet-nhua' && PALLET_NHUA_SLUGS.includes(p.categorySlug)) ||
-      (selectedGroup === 'thung' && THUNG_SLUGS.includes(p.categorySlug));
-    const matchesCategory = selectedCategory === 'all' || p.categorySlug === selectedCategory;
-    const matchesMaterial = selectedMaterial === 'all' || p.materialGroup === selectedMaterial;
-    const matchesMarket = selectedMarket === 'all' || p.targetMarket === selectedMarket;
+  // Search matches BOTH original Vietnamese AND localized EN/ZH text!
+  const filteredProducts = useMemo(() => {
     const q = normalizeSearch(searchQuery);
-    const matchesSearch =
-      q === '' ||
-      normalizeSearch(`${p.id} ${p.name} ${p.dimensions} ${p.woodType} ${p.specification} ${(p.badges || []).join(' ')}`).includes(q);
+    return allProducts.filter((p) => {
+      const matchesGroup =
+        selectedGroup === 'all' ||
+        (selectedGroup === 'pallet-go' && PALLET_GO_SLUGS.includes(p.categorySlug)) ||
+        (selectedGroup === 'pallet-nhua' && PALLET_NHUA_SLUGS.includes(p.categorySlug)) ||
+        (selectedGroup === 'thung' && THUNG_SLUGS.includes(p.categorySlug));
+      const matchesCategory = selectedCategory === 'all' || p.categorySlug === selectedCategory;
+      const matchesMaterial = selectedMaterial === 'all' || p.materialGroup === selectedMaterial;
+      const matchesMarket = selectedMarket === 'all' || p.targetMarket === selectedMarket;
 
-    return matchesGroup && matchesCategory && matchesMaterial && matchesMarket && matchesSearch;
-  });
+      if (!q) return matchesGroup && matchesCategory && matchesMaterial && matchesMarket;
 
-  // Tự động quay về trang 1 khi đổi bộ lọc hoặc từ khóa tìm kiếm
+      const locP = locale === 'vi' ? p : localizeProduct(p, locale);
+      const haystack = normalizeSearch(
+        `${p.id} ${p.name} ${p.dimensions} ${p.woodType} ${p.specification} ${(p.badges || []).join(' ')} ${locP.name} ${locP.woodType} ${locP.specification}`
+      );
+      return matchesGroup && matchesCategory && matchesMaterial && matchesMarket && haystack.includes(q);
+    });
+  }, [allProducts, selectedGroup, selectedCategory, selectedMaterial, selectedMarket, searchQuery, locale]);
+
   useEffect(() => {
     setCurrentPage(1);
   }, [selectedGroup, selectedCategory, selectedMaterial, selectedMarket, searchQuery]);
@@ -175,87 +197,94 @@ function ProductsContent() {
 
   const isFiltered = activeFilterCount > 0 || searchQuery !== '';
 
-  const pageHeading =
-    selectedGroup === 'pallet-go'
-      ? 'Pallet Gỗ Tràm, Gỗ Thông & Ván Ép Xuất Khẩu'
+  const activeCatObj = localizedCategories.find((c) => c.slug === selectedCategory);
+  const pageHeading = activeCatObj
+    ? activeCatObj.name
+    : selectedGroup === 'pallet-go'
+      ? t.catalog.qfWoodPallet
       : selectedGroup === 'pallet-nhua'
-      ? 'Pallet Nhựa Mới & Pallet Nhựa Cũ Công Nghiệp'
-      : selectedGroup === 'thung'
-      ? 'Thùng Gỗ & Thùng Nhựa Công Nghiệp'
-      : selectedCategory === 'thung-nhua'
-      ? 'Thùng Nhựa Công Nghiệp'
-      : selectedCategory === 'thung-go-dong-hang'
-      ? 'Thùng Gỗ / Kiện Gỗ Đóng Hàng'
-      : 'Pallet Gỗ, Pallet Nhựa & Thùng Công Nghiệp';
+        ? t.catalog.qfPlasticPallet
+        : selectedGroup === 'thung'
+          ? t.catalog.qfCrates
+          : t.catalog.headerTitle;
+
+  const materialOptions = [
+    { id: 'all', label: t.catalog.matAll },
+    { id: 'go-tram', label: t.catalog.matTram },
+    { id: 'go-thong', label: t.catalog.matThong },
+    { id: 'van-ep', label: t.catalog.matPlywood },
+    { id: 'nhua', label: t.catalog.matPlastic },
+  ];
+
+  const marketOptions = [
+    { id: 'all', label: t.catalog.mkAll },
+    { id: 'xuat-khau-my', label: t.catalog.mkUs },
+    { id: 'xuat-khau-campuchia', label: t.catalog.mkCam },
+    { id: 'xuat-khau-ispm15', label: t.catalog.mkIspm },
+    { id: 'noi-dia', label: t.catalog.mkDom },
+  ];
+
+  const showingText =
+    filteredProducts.length > 0
+      ? t.catalog.showingRange
+          .replace('{start}', String(startIdx + 1))
+          .replace('{end}', String(endIdx))
+          .replace('{total}', String(filteredProducts.length))
+          .replace('{page}', String(safePage))
+          .replace('{pages}', String(totalPages))
+      : t.catalog.showingZero;
 
   return (
     <div className={styles.pageWrapper}>
       {/* Banner Top Header */}
       <div className={styles.pageHeader}>
         <div className="container">
-          <span className="section-tag" style={{ backgroundColor: 'rgba(255,255,255,0.2)', color: '#ffffff' }}>
-            <Box size={14} /> DANH MỤC SẢN PHẨM PALLET TRƯỜNG AN
+          <span
+            className="section-tag"
+            style={{ backgroundColor: 'rgba(255,255,255,0.2)', color: '#ffffff' }}
+          >
+            <Box size={14} /> {t.catalog.headerTag}
           </span>
           <h1 className={styles.pageTitle}>{pageHeading}</h1>
-          <p className={styles.pageDesc}>
-            Pallet gỗ thông sấy xuất khẩu Mỹ, pallet tràm đi Campuchia, thùng gỗ bọc lót máy móc, thùng nhựa công nghiệp và pallet ván ép plywood gia công trực tiếp tại xưởng Hóc Môn.
-          </p>
+          <p className={styles.pageDesc}>{t.catalog.headerDesc}</p>
 
-          {/* Quick Filter Horizontal Scroll Strip */}
+          {/* Quick Filter Horizontal Strip */}
           <div className={styles.quickFilterStrip}>
             <button
               onClick={() => handleQuickFilter('all', 'all')}
               className={`${styles.pillBtn} ${!isFiltered ? styles.pillActive : ''}`}
             >
-              🌟 Tất Cả ({allProducts.length})
+              🌟 {t.catalog.qfAll} ({allProducts.length})
             </button>
             <button
               onClick={() => handleQuickFilter('group', 'pallet-go')}
               className={`${styles.pillBtn} ${selectedGroup === 'pallet-go' ? styles.pillActive : ''}`}
             >
-              🪵 Pallet Gỗ
+              🪵 {t.catalog.qfWoodPallet}
             </button>
             <button
               onClick={() => handleQuickFilter('group', 'pallet-nhua')}
               className={`${styles.pillBtn} ${selectedGroup === 'pallet-nhua' ? styles.pillActive : ''}`}
             >
-              🟦 Pallet Nhựa
+              🟦 {t.catalog.qfPlasticPallet}
             </button>
             <button
-              onClick={() => handleQuickFilter('category', 'thung-go-dong-hang')}
-              className={`${styles.pillBtn} ${selectedCategory === 'thung-go-dong-hang' ? styles.pillActive : ''}`}
+              onClick={() => handleQuickFilter('group', 'thung')}
+              className={`${styles.pillBtn} ${selectedGroup === 'thung' ? styles.pillActive : ''}`}
             >
-              📦 Thùng Gỗ
-            </button>
-            <button
-              onClick={() => handleQuickFilter('category', 'thung-nhua')}
-              className={`${styles.pillBtn} ${selectedCategory === 'thung-nhua' ? styles.pillActive : ''}`}
-            >
-              🧺 Thùng Nhựa
+              📦 {t.catalog.qfCrates}
             </button>
             <button
               onClick={() => handleQuickFilter('market', 'xuat-khau-my')}
               className={`${styles.pillBtn} ${selectedMarket === 'xuat-khau-my' ? styles.pillActive : ''}`}
             >
-              🇺🇸 Xuất Khẩu Mỹ
+              {t.catalog.qfExportUs}
             </button>
             <button
-              onClick={() => handleQuickFilter('market', 'xuat-khau-campuchia')}
-              className={`${styles.pillBtn} ${selectedMarket === 'xuat-khau-campuchia' ? styles.pillActive : ''}`}
+              onClick={() => handleQuickFilter('market', 'xuat-khau-ispm15')}
+              className={`${styles.pillBtn} ${selectedMarket === 'xuat-khau-ispm15' ? styles.pillActive : ''}`}
             >
-              🇰🇭 Đi Campuchia
-            </button>
-            <button
-              onClick={() => handleQuickFilter('category', 'pallet-van-ep')}
-              className={`${styles.pillBtn} ${selectedCategory === 'pallet-van-ep' ? styles.pillActive : ''}`}
-            >
-              🪵 Pallet Ván Ép Plywood
-            </button>
-            <button
-              onClick={() => handleQuickFilter('category', 'pallet-theo-yeu-cau')}
-              className={`${styles.pillBtn} ${selectedCategory === 'pallet-theo-yeu-cau' ? styles.pillActive : ''}`}
-            >
-              📐 Đóng Theo Bản Vẽ
+              {t.catalog.qfIspm15}
             </button>
           </div>
         </div>
@@ -267,11 +296,11 @@ function ProductsContent() {
           {/* Search Box */}
           <div className={styles.sidebarCard}>
             <h3 className={styles.sidebarTitle}>
-              <Search size={18} /> Tìm Kiếm Nhanh
+              <Search size={18} /> {t.catalog.searchTitle}
             </h3>
             <input
               type="text"
-              placeholder="Nhập kích thước, loại gỗ, pallet..."
+              placeholder={t.catalog.searchPh}
               className={styles.searchInput}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
@@ -282,10 +311,12 @@ function ProductsContent() {
           <div className={styles.sidebarCard}>
             <div className={styles.sidebarHeaderFlex}>
               <h3 className={styles.sidebarTitle}>
-                <Filter size={18} /> Nhóm Sản Phẩm
+                <Filter size={18} /> {t.catalog.catTitle}
               </h3>
               {selectedCategory !== 'all' && (
-                <button onClick={() => setSelectedCategory('all')} className={styles.clearMiniBtn}>Xóa</button>
+                <button onClick={() => setSelectedCategory('all')} className={styles.clearMiniBtn}>
+                  {t.catalog.clearMini}
+                </button>
               )}
             </div>
             <div className={styles.categoryList}>
@@ -294,12 +325,14 @@ function ProductsContent() {
                   setSelectedCategory('all');
                   setSelectedGroup('all');
                 }}
-                className={`${styles.catBtn} ${selectedCategory === 'all' && selectedGroup === 'all' ? styles.catActive : ''}`}
+                className={`${styles.catBtn} ${
+                  selectedCategory === 'all' && selectedGroup === 'all' ? styles.catActive : ''
+                }`}
               >
-                <span>Tất Cả Nhóm</span>
+                <span>{t.catalog.allCategories}</span>
                 <span className={styles.catCount}>({allProducts.length})</span>
               </button>
-              {categories.map((cat) => {
+              {localizedCategories.map((cat) => {
                 const count = allProducts.filter((p) => p.categorySlug === cat.slug).length;
                 return (
                   <button
@@ -308,7 +341,9 @@ function ProductsContent() {
                       setSelectedCategory(cat.slug);
                       setSelectedGroup('all');
                     }}
-                    className={`${styles.catBtn} ${selectedCategory === cat.slug ? styles.catActive : ''}`}
+                    className={`${styles.catBtn} ${
+                      selectedCategory === cat.slug ? styles.catActive : ''
+                    }`}
                   >
                     <span>{cat.name}</span>
                     <span className={styles.catCount}>({count})</span>
@@ -322,20 +357,16 @@ function ProductsContent() {
           <div className={styles.sidebarCard}>
             <div className={styles.sidebarHeaderFlex}>
               <h3 className={styles.sidebarTitle}>
-                <Layers size={18} /> Chất Liệu Gỗ
+                <Layers size={18} /> {t.catalog.matTitle}
               </h3>
               {selectedMaterial !== 'all' && (
-                <button onClick={() => setSelectedMaterial('all')} className={styles.clearMiniBtn}>Xóa</button>
+                <button onClick={() => setSelectedMaterial('all')} className={styles.clearMiniBtn}>
+                  {t.catalog.clearMini}
+                </button>
               )}
             </div>
             <div className={styles.categoryList}>
-              {[
-                { id: 'all', label: 'Tất Cả Chất Liệu' },
-                { id: 'go-tram', label: 'Gỗ Tràm Tự Nhiên' },
-                { id: 'go-thong', label: 'Gỗ Thông Nhập Khẩu' },
-                { id: 'van-ep', label: 'Ván Ép Plywood' },
-                { id: 'nhua', label: 'Nhựa HDPE / PP' },
-              ].map((m) => (
+              {materialOptions.map((m) => (
                 <button
                   key={m.id}
                   onClick={() => setSelectedMaterial(m.id)}
@@ -348,24 +379,20 @@ function ProductsContent() {
             </div>
           </div>
 
-          {/* Filter by Target Market */}
+          {/* Filter by Market */}
           <div className={styles.sidebarCard}>
             <div className={styles.sidebarHeaderFlex}>
               <h3 className={styles.sidebarTitle}>
-                <Globe size={18} /> Thị Trường Xuất Xưởng
+                <Globe size={18} /> {t.catalog.marketTitle}
               </h3>
               {selectedMarket !== 'all' && (
-                <button onClick={() => setSelectedMarket('all')} className={styles.clearMiniBtn}>Xóa</button>
+                <button onClick={() => setSelectedMarket('all')} className={styles.clearMiniBtn}>
+                  {t.catalog.clearMini}
+                </button>
               )}
             </div>
             <div className={styles.categoryList}>
-              {[
-                { id: 'all', label: 'Tất Cả Thị Trường' },
-                { id: 'xuat-khau-my', label: '🇺🇸 Xuất Khẩu Sang Mỹ' },
-                { id: 'xuat-khau-campuchia', label: '🇰🇭 Xuất Đi Campuchia' },
-                { id: 'xuat-khau-ispm15', label: '🌍 Khử Trùng ISPM 15 / Quốc Tế' },
-                { id: 'noi-dia', label: '🏭 Lưu Kho & Nội Địa' },
-              ].map((mk) => (
+              {marketOptions.map((mk) => (
                 <button
                   key={mk.id}
                   onClick={() => setSelectedMarket(mk.id)}
@@ -378,61 +405,67 @@ function ProductsContent() {
             </div>
           </div>
 
-          {/* Facebook Proof of Work Box */}
+          {/* Facebook Proof Card */}
           <div className={styles.facebookCommunityCard}>
             <div className={styles.fbBadgeHeader}>
               <span className={styles.fbIconSmall}>f</span>
-              <span>Hình Ảnh Thực Tế Fanpage</span>
+              <span>{t.catalog.fbBadge}</span>
             </div>
-            <h4>Hoạt Động Xưởng Trường An</h4>
-            <p>
-              Xem hơn 100+ hình ảnh bốc xếp pallet, đóng kiện máy móc và video xưởng mộc Bà Điểm cập nhật hàng ngày trên Facebook.
-            </p>
+            <h4>{t.catalog.fbTitle}</h4>
+            <p>{t.catalog.fbDesc}</p>
             <a
               href="https://www.facebook.com/PalletTruongAn/"
               target="_blank"
               rel="noopener noreferrer"
               className={styles.facebookLinkBtn}
             >
-              <span>Xem Fanpage Facebook</span>
+              <span>{t.catalog.fbBtn}</span>
               <ExternalLink size={14} />
             </a>
           </div>
 
           {/* Custom Quote CTA */}
           <div className={styles.ctaBox}>
-            <h4>Cần Đóng Theo Bản Vẽ?</h4>
-            <p>Gửi quy cách kích thước để xưởng lên mẫu chạy thử trong 24 giờ.</p>
-            <button onClick={() => openQuoteModal()} className="btn btn-primary" style={{ width: '100%', marginTop: '0.75rem' }}>
-              Yêu Cầu Đóng Mẫu
+            <h4>{t.catalog.ctaTitle}</h4>
+            <p>{t.catalog.ctaDesc}</p>
+            <button
+              onClick={() => openQuoteModal()}
+              className="btn btn-primary"
+              style={{ width: '100%', marginTop: '0.75rem' }}
+            >
+              {t.catalog.ctaBtn}
             </button>
           </div>
         </aside>
 
         {/* Product Grid Main Area */}
         <main ref={mainTopRef} className={styles.mainArea}>
-          {/* Mobile Toolbar (Search + Filter Drawer trigger) */}
+          {/* Mobile Toolbar */}
           <div className={styles.mobileToolBar}>
             <div className={styles.mobileSearchBox}>
               <Search size={16} className={styles.searchIcon} />
               <input
                 type="text"
-                placeholder="Tìm kích thước, loại gỗ..."
+                placeholder={t.catalog.searchPh}
                 className={styles.mobileSearchInput}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
               />
               {searchQuery && (
-                <button onClick={() => setSearchQuery('')} className={styles.clearSearchBtn}>✕</button>
+                <button onClick={() => setSearchQuery('')} className={styles.clearSearchBtn}>
+                  ✕
+                </button>
               )}
             </div>
 
             <button
               onClick={() => setIsMobileFilterOpen(true)}
-              className={`${styles.mobileFilterBtn} ${activeFilterCount > 0 ? styles.filterBtnActive : ''}`}
+              className={`${styles.mobileFilterBtn} ${
+                activeFilterCount > 0 ? styles.filterBtnActive : ''
+              }`}
             >
               <Filter size={15} />
-              <span>Lọc</span>
+              <span>{t.catalog.mobileFilterBtn}</span>
               {activeFilterCount > 0 && (
                 <span className={styles.filterBadge}>{activeFilterCount}</span>
               )}
@@ -442,36 +475,31 @@ function ProductsContent() {
           {/* Result Count Bar */}
           <div className={styles.resultBar}>
             <div>
-              <span>
-                {filteredProducts.length > 0 ? (
-                  <>
-                    Hiển thị <strong>{startIdx + 1}–{endIdx}</strong> trong tổng số{' '}
-                    <strong>{filteredProducts.length}</strong> sản phẩm (Trang {safePage}/{totalPages})
-                  </>
-                ) : (
-                  <>Hiển thị <strong>0</strong> sản phẩm phù hợp</>
-                )}
-              </span>
+              <span>{showingText}</span>
             </div>
             {isFiltered && (
               <button onClick={resetFilters} className={styles.resetBtn}>
                 <RotateCcw size={14} />
-                <span>Đặt lại bộ lọc</span>
+                <span>{t.catalog.resetFilter}</span>
               </button>
             )}
           </div>
 
-          {/* Product Cards Grid */}
+          {/* Product Cards Grid + Pagination */}
           {filteredProducts.length > 0 ? (
             <>
               <div className={styles.productGrid}>
                 {paginatedProducts.map((p) => (
-                  <ProductCard key={p.id} product={p} onOpenQuoteModal={(slug) => openQuoteModal(slug)} />
+                  <ProductCard
+                    key={p.id}
+                    product={p}
+                    onOpenQuoteModal={(slug) => openQuoteModal(slug)}
+                  />
                 ))}
               </div>
 
               {totalPages > 1 && (
-                <nav className={styles.paginationWrap} aria-label="Phân trang sản phẩm">
+                <nav className={styles.paginationWrap} aria-label="Pagination">
                   <button
                     type="button"
                     onClick={() => goToPage(safePage - 1)}
@@ -479,7 +507,7 @@ function ProductsContent() {
                     className={styles.pageNavBtn}
                   >
                     <ChevronLeft size={16} />
-                    <span>Trước</span>
+                    <span>{t.catalog.prevPage}</span>
                   </button>
 
                   <div className={styles.pageNumbers}>
@@ -494,7 +522,9 @@ function ProductsContent() {
                           type="button"
                           onClick={() => goToPage(item)}
                           aria-current={safePage === item ? 'page' : undefined}
-                          className={`${styles.pageNumBtn} ${safePage === item ? styles.pageNumActive : ''}`}
+                          className={`${styles.pageNumBtn} ${
+                            safePage === item ? styles.pageNumActive : ''
+                          }`}
                         >
                           {item}
                         </button>
@@ -508,7 +538,7 @@ function ProductsContent() {
                     disabled={safePage === totalPages}
                     className={styles.pageNavBtn}
                   >
-                    <span>Sau</span>
+                    <span>{t.catalog.nextPage}</span>
                     <ChevronRight size={16} />
                   </button>
                 </nav>
@@ -517,41 +547,47 @@ function ProductsContent() {
           ) : (
             <div className={styles.emptyState}>
               <div className={styles.emptyIcon}>🔍</div>
-              <h3>Không tìm thấy sản phẩm phù hợp</h3>
-              <p>Thử bỏ bớt điều kiện lọc hoặc nhập từ khóa tìm kiếm khác.</p>
-              <button onClick={resetFilters} className="btn btn-primary" style={{ marginTop: '1rem' }}>
-                <RotateCcw size={16} /> Xem tất cả sản phẩm
+              <h3>{t.catalog.emptyTitle}</h3>
+              <p>{t.catalog.emptyDesc}</p>
+              <button
+                onClick={resetFilters}
+                className="btn btn-primary"
+                style={{ marginTop: '1rem' }}
+              >
+                <RotateCcw size={16} /> {t.catalog.emptyBtn}
               </button>
             </div>
           )}
 
-          {/* Mobile Bottom Extra Info (Facebook & Custom Quote) */}
+          {/* Mobile Bottom Extra Info */}
           <div className={styles.mobileBottomWidgets}>
             <div className={styles.facebookCommunityCard}>
               <div className={styles.fbBadgeHeader}>
                 <span className={styles.fbIconSmall}>f</span>
-                <span>Hình Ảnh Thực Tế Fanpage</span>
+                <span>{t.catalog.fbBadge}</span>
               </div>
-              <h4>Hoạt Động Xưởng Trường An</h4>
-              <p>
-                Xem hơn 100+ hình ảnh bốc xếp pallet, đóng kiện máy móc và video xưởng mộc Bà Điểm cập nhật hàng ngày trên Facebook.
-              </p>
+              <h4>{t.catalog.fbTitle}</h4>
+              <p>{t.catalog.fbDesc}</p>
               <a
                 href="https://www.facebook.com/PalletTruongAn/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.facebookLinkBtn}
               >
-                <span>Xem Fanpage Facebook</span>
+                <span>{t.catalog.fbBtn}</span>
                 <ExternalLink size={14} />
               </a>
             </div>
 
             <div className={styles.ctaBox}>
-              <h4>Cần Đóng Theo Bản Vẽ?</h4>
-              <p>Gửi quy cách kích thước để xưởng lên mẫu chạy thử trong 24 giờ.</p>
-              <button onClick={() => openQuoteModal()} className="btn btn-primary" style={{ width: '100%', marginTop: '0.75rem' }}>
-                Yêu Cầu Đóng Mẫu
+              <h4>{t.catalog.ctaTitle}</h4>
+              <p>{t.catalog.ctaDesc}</p>
+              <button
+                onClick={() => openQuoteModal()}
+                className="btn btn-primary"
+                style={{ width: '100%', marginTop: '0.75rem' }}
+              >
+                {t.catalog.ctaBtn}
               </button>
             </div>
           </div>
@@ -565,31 +601,36 @@ function ProductsContent() {
             <div className={styles.drawerHeader}>
               <div className={styles.drawerTitle}>
                 <Filter size={18} color="var(--primary)" />
-                <span>Bộ Lọc Sản Phẩm</span>
+                <span>{t.catalog.drawerTitle}</span>
                 {activeFilterCount > 0 && (
                   <span className={styles.filterBadge}>{activeFilterCount}</span>
                 )}
               </div>
-              <button onClick={() => setIsMobileFilterOpen(false)} className={styles.closeDrawerBtn} aria-label="Đóng bộ lọc">
+              <button
+                onClick={() => setIsMobileFilterOpen(false)}
+                className={styles.closeDrawerBtn}
+                aria-label={t.common.close}
+              >
                 <X size={20} />
               </button>
             </div>
 
             <div className={styles.drawerBody}>
-              {/* 1. Nhóm sản phẩm */}
               <div className={styles.drawerSection}>
-                <h4>Nhóm Sản Phẩm</h4>
+                <h4>{t.catalog.catTitle}</h4>
                 <div className={styles.drawerChipGrid}>
                   <button
                     onClick={() => {
                       setSelectedCategory('all');
                       setSelectedGroup('all');
                     }}
-                    className={`${styles.drawerChip} ${selectedCategory === 'all' && selectedGroup === 'all' ? styles.chipActive : ''}`}
+                    className={`${styles.drawerChip} ${
+                      selectedCategory === 'all' && selectedGroup === 'all' ? styles.chipActive : ''
+                    }`}
                   >
-                    Tất cả ({allProducts.length})
+                    {t.catalog.qfAll} ({allProducts.length})
                   </button>
-                  {categories.map((cat) => {
+                  {localizedCategories.map((cat) => {
                     const count = allProducts.filter((p) => p.categorySlug === cat.slug).length;
                     return (
                       <button
@@ -598,7 +639,9 @@ function ProductsContent() {
                           setSelectedCategory(cat.slug);
                           setSelectedGroup('all');
                         }}
-                        className={`${styles.drawerChip} ${selectedCategory === cat.slug ? styles.chipActive : ''}`}
+                        className={`${styles.drawerChip} ${
+                          selectedCategory === cat.slug ? styles.chipActive : ''
+                        }`}
                       >
                         {cat.name} ({count})
                       </button>
@@ -607,21 +650,16 @@ function ProductsContent() {
                 </div>
               </div>
 
-              {/* 2. Chất liệu gỗ */}
               <div className={styles.drawerSection}>
-                <h4>Chất Liệu Gỗ</h4>
+                <h4>{t.catalog.matTitle}</h4>
                 <div className={styles.drawerChipGrid}>
-                  {[
-                    { id: 'all', label: 'Tất cả chất liệu' },
-                    { id: 'go-tram', label: 'Gỗ Tràm Tự Nhiên' },
-                    { id: 'go-thong', label: 'Gỗ Thông Nhập Khẩu' },
-                    { id: 'van-ep', label: 'Ván Ép Plywood' },
-                    { id: 'nhua', label: 'Nhựa HDPE / PP' },
-                  ].map((m) => (
+                  {materialOptions.map((m) => (
                     <button
                       key={m.id}
                       onClick={() => setSelectedMaterial(m.id)}
-                      className={`${styles.drawerChip} ${selectedMaterial === m.id ? styles.chipActive : ''}`}
+                      className={`${styles.drawerChip} ${
+                        selectedMaterial === m.id ? styles.chipActive : ''
+                      }`}
                     >
                       {m.label}
                     </button>
@@ -629,21 +667,16 @@ function ProductsContent() {
                 </div>
               </div>
 
-              {/* 3. Thị trường xuất xưởng */}
               <div className={styles.drawerSection}>
-                <h4>Thị Trường & Tiêu Chuẩn</h4>
+                <h4>{t.catalog.marketTitle}</h4>
                 <div className={styles.drawerChipGrid}>
-                  {[
-                    { id: 'all', label: 'Tất cả thị trường' },
-                    { id: 'xuat-khau-my', label: '🇺🇸 Xuất Khẩu Mỹ' },
-                    { id: 'xuat-khau-campuchia', label: '🇰🇭 Đi Campuchia' },
-                    { id: 'xuat-khau-ispm15', label: '🌍 Khử Trùng ISPM 15' },
-                    { id: 'noi-dia', label: '🏭 Lưu Kho & Nội Địa' },
-                  ].map((mk) => (
+                  {marketOptions.map((mk) => (
                     <button
                       key={mk.id}
                       onClick={() => setSelectedMarket(mk.id)}
-                      className={`${styles.drawerChip} ${selectedMarket === mk.id ? styles.chipActive : ''}`}
+                      className={`${styles.drawerChip} ${
+                        selectedMarket === mk.id ? styles.chipActive : ''
+                      }`}
                     >
                       {mk.label}
                     </button>
@@ -654,10 +687,14 @@ function ProductsContent() {
 
             <div className={styles.drawerFooter}>
               <button onClick={resetFilters} className={styles.drawerResetBtn}>
-                <RotateCcw size={15} /> Xóa chọn
+                <RotateCcw size={15} /> {t.catalog.drawerReset}
               </button>
-              <button onClick={() => setIsMobileFilterOpen(false)} className="btn btn-primary" style={{ flex: 1 }}>
-                Xem {filteredProducts.length} sản phẩm
+              <button
+                onClick={() => setIsMobileFilterOpen(false)}
+                className="btn btn-primary"
+                style={{ flex: 1 }}
+              >
+                {t.catalog.drawerApply.replace('{count}', String(filteredProducts.length))}
               </button>
             </div>
           </div>
@@ -669,9 +706,14 @@ function ProductsContent() {
 
 export default function ProductsPage() {
   return (
-    <Suspense fallback={<div className="container" style={{ padding: '4rem 1rem', textAlign: 'center' }}>Đang tải danh mục sản phẩm...</div>}>
+    <Suspense
+      fallback={
+        <div className="container" style={{ padding: '4rem 1rem', textAlign: 'center' }}>
+          ...
+        </div>
+      }
+    >
       <ProductsContent />
     </Suspense>
   );
 }
-

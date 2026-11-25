@@ -16,7 +16,10 @@ import {
   Facebook,
   ShieldCheck,
   Package,
+  Globe,
+  Sparkles,
 } from 'lucide-react';
+import { buildAutoProductTranslations } from '@/i18n/productLocalizer';
 import styles from './ProductModal.module.css';
 
 interface ProductModalProps {
@@ -41,7 +44,7 @@ const TARGET_MARKETS = [
   { value: 'noi-dia', label: 'Lưu kho & Vận chuyển nội địa Việt Nam' },
 ];
 
-type SectionKey = 'basic' | 'spec' | 'images' | 'desc';
+type SectionKey = 'basic' | 'spec' | 'images' | 'desc' | 'i18n';
 
 export const ProductModal: React.FC<ProductModalProps> = ({
   isOpen,
@@ -84,11 +87,26 @@ export const ProductModal: React.FC<ProductModalProps> = ({
   const [badgeInput, setBadgeInput] = useState('');
   const [specRows, setSpecRows] = useState<string[]>(['']);
   const [activeSection, setActiveSection] = useState<SectionKey>('basic');
+  const [transTab, setTransTab] = useState<'en' | 'zh'>('en');
+  const [transEdited, setTransEdited] = useState(false);
+  const [transSpecRows, setTransSpecRows] = useState<{ en: string[]; zh: string[] }>({
+    en: [''],
+    zh: [''],
+  });
+
+  const parseSpecToRows = (spec?: string): string[] => {
+    const parsed = (spec || '')
+      .split(/[\u00b7\u2022\n]+/)
+      .map((s) => s.trim())
+      .filter(Boolean);
+    return parsed.length > 0 ? parsed : [''];
+  };
 
   const secBasicRef = useRef<HTMLDivElement>(null);
   const secSpecRef = useRef<HTMLDivElement>(null);
   const secImagesRef = useRef<HTMLDivElement>(null);
   const secDescRef = useRef<HTMLDivElement>(null);
+  const secI18nRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (product) {
@@ -105,11 +123,11 @@ export const ProductModal: React.FC<ProductModalProps> = ({
         },
       });
       setBadgeInput(product.badges ? product.badges.join(', ') : '');
-      const parsedSpecs = (product.specification || '')
-        .split(/[\u00b7\u2022\n]+/)
-        .map((s) => s.trim())
-        .filter(Boolean);
-      setSpecRows(parsedSpecs.length > 0 ? parsedSpecs : ['']);
+      setSpecRows(parseSpecToRows(product.specification));
+      setTransSpecRows({
+        en: parseSpecToRows(product.translations?.en?.specification),
+        zh: parseSpecToRows(product.translations?.zh?.specification),
+      });
     } else {
       setFormData({
         name: '',
@@ -140,10 +158,12 @@ export const ProductModal: React.FC<ProductModalProps> = ({
       });
       setBadgeInput('GIÁ TẠI XƯỞNG');
       setSpecRows(['']);
+      setTransSpecRows({ en: [''], zh: [''] });
     }
     setErrorMessage('');
     setGalleryUrlInput('');
     setActiveSection('basic');
+    setTransEdited(false);
   }, [product, isOpen]);
 
   if (!isOpen) return null;
@@ -155,8 +175,88 @@ export const ProductModal: React.FC<ProductModalProps> = ({
       spec: secSpecRef,
       images: secImagesRef,
       desc: secDescRef,
+      i18n: secI18nRef,
     };
     refMap[key].current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const handleTransField = (lang: 'en' | 'zh', field: string, val: string) => {
+    setTransEdited(true);
+    setFormData((prev) => ({
+      ...prev,
+      translations: {
+        ...prev.translations,
+        [lang]: {
+          ...(prev.translations?.[lang] || {}),
+          [field]: val,
+        },
+      },
+    }));
+  };
+
+  const handleAutoGenerateTranslations = () => {
+    const joinedSpec = specRows.map((s) => s.trim()).filter(Boolean).join(' \u00b7 ');
+    const draftProduct = {
+      ...(formData as Product),
+      id: formData.id || 'temp',
+      slug: formData.slug || 'temp',
+      name: formData.name || '',
+      category: formData.category || '',
+      categorySlug: formData.categorySlug || 'pallet-go-tram',
+      dimensions: formData.dimensions || '',
+      woodType: formData.woodType || '',
+      materialGroup: formData.materialGroup || 'go-tram',
+      targetMarket: formData.targetMarket || 'noi-dia',
+      staticLoad: formData.staticLoad || '',
+      dynamicLoad: formData.dynamicLoad || '',
+      specification: joinedSpec,
+      isExportStandard: Boolean(formData.isExportStandard),
+      isNew: Boolean(formData.isNew),
+      priceDisplay: formData.priceDisplay?.trim() || 'Liên hệ',
+      description: formData.description || '',
+      highlights: formData.highlights || [],
+      imageUrl: formData.imageUrl || '',
+      usagePurpose: formData.usagePurpose || '',
+      badges: badgeInput.split(',').map((b) => b.trim()).filter(Boolean),
+    };
+    const generated = buildAutoProductTranslations(draftProduct);
+    setTransEdited(true);
+    setFormData((prev) => ({
+      ...prev,
+      translations: generated,
+    }));
+    setTransSpecRows({
+      en: parseSpecToRows(generated.en?.specification),
+      zh: parseSpecToRows(generated.zh?.specification),
+    });
+  };
+
+  // Handle Translated Specification rows (giống hệt bản Tiếng Việt)
+  const syncTransSpecToForm = (lang: 'en' | 'zh', rows: string[]) => {
+    const joined = rows.map((s) => s.trim()).filter(Boolean).join(' \u00b7 ');
+    handleTransField(lang, 'specification', joined);
+  };
+
+  const handleTransSpecChange = (lang: 'en' | 'zh', index: number, val: string) => {
+    const updated = [...transSpecRows[lang]];
+    updated[index] = val;
+    setTransSpecRows((prev) => ({ ...prev, [lang]: updated }));
+    syncTransSpecToForm(lang, updated);
+  };
+
+  const addTransSpecRow = (lang: 'en' | 'zh') => {
+    setTransEdited(true);
+    setTransSpecRows((prev) => ({
+      ...prev,
+      [lang]: [...prev[lang], ''],
+    }));
+  };
+
+  const removeTransSpecRow = (lang: 'en' | 'zh', index: number) => {
+    const filtered = transSpecRows[lang].filter((_, i) => i !== index);
+    const next = filtered.length > 0 ? filtered : [''];
+    setTransSpecRows((prev) => ({ ...prev, [lang]: next }));
+    syncTransSpecToForm(lang, next);
   };
 
   // Handle Category Change
@@ -337,6 +437,19 @@ export const ProductModal: React.FC<ProductModalProps> = ({
 
     const finalGallery = nonBannerImages.length > 0 ? nonBannerImages : [finalImageUrl];
 
+    const finalTranslations = transEdited
+      ? {
+          en: {
+            ...(formData.translations?.en || {}),
+            specification: transSpecRows.en.map((s) => s.trim()).filter(Boolean).join(' \u00b7 '),
+          },
+          zh: {
+            ...(formData.translations?.zh || {}),
+            specification: transSpecRows.zh.map((s) => s.trim()).filter(Boolean).join(' \u00b7 '),
+          },
+        }
+      : undefined;
+
     setIsSaving(true);
 
     try {
@@ -348,6 +461,7 @@ export const ProductModal: React.FC<ProductModalProps> = ({
         gallery: finalGallery,
         badges: processedBadges,
         highlights: cleanedHighlights,
+        translations: finalTranslations,
       });
       onClose();
     } catch (err: unknown) {
@@ -417,6 +531,14 @@ export const ProductModal: React.FC<ProductModalProps> = ({
           >
             <FileText size={14} />
             <span>4. Mô tả & Facebook</span>
+          </button>
+          <button
+            type="button"
+            onClick={() => scrollToSection('i18n')}
+            className={`${styles.sectionNavBtn} ${activeSection === 'i18n' ? styles.sectionNavBtnActive : ''}`}
+          >
+            <Globe size={14} />
+            <span>5. Đa ngôn ngữ (EN/中文)</span>
           </button>
         </div>
 
@@ -935,6 +1057,153 @@ export const ProductModal: React.FC<ProductModalProps> = ({
                     />
                   </div>
                 </div>
+              </div>
+            </div>
+
+            {/* 5. BẢN DỊCH ĐA NGÔN NGỮ (EN / ZH) LƯU TRONG SUPABASE */}
+            <div ref={secI18nRef} className={styles.sectionBlock}>
+              <div className={styles.sectionHeader}>
+                <div className={styles.sectionTitle}>
+                  <span className={styles.sectionStep}>05</span>
+                  <span>Bản Dịch Đa Ngôn Ngữ (Tiếng Anh &amp; Tiếng Trung)</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={handleAutoGenerateTranslations}
+                  className={styles.addRowBtn}
+                  style={{ margin: 0 }}
+                >
+                  <Sparkles size={14} />
+                  <span>Tự dịch lại từ Tiếng Việt</span>
+                </button>
+              </div>
+
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '0.5rem' }}>
+                <div style={{ display: 'flex', gap: '0.5rem' }}>
+                  <button
+                    type="button"
+                    onClick={() => setTransTab('en')}
+                    className={`${styles.sectionNavBtn} ${transTab === 'en' ? styles.sectionNavBtnActive : ''}`}
+                  >
+                    <span>🇺🇸 Tiếng Anh (English)</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setTransTab('zh')}
+                    className={`${styles.sectionNavBtn} ${transTab === 'zh' ? styles.sectionNavBtnActive : ''}`}
+                  >
+                    <span>🇨🇳 Tiếng Trung (简体中文)</span>
+                  </button>
+                </div>
+                <span className={styles.sectionHint}>
+                  {transEdited
+                    ? 'Đang dùng bản dịch tùy chỉnh'
+                    : 'Mặc định tự đồng bộ EN / 中文 khi bấm Lưu'}
+                </span>
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>
+                  Tên sản phẩm ({transTab === 'en' ? 'English' : '简体中文'})
+                </label>
+                <input
+                  type="text"
+                  placeholder={transTab === 'en' ? 'Auto-generated if left blank...' : '留空将自动从越南语生成...'}
+                  value={formData.translations?.[transTab]?.name || ''}
+                  onChange={(e) => handleTransField(transTab, 'name', e.target.value)}
+                  className={styles.input}
+                />
+              </div>
+
+              <div className={styles.grid2Wide}>
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>
+                    Chất liệu ({transTab === 'en' ? 'English' : '简体中文'})
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.translations?.[transTab]?.woodType || ''}
+                    onChange={(e) => handleTransField(transTab, 'woodType', e.target.value)}
+                    className={styles.input}
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.label}>
+                    Giá hiển thị ({transTab === 'en' ? 'English' : '简体中文'})
+                  </label>
+                  <input
+                    type="text"
+                    value={formData.translations?.[transTab]?.priceDisplay || ''}
+                    onChange={(e) => handleTransField(transTab, 'priceDisplay', e.target.value)}
+                    className={styles.input}
+                  />
+                </div>
+              </div>
+
+              {/* Quy cách chi tiết dạng từng dòng (giống bản Tiếng Việt) */}
+              <div className={styles.formGroup}>
+                <label className={styles.label}>
+                  <span>Quy cách chi tiết ({transTab === 'en' ? 'English' : '简体中文'})</span>
+                  <span className={styles.labelHint}>
+                    (mỗi dòng hiển thị thành 1 gạch đầu dòng trên web)
+                  </span>
+                </label>
+                <div className={styles.listContainer}>
+                  {transSpecRows[transTab].map((row, idx) => (
+                    <div key={`${transTab}-${idx}`} className={styles.listRow}>
+                      <span className={styles.rowIndexBadge}>{idx + 1}</span>
+                      <input
+                        type="text"
+                        value={row}
+                        placeholder={
+                          transTab === 'en'
+                            ? idx === 0
+                              ? 'e.g. Structure: 3 longitudinal stringers, 2-way forklift entry'
+                              : idx === 1
+                                ? 'e.g. Top deck boards: 7 boards (1200×90×17 mm)'
+                                : `Specification line #${idx + 1}`
+                            : idx === 0
+                              ? '例：进叉结构：3根纵梁 · 双向进叉'
+                              : idx === 1
+                                ? '例：顶板木条：7根 (1200×90×17 mm)'
+                                : `规格明细 #${idx + 1}`
+                        }
+                        onChange={(e) => handleTransSpecChange(transTab, idx, e.target.value)}
+                        className={styles.input}
+                      />
+                      <button
+                        type="button"
+                        onClick={() => removeTransSpecRow(transTab, idx)}
+                        className={styles.removeRowBtn}
+                        title="Xóa dòng quy cách này"
+                      >
+                        <Trash2 size={15} />
+                      </button>
+                    </div>
+                  ))}
+                  <button
+                    type="button"
+                    onClick={() => addTransSpecRow(transTab)}
+                    className={styles.addRowBtn}
+                  >
+                    <Plus size={15} />
+                    <span>
+                      Thêm dòng quy cách ({transTab === 'en' ? 'English' : '中文'})
+                    </span>
+                  </button>
+                </div>
+              </div>
+
+              <div className={styles.formGroup}>
+                <label className={styles.label}>
+                  Mô tả sản phẩm ({transTab === 'en' ? 'English' : '简体中文'})
+                </label>
+                <textarea
+                  rows={5}
+                  value={formData.translations?.[transTab]?.description || ''}
+                  onChange={(e) => handleTransField(transTab, 'description', e.target.value)}
+                  className={styles.textarea}
+                />
               </div>
             </div>
           </div>

@@ -7,9 +7,10 @@ import {
   defaultOrderNotifications,
   OrderNotificationItem,
 } from '@/data/orderNotifications';
+import { useLanguage } from '@/context/LanguageContext';
+import { localizeOrderNotification } from '@/i18n/productLocalizer';
 import styles from './OrderNotificationToast.module.css';
 
-// Nhịp hiển thị tự nhiên: 5s -> 15s -> 25s -> 40s -> lặp lại mỗi 60s
 const SCHEDULE_DELAYS_MS = [5_000, 15_000, 25_000, 40_000, 60_000];
 const VISIBLE_DURATION_MS = 6_500;
 
@@ -23,6 +24,7 @@ function shuffleList<T>(list: T[]): T[] {
 }
 
 export const OrderNotificationToast: React.FC = () => {
+  const { locale, t } = useLanguage();
   const [currentItem, setCurrentItem] = useState<OrderNotificationItem | null>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -79,7 +81,6 @@ export const OrderNotificationToast: React.FC = () => {
     const delay = SCHEDULE_DELAYS_MS[delayIdx];
 
     showTimerRef.current = setTimeout(() => {
-      // Nếu tab trình duyệt đang ẩn, đợi khi user quay lại mới hiện
       if (typeof document !== 'undefined' && document.hidden) {
         pendingWhenVisibleRef.current = true;
         return;
@@ -90,7 +91,6 @@ export const OrderNotificationToast: React.FC = () => {
 
   scheduleNextRef.current = scheduleNext;
 
-  // Khi user quay lại tab trình duyệt mà có thông báo đang chờ -> hiện sau 1.5s
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (!document.hidden && pendingWhenVisibleRef.current) {
@@ -105,7 +105,6 @@ export const OrderNotificationToast: React.FC = () => {
     return () => document.removeEventListener('visibilitychange', handleVisibilityChange);
   }, [showToastNow]);
 
-  // Nạp đơn hàng thật từ Supabase và bắt đầu chu kỳ hiển thị
   useEffect(() => {
     let cancelled = false;
 
@@ -118,7 +117,7 @@ export const OrderNotificationToast: React.FC = () => {
           itemsRef.current = shuffleList(realItems);
         }
       } catch {
-        // Giữ nguyên danh sách mặc định nếu lỗi mạng
+        // fallback
       }
     }
 
@@ -131,7 +130,6 @@ export const OrderNotificationToast: React.FC = () => {
     };
   }, [scheduleNext, clearTimers]);
 
-  // Bấm nút X: đóng popup hiện tại và tiếp tục lịch cho lần kế tiếp
   const handleDismiss = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -141,7 +139,6 @@ export const OrderNotificationToast: React.FC = () => {
     scheduleNext();
   };
 
-  // Bấm vào sản phẩm trong popup: đóng popup, reset hover và tiếp tục lịch
   const handleCardClick = () => {
     isHoveredRef.current = false;
     setIsVisible(false);
@@ -170,6 +167,8 @@ export const OrderNotificationToast: React.FC = () => {
 
   if (!currentItem) return null;
 
+  const localized = localizeOrderNotification(currentItem, locale);
+
   return (
     <div
       className={`${styles.toastWrapper} ${isVisible ? styles.toastVisible : styles.toastHidden}`}
@@ -178,35 +177,32 @@ export const OrderNotificationToast: React.FC = () => {
       role="status"
       aria-live="polite"
     >
-      <Link href={currentItem.href} className={styles.toastCard} onClick={handleCardClick}>
-        {/* Avatar + Verified Badge */}
+      <Link href={localized.href} className={styles.toastCard} onClick={handleCardClick}>
         <div className={styles.avatarBox}>
-          <span className={styles.avatarInitials}>{currentItem.initials}</span>
+          <span className={styles.avatarInitials}>{localized.initials}</span>
           <span className={styles.verifiedBadge} aria-hidden="true">
             <Check size={10} strokeWidth={3} />
           </span>
         </div>
 
-        {/* Content */}
         <div className={styles.contentBox}>
           <div className={styles.topRow}>
-            <span className={styles.customerName}>{currentItem.customerLabel}</span>
+            <span className={styles.customerName}>{localized.customerLabel}</span>
             <span className={styles.metaText}>
-              {currentItem.timeAgo} · {currentItem.location}
+              {localized.timeAgo} · {localized.location}
             </span>
           </div>
           <p className={styles.orderLine}>
-            <span>{currentItem.actionText} </span>
-            <strong className={styles.productHighlight}>{currentItem.productLabel}</strong>
+            <span>{localized.actionText} </span>
+            <strong className={styles.productHighlight}>{localized.productLabel}</strong>
           </p>
         </div>
 
-        {/* Close Button */}
         <button
           type="button"
           onClick={handleDismiss}
           className={styles.closeBtn}
-          aria-label="Đóng thông báo đơn hàng"
+          aria-label={t.toast.closeAria}
         >
           <X size={14} />
         </button>

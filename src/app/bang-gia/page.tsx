@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { products as initialProducts, CATEGORY_PRIORITY, type Product } from '@/data/products';
 import { PhoneCall, FileText, CheckCircle2, ShieldCheck, ExternalLink } from 'lucide-react';
 import { useQuoteModal } from '@/context/QuoteModalContext';
+import { useLanguage } from '@/context/LanguageContext';
+import { localizeProduct } from '@/i18n/productLocalizer';
 import styles from './banggia.module.css';
 
 type GroupFilter = 'all' | 'pallet-go' | 'pallet-nhua' | 'thung';
@@ -20,12 +22,13 @@ function sortByCategoryPriority(list: Product[]): Product[] {
     const pa = CATEGORY_PRIORITY[a.categorySlug] ?? 99;
     const pb = CATEGORY_PRIORITY[b.categorySlug] ?? 99;
     if (pa !== pb) return pa - pb;
-    return a.id.localeCompare(b.id);
+    return a.id.localeCompare(b.id, undefined, { numeric: true });
   });
 }
 
 export default function PricingPage() {
   const { openQuoteModal } = useQuoteModal();
+  const { locale, t } = useLanguage();
   const [allProducts, setAllProducts] = useState<Product[]>(() =>
     sortByCategoryPriority(initialProducts)
   );
@@ -46,9 +49,7 @@ export default function PricingPage() {
           setAllProducts(sortByCategoryPriority(list));
         }
       })
-      .catch(() => {
-        // Giữ dữ liệu fallback local nếu mạng tạm gián đoạn
-      });
+      .catch(() => {});
     return () => {
       cancelled = true;
     };
@@ -70,10 +71,10 @@ export default function PricingPage() {
   }, [allProducts, activeGroup]);
 
   const tabs: { key: GroupFilter; label: string; count: number }[] = [
-    { key: 'all', label: 'Tất cả sản phẩm', count: counts.all },
-    { key: 'pallet-go', label: 'Pallet Gỗ', count: counts['pallet-go'] },
-    { key: 'pallet-nhua', label: 'Pallet Nhựa', count: counts['pallet-nhua'] },
-    { key: 'thung', label: 'Thùng Gỗ & Thùng Nhựa', count: counts.thung },
+    { key: 'all', label: t.pricingPage.tabAll, count: counts.all },
+    { key: 'pallet-go', label: t.pricingPage.tabWood, count: counts['pallet-go'] },
+    { key: 'pallet-nhua', label: t.pricingPage.tabPlastic, count: counts['pallet-nhua'] },
+    { key: 'thung', label: t.pricingPage.tabCrates, count: counts.thung },
   ];
 
   return (
@@ -85,22 +86,16 @@ export default function PricingPage() {
             className="section-tag"
             style={{ backgroundColor: 'rgba(255,255,255,0.2)', color: '#ffffff' }}
           >
-            BẢNG GIÁ TRA CỨU TẠI XƯỞNG
+            {t.pricingPage.tag}
           </span>
-          <h1 className={styles.pageTitle}>
-            Bảng Giá Pallet Gỗ, Pallet Nhựa, Thùng Gỗ &amp; Thùng Nhựa 2026
-          </h1>
-          <p className={styles.pageDesc}>
-            Cam kết giá gốc trực tiếp từ Xưởng Pallet Trường An (Bà Điểm, TP. Hồ Chí Minh) không qua
-            trung gian. Báo giá linh hoạt theo số lượng, bản vẽ và yêu cầu sấy nhiệt HT chuẩn xuất
-            khẩu ISPM 15.
-          </p>
+          <h1 className={styles.pageTitle}>{t.pricingPage.title}</h1>
+          <p className={styles.pageDesc}>{t.pricingPage.desc}</p>
         </div>
       </div>
 
       <div className="container">
         {/* 4 Group Filter Tabs */}
-        <div className={styles.filterBar} role="tablist" aria-label="Lọc bảng giá theo nhóm sản phẩm">
+        <div className={styles.filterBar} role="tablist">
           {tabs.map((tab) => (
             <button
               key={tab.key}
@@ -121,18 +116,19 @@ export default function PricingPage() {
           <table className={styles.table}>
             <thead>
               <tr>
-                <th>Sản Phẩm &amp; Phân Loại</th>
-                <th>Chất Liệu</th>
-                <th>Kích Thước (mm)</th>
-                <th>Tải Trọng Tĩnh / Động</th>
-                <th>Giá Tham Khảo</th>
-                <th>Yêu Cầu Báo Giá</th>
+                <th>{t.pricingPage.colProduct}</th>
+                <th>{t.pricingPage.colMat}</th>
+                <th>{t.pricingPage.colDim}</th>
+                <th>{t.pricingPage.colLoad}</th>
+                <th>{t.pricingPage.colPrice}</th>
+                <th>{t.pricingPage.colQuote}</th>
               </tr>
             </thead>
             <tbody>
-              {filteredProducts.map((item) => {
-                const priceText = item.priceDisplay?.trim() || 'Liên hệ';
-                const isCustomPrice = priceText.toLowerCase() !== 'liên hệ';
+              {filteredProducts.map((raw) => {
+                const item = localizeProduct(raw, locale);
+                const rawPrice = raw.priceDisplay?.trim() || 'Liên hệ';
+                const isCustomPrice = rawPrice.toLowerCase() !== 'liên hệ';
                 return (
                   <tr key={item.id}>
                     <td>
@@ -150,21 +146,23 @@ export default function PricingPage() {
                       {item.staticLoad} / {item.dynamicLoad}
                     </td>
                     <td>
-                      <span
-                        className={isCustomPrice ? styles.priceReal : 'badge badge-price'}
-                      >
-                        {priceText}
+                      <span className={isCustomPrice ? styles.priceReal : 'badge badge-price'}>
+                        {item.priceDisplay}
                       </span>
                     </td>
                     <td>
                       <button
                         type="button"
-                        onClick={() => openQuoteModal(item.slug)}
+                        onClick={() => openQuoteModal(raw.slug)}
                         className="btn btn-primary"
-                        style={{ padding: '0.45rem 0.85rem', fontSize: '0.8rem', whiteSpace: 'nowrap' }}
+                        style={{
+                          padding: '0.45rem 0.85rem',
+                          fontSize: '0.8rem',
+                          whiteSpace: 'nowrap',
+                        }}
                       >
                         <PhoneCall size={14} />
-                        <span>Nhận Báo Giá</span>
+                        <span>{t.common.getQuote}</span>
                       </button>
                     </td>
                   </tr>
@@ -181,12 +179,9 @@ export default function PricingPage() {
               <div className={styles.iconBox}>
                 <ShieldCheck size={22} />
               </div>
-              <h3 className={styles.cardTitle}>Chiết Khấu Đơn Hàng Lớn</h3>
+              <h3 className={styles.cardTitle}>{t.pricingPage.v1Title}</h3>
             </div>
-            <p className={styles.cardDesc}>
-              Giảm ngay từ 5% - 10% cho các hợp đồng cung ứng pallet gỗ, pallet nhựa &amp; thùng công
-              nghiệp định kỳ theo tháng cho nhà máy.
-            </p>
+            <p className={styles.cardDesc}>{t.pricingPage.v1Desc}</p>
           </div>
 
           <div className={styles.valueCard}>
@@ -194,12 +189,9 @@ export default function PricingPage() {
               <div className={styles.iconBox}>
                 <CheckCircle2 size={22} />
               </div>
-              <h3 className={styles.cardTitle}>Hỗ Trợ Khử Trùng ISPM 15</h3>
+              <h3 className={styles.cardTitle}>{t.pricingPage.v2Title}</h3>
             </div>
-            <p className={styles.cardDesc}>
-              Hệ thống lò sấy HT hiện đại sẵn sàng sấy nhiệt, đóng dấu mộc và cấp chứng thư xuất
-              khẩu cho các lô hàng container.
-            </p>
+            <p className={styles.cardDesc}>{t.pricingPage.v2Desc}</p>
           </div>
 
           <div className={styles.valueCard}>
@@ -207,27 +199,21 @@ export default function PricingPage() {
               <div className={styles.iconBox}>
                 <FileText size={22} />
               </div>
-              <h3 className={styles.cardTitle}>Miễn Phí Thiết Kế Bản Vẽ</h3>
+              <h3 className={styles.cardTitle}>{t.pricingPage.v3Title}</h3>
             </div>
-            <p className={styles.cardDesc}>
-              Đội ngũ kỹ thuật hỗ trợ đo đạc kích thước thùng xe container và thiết kế mẫu pallet,
-              thùng gỗ thử nghiệm miễn phí.
-            </p>
+            <p className={styles.cardDesc}>{t.pricingPage.v3Desc}</p>
           </div>
         </div>
 
-        {/* Banner liên hệ báo giá đặc thù */}
+        {/* Bottom CTA Banner */}
         <div className={styles.bannerContact}>
           <div className={styles.bannerText}>
-            <h3>Bạn Cần Sản Xuất Pallet / Thùng Gỗ Kích Thước Đặc Thù Theo Bản Vẽ?</h3>
-            <p>
-              Nhà xưởng tiếp nhận mọi quy cách từ nhỏ 800×800mm đến siêu khổ 1500×1500mm và đơn hàng
-              số lượng lớn.
-            </p>
+            <h3>{t.pricingPage.bannerTitle}</h3>
+            <p>{t.pricingPage.bannerDesc}</p>
           </div>
           <button type="button" onClick={() => openQuoteModal()} className="btn btn-secondary">
             <FileText size={18} />
-            <span>Gửi Yêu Cầu Bản Vẽ Kỹ Thuật</span>
+            <span>{t.pricingPage.bannerBtn}</span>
           </button>
         </div>
       </div>

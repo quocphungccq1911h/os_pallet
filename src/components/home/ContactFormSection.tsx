@@ -1,24 +1,46 @@
+'use client';
+
 import React, { useState } from 'react';
-import { Send, Phone, Mail, MapPin, CheckCircle, ShieldCheck } from 'lucide-react';
+import { Send, Phone, Mail, MapPin, CheckCircle } from 'lucide-react';
 import { companyInfo } from '@/data/companyInfo';
+import { useLanguage } from '@/context/LanguageContext';
 import styles from './ContactFormSection.module.css';
 
 export const ContactFormSection: React.FC = () => {
+  const { locale, t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
     email: '',
     dimensions: '',
     quantity: '',
-    message: ''
+    message: '',
   });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) {
-      alert('Vui lòng nhập Họ tên và Số điện thoại!');
+      alert(t.quoteModal.alertMissing);
       return;
+    }
+    try {
+      await fetch('/api/quotes', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          customerName: formData.name,
+          phone: formData.phone,
+          email: formData.email,
+          productTitle: 'Liên hệ từ Form Trang Chủ / Liên Hệ',
+          dimensions: formData.dimensions,
+          quantity: formData.quantity || '100',
+          note: locale !== 'vi' ? `[${locale.toUpperCase()}] ${formData.message}` : formData.message,
+          status: 'moi',
+        }),
+      });
+    } catch {
+      // ignore
     }
     setSubmitted(true);
   };
@@ -29,22 +51,25 @@ export const ContactFormSection: React.FC = () => {
         <div className={styles.grid}>
           {/* Contact Info Side */}
           <div className={styles.infoSide}>
-            <span className="section-tag" style={{ backgroundColor: 'rgba(255,255,255,0.15)', color: '#ffffff' }}>
-              NHẬN BÁO GIÁ TẬN XƯỞNG
+            <span
+              className="section-tag"
+              style={{ backgroundColor: 'rgba(255,255,255,0.15)', color: '#ffffff' }}
+            >
+              {t.contactSection.tag}
             </span>
 
-            <h2 className={styles.title}>Liên Hệ Tư Vấn & Nhận Mẫu Pallet Thử Nghiệm</h2>
-            <p className={styles.desc}>
-              Điền thông tin vào form hoặc gọi trực tiếp Hotline để kỹ sư của chúng tôi khảo sát tải trọng và gửi báo giá chi tiết trong 15 phút.
-            </p>
+            <h2 className={styles.title}>{t.contactSection.title}</h2>
+            <p className={styles.desc}>{t.contactSection.desc}</p>
 
             <div className={styles.contactDetails}>
               <div className={styles.contactCard}>
                 <Phone size={22} color="var(--primary)" />
                 <div>
-                  <strong>Hotline / Zalo Báo Giá 24/7</strong>
+                  <strong>{t.contactSection.hotlineTitle}</strong>
                   <p>
-                    <a href={`tel:${companyInfo.hotline}`} className={styles.hotlineLink}>{companyInfo.hotlineFormatted}</a>
+                    <a href={`tel:${companyInfo.hotline}`} className={styles.hotlineLink}>
+                      {companyInfo.hotlineFormatted}
+                    </a>
                   </p>
                 </div>
               </div>
@@ -52,7 +77,7 @@ export const ContactFormSection: React.FC = () => {
               <div className={styles.contactCard}>
                 <Mail size={22} color="var(--primary)" />
                 <div>
-                  <strong>Email Phòng Kinh Doanh</strong>
+                  <strong>{t.contactSection.emailTitle}</strong>
                   <p>{companyInfo.email}</p>
                 </div>
               </div>
@@ -60,8 +85,8 @@ export const ContactFormSection: React.FC = () => {
               <div className={styles.contactCard}>
                 <MapPin size={22} color="var(--primary)" />
                 <div>
-                  <strong>Xưởng Sản Xuất & Kho Bãi</strong>
-                  <p>{companyInfo.address}</p>
+                  <strong>{t.contactSection.addressTitle}</strong>
+                  <p>{t.common.address}</p>
                 </div>
               </div>
             </div>
@@ -71,16 +96,16 @@ export const ContactFormSection: React.FC = () => {
           <div className={styles.formCard}>
             {!submitted ? (
               <form onSubmit={handleSubmit}>
-                <h3 className={styles.formTitle}>Form Yêu Cầu Báo Giá Bản Vẽ</h3>
-                <p className={styles.formSub}>Nhận báo giá tận xưởng Hóc Môn trong 15 phút</p>
+                <h3 className={styles.formTitle}>{t.contactSection.formTitle}</h3>
+                <p className={styles.formSub}>{t.contactSection.formSub}</p>
 
                 <div className={styles.formGrid}>
                   <div className={styles.formGroup}>
-                    <label className={styles.label}>Họ và tên *</label>
+                    <label className={styles.label}>{t.contactSection.nameLabel}</label>
                     <input
                       type="text"
                       required
-                      placeholder="Anh/Chị..."
+                      placeholder={t.contactSection.namePh}
                       className={styles.input}
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -88,11 +113,11 @@ export const ContactFormSection: React.FC = () => {
                   </div>
 
                   <div className={styles.formGroup}>
-                    <label className={styles.label}>Số điện thoại / Zalo *</label>
+                    <label className={styles.label}>{t.contactSection.phoneLabel}</label>
                     <input
                       type="tel"
                       required
-                      placeholder="09xx xxx xxx"
+                      placeholder={t.contactSection.phonePh}
                       className={styles.input}
                       value={formData.phone}
                       onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -100,10 +125,10 @@ export const ContactFormSection: React.FC = () => {
                   </div>
 
                   <div className={styles.formGroup}>
-                    <label className={styles.label}>Kích thước / Loại hàng dự kiến</label>
+                    <label className={styles.label}>{t.contactSection.dimLabel}</label>
                     <input
                       type="text"
-                      placeholder="Ví dụ: Pallet 1200x1000 hoặc Thùng gỗ máy 2x1.5m"
+                      placeholder={t.contactSection.dimPh}
                       className={styles.input}
                       value={formData.dimensions}
                       onChange={(e) => setFormData({ ...formData, dimensions: e.target.value })}
@@ -111,10 +136,10 @@ export const ContactFormSection: React.FC = () => {
                   </div>
 
                   <div className={styles.formGroup}>
-                    <label className={styles.label}>Số lượng (Cái / Kiện)</label>
+                    <label className={styles.label}>{t.contactSection.qtyLabel}</label>
                     <input
                       type="number"
-                      placeholder="Ví dụ: 100"
+                      placeholder={t.contactSection.qtyPh}
                       className={styles.input}
                       value={formData.quantity}
                       onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
@@ -123,39 +148,47 @@ export const ContactFormSection: React.FC = () => {
                 </div>
 
                 <div className={styles.formGroup} style={{ marginTop: '1rem' }}>
-                  <label className={styles.label}>Yêu cầu quy cách / Bản vẽ / Ghi chú kỹ thuật</label>
+                  <label className={styles.label}>{t.contactSection.noteLabel}</label>
                   <textarea
                     rows={3}
-                    placeholder="Mô tả tải trọng, có cần sấy ISPM 15, ván ép hay pallet gỗ tràm/thông..."
+                    placeholder={t.contactSection.notePh}
                     className={styles.textarea}
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   ></textarea>
                 </div>
 
-                <button type="submit" className="btn btn-primary" style={{ width: '100%', marginTop: '1.25rem', padding: '0.85rem' }}>
+                <button
+                  type="submit"
+                  className="btn btn-primary"
+                  style={{ width: '100%', marginTop: '1.25rem', padding: '0.85rem' }}
+                >
                   <Send size={18} />
-                  <span>GỬI YÊU CẦU BÁO GIÁ NGAY</span>
+                  <span>{t.contactSection.submitBtn}</span>
                 </button>
               </form>
             ) : (
               <div className={styles.successState}>
                 <CheckCircle size={60} color="var(--accent)" />
-                <h3>Gửi Thông Tin Thành Công!</h3>
-                <p>Kỹ sư của <strong>{companyInfo.shortName}</strong> đã nhận được thông tin và sẽ gọi báo giá lại cho bạn ngay.</p>
-                
+                <h3>{t.contactSection.successTitle}</h3>
+                <p>{t.contactSection.successDesc}</p>
+
                 <a
-                  href={`${companyInfo.zaloUrl}?text=${encodeURIComponent(`Xin chào Pallet Trường An, tôi vừa gửi yêu cầu báo giá cho ${formData.name} - SĐT: ${formData.phone}`)}`}
+                  href={`${companyInfo.zaloUrl}?text=${encodeURIComponent(`Hello Pallet Truong An, inquiry from ${formData.name} - ${formData.phone}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-zalo"
                   style={{ marginTop: '1rem', width: '100%' }}
                 >
-                  Nhắn Zalo {companyInfo.hotlineFormatted} Để Phản Hồi Nhanh
+                  {t.contactSection.zaloFastBtn.replace('{phone}', companyInfo.hotlineFormatted)}
                 </a>
 
-                <button onClick={() => setSubmitted(false)} className="btn btn-outline" style={{ marginTop: '0.75rem', width: '100%' }}>
-                  Gửi thêm yêu cầu khác
+                <button
+                  onClick={() => setSubmitted(false)}
+                  className="btn btn-outline"
+                  style={{ marginTop: '0.75rem', width: '100%' }}
+                >
+                  {t.contactSection.anotherBtn}
                 </button>
               </div>
             )}

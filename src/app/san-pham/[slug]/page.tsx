@@ -11,8 +11,19 @@ import {
   THUNG_SLUGS,
 } from '@/data/products';
 import { companyInfo } from '@/data/companyInfo';
-import { ShieldCheck, Phone, MessageCircle, FileText, CheckCircle2, ArrowLeft, ArrowRight, Layers } from 'lucide-react';
+import {
+  ShieldCheck,
+  Phone,
+  MessageCircle,
+  FileText,
+  CheckCircle2,
+  ArrowLeft,
+  ArrowRight,
+  Layers,
+} from 'lucide-react';
 import { useQuoteModal } from '@/context/QuoteModalContext';
+import { useLanguage } from '@/context/LanguageContext';
+import { localizeProduct } from '@/i18n/productLocalizer';
 import { ProductGalleryBanner } from '@/components/ProductGalleryBanner';
 import { ProductCard } from '@/components/ProductCard';
 import { ProductTechnicalDrawing } from '@/components/ProductTechnicalDrawing';
@@ -45,15 +56,16 @@ export default function ProductDetailPage() {
   const params = useParams();
   const slug = params?.slug as string;
   const { openQuoteModal } = useQuoteModal();
+  const { locale, t } = useLanguage();
 
   const [allProducts, setAllProducts] = useState<Product[]>(defaultProducts);
-  const [product, setProduct] = useState<Product | undefined>(() =>
+  const [rawProduct, setRawProduct] = useState<Product | undefined>(() =>
     defaultProducts.find((p) => p.slug === slug)
   );
   const [selectedImage, setSelectedImage] = useState<string>(
     defaultProducts.find((p) => p.slug === slug)?.imageUrl || ''
   );
-  const [isLoading, setIsLoading] = useState(!product);
+  const [isLoading, setIsLoading] = useState(!rawProduct);
 
   useEffect(() => {
     async function fetchProduct() {
@@ -61,10 +73,12 @@ export default function ProductDetailPage() {
         const res = await fetch('/api/products');
         if (res.ok) {
           const list: Product[] = await res.json();
-          if (Array.isArray(list) && list.length > 0) { setAllProducts(list); }
+          if (Array.isArray(list) && list.length > 0) {
+            setAllProducts(list);
+          }
           const found = list.find((p) => p.slug === slug);
           if (found) {
-            setProduct(found);
+            setRawProduct(found);
             setSelectedImage(found.imageUrl);
           }
         }
@@ -80,26 +94,31 @@ export default function ProductDetailPage() {
   if (isLoading) {
     return (
       <div className="container" style={{ padding: '5rem 0', textAlign: 'center' }}>
-        <p>Đang tải thông tin sản phẩm...</p>
+        <p>{t.common.loading}</p>
       </div>
     );
   }
 
-  if (!product) {
+  if (!rawProduct) {
     return (
       <div className="container" style={{ padding: '5rem 0', textAlign: 'center' }}>
-        <h2>Không Tìm Thấy Sản Phẩm Pallet Này</h2>
-        <p style={{ margin: '1rem 0 2rem 0' }}>Sản phẩm bạn đang tìm kiếm không tồn tại hoặc đã thay đổi địa chỉ.</p>
+        <h2>{t.detail.notFoundTitle}</h2>
+        <p style={{ margin: '1rem 0 2rem 0' }}>{t.detail.notFoundDesc}</p>
         <Link href="/san-pham" className="btn btn-primary">
-          <ArrowLeft size={16} /> Quay Lại Danh Mục
+          <ArrowLeft size={16} /> {t.detail.backToCatalog}
         </Link>
       </div>
     );
   }
 
-  const imageList = product.gallery && product.gallery.length > 0 ? product.gallery : [product.imageUrl];
+  const product = localizeProduct(rawProduct, locale);
+  const imageList =
+    product.gallery && product.gallery.length > 0 ? product.gallery : [product.imageUrl];
   const currentPreviewImage = selectedImage || product.imageUrl;
   const currentIdx = imageList.indexOf(currentPreviewImage);
+
+  const isDefaultContactPrice =
+    !rawProduct.priceDisplay || rawProduct.priceDisplay.trim().toLowerCase() === 'liên hệ';
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -112,7 +131,7 @@ export default function ProductDetailPage() {
       price: 'Liên hệ',
       priceCurrency: 'VND',
       availability: 'https://schema.org/InStock',
-    }
+    },
   };
 
   return (
@@ -125,9 +144,9 @@ export default function ProductDetailPage() {
       <div className="container">
         {/* Breadcrumb Navigation */}
         <div className={styles.breadcrumb}>
-          <Link href="/">Trang chủ</Link>
+          <Link href="/">{t.common.home}</Link>
           <span>/</span>
-          <Link href="/san-pham">Sản phẩm</Link>
+          <Link href="/san-pham">{t.common.products}</Link>
           <span>/</span>
           <span className={styles.activeCrumb}>{product.name}</span>
         </div>
@@ -137,20 +156,28 @@ export default function ProductDetailPage() {
           {/* Left Column: Product Gallery */}
           <div className={styles.imageCol}>
             {(() => {
-              const isBanner = currentPreviewImage.includes('banner_main') || currentPreviewImage.includes('banner');
+              const isBanner =
+                currentPreviewImage.includes('banner_main') ||
+                currentPreviewImage.includes('banner');
               return (
                 <div className={styles.mainImgCard}>
                   {isBanner ? (
-                    <ProductGalleryBanner onQuoteClick={() => openQuoteModal(product.slug)} />
+                    <ProductGalleryBanner onQuoteClick={() => openQuoteModal(rawProduct.slug)} />
                   ) : (
-                    <img src={currentPreviewImage} alt={product.name} className={styles.mainImg} />
+                    <img
+                      src={currentPreviewImage}
+                      alt={product.name}
+                      className={styles.mainImg}
+                    />
                   )}
                   {!isBanner && product.isExportStandard && (
-                    <span className={styles.exportBadge}>ISPM 15 Xuất Khẩu</span>
+                    <span className={styles.exportBadge}>{t.productCard.exportBadge}</span>
                   )}
                   {imageList.length > 1 && (
                     <span className={styles.imageCounterBadge}>
-                      {currentIdx >= 0 ? currentIdx + 1 : 1} / {imageList.length} ảnh
+                      {t.detail.imgCount
+                        .replace('{current}', String(currentIdx >= 0 ? currentIdx + 1 : 1))
+                        .replace('{total}', String(imageList.length))}
                     </span>
                   )}
                 </div>
@@ -162,20 +189,19 @@ export default function ProductDetailPage() {
               <div className={styles.galleryThumbnails}>
                 {imageList.map((imgUrl, idx) => {
                   const isActive = currentPreviewImage === imgUrl;
-                  const isThumbBanner = imgUrl.includes('banner_main') || imgUrl.includes('banner');
                   return (
                     <button
                       key={idx}
                       type="button"
                       onClick={() => setSelectedImage(imgUrl)}
                       className={`${styles.thumbBtn} ${isActive ? styles.thumbActive : ''}`}
-                      title={isThumbBanner ? 'Xem Cam Kết & Xưởng' : `Xem góc chụp ${idx + 1}`}
-                      aria-label={isThumbBanner ? 'Xem Cam Kết & Xưởng' : `Xem góc chụp ${idx + 1}`}
+                      aria-label={`Photo ${idx + 1}`}
                     >
-                      <img src={imgUrl} alt={`${product.name} góc chụp ${idx + 1}`} className={styles.thumbImg} />
-                      {isThumbBanner && (
-                        <span className={styles.bannerThumbBadge}>XƯỞNG</span>
-                      )}
+                      <img
+                        src={imgUrl}
+                        alt={`${product.name} - ${idx + 1}`}
+                        className={styles.thumbImg}
+                      />
                     </button>
                   );
                 })}
@@ -185,8 +211,8 @@ export default function ProductDetailPage() {
             <div className={styles.qualityBanner}>
               <ShieldCheck size={24} color="var(--primary)" />
               <div>
-                <strong>Cam kết sấy HT đạt ẩm &lt; 18%</strong>
-                <p>Nguồn gỗ chọn lọc, bắn đinh xoắn liên kết siêu chắc</p>
+                <strong>{t.detail.htTitle}</strong>
+                <p>{t.detail.htDesc}</p>
               </div>
             </div>
           </div>
@@ -198,9 +224,19 @@ export default function ProductDetailPage() {
 
             {/* Badges */}
             {product.badges && product.badges.length > 0 && (
-              <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', margin: '0.5rem 0 1rem 0' }}>
+              <div
+                style={{
+                  display: 'flex',
+                  gap: '0.5rem',
+                  flexWrap: 'wrap',
+                  margin: '0.5rem 0 1rem 0',
+                }}
+              >
                 {product.badges.map((b, idx) => (
-                  <span key={idx} className={idx === 0 ? "badge badge-export" : "badge badge-new"}>
+                  <span
+                    key={idx}
+                    className={idx === 0 ? 'badge badge-export' : 'badge badge-new'}
+                  >
                     {b}
                   </span>
                 ))}
@@ -211,60 +247,61 @@ export default function ProductDetailPage() {
             <div className={styles.priceCard}>
               <div className={styles.priceHeader}>
                 <div className={styles.priceMeta}>
-                  <span className={styles.priceLabel}>Giá sản xuất trực tiếp</span>
+                  <span className={styles.priceLabel}>{t.detail.directPriceLabel}</span>
                   <div className={styles.priceValueWrapper}>
                     <span className={styles.priceValue}>
-                      {product.priceDisplay === 'Liên hệ' ? 'Giá Gốc Tận Xưởng' : product.priceDisplay}
+                      {isDefaultContactPrice ? t.detail.factoryPrice : product.priceDisplay}
                     </span>
-                    <span className={styles.priceBadgeNote}>Báo giá theo bản vẽ &amp; số lượng</span>
+                    <span className={styles.priceBadgeNote}>{t.detail.quoteByDrawing}</span>
                   </div>
                 </div>
 
                 <button
                   type="button"
-                  onClick={() => openQuoteModal(product.slug)}
+                  onClick={() => openQuoteModal(rawProduct.slug)}
                   className={styles.priceCtaBtn}
-                  title="Nhận báo giá nhanh trong 15 phút"
                 >
                   <FileText size={16} />
-                  <span>Báo Giá Nhanh 15 Phút</span>
+                  <span>{t.detail.fastQuote15m}</span>
                 </button>
               </div>
 
               <div className={styles.pricePerks}>
                 <span className={styles.pricePerkItem}>
                   <CheckCircle2 size={14} color="#15803d" />
-                  Chiết khấu 5% - 10% đơn hàng lớn &amp; hợp đồng tháng
+                  {t.detail.perk1}
                 </span>
                 <span className={styles.pricePerkDivider}>•</span>
                 <span className={styles.pricePerkItem}>
                   <CheckCircle2 size={14} color="#15803d" />
-                  Hỗ trợ công nợ đối tác nhà máy
+                  {t.detail.perk2}
                 </span>
               </div>
             </div>
 
             {/* Specs Table */}
             <div className={styles.specBox}>
-              <h3 className={styles.specBoxTitle}>Thông Số Kỹ Thuật Chi Tiết</h3>
+              <h3 className={styles.specBoxTitle}>{t.detail.specBoxTitle}</h3>
               <div className={styles.specRow}>
-                <span className={styles.specName}>Kích thước tổng thể:</span>
-                <span className={styles.specVal}><strong>{product.dimensions}</strong></span>
+                <span className={styles.specName}>{t.detail.specDim}</span>
+                <span className={styles.specVal}>
+                  <strong>{product.dimensions}</strong>
+                </span>
               </div>
               <div className={styles.specRow}>
-                <span className={styles.specName}>Chất liệu:</span>
+                <span className={styles.specName}>{t.detail.specMat}</span>
                 <span className={styles.specVal}>{product.woodType}</span>
               </div>
               <div className={styles.specRow}>
-                <span className={styles.specName}>Tải trọng tĩnh:</span>
+                <span className={styles.specName}>{t.detail.specStatic}</span>
                 <span className={styles.specVal}>{product.staticLoad}</span>
               </div>
               <div className={styles.specRow}>
-                <span className={styles.specName}>Tải trọng động:</span>
+                <span className={styles.specName}>{t.detail.specDynamic}</span>
                 <span className={styles.specVal}>{product.dynamicLoad}</span>
               </div>
               <div className={`${styles.specRow} ${styles.specRowTop}`}>
-                <span className={styles.specName}>Quy cách chi tiết:</span>
+                <span className={styles.specName}>{t.detail.specDetail}</span>
                 <ul className={styles.specBulletList}>
                   {product.specification
                     .split(/[\u00b7\u2022\n]+/)
@@ -279,50 +316,59 @@ export default function ProductDetailPage() {
                 </ul>
               </div>
               <div className={styles.specRow}>
-                <span className={styles.specName}>Mục đích sử dụng:</span>
+                <span className={styles.specName}>{t.detail.specUsage}</span>
                 <span className={styles.specVal}>{product.usagePurpose}</span>
               </div>
             </div>
 
             {/* Action Buttons */}
             <div className={styles.actionGroup}>
-              <button onClick={() => openQuoteModal(product.slug)} className="btn btn-primary" style={{ padding: '0.85rem 1.5rem', fontSize: '1.05rem', flex: 1 }}>
+              <button
+                onClick={() => openQuoteModal(rawProduct.slug)}
+                className="btn btn-primary"
+                style={{ padding: '0.85rem 1.5rem', fontSize: '1.05rem', flex: 1 }}
+              >
                 <FileText size={20} />
-                <span>Nhận Báo Giá Bản Vẽ</span>
+                <span>{t.detail.btnQuoteDrawing}</span>
               </button>
 
-              <a href={companyInfo.zaloUrl} target="_blank" rel="noopener noreferrer" className="btn btn-zalo">
+              <a
+                href={companyInfo.zaloUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-zalo"
+              >
                 <MessageCircle size={20} />
-                <span>Chat Zalo</span>
+                <span>{t.detail.btnZalo}</span>
               </a>
 
               <a href={`tel:${companyInfo.hotline}`} className="btn btn-hotline">
                 <Phone size={20} />
-                <span>Hotline</span>
+                <span>{t.detail.btnHotline}</span>
               </a>
             </div>
           </div>
         </div>
 
-        {/* Technical Drawing / Blueprint Section */}
+        {/* Technical Drawing / Blueprint Section (pass rawProduct for variant detection + localized loads) */}
         <ProductTechnicalDrawing
-          product={product}
-          onRequestCustomDrawing={() => openQuoteModal(product.slug)}
+          product={{ ...rawProduct, staticLoad: product.staticLoad, dynamicLoad: product.dynamicLoad }}
+          onRequestCustomDrawing={() => openQuoteModal(rawProduct.slug)}
         />
 
-        {/* Workshop BOM / Size Matrix Table from Excel */}
+        {/* Workshop BOM / Size Matrix Table */}
         <WorkshopSpecsTable
-          categorySlug={product.categorySlug}
+          categorySlug={rawProduct.categorySlug}
           onRequestQuote={(specLabel) => openQuoteModal(specLabel)}
         />
 
         {/* Product Full Description & Highlights */}
         <div className={styles.descSection}>
-          <h2 className={styles.sectionHeading}>Chi Tiết Sản Phẩm & Ưu Điểm Nổi Bật</h2>
+          <h2 className={styles.sectionHeading}>{t.detail.descHeading}</h2>
           <p className={styles.descContent}>{product.description}</p>
 
           <h3 style={{ fontSize: '1.2rem', margin: '1.5rem 0 1rem 0', color: 'var(--secondary)' }}>
-            Đặc Điểm Kỹ Thuật Nổi Bật:
+            {t.detail.highlightsHeading}
           </h3>
           <ul className={styles.highlightList}>
             {product.highlights.map((h, i) => (
@@ -336,56 +382,85 @@ export default function ProductDetailPage() {
 
         {/* Facebook Proof of Work */}
         {product.facebookProof && (
-          <div style={{
-            marginTop: '2rem',
-            padding: '1.5rem',
-            background: '#f8fafc',
-            border: '1px solid #e2e8f0',
-            borderRadius: 'var(--radius-md)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: '1rem'
-          }}>
+          <div
+            style={{
+              marginTop: '2rem',
+              padding: '1.5rem',
+              background: '#f8fafc',
+              border: '1px solid #e2e8f0',
+              borderRadius: 'var(--radius-md)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '1rem',
+            }}
+          >
             <div>
-              <span style={{ fontSize: '0.8rem', fontWeight: 700, color: '#1877f2', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                <span style={{ background: '#1877f2', color: '#fff', width: '18px', height: '18px', borderRadius: '50%', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: '0.7rem' }}>f</span>
-                HOẠT ĐỘNG XƯỞNG THỰC TẾ TRÊN FANPAGE
+              <span
+                style={{
+                  fontSize: '0.8rem',
+                  fontWeight: 700,
+                  color: '#1877f2',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                }}
+              >
+                <span
+                  style={{
+                    background: '#1877f2',
+                    color: '#fff',
+                    width: '18px',
+                    height: '18px',
+                    borderRadius: '50%',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '0.7rem',
+                  }}
+                >
+                  f
+                </span>
+                {t.detail.fbBadge}
               </span>
-              <h4 style={{ margin: '0.35rem 0', color: 'var(--secondary)' }}>{product.facebookProof.title}</h4>
-              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-muted)' }}>{product.facebookProof.description}</p>
+              <h4 style={{ margin: '0.35rem 0', color: 'var(--secondary)' }}>
+                {product.facebookProof.title}
+              </h4>
+              <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text-muted)' }}>
+                {product.facebookProof.description}
+              </p>
             </div>
             <a
-              href={product.facebookProof.fbUrl || "https://www.facebook.com/PalletTruongAn/"}
+              href={product.facebookProof.fbUrl || 'https://www.facebook.com/PalletTruongAn/'}
               target="_blank"
               rel="noopener noreferrer"
               className="btn btn-outline"
               style={{ borderColor: '#1877f2', color: '#1877f2' }}
             >
-              <span>Xem bài đăng trên Facebook</span>
+              <span>{t.detail.fbViewBtn}</span>
             </a>
           </div>
         )}
 
         {/* Related Products Section */}
         {(() => {
-          const related = getRelatedProducts(product, allProducts, 4);
+          const related = getRelatedProducts(rawProduct, allProducts, 4);
           if (related.length === 0) return null;
           return (
             <section className={styles.relatedSection}>
               <div className={styles.relatedHeader}>
                 <div>
                   <span className="section-tag">
-                    <Layers size={14} /> GỢI Ý CHO BẠN
+                    <Layers size={14} /> {t.detail.relatedTag}
                   </span>
-                  <h2 className={styles.relatedTitle}>Sản Phẩm Liên Quan</h2>
+                  <h2 className={styles.relatedTitle}>{t.detail.relatedTitle}</h2>
                 </div>
                 <Link
-                  href={`/san-pham?category=${product.categorySlug}`}
+                  href={`/san-pham?category=${rawProduct.categorySlug}`}
                   className={styles.relatedViewAll}
                 >
-                  <span>Xem thêm cùng danh mục</span>
+                  <span>{t.detail.relatedViewAll}</span>
                   <ArrowRight size={16} />
                 </Link>
               </div>
@@ -405,4 +480,3 @@ export default function ProductDetailPage() {
     </div>
   );
 }
-

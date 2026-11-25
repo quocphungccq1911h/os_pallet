@@ -16,6 +16,10 @@ export interface Activity {
   fbUrl?: string; // Link bài viết trên Fanpage Facebook
   createdAt?: string;
   updatedAt?: string;
+  translations?: {
+    en?: Partial<Omit<Activity, 'id' | 'slug' | 'category' | 'images' | 'translations'>>;
+    zh?: Partial<Omit<Activity, 'id' | 'slug' | 'category' | 'images' | 'translations'>>;
+  };
 }
 
 export interface ActivityCategoryInfo {

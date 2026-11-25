@@ -1,6 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { Product, products as initialProducts, sortProductsByPriority } from '@/data/products';
+import { buildAutoProductTranslations } from '@/i18n/productLocalizer';
 import { supabase } from '@/lib/supabase';
 
 const DATA_FILE_PATH = path.join(process.cwd(), 'src', 'data', 'products.json');
@@ -226,8 +227,19 @@ export async function saveProduct(productData: Partial<Product>): Promise<Produc
     };
   }
 
-  // Luôn chuẩn hóa để banner_main.png nằm ở cuối gallery
-  const savedProduct = normalizeProduct(candidate);
+  // Tự động cập nhật cột translations (EN / ZH) vào Supabase dựa trên thông tin sản phẩm mới nhất
+  const autoTrans = buildAutoProductTranslations(candidate);
+  const mergedCandidate: Product = {
+    ...candidate,
+    translations: productData.translations
+      ? {
+          en: { ...autoTrans.en, ...productData.translations.en },
+          zh: { ...autoTrans.zh, ...productData.translations.zh },
+        }
+      : autoTrans,
+  };
+
+  const savedProduct = normalizeProduct(mergedCandidate);
 
   // 1. Lưu lên Supabase
   try {

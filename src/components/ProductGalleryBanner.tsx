@@ -1,21 +1,50 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
 import { Phone, MapPin, Mail, ShieldCheck, Award, Factory, MessageCircle } from 'lucide-react';
 import { companyInfo } from '@/data/companyInfo';
+import { useLanguage } from '@/context/LanguageContext';
 import styles from './ProductGalleryBanner.module.css';
 
 interface ProductGalleryBannerProps {
   onQuoteClick?: () => void;
 }
 
-export const ProductGalleryBanner: React.FC<ProductGalleryBannerProps> = ({ onQuoteClick }) => {
+export const ProductGalleryBanner: React.FC<ProductGalleryBannerProps> = () => {
+  const { locale, t } = useLanguage();
+
+  const copy =
+    locale === 'en'
+      ? {
+          badge: 'DIRECT MANUFACTURER',
+          slogan: 'Engineered Strength — Built to Last',
+          iso: 'ISO 9001 Quality',
+          price: 'Factory Direct Price',
+          custom: 'Built to CAD Drawing',
+        }
+      : locale === 'zh'
+        ? {
+            badge: '源头实体工厂直供',
+            slogan: '精工实木品质 · 护航全球出口',
+            iso: 'ISO 9001 质量体系',
+            price: '一手出厂批发价',
+            custom: '支持按CAD图定制',
+          }
+        : {
+            badge: 'XƯỞNG SẢN XUẤT TRỰC TIẾP',
+            slogan: 'Trao giá trị từ gỗ - Vững bền theo thời gian',
+            iso: 'Tiêu Chuẩn ISO 9001',
+            price: 'Giá Gốc Tại Xưởng',
+            custom: 'Đóng Theo Bản Vẽ Riêng',
+          };
+
   return (
     <div className={styles.bannerContainer}>
-      {/* Background with factory worker and pallets */}
       <div className={styles.bgWrapper}>
         <Image
           src="/images/pallet_factory_43.jpg"
-          alt="Xưởng sản xuất Pallet Trường An"
+          alt={t.common.companyName}
           fill
           className={styles.bgImage}
           priority
@@ -23,55 +52,51 @@ export const ProductGalleryBanner: React.FC<ProductGalleryBannerProps> = ({ onQu
         <div className={styles.overlay} />
       </div>
 
-      {/* Content Layer */}
       <div className={styles.content}>
-        {/* Top Header */}
         <div className={styles.headerRow}>
           <div className={styles.brandBox}>
-            <span className={styles.brandBadge}>XƯỞNG SẢN XUẤT TRỰC TIẾP</span>
-            <h2 className={styles.brandTitle}>PALLET TRƯỜNG AN</h2>
-            <p className={styles.slogan}>Trao giá trị từ gỗ - Vững bền theo thời gian</p>
+            <span className={styles.brandBadge}>{copy.badge}</span>
+            <h2 className={styles.brandTitle}>{t.common.shortName.toUpperCase()}</h2>
+            <p className={styles.slogan}>{copy.slogan}</p>
           </div>
 
           <div className={styles.standardBadge}>
             <ShieldCheck size={18} />
-            <span>ISPM 15 Xuất Khẩu</span>
+            <span>{t.productCard.exportBadge}</span>
           </div>
         </div>
 
-        {/* Center Highlights */}
         <div className={styles.featuresGrid}>
           <div className={styles.featureItem}>
             <Award size={16} className={styles.featureIcon} />
-            <span>Tiêu Chuẩn ISO 9001</span>
+            <span>{copy.iso}</span>
           </div>
           <div className={styles.featureItem}>
             <Factory size={16} className={styles.featureIcon} />
-            <span>Giá Gốc Tại Xưởng</span>
+            <span>{copy.price}</span>
           </div>
           <div className={styles.featureItem}>
             <ShieldCheck size={16} className={styles.featureIcon} />
-            <span>Đóng Theo Bản Vẽ Riêng</span>
+            <span>{copy.custom}</span>
           </div>
         </div>
 
-        {/* Bottom Contact & Call to Action */}
         <div className={styles.bottomBar}>
           <div className={styles.infoCol}>
             <div className={styles.infoRow}>
               <MapPin size={15} className={styles.infoIcon} />
-              <span>94 Dương Công Khi, Bà Điểm, Hồ Chí Minh</span>
+              <span>{t.common.address}</span>
             </div>
             <div className={styles.infoRow}>
               <Mail size={15} className={styles.infoIcon} />
-              <span>{companyInfo.email || 'ngockycntp@gmail.com'}</span>
+              <span>{companyInfo.email}</span>
             </div>
           </div>
 
           <div className={styles.actionCol}>
             <a href={`tel:${companyInfo.hotline}`} className={styles.callBtn}>
               <Phone size={15} />
-              <span>{companyInfo.hotline}</span>
+              <span>{companyInfo.hotlineFormatted}</span>
             </a>
             <a
               href={companyInfo.zaloUrl}

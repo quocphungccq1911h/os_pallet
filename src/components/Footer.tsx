@@ -1,11 +1,17 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
-import { MapPin, Phone, Mail, Clock, ShieldCheck, ChevronRight, Facebook, Globe } from 'lucide-react';
+import { MapPin, Phone, Mail, Clock, ChevronRight, Facebook } from 'lucide-react';
 import { companyInfo } from '@/data/companyInfo';
 import { categories } from '@/data/products';
+import { useLanguage } from '@/context/LanguageContext';
+import { localizeCategory } from '@/i18n/productLocalizer';
 import styles from './Footer.module.css';
 
 export const Footer: React.FC = () => {
+  const { locale, t } = useLanguage();
+
   return (
     <footer className={styles.footer}>
       {/* Top Value Promise Banner */}
@@ -14,29 +20,29 @@ export const Footer: React.FC = () => {
           <div className={styles.promiseItem}>
             <div className={styles.promiseIcon}>🏭</div>
             <div>
-              <h4>Giá Gốc Tận Xưởng</h4>
-              <p>Sản xuất trực tiếp không qua trung gian</p>
+              <h4>{t.footer.p1Title}</h4>
+              <p>{t.footer.p1Desc}</p>
             </div>
           </div>
           <div className={styles.promiseItem}>
             <div className={styles.promiseIcon}>🛡️</div>
             <div>
-              <h4>Tiêu Chuẩn ISPM 15</h4>
-              <p>Khử trùng sấy HT chuẩn xuất khẩu</p>
+              <h4>{t.footer.p2Title}</h4>
+              <p>{t.footer.p2Desc}</p>
             </div>
           </div>
           <div className={styles.promiseItem}>
             <div className={styles.promiseIcon}>📐</div>
             <div>
-              <h4>Gia Công Mẫu Thực Tế</h4>
-              <p>Lên mẫu kiểm tra & thử tải trước khi chốt đơn</p>
+              <h4>{t.footer.p3Title}</h4>
+              <p>{t.footer.p3Desc}</p>
             </div>
           </div>
           <div className={styles.promiseItem}>
             <div className={styles.promiseIcon}>🚚</div>
             <div>
-              <h4>Giao Hàng Siêu Tốc</h4>
-              <p>Phân phối tận nơi khu vực phía Nam & KCN</p>
+              <h4>{t.footer.p4Title}</h4>
+              <p>{t.footer.p4Desc}</p>
             </div>
           </div>
         </div>
@@ -53,88 +59,117 @@ export const Footer: React.FC = () => {
                 alt="Logo Pallet Trường An"
                 className={styles.footerLogoImg}
               />
-              <span className={styles.footerLogoTitle}>{companyInfo.name}</span>
+              <span className={styles.footerLogoTitle}>{t.common.companyName}</span>
             </div>
-            <p className={styles.footerDesc}>{companyInfo.description}</p>
-            
+            <p className={styles.footerDesc}>{t.footer.companyDesc}</p>
+
             <div className={styles.contactList}>
               <div className={styles.contactItem}>
                 <MapPin size={18} className={styles.iconAccent} />
-                <span><strong>Địa chỉ xưởng:</strong> {companyInfo.address}</span>
+                <span>
+                  <strong>{t.footer.labelAddress}</strong> {t.common.address}
+                </span>
               </div>
               <div className={styles.contactItem}>
                 <Phone size={18} className={styles.iconAccent} />
-                <span><strong>Hotline báo giá:</strong> <a href={`tel:${companyInfo.hotline}`} style={{ color: '#ffffff' }}>{companyInfo.hotlineFormatted}</a></span>
+                <span>
+                  <strong>{t.footer.labelHotline}</strong>{' '}
+                  <a href={`tel:${companyInfo.hotline}`} style={{ color: '#ffffff' }}>
+                    {companyInfo.hotlineFormatted}
+                  </a>
+                </span>
               </div>
               <div className={styles.contactItem}>
                 <Mail size={18} className={styles.iconAccent} />
-                <span><strong>Email:</strong> {companyInfo.email}</span>
+                <span>
+                  <strong>{t.footer.labelEmail}</strong> {companyInfo.email}
+                </span>
               </div>
               <div className={styles.contactItem}>
                 <Clock size={18} className={styles.iconAccent} />
-                <span><strong>Giờ làm việc:</strong> {companyInfo.workingHours}</span>
+                <span>
+                  <strong>{t.footer.labelHours}</strong> {t.common.workingHours}
+                </span>
               </div>
             </div>
           </div>
 
           {/* Column 2: Product Categories */}
           <div className={styles.footerCol}>
-            <h3 className={styles.colTitle}>Danh Mục Sản Phẩm</h3>
+            <h3 className={styles.colTitle}>{t.footer.colCategories}</h3>
             <ul className={styles.linkList}>
-              {categories.map((cat) => (
-                <li key={cat.id}>
-                  <Link href={`/san-pham?category=${cat.slug}`} className={styles.footerLink}>
-                    <ChevronRight size={14} />
-                    <span>{cat.name}</span>
-                  </Link>
-                </li>
-              ))}
+              {categories.map((cat) => {
+                const locCat = localizeCategory(cat, locale);
+                return (
+                  <li key={cat.id}>
+                    <Link href={`/san-pham?category=${cat.slug}`} className={styles.footerLink}>
+                      <ChevronRight size={14} />
+                      <span>{locCat.name}</span>
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
-          {/* Column 3: Quick Links & SEO Keywords */}
+          {/* Column 3: Quick Links */}
           <div className={styles.footerCol}>
-            <h3 className={styles.colTitle}>Hỗ Trợ & Hoạt Động</h3>
+            <h3 className={styles.colTitle}>{t.footer.colSupport}</h3>
             <ul className={styles.linkList}>
               <li>
                 <Link href="/hoat-dong" className={styles.footerLink}>
                   <ChevronRight size={14} />
-                  <span>Nhật Ký Hoạt Động Xưởng</span>
+                  <span>{t.footer.linkActivities}</span>
                 </Link>
               </li>
               <li>
                 <Link href="/bang-gia" className={styles.footerLink}>
                   <ChevronRight size={14} />
-                  <span>Bảng Giá Pallet Gỗ Mới Nhất</span>
+                  <span>{t.footer.linkPricing}</span>
                 </Link>
               </li>
               <li>
                 <Link href="/tin-tuc" className={styles.footerLink}>
                   <ChevronRight size={14} />
-                  <span>Kiến Thức Chọn Pallet Chuẩn</span>
+                  <span>{t.footer.linkKnowledge}</span>
                 </Link>
               </li>
               <li>
-                <Link href="/tin-tuc/tieu-chuan-ispm-15-la-gi-khi-xuat-khau-pallet-go" className={styles.footerLink}>
+                <Link
+                  href="/tin-tuc/tieu-chuan-ispm-15-la-gi-khi-xuat-khau-pallet-go"
+                  className={styles.footerLink}
+                >
                   <ChevronRight size={14} />
-                  <span>Tiêu Chuẩn ISPM 15 Xuất Khẩu</span>
+                  <span>{t.footer.linkIspm15}</span>
                 </Link>
               </li>
               <li>
                 <Link href="/lien-he" className={styles.footerLink}>
                   <ChevronRight size={14} />
-                  <span>Yêu Cầu Báo Giá & Làm Mẫu Thử</span>
+                  <span>{t.footer.linkQuoteSample}</span>
                 </Link>
               </li>
             </ul>
 
             <div className={styles.socialBox}>
-              <h4>Kết Nối Với Chúng Tôi</h4>
+              <h4>{t.footer.connectTitle}</h4>
               <div className={styles.socialBtns}>
-                <a href={companyInfo.facebook} target="_blank" rel="noopener noreferrer" className={styles.socialBtn} title="Fanpage Pallet Trường An">
+                <a
+                  href={companyInfo.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.socialBtn}
+                  title="Facebook Pallet Trường An"
+                >
                   <Facebook size={18} />
                 </a>
-                <a href={companyInfo.zaloUrl} target="_blank" rel="noopener noreferrer" className={styles.socialBtn} title="Zalo Tư Vấn Báo Giá">
+                <a
+                  href={companyInfo.zaloUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={styles.socialBtn}
+                  title="Zalo"
+                >
                   <span>Zalo</span>
                 </a>
               </div>
@@ -143,10 +178,10 @@ export const Footer: React.FC = () => {
 
           {/* Column 4: Google Maps Embed */}
           <div className={styles.footerCol}>
-            <h3 className={styles.colTitle}>Bản Đồ Nhà Xưởng</h3>
+            <h3 className={styles.colTitle}>{t.footer.colMap}</h3>
             <div className={styles.mapContainer}>
               <iframe
-                title="Bản đồ vị trí xưởng sản xuất Pallet Gỗ"
+                title={t.footer.colMap}
                 src={companyInfo.googleMapsEmbed}
                 width="100%"
                 height="160"
@@ -161,7 +196,7 @@ export const Footer: React.FC = () => {
                 className={styles.mapDirectionBtn}
               >
                 <MapPin size={14} />
-                <span>Bấm để chỉ đường đến xưởng</span>
+                <span>{t.footer.openGoogleMaps}</span>
               </a>
             </div>
           </div>
@@ -171,13 +206,15 @@ export const Footer: React.FC = () => {
       {/* Bottom Copyright Bar */}
       <div className={styles.copyrightBar}>
         <div className={`container ${styles.copyrightFlex}`}>
-          <p>© 2026 {companyInfo.name}. Bản quyền thuộc về doanh nghiệp. Tất cả quyền được bảo lưu.</p>
+          <p>
+            © 2026 {t.common.companyName}. {t.footer.copyright}
+          </p>
           <div className={styles.bottomLinks}>
-            <Link href="/">Trang chủ</Link>
+            <Link href="/">{t.common.home}</Link>
             <span>•</span>
-            <Link href="/san-pham">Sản phẩm</Link>
+            <Link href="/san-pham">{t.common.products}</Link>
             <span>•</span>
-            <Link href="/lien-he">Báo giá</Link>
+            <Link href="/lien-he">{t.common.quoteShort}</Link>
           </div>
         </div>
       </div>

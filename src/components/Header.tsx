@@ -1,3 +1,5 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
@@ -13,6 +15,10 @@ import {
   FileText,
 } from 'lucide-react';
 import { companyInfo } from '@/data/companyInfo';
+import { categories } from '@/data/products';
+import { LOCALE_OPTIONS } from '@/i18n/translations';
+import { localizeCategory } from '@/i18n/productLocalizer';
+import { useLanguage } from '@/context/LanguageContext';
 import styles from './Header.module.css';
 
 interface HeaderProps {
@@ -21,24 +27,12 @@ interface HeaderProps {
 
 type MegaGroup = 'pallet-go' | 'pallet-nhua' | 'thung' | null;
 
-const PALLET_GO_ITEMS = [
-  { label: 'Pallet Gỗ Tràm (3 Gánh & 9 Gù)', href: '/san-pham?category=pallet-go-tram' },
-  { label: 'Pallet Gỗ Thông Xuất Khẩu (ISPM 15)', href: '/san-pham?category=pallet-go-thong' },
-  { label: 'Pallet Ván Ép (Plywood 10–15mm)', href: '/san-pham?category=pallet-van-ep' },
-  { label: 'Pallet Đóng Theo Bản Vẽ', href: '/san-pham?category=pallet-theo-yeu-cau' },
-];
-
-const PALLET_NHUA_ITEMS = [
-  { label: 'Pallet Nhựa Mới Công Nghiệp', href: '/san-pham?category=pallet-nhua-moi' },
-  { label: 'Pallet Nhựa Cũ (Độ Mới 85–95%)', href: '/san-pham?category=pallet-nhua-cu' },
-];
-
-const THUNG_ITEMS = [
-  { label: 'Thùng Gỗ / Kiện Gỗ Đóng Hàng', href: '/san-pham?category=thung-go-dong-hang' },
-  { label: 'Thùng Nhựa Công Nghiệp', href: '/san-pham?category=thung-nhua' },
-];
+const PALLET_GO_SLUGS = ['pallet-go-tram', 'pallet-go-thong', 'pallet-van-ep', 'pallet-theo-yeu-cau'];
+const PALLET_NHUA_SLUGS = ['pallet-nhua-moi', 'pallet-nhua-cu'];
+const THUNG_SLUGS = ['thung-go-dong-hang', 'thung-nhua'];
 
 export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
+  const { locale, setLocale, t } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeMegaGroup, setActiveMegaGroup] = useState<MegaGroup>(null);
   const [mobileAccordion, setMobileAccordion] = useState<MegaGroup>(null);
@@ -59,42 +53,68 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
     setMobileAccordion((prev) => (prev === group ? null : group));
   };
 
+  const getLocalizedItems = (slugs: string[]) =>
+    slugs
+      .map((s) => categories.find((c) => c.slug === s))
+      .filter((c): c is NonNullable<typeof c> => Boolean(c))
+      .map((c) => {
+        const loc = localizeCategory(c, locale);
+        return { label: loc.name, href: `/san-pham?category=${c.slug}` };
+      });
+
+  const palletGoItems = getLocalizedItems(PALLET_GO_SLUGS);
+  const palletNhuaItems = getLocalizedItems(PALLET_NHUA_SLUGS);
+  const thungItems = getLocalizedItems(THUNG_SLUGS);
+
   return (
     <header className={styles.header}>
-      {/* Top Contact Bar */}
+      {/* Top Contact Bar + Language Switcher */}
       <div className={styles.topBar}>
         <div className={`container ${styles.topBarContainer}`}>
           <div className={styles.topBarLeft}>
             <span className={styles.topBarItem}>
               <MapPin size={14} />
-              <span>94 Dương Công Khi, Bà Điểm, Hồ Chí Minh</span>
+              <span>{t.common.address}</span>
             </span>
             <span className={styles.topBarItem}>
               <Clock size={14} />
-              <span>07:30 - 18:00 (Thứ 2 - CN)</span>
+              <span>{t.common.workingHours}</span>
             </span>
           </div>
           <div className={styles.topBarRight}>
             <div className={styles.topBarHotlines}>
               <Phone size={14} />
-              <span>Hotline: </span>
+              <span>{t.common.hotline}: </span>
               <a href={`tel:${companyInfo.hotline}`} className={styles.topBarPhoneLink}>
                 <strong>{companyInfo.hotlineFormatted}</strong>
               </a>
             </div>
-            <a href={`mailto:${companyInfo.email}`} className={styles.topBarItem}>
+            <a href={`mailto:${companyInfo.email}`} className={`${styles.topBarItem} ${styles.topBarEmail}`}>
               <Mail size={14} />
               <span>{companyInfo.email}</span>
             </a>
+
+            {/* Desktop Language Switcher Pill */}
+            <div className={styles.langSwitcher} role="group" aria-label={t.header.langLabel}>
+              {LOCALE_OPTIONS.map((opt) => (
+                <button
+                  key={opt.code}
+                  type="button"
+                  onClick={() => setLocale(opt.code)}
+                  className={`${styles.langBtn} ${locale === opt.code ? styles.langBtnActive : ''}`}
+                  title={opt.fullLabel}
+                >
+                  <span className={styles.langFlag}>{opt.flag}</span>
+                  <span>{opt.shortLabel}</span>
+                </button>
+              ))}
+            </div>
           </div>
         </div>
       </div>
 
       {/* Main Navigation Navbar + Mega Menu Wrapper */}
-      <div
-        className={styles.mainNav}
-        onMouseLeave={closeMegaMenu}
-      >
+      <div className={styles.mainNav} onMouseLeave={closeMegaMenu}>
         <div className={`container ${styles.mainNavContainer}`}>
           {/* Brand Logo */}
           <Link href="/" className={styles.logo} onClick={closeMegaMenu}>
@@ -104,15 +124,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
               className={styles.logoImage}
             />
             <div className={styles.logoText}>
-              <span className={styles.logoTitle}>{companyInfo.shortName}</span>
-              <span className={styles.logoSubtitle}>XƯỞNG PALLET GỖ & THÙNG GỖ</span>
+              <span className={styles.logoTitle}>{t.common.shortName}</span>
+              <span className={styles.logoSubtitle}>{t.header.logoSubtitle}</span>
             </div>
           </Link>
 
           {/* Desktop Navigation Links */}
           <nav className={styles.desktopNav}>
             <Link href="/" className={styles.navLink} onMouseEnter={closeMegaMenu}>
-              Trang Chủ
+              {t.header.navHome}
             </Link>
 
             <div
@@ -126,7 +146,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                 }`}
                 onClick={closeMegaMenu}
               >
-                <span>Pallet Gỗ</span>
+                <span>{t.header.navWoodPallet}</span>
                 <ChevronDown
                   size={15}
                   className={`${styles.navChevron} ${
@@ -147,7 +167,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                 }`}
                 onClick={closeMegaMenu}
               >
-                <span>Pallet Nhựa</span>
+                <span>{t.header.navPlasticPallet}</span>
                 <ChevronDown
                   size={15}
                   className={`${styles.navChevron} ${
@@ -168,7 +188,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                 }`}
                 onClick={closeMegaMenu}
               >
-                <span>Thùng</span>
+                <span>{t.header.navCrates}</span>
                 <ChevronDown
                   size={15}
                   className={`${styles.navChevron} ${
@@ -179,32 +199,48 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
             </div>
 
             <Link href="/hoat-dong" className={styles.navLink} onMouseEnter={closeMegaMenu}>
-              Hoạt Động
+              {t.header.navActivities}
             </Link>
             <Link href="/bang-gia" className={styles.navLink} onMouseEnter={closeMegaMenu}>
-              Bảng Giá
+              {t.header.navPricing}
             </Link>
             <Link href="/tin-tuc" className={styles.navLink} onMouseEnter={closeMegaMenu}>
-              Kiến Thức
+              {t.header.navKnowledge}
             </Link>
             <Link href="/lien-he" className={styles.navLink} onMouseEnter={closeMegaMenu}>
-              Liên Hệ
+              {t.header.navContact}
             </Link>
           </nav>
 
-          {/* Action CTA Button */}
+          {/* Action CTA Button + Mobile Lang + Hamburger */}
           <div className={styles.navActions}>
             <button
               onClick={() => {
                 closeMegaMenu();
                 onOpenQuoteModal();
               }}
-              className="btn btn-primary"
-              style={{ padding: '0.6rem 1.15rem' }}
+              className={`btn btn-primary ${styles.desktopQuoteBtn}`}
+              style={{ padding: '0.6rem 1.05rem', whiteSpace: 'nowrap' }}
             >
               <FileText size={17} />
-              <span>Nhận Báo Giá</span>
+              <span>{t.header.btnQuote}</span>
             </button>
+
+            {/* Compact Mobile Language Switcher */}
+            <div className={styles.mobileLangInline}>
+              {LOCALE_OPTIONS.map((opt) => (
+                <button
+                  key={opt.code}
+                  type="button"
+                  onClick={() => setLocale(opt.code)}
+                  className={`${styles.mobileLangMiniBtn} ${
+                    locale === opt.code ? styles.mobileLangMiniActive : ''
+                  }`}
+                >
+                  {opt.shortLabel}
+                </button>
+              ))}
+            </div>
 
             {/* Mobile Hamburger Toggle */}
             <button
@@ -229,10 +265,10 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                 onMouseEnter={() => setActiveMegaGroup('pallet-go')}
               >
                 <div className={styles.megaColHeader}>
-                  <span className={styles.megaColTitle}>PALLET GỖ</span>
+                  <span className={styles.megaColTitle}>{t.header.megaWoodTitle}</span>
                 </div>
                 <ul className={styles.megaList}>
-                  {PALLET_GO_ITEMS.map((item) => (
+                  {palletGoItems.map((item) => (
                     <li key={item.href}>
                       <Link href={item.href} className={styles.megaLink} onClick={closeMegaMenu}>
                         {item.label}
@@ -245,7 +281,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                   className={styles.megaViewAll}
                   onClick={closeMegaMenu}
                 >
-                  <span>Xem tất cả</span>
+                  <span>{t.common.viewAll}</span>
                   <ArrowRight size={14} />
                 </Link>
               </div>
@@ -258,10 +294,10 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                 onMouseEnter={() => setActiveMegaGroup('pallet-nhua')}
               >
                 <div className={styles.megaColHeader}>
-                  <span className={styles.megaColTitle}>PALLET NHỰA</span>
+                  <span className={styles.megaColTitle}>{t.header.megaPlasticTitle}</span>
                 </div>
                 <ul className={styles.megaList}>
-                  {PALLET_NHUA_ITEMS.map((item) => (
+                  {palletNhuaItems.map((item) => (
                     <li key={item.href}>
                       <Link href={item.href} className={styles.megaLink} onClick={closeMegaMenu}>
                         {item.label}
@@ -274,7 +310,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                   className={styles.megaViewAll}
                   onClick={closeMegaMenu}
                 >
-                  <span>Xem tất cả</span>
+                  <span>{t.common.viewAll}</span>
                   <ArrowRight size={14} />
                 </Link>
               </div>
@@ -287,10 +323,10 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                 onMouseEnter={() => setActiveMegaGroup('thung')}
               >
                 <div className={styles.megaColHeader}>
-                  <span className={styles.megaColTitle}>THÙNG</span>
+                  <span className={styles.megaColTitle}>{t.header.megaCratesTitle}</span>
                 </div>
                 <ul className={styles.megaList}>
-                  {THUNG_ITEMS.map((item) => (
+                  {thungItems.map((item) => (
                     <li key={item.href}>
                       <Link href={item.href} className={styles.megaLink} onClick={closeMegaMenu}>
                         {item.label}
@@ -303,17 +339,15 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                   className={styles.megaViewAll}
                   onClick={closeMegaMenu}
                 >
-                  <span>Xem tất cả</span>
+                  <span>{t.common.viewAll}</span>
                   <ArrowRight size={14} />
                 </Link>
               </div>
 
               {/* Column 4: Dark Consultation Card */}
               <div className={styles.megaCtaCard}>
-                <h4 className={styles.megaCtaTitle}>Cần tư vấn nhanh?</h4>
-                <p className={styles.megaCtaDesc}>
-                  Gửi kích thước và tải trọng, đội ngũ Trường An phản hồi ngay trong giờ làm việc.
-                </p>
+                <h4 className={styles.megaCtaTitle}>{t.header.megaCtaTitle}</h4>
+                <p className={styles.megaCtaDesc}>{t.header.megaCtaDesc}</p>
                 <a href={`tel:${companyInfo.hotline}`} className={styles.megaCtaPhone}>
                   {companyInfo.hotlineFormatted}
                 </a>
@@ -325,7 +359,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                   }}
                   className={styles.megaCtaBtn}
                 >
-                  Nhận báo giá
+                  {t.header.megaCtaBtn}
                 </button>
               </div>
             </div>
@@ -337,8 +371,25 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
       {mobileMenuOpen && (
         <div className={styles.mobileDrawer}>
           <nav className={styles.mobileNav}>
+            {/* Full Language Selector inside Mobile Drawer */}
+            <div className={styles.mobileDrawerLangRow}>
+              {LOCALE_OPTIONS.map((opt) => (
+                <button
+                  key={opt.code}
+                  type="button"
+                  onClick={() => setLocale(opt.code)}
+                  className={`${styles.mobileDrawerLangBtn} ${
+                    locale === opt.code ? styles.mobileDrawerLangActive : ''
+                  }`}
+                >
+                  <span>{opt.flag}</span>
+                  <span>{opt.fullLabel}</span>
+                </button>
+              ))}
+            </div>
+
             <Link href="/" onClick={() => setMobileMenuOpen(false)} className={styles.mobileNavLink}>
-              <span>Trang Chủ</span>
+              <span>{t.header.navHome}</span>
               <ChevronRight size={16} />
             </Link>
 
@@ -349,7 +400,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                 className={`${styles.mobileNavLink} ${styles.mobileAccordionBtn}`}
                 onClick={() => toggleMobileAccordion('pallet-go')}
               >
-                <span>Pallet Gỗ</span>
+                <span>{t.header.navWoodPallet}</span>
                 <ChevronDown
                   size={16}
                   className={`${styles.navChevron} ${
@@ -359,7 +410,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
               </button>
               {mobileAccordion === 'pallet-go' && (
                 <div className={styles.mobileSubList}>
-                  {PALLET_GO_ITEMS.map((item) => (
+                  {palletGoItems.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
@@ -374,7 +425,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                     onClick={() => setMobileMenuOpen(false)}
                     className={styles.mobileSubViewAll}
                   >
-                    <span>Xem tất cả Pallet Gỗ</span>
+                    <span>{t.header.mobileAllWood}</span>
                     <ArrowRight size={14} />
                   </Link>
                 </div>
@@ -388,7 +439,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                 className={`${styles.mobileNavLink} ${styles.mobileAccordionBtn}`}
                 onClick={() => toggleMobileAccordion('pallet-nhua')}
               >
-                <span>Pallet Nhựa</span>
+                <span>{t.header.navPlasticPallet}</span>
                 <ChevronDown
                   size={16}
                   className={`${styles.navChevron} ${
@@ -398,7 +449,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
               </button>
               {mobileAccordion === 'pallet-nhua' && (
                 <div className={styles.mobileSubList}>
-                  {PALLET_NHUA_ITEMS.map((item) => (
+                  {palletNhuaItems.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
@@ -413,7 +464,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                     onClick={() => setMobileMenuOpen(false)}
                     className={styles.mobileSubViewAll}
                   >
-                    <span>Xem tất cả Pallet Nhựa</span>
+                    <span>{t.header.mobileAllPlastic}</span>
                     <ArrowRight size={14} />
                   </Link>
                 </div>
@@ -427,7 +478,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                 className={`${styles.mobileNavLink} ${styles.mobileAccordionBtn}`}
                 onClick={() => toggleMobileAccordion('thung')}
               >
-                <span>Thùng</span>
+                <span>{t.header.navCrates}</span>
                 <ChevronDown
                   size={16}
                   className={`${styles.navChevron} ${
@@ -437,7 +488,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
               </button>
               {mobileAccordion === 'thung' && (
                 <div className={styles.mobileSubList}>
-                  {THUNG_ITEMS.map((item) => (
+                  {thungItems.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
@@ -452,7 +503,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                     onClick={() => setMobileMenuOpen(false)}
                     className={styles.mobileSubViewAll}
                   >
-                    <span>Xem tất cả Thùng</span>
+                    <span>{t.header.mobileAllCrates}</span>
                     <ArrowRight size={14} />
                   </Link>
                 </div>
@@ -460,26 +511,26 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
             </div>
 
             <Link href="/hoat-dong" onClick={() => setMobileMenuOpen(false)} className={styles.mobileNavLink}>
-              <span>Hoạt Động Xưởng</span>
+              <span>{t.header.mobileActivities}</span>
               <ChevronRight size={16} />
             </Link>
             <Link href="/bang-gia" onClick={() => setMobileMenuOpen(false)} className={styles.mobileNavLink}>
-              <span>Bảng Giá Tra Cứu</span>
+              <span>{t.header.mobilePricing}</span>
               <ChevronRight size={16} />
             </Link>
             <Link href="/tin-tuc" onClick={() => setMobileMenuOpen(false)} className={styles.mobileNavLink}>
-              <span>Kiến Thức & Tin Tức</span>
+              <span>{t.header.mobileKnowledge}</span>
               <ChevronRight size={16} />
             </Link>
             <Link href="/lien-he" onClick={() => setMobileMenuOpen(false)} className={styles.mobileNavLink}>
-              <span>Liên Hệ Công Ty</span>
+              <span>{t.header.mobileContact}</span>
               <ChevronRight size={16} />
             </Link>
 
             <div className={styles.mobileContactBox}>
               <a href={`tel:${companyInfo.hotline}`} className="btn btn-hotline" style={{ width: '100%', marginBottom: '0.6rem' }}>
                 <Phone size={18} />
-                <span>Hotline: {companyInfo.hotlineFormatted}</span>
+                <span>{t.common.hotline}: {companyInfo.hotlineFormatted}</span>
               </a>
               <button
                 onClick={() => {
@@ -490,7 +541,7 @@ export const Header: React.FC<HeaderProps> = ({ onOpenQuoteModal }) => {
                 style={{ width: '100%' }}
               >
                 <FileText size={18} />
-                <span>Yêu Cầu Báo Giá Bản Vẽ</span>
+                <span>{t.header.mobileQuoteDrawing}</span>
               </button>
             </div>
           </nav>

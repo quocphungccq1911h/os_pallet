@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
-import { X, Send, CheckCircle, Phone, Package, ShieldCheck } from 'lucide-react';
+'use client';
+
+import React, { useState, useEffect } from 'react';
+import { X, Send, CheckCircle, Phone, ShieldCheck } from 'lucide-react';
 import { companyInfo } from '@/data/companyInfo';
 import { products } from '@/data/products';
+import { useLanguage } from '@/context/LanguageContext';
+import { localizeProduct } from '@/i18n/productLocalizer';
 import styles from './QuoteModal.module.css';
 
 interface QuoteModalProps {
@@ -11,25 +15,36 @@ interface QuoteModalProps {
 }
 
 export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, defaultProductSlug }) => {
+  const { locale, t } = useLanguage();
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    product: defaultProductSlug || 'pallet-go-tram-1200x1000',
+    product: defaultProductSlug || products[0]?.slug || 'custom',
     dimensions: '',
     quantity: '100',
-    note: ''
+    note: '',
   });
 
   const [submitted, setSubmitted] = useState(false);
-
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    if (defaultProductSlug) {
+      const exists = products.some((p) => p.slug === defaultProductSlug);
+      setFormData((prev) => ({
+        ...prev,
+        product: exists ? defaultProductSlug : 'custom',
+        dimensions: exists ? prev.dimensions : defaultProductSlug,
+      }));
+    }
+  }, [defaultProductSlug, isOpen]);
 
   if (!isOpen) return null;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.phone) {
-      alert('Vui lòng nhập Họ tên và Số điện thoại!');
+      alert(t.quoteModal.alertMissing);
       return;
     }
 
@@ -45,7 +60,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, default
           productTitle: selectedProd ? selectedProd.name : 'Yêu cầu tư vấn kích thước riêng',
           dimensions: formData.dimensions || (selectedProd ? selectedProd.dimensions : ''),
           quantity: formData.quantity,
-          note: formData.note,
+          note: locale !== 'vi' ? `[${locale.toUpperCase()}] ${formData.note}` : formData.note,
           status: 'moi',
         }),
       });
@@ -62,10 +77,10 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, default
     setFormData({
       name: '',
       phone: '',
-      product: 'pallet-go-tram-1200x1000',
+      product: products[0]?.slug || 'custom',
       dimensions: '',
       quantity: '100',
-      note: ''
+      note: '',
     });
     onClose();
   };
@@ -73,7 +88,7 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, default
   return (
     <div className="modal-overlay" onClick={onClose}>
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-        <button className={styles.closeBtn} onClick={onClose} aria-label="Đóng modal">
+        <button className={styles.closeBtn} onClick={onClose} aria-label={t.common.close}>
           <X size={20} />
         </button>
 
@@ -82,18 +97,18 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, default
             <div className={styles.modalHeader}>
               <div className={styles.headerIcon}>📝</div>
               <div>
-                <h3 className={styles.modalTitle}>Yêu Cầu Báo Giá Chi Tiết</h3>
-                <p className={styles.modalSub}>Nhận báo giá tận xưởng tốt nhất & bản vẽ thiết kế mẫu trong 15 phút</p>
+                <h3 className={styles.modalTitle}>{t.quoteModal.title}</h3>
+                <p className={styles.modalSub}>{t.quoteModal.subtitle}</p>
               </div>
             </div>
 
             <form onSubmit={handleSubmit} className={styles.formGrid}>
               <div className={styles.formGroup}>
-                <label className={styles.label}>Họ và tên khách hàng / Công ty *</label>
+                <label className={styles.label}>{t.quoteModal.nameLabel}</label>
                 <input
                   type="text"
                   required
-                  placeholder="Ví dụ: Anh Nam - Công ty Logistics ABC"
+                  placeholder={t.quoteModal.namePlaceholder}
                   className={styles.input}
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
@@ -101,11 +116,11 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, default
               </div>
 
               <div className={styles.formGroup}>
-                <label className={styles.label}>Số điện thoại / Zalo nhận báo giá *</label>
+                <label className={styles.label}>{t.quoteModal.phoneLabel}</label>
                 <input
                   type="tel"
                   required
-                  placeholder="Ví dụ: 0912 345 678"
+                  placeholder={t.quoteModal.phonePlaceholder}
                   className={styles.input}
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
@@ -114,27 +129,30 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, default
 
               <div className={styles.formRow}>
                 <div className={styles.formGroup}>
-                  <label className={styles.label}>Chọn sản phẩm pallet</label>
+                  <label className={styles.label}>{t.quoteModal.productLabel}</label>
                   <select
                     className={styles.select}
                     value={formData.product}
                     onChange={(e) => setFormData({ ...formData, product: e.target.value })}
                   >
-                    {products.map((p) => (
-                      <option key={p.id} value={p.slug}>
-                        {p.name}
-                      </option>
-                    ))}
-                    <option value="custom">Pallet Đóng Theo Kích Thước Yêu Cầu</option>
+                    {products.map((p) => {
+                      const loc = localizeProduct(p, locale);
+                      return (
+                        <option key={p.id} value={p.slug}>
+                          {loc.name}
+                        </option>
+                      );
+                    })}
+                    <option value="custom">{t.quoteModal.customOption}</option>
                   </select>
                 </div>
 
                 <div className={styles.formGroup}>
-                  <label className={styles.label}>Số lượng dự kiến (Cái)</label>
+                  <label className={styles.label}>{t.quoteModal.qtyLabel}</label>
                   <input
                     type="number"
                     min="1"
-                    placeholder="Ví dụ: 100"
+                    placeholder={t.quoteModal.qtyPlaceholder}
                     className={styles.input}
                     value={formData.quantity}
                     onChange={(e) => setFormData({ ...formData, quantity: e.target.value })}
@@ -143,10 +161,10 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, default
               </div>
 
               <div className={styles.formGroup}>
-                <label className={styles.label}>Ghi chú kích thước / Quy cách đóng (Tùy chọn)</label>
+                <label className={styles.label}>{t.quoteModal.noteLabel}</label>
                 <textarea
                   rows={3}
-                  placeholder="Nhập kích thước riêng (Dài x Rộng x Cao) hoặc yêu cầu tiêu chuẩn xuất khẩu ISPM 15..."
+                  placeholder={t.quoteModal.notePlaceholder}
                   className={styles.textarea}
                   value={formData.note}
                   onChange={(e) => setFormData({ ...formData, note: e.target.value })}
@@ -155,43 +173,52 @@ export const QuoteModal: React.FC<QuoteModalProps> = ({ isOpen, onClose, default
 
               <div className={styles.trustBadge}>
                 <ShieldCheck size={16} color="var(--primary)" />
-                <span>Bảo mật thông tin • Cam kết giá tận xưởng sản xuất không qua trung gian</span>
+                <span>{t.quoteModal.trustNote}</span>
               </div>
 
-              <button type="submit" className="btn btn-primary" style={{ width: '100%', padding: '0.85rem' }}>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="btn btn-primary"
+                style={{ width: '100%', padding: '0.85rem' }}
+              >
                 <Send size={18} />
-                <span>GỬI YÊU CẦU BÁO GIÁ NGAY</span>
+                <span>{isSubmitting ? t.quoteModal.submittingBtn : t.quoteModal.submitBtn}</span>
               </button>
             </form>
           </div>
         ) : (
           <div className={styles.successBox}>
             <CheckCircle size={56} className={styles.successIcon} />
-            <h3 className={styles.successTitle}>Gửi Yêu Cầu Thành Công!</h3>
+            <h3 className={styles.successTitle}>{t.quoteModal.successTitle}</h3>
             <p className={styles.successText}>
-              Cảm ơn <strong>{formData.name}</strong> đã liên hệ. Đội ngũ kỹ thuật của <strong>{companyInfo.shortName}</strong> sẽ gọi điện tư vấn và gửi bảng giá ưu đãi qua Zalo <strong>{formData.phone}</strong> trong vòng 15 phút.
+              {t.quoteModal.successDesc1} <strong>{formData.name}</strong> {t.quoteModal.successDesc2}{' '}
+              <strong>{t.common.shortName}</strong> {t.quoteModal.successDesc3}{' '}
+              <strong>{formData.phone}</strong> {t.quoteModal.successDesc4}
             </p>
 
             <div className={styles.directContact}>
-              <p>Cần báo giá gấp? Gọi hoặc nhắn Zalo xưởng ngay:</p>
+              <p>{t.quoteModal.urgentLabel}</p>
               <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap', justifyContent: 'center' }}>
                 <a href={`tel:${companyInfo.hotline}`} className="btn btn-hotline">
                   <Phone size={18} />
-                  <span>Gọi {companyInfo.hotlineFormatted}</span>
+                  <span>
+                    {t.quoteModal.callBtn} {companyInfo.hotlineFormatted}
+                  </span>
                 </a>
                 <a
-                  href={`${companyInfo.zaloUrl}?text=${encodeURIComponent(`Xin chào xưởng Pallet Trường An, tôi vừa để lại yêu cầu báo giá cho ${formData.name} - SĐT: ${formData.phone}`)}`}
+                  href={`${companyInfo.zaloUrl}?text=${encodeURIComponent(`Hello Pallet Truong An, quote inquiry from ${formData.name} - ${formData.phone}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn btn-zalo"
                 >
-                  Nhắn Zalo Ngay
+                  {t.quoteModal.zaloBtn}
                 </a>
               </div>
             </div>
 
             <button onClick={handleReset} className="btn btn-outline" style={{ marginTop: '1.25rem' }}>
-              Đóng Cửa Sổ
+              {t.quoteModal.closeWindow}
             </button>
           </div>
         )}
