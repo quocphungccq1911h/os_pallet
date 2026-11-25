@@ -37,6 +37,7 @@ function parseDimensions(dimStr?: string): { L: string; W: string; H: string } {
 function resolveVariant(product: Product): DrawingVariant {
   const name = product.name.toLowerCase();
   const slug = product.slug.toLowerCase();
+  const spec = (product.specification || '').toLowerCase();
   const cat = product.categorySlug;
 
   if (cat === 'pallet-nhua-moi' || cat === 'pallet-nhua-cu') {
@@ -48,18 +49,20 @@ function resolveVariant(product: Product): DrawingVariant {
     return 'plastic-solid';
   }
   if (cat === 'thung-go-dong-hang') {
-    if (name.includes('thưa') || slug.includes('thua')) return 'crate-open';
-    return 'crate-closed';
+    if (name.includes('kín') || slug.includes('kin')) return 'crate-closed';
+    return 'crate-open';
   }
   if (cat === 'pallet-van-ep' || product.materialGroup === 'van-ep') {
     return 'pallet-plywood';
   }
   if (
-    name.includes('chân gù') ||
+    name.includes('gù') ||
+    spec.includes('cục gù') ||
+    spec.includes('9 gù') ||
     name.includes('epal') ||
-    name.includes('nhật') ||
+    slug.includes('pta-g') ||
     slug.includes('chan-gu') ||
-    slug.includes('epal')
+    slug.includes('cuc-gu')
   ) {
     return 'pallet-block';
   }

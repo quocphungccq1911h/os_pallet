@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect, useRef, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import {
   products as defaultProducts,
@@ -11,9 +11,23 @@ import {
   THUNG_SLUGS,
 } from '@/data/products';
 import { ProductCard } from '@/components/ProductCard';
-import { Search, Filter, Box, Globe, Layers, ExternalLink, RotateCcw, Check, X } from 'lucide-react';
+import { Search, Filter, Box, Globe, Layers, ExternalLink, RotateCcw, Check, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useQuoteModal } from '@/context/QuoteModalContext';
 import styles from './sanpham.module.css';
+
+const ITEMS_PER_PAGE = 10;
+
+function buildPageNumbers(current: number, total: number): (number | 'dots')[] {
+  if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+  const pages: (number | 'dots')[] = [1];
+  if (current > 3) pages.push('dots');
+  const start = Math.max(2, current - 1);
+  const end = Math.min(total - 1, current + 1);
+  for (let i = start; i <= end; i++) pages.push(i);
+  if (current < total - 2) pages.push('dots');
+  pages.push(total);
+  return pages;
+}
 
 function ProductsContent() {
   const searchParams = useSearchParams();
@@ -24,6 +38,8 @@ function ProductsContent() {
   const [selectedMarket, setSelectedMarket] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isMobileFilterOpen, setIsMobileFilterOpen] = useState<boolean>(false);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const mainTopRef = useRef<HTMLElement>(null);
   const { openQuoteModal } = useQuoteModal();
 
   // Đồng bộ bộ lọc từ URL query params (?category=... hoặc ?group=pallet-go|thung)
@@ -105,15 +121,35 @@ function ProductsContent() {
     const matchesCategory = selectedCategory === 'all' || p.categorySlug === selectedCategory;
     const matchesMaterial = selectedMaterial === 'all' || p.materialGroup === selectedMaterial;
     const matchesMarket = selectedMarket === 'all' || p.targetMarket === selectedMarket;
+    const q = searchQuery.trim().toLowerCase();
     const matchesSearch =
-      searchQuery === '' ||
-      p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.dimensions.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.woodType.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (p.badges && p.badges.some((b) => b.toLowerCase().includes(searchQuery.toLowerCase())));
+      q === '' ||
+      p.id.toLowerCase().includes(q) ||
+      p.name.toLowerCase().includes(q) ||
+      p.dimensions.toLowerCase().includes(q) ||
+      p.woodType.toLowerCase().includes(q) ||
+      p.specification.toLowerCase().includes(q) ||
+      (p.badges && p.badges.some((b) => b.toLowerCase().includes(q)));
 
     return matchesGroup && matchesCategory && matchesMaterial && matchesMarket && matchesSearch;
   });
+
+  // Tự động quay về trang 1 khi đổi bộ lọc hoặc từ khóa tìm kiếm
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedGroup, selectedCategory, selectedMaterial, selectedMarket, searchQuery]);
+
+  const totalPages = Math.max(1, Math.ceil(filteredProducts.length / ITEMS_PER_PAGE));
+  const safePage = Math.min(currentPage, totalPages);
+  const startIdx = (safePage - 1) * ITEMS_PER_PAGE;
+  const endIdx = Math.min(startIdx + ITEMS_PER_PAGE, filteredProducts.length);
+  const paginatedProducts = filteredProducts.slice(startIdx, endIdx);
+
+  const goToPage = (page: number) => {
+    const target = Math.max(1, Math.min(totalPages, page));
+    setCurrentPage(target);
+    mainTopRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   const resetFilters = () => {
     setSelectedGroup('all');
@@ -342,7 +378,7 @@ function ProductsContent() {
             </div>
             <h4>Hoạt Động Xưởng Trường An</h4>
             <p>
-              Xem hơn 100+ hình ảnh bốc xếp pallet, đóng kiện máy móc và video xưởng mộc Hóc Môn cập nhật hàng ngày trên Facebook.
+              Xem hơn 100+ hình ảnh bốc xếp pallet, đóng kiện máy móc và video xưởng mộc Bà Điểm cập nhật hàng ngày trên Facebook.
             </p>
             <a
               href="https://www.facebook.com/PalletTruongAn/"
@@ -366,7 +402,7 @@ function ProductsContent() {
         </aside>
 
         {/* Product Grid Main Area */}
-        <main className={styles.mainArea}>
+        <main ref={mainTopRef} className={styles.mainArea}>
           {/* Mobile Toolbar (Search + Filter Drawer trigger) */}
           <div className={styles.mobileToolBar}>
             <div className={styles.mobileSearchBox}>
@@ -398,7 +434,16 @@ function ProductsContent() {
           {/* Result Count Bar */}
           <div className={styles.resultBar}>
             <div>
-              <span>Hiển thị <strong>{filteredProducts.length}</strong> sản phẩm phù hợp</span>
+              <span>
+                {filteredProducts.length > 0 ? (
+                  <>
+                    Hiển thị <strong>{startIdx + 1}–{endIdx}</strong> trong tổng số{' '}
+                    <strong>{filteredProducts.length}</strong> sản phẩm (Trang {safePage}/{totalPages})
+                  </>
+                ) : (
+                  <>Hiển thị <strong>0</strong> sản phẩm phù hợp</>
+                )}
+              </span>
             </div>
             {isFiltered && (
               <button onClick={resetFilters} className={styles.resetBtn}>
@@ -410,11 +455,57 @@ function ProductsContent() {
 
           {/* Product Cards Grid */}
           {filteredProducts.length > 0 ? (
-            <div className={styles.productGrid}>
-              {filteredProducts.map((p) => (
-                <ProductCard key={p.id} product={p} onOpenQuoteModal={(slug) => openQuoteModal(slug)} />
-              ))}
-            </div>
+            <>
+              <div className={styles.productGrid}>
+                {paginatedProducts.map((p) => (
+                  <ProductCard key={p.id} product={p} onOpenQuoteModal={(slug) => openQuoteModal(slug)} />
+                ))}
+              </div>
+
+              {totalPages > 1 && (
+                <nav className={styles.paginationWrap} aria-label="Phân trang sản phẩm">
+                  <button
+                    type="button"
+                    onClick={() => goToPage(safePage - 1)}
+                    disabled={safePage === 1}
+                    className={styles.pageNavBtn}
+                  >
+                    <ChevronLeft size={16} />
+                    <span>Trước</span>
+                  </button>
+
+                  <div className={styles.pageNumbers}>
+                    {buildPageNumbers(safePage, totalPages).map((item, idx) =>
+                      item === 'dots' ? (
+                        <span key={`dots-${idx}`} className={styles.pageDots}>
+                          …
+                        </span>
+                      ) : (
+                        <button
+                          key={item}
+                          type="button"
+                          onClick={() => goToPage(item)}
+                          aria-current={safePage === item ? 'page' : undefined}
+                          className={`${styles.pageNumBtn} ${safePage === item ? styles.pageNumActive : ''}`}
+                        >
+                          {item}
+                        </button>
+                      )
+                    )}
+                  </div>
+
+                  <button
+                    type="button"
+                    onClick={() => goToPage(safePage + 1)}
+                    disabled={safePage === totalPages}
+                    className={styles.pageNavBtn}
+                  >
+                    <span>Sau</span>
+                    <ChevronRight size={16} />
+                  </button>
+                </nav>
+              )}
+            </>
           ) : (
             <div className={styles.emptyState}>
               <div className={styles.emptyIcon}>🔍</div>
@@ -435,7 +526,7 @@ function ProductsContent() {
               </div>
               <h4>Hoạt Động Xưởng Trường An</h4>
               <p>
-                Xem hơn 100+ hình ảnh bốc xếp pallet, đóng kiện máy móc và video xưởng mộc Hóc Môn cập nhật hàng ngày trên Facebook.
+                Xem hơn 100+ hình ảnh bốc xếp pallet, đóng kiện máy móc và video xưởng mộc Bà Điểm cập nhật hàng ngày trên Facebook.
               </p>
               <a
                 href="https://www.facebook.com/PalletTruongAn/"
